@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="acc_reports_enterprise_simulation.ReportClientAction">
+        <div class="o_action o_acc_reports_enterprise_simulation">
+            <Layout display="{ controlPanel: false }">
+                <div class="o_acc_reports_enterprise_simulation_toolbar">
+                    <div class="o_acc_reports_enterprise_simulation_toolbar_grid">
+                        <div class="o_preview_search_box">
+                            <i class="fa fa-search"/>
+                            <input type="search" t-att-value="uiState.searchTerm" t-on-input="onSearchInput" placeholder="Search report..."/>
+                            <button t-if="uiState.searchTerm" type="button" class="o_preview_search_clear" title="Clear Search" t-on-click="clearSearch">
+                                <i class="fa fa-times"/>
+                            </button>
+                        </div>
+                        <t t-if="_getSmartButtons().length">
+                            <div class="o_acc_reports_enterprise_simulation_filters">
+                                <t t-foreach="_getSmartButtons()" t-as="button" t-key="_smartButtonKey(button)">
+                                    <t t-if="button.type === 'date_menu'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_date_menu'" menuClass="'o_preview_comparison_menu o_preview_date_menu'" position="'bottom-end'">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <t t-foreach="_getDatePresetOptions(button)" t-as="option" t-key="option.value">
+                                                    <DropdownItem class="{ o_preview_dropdown_item: true, o_preview_date_menu_item: true, selected: _currentDatePreset(button) === option.value }" onSelected="() => this.onDatePresetSelected(button, option.value)">
+                                                        <span class="o_preview_date_menu_main" t-esc="option.label"/>
+                                                        <t t-if="option.meta">
+                                                            <div class="o_preview_date_menu_period">
+                                                                <button type="button" class="o_preview_date_menu_nav" title="Previous Period" t-on-click.stop="() => this.onDatePresetShift(button, option.value, -1)">
+                                                                    <i class="fa fa-angle-left"/>
+                                                                </button>
+                                                                <span class="o_preview_date_menu_meta" t-esc="option.meta"/>
+                                                                <button type="button" class="o_preview_date_menu_nav" title="Next Period" t-on-click.stop="() => this.onDatePresetShift(button, option.value, 1)">
+                                                                    <i class="fa fa-angle-right"/>
+                                                                </button>
+                                                            </div>
+                                                        </t>
+                                                    </DropdownItem>
+                                                </t>
+                                                <div class="dropdown-divider my-1" role="separator"/>
+                                                <DropdownItem class="{ o_preview_dropdown_item: true, o_preview_date_menu_item: true, selected: _currentDatePreset(button) === 'specific_date' }" onSelected="() => this.onDatePresetSelected(button, 'specific_date')">
+                                                    <span class="o_preview_date_menu_main">Custom Dates</span>
+                                                </DropdownItem>
+                                        </Dropdown>
+                                    </t>
+                                    <t t-elif="button.type === 'comparison_menu'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_comparison_menu'" menuClass="'o_preview_comparison_menu'" position="'bottom-end'">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <DropdownItem class="{ o_preview_dropdown_item: true, selected: _currentComparisonMode() === 'no_comparison' }" onSelected="() => this.onComparisonSelected('no_comparison')">
+                                                    <span>No Comparison</span>
+                                                </DropdownItem>
+                                                <DropdownItem class="{ o_preview_dropdown_item: true, selected: _currentComparisonMode() === 'previous_period' }" onSelected="() => this.onComparisonSelected('previous_period')">
+                                                    <span>Previous Period</span>
+                                                </DropdownItem>
+                                                <DropdownItem class="{ o_preview_dropdown_item: true, selected: _currentComparisonMode() === 'same_period_last_year' }" onSelected="() => this.onComparisonSelected('same_period_last_year')">
+                                                    <span>Same Period Last Year</span>
+                                                </DropdownItem>
+                                                <DropdownItem class="{ o_preview_dropdown_item: true, selected: _currentComparisonMode() === 'specific_date' }" onSelected="() => this.onComparisonSelected('specific_date')">
+                                                    <span>Custom Dates</span>
+                                                </DropdownItem>
+                                                <t t-if="button.withOrder">
+                                                    <div class="dropdown-divider my-1" role="separator"/>
+                                                    <div class="o_preview_dropdown_footer d-flex justify-content-between align-items-center">
+                                                        <span>Period Order</span>
+                                                        <div class="o_preview_order_switch">
+                                                            <button type="button" t-att-class="{ o_preview_order_btn: true, selected: _currentComparisonOrder() === 'descending' }" t-on-click="() => this.onComparisonOrderSelected('descending')">Descending</button>
+                                                            <button type="button" t-att-class="{ o_preview_order_btn: true, selected: _currentComparisonOrder() === 'ascending' }" t-on-click="() => this.onComparisonOrderSelected('ascending')">Ascending</button>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                        </Dropdown>
+                                    </t>
+                                    <t t-elif="button.type === 'choice'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_choice_menu'" menuClass="'o_preview_comparison_menu'" position="'bottom-end'">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <t t-foreach="button.choices" t-as="choice" t-key="choice.value">
+                                                    <DropdownItem class="{ o_preview_dropdown_item: true, selected: params.data.form[button.field] === choice.value }" onSelected="() => this.onChoiceSelected(button, choice.value)">
+                                                        <span class="o_preview_dropdown_check"><i t-if="params.data.form[button.field] === choice.value" class="fa fa-check text-success"/></span>
+                                                        <span t-esc="choice.label"/>
+                                                    </DropdownItem>
+                                                </t>
+                                        </Dropdown>
+                                    </t>
+                                    <t t-elif="button.type === 'entries_menu'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_entries_menu'" menuClass="'o_preview_comparison_menu'" position="'bottom-end'">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <DropdownItem class="'o_preview_dropdown_item'" onSelected="() => this.onEntriesSelected('toggle_draft_entries')">
+                                                    <span class="o_preview_dropdown_check"/>
+                                                    <span t-esc="_draftEntriesToggleLabel()"/>
+                                                </DropdownItem>
+                                                <DropdownItem t-if="params.data.form.hierarchy_subtotals !== undefined"
+                                                    class="{ o_preview_dropdown_item: true, selected: params.data.form.hierarchy_subtotals }"
+                                                    onSelected="() => this.onEntriesSelected('toggle_hierarchy_subtotals')">
+                                                    <span class="o_preview_dropdown_check"><i t-if="params.data.form.hierarchy_subtotals" class="fa fa-check text-success"/></span>
+                                                    <span>Hierarchy and Subtotals</span>
+                                                </DropdownItem>
+                                                <DropdownItem t-if="params.data.form.unfold_all !== undefined"
+                                                    class="{ o_preview_dropdown_item: true, selected: params.data.form.unfold_all }"
+                                                    onSelected="() => this.onEntriesSelected('unfold_all')">
+                                                    <span class="o_preview_dropdown_check"><i t-if="params.data.form.unfold_all" class="fa fa-check text-success"/></span>
+                                                    <span t-esc="_unfoldAllLabel()"/>
+                                                </DropdownItem>
+                                                <DropdownItem t-if="params.data.form.cash_basis !== undefined"
+                                                    class="{ o_preview_dropdown_item: true, selected: params.data.form.cash_basis }"
+                                                    onSelected="() => this.onEntriesSelected('toggle_cash_basis')">
+                                                    <span class="o_preview_dropdown_check"><i t-if="params.data.form.cash_basis" class="fa fa-check text-success"/></span>
+                                                    <span>Cash Basis Method</span>
+                                                </DropdownItem>
+                                                <DropdownItem t-if="params.data.form.hide_zero_lines !== undefined"
+                                                    class="{ o_preview_dropdown_item: true, selected: params.data.form.hide_zero_lines }"
+                                                    onSelected="() => this.onEntriesSelected('toggle_hide_zero_lines')">
+                                                    <span class="o_preview_dropdown_check"><i t-if="params.data.form.hide_zero_lines" class="fa fa-check text-success"/></span>
+                                                    <span>Hide lines at 0</span>
+                                                </DropdownItem>
+                                        </Dropdown>
+                                    </t>
+                                    <t t-elif="button.type === 'period_length_menu'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_period_length_menu'" menuClass="'o_preview_comparison_menu o_preview_period_length_menu'" position="'bottom-end'" beforeOpen.bind="_resetPeriodLengthDraft">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <div class="o_preview_dropdown_footer o_preview_dropdown_footer_actions">
+                                                    <span>Days</span>
+                                                    <input type="number" min="1" class="form-control form-control-sm" style="width: 72px" t-att-value="uiState.periodLengthDraft" t-on-input="_onPeriodLengthInput"/>
+                                                    <button type="button" class="btn btn-sm btn-primary o_preview_footer_apply" t-on-click="applyPeriodLength">Apply</button>
+                                                </div>
+                                        </Dropdown>
+                                    </t>
+                                    <t t-elif="button.type === 'journals_menu'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_journals_menu'" menuClass="'o_preview_comparison_menu o_preview_journals_menu'" position="'bottom-end'" beforeOpen.bind="_resetJournalDraftSelection">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <div class="o_preview_journals_list">
+                                                    <t t-foreach="params.journal_options || []" t-as="journal" t-key="journal.id">
+                                                        <DropdownItem parentClosingMode="'none'" class="{ o_preview_dropdown_item: true, selected: _isJournalSelected(journal.id) }" onSelected="() => this._toggleJournalSelection(journal.id)">
+                                                            <span class="o_preview_dropdown_check"><i t-if="_isJournalSelected(journal.id)" class="fa fa-check text-success"/></span>
+                                                            <span t-esc="journal.name"/>
+                                                        </DropdownItem>
+                                                    </t>
+                                                </div>
+                                                <div class="dropdown-divider my-1" role="separator"/>
+                                                <div class="o_preview_dropdown_footer o_preview_dropdown_footer_actions">
+                                                    <button type="button" class="btn btn-link btn-sm o_preview_footer_link" t-on-click="_selectAllJournals">Select All</button>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <button type="button" class="btn btn-link btn-sm o_preview_footer_link" t-on-click="_clearJournalSelection">Clear</button>
+                                                        <button type="button" class="btn btn-sm btn-primary o_preview_footer_apply" t-att-disabled="!uiState.journalDraftIds.length" t-on-click="applyJournalSelection">Apply</button>
+                                                    </div>
+                                                </div>
+                                        </Dropdown>
+                                    </t>
+                                    <t t-elif="button.type === 'partner_categories_menu'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_partner_categories_menu'" menuClass="'o_preview_comparison_menu o_preview_journals_menu'" position="'bottom-end'" beforeOpen.bind="_resetPartnerCategoryDraftSelection">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <div class="o_preview_dropdown_header">Partners</div>
+                                                <div class="dropdown-divider my-1" role="separator"/>
+                                                <div class="o_preview_dropdown_header">Tags</div>
+                                                <div class="o_preview_journals_list">
+                                                    <t t-foreach="params.data.form.partner_category_options || []" t-as="category" t-key="category.id">
+                                                        <DropdownItem parentClosingMode="'none'" class="{ o_preview_dropdown_item: true, selected: _isPartnerCategorySelected(category.id) }" onSelected="() => this._togglePartnerCategorySelection(category.id)">
+                                                            <span class="o_preview_dropdown_check"><i t-if="_isPartnerCategorySelected(category.id)" class="fa fa-check text-success"/></span>
+                                                            <span t-esc="category.name"/>
+                                                        </DropdownItem>
+                                                    </t>
+                                                </div>
+                                                <div class="dropdown-divider my-1" role="separator"/>
+                                                <div class="o_preview_dropdown_footer o_preview_dropdown_footer_actions">
+                                                    <button type="button" class="btn btn-link btn-sm o_preview_footer_link" t-on-click="_selectAllPartnerCategories">Select All</button>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <button type="button" class="btn btn-link btn-sm o_preview_footer_link" t-on-click="_clearPartnerCategorySelection">Clear</button>
+                                                        <button type="button" class="btn btn-sm btn-primary o_preview_footer_apply" t-on-click="applyPartnerCategorySelection">Apply</button>
+                                                    </div>
+                                                </div>
+                                        </Dropdown>
+                                    </t>
+                                    <t t-elif="button.type === 'analytic_accounts_menu'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_analytic_accounts_menu'" menuClass="'o_preview_comparison_menu o_preview_journals_menu'" position="'bottom-end'" beforeOpen.bind="_resetAnalyticDraftSelection">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <div class="o_preview_journals_list">
+                                                    <t t-foreach="params.analytic_account_options || []" t-as="analytic" t-key="analytic.id">
+                                                        <DropdownItem parentClosingMode="'none'" class="{ o_preview_dropdown_item: true, selected: _isAnalyticSelected(analytic.id) }" onSelected="() => this._toggleAnalyticSelection(analytic.id)">
+                                                            <span class="o_preview_dropdown_check"><i t-if="_isAnalyticSelected(analytic.id)" class="fa fa-check text-success"/></span>
+                                                            <span t-esc="analytic.name"/>
+                                                        </DropdownItem>
+                                                    </t>
+                                                </div>
+                                                <div class="dropdown-divider my-1" role="separator"/>
+                                                <div class="o_preview_dropdown_footer o_preview_dropdown_footer_actions">
+                                                    <button type="button" class="btn btn-link btn-sm o_preview_footer_link" t-on-click="_selectAllAnalytics">Select All</button>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <button type="button" class="btn btn-link btn-sm o_preview_footer_link" t-on-click="_clearAnalyticSelection">Clear</button>
+                                                        <button type="button" class="btn btn-sm btn-primary o_preview_footer_apply" t-on-click="applyAnalyticSelection">Apply</button>
+                                                    </div>
+                                                </div>
+                                        </Dropdown>
+                                    </t>
+                                    <t t-elif="button.type === 'companies_menu'">
+                                        <Dropdown class="'o_preview_chip_dropdown'" togglerClass="'o_preview_chip o_preview_chip_active o_preview_chip_companies_menu'" menuClass="'o_preview_comparison_menu o_preview_companies_menu'" position="'bottom-end'">
+                                            <t t-set-slot="toggler">
+                                                <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                                <span t-esc="button.label"/>
+                                            </t>
+                                                <DropdownItem t-if="(params.company_options || []).length > 1" class="{ o_preview_dropdown_item: true, selected: _isAllCompaniesSelected() }" onSelected="() => this.onCompanySelected((params.company_options || []).map((company) => company.id))">
+                                                    <span class="o_preview_dropdown_check"><i t-if="_isAllCompaniesSelected()" class="fa fa-check text-success"/></span>
+                                                    <span>All</span>
+                                                </DropdownItem>
+                                                <div t-if="(params.company_options || []).length > 1" class="dropdown-divider my-1" role="separator"/>
+                                                <t t-foreach="params.company_options || []" t-as="company" t-key="company.id">
+                                                    <DropdownItem class="{ o_preview_dropdown_item: true, selected: _isCompanySelected(company.id) }" onSelected="() => this.onCompanySelected([company.id])">
+                                                        <span class="o_preview_dropdown_check"><i t-if="_isCompanySelected(company.id)" class="fa fa-check text-success"/></span>
+                                                        <span t-esc="company.name"/>
+                                                    </DropdownItem>
+                                                </t>
+                                        </Dropdown>
+                                    </t>
+                                    <button t-else="" type="button"
+                                        t-att-class="_smartButtonClasses(button)"
+                                        t-att-title="button.label"
+                                        t-on-click="() => this.onSmartButtonClick(button)">
+                                        <i t-if="button.icon" t-att-class="button.icon + ' me-2'"/>
+                                        <span t-esc="button.label"/>
+                                    </button>
+                                </t>
+                            </div>
+                        </t>
+                        <div class="o_acc_reports_enterprise_simulation_actions">
+                            <div class="o_acc_reports_enterprise_simulation_title_stack">
+                                <button t-if="params.return_action" type="button" class="o_acc_reports_enterprise_simulation_return_link" t-on-click="returnToPreviousReport">
+                                    <span t-esc="_fallbackReturnLabel()"/>
+                                </button>
+                                <span class="o_acc_reports_enterprise_simulation_title" t-esc="title"/>
+                            </div>
+                            <button type="button" class="btn btn-secondary o_acc_reports_enterprise_simulation_export" title="XLSX" t-on-click="exportXlsx">XLSX</button>
+                            <button type="button" class="btn btn-primary o_acc_reports_enterprise_simulation_export o_acc_reports_enterprise_simulation_pdf" title="PDF" t-on-click="print">PDF</button>
+                        </div>
+                    </div>
+                </div>
+                <div t-if="params.show_unposted_notice" class="o_acc_reports_enterprise_simulation_notice">
+                    There are unposted journal entries before or within this period.
+                </div>
+                <iframe t-ref="iframe" t-on-load="onIframeLoaded" class="h-100 w-100 d-block" t-att-src="reportUrl" />
+            </Layout>
+        </div>
+    </t>
+</templates>

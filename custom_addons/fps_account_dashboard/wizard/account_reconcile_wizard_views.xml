@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_fps_st_line_reconcile_form" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.reconcile.form</field>
+        <field name="model">account.bank.statement.line.reconcile</field>
+        <field name="arch" type="xml">
+            <form string="Reconcile Transaction">
+                <field name="st_line_id" invisible="1"/>
+                <field name="company_id" invisible="1"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="company_currency_id" invisible="1"/>
+                <field name="aml_domain" invisible="1"/>
+                <group>
+                    <group string="Transaction">
+                        <field name="payment_ref" string="Label" readonly="1"/>
+                        <field name="date" readonly="1"/>
+                        <field name="journal_id" readonly="1"/>
+                        <field name="amount" readonly="1"/>
+                        <field name="amount_open" readonly="1"
+                               invisible="amount_open == amount"/>
+                    </group>
+                    <group string="Matching">
+                        <field name="partner_id" options="{'no_create': True}"/>
+                        <field name="amount_allocated" readonly="1"/>
+                        <field name="amount_remaining" readonly="1"/>
+                    </group>
+                </group>
+                <div class="mb-2">
+                    <button name="action_load_open_items"
+                            type="object"
+                            string="Reload Suggestions"
+                            class="btn btn-secondary btn-sm"
+                            icon="fa-refresh"/>
+                    <button name="action_clear_allocations"
+                            type="object"
+                            string="Clear Allocations"
+                            class="btn btn-link btn-sm"/>
+                </div>
+                <field name="line_ids" nolabel="1">
+                    <tree editable="bottom" create="true" delete="true">
+                        <field name="aml_id"
+                               string="Journal Item"
+                               options="{'no_create': True}"
+                               domain="aml_domain"/>
+                        <field name="aml_domain" column_invisible="True"/>
+                        <field name="date" readonly="1" optional="show"/>
+                        <field name="move_id" string="Journal Entry" readonly="1" optional="show"/>
+                        <field name="account_id" readonly="1" optional="show"/>
+                        <field name="partner_id" readonly="1" optional="show"/>
+                        <field name="name" string="Label" readonly="1" optional="hide"/>
+                        <field name="amount_residual_currency" string="Open Amount" readonly="1"/>
+                        <field name="amount_applied" string="Allocated" sum="Total Allocated"/>
+                        <field name="aml_currency_id" column_invisible="True"/>
+                    </tree>
+                </field>
+                <group string="Remaining Amount">
+                    <field name="counterpart_account_id"
+                           options="{'no_create': True}"
+                           placeholder="Keep open on the suspense account"/>
+                    <field name="writeoff_label"
+                           invisible="not counterpart_account_id"/>
+                </group>
+                <footer>
+                    <button name="action_reconcile"
+                            type="object"
+                            string="Reconcile"
+                            class="btn-primary"
+                            data-hotkey="q"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                            data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

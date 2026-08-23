@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="stage_received" model="laundry.stage">
+            <field name="name">Received</field>
+            <field name="name_ar">مستلم</field>
+            <field name="sequence">10</field>
+            <field name="state_key">received</field>
+            <field name="color">0</field>
+            <field name="counter_visible" eval="True"/>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+        <record id="stage_tagged" model="laundry.stage">
+            <field name="name">Tagged</field>
+            <field name="name_ar">مُصنّف</field>
+            <field name="sequence">20</field>
+            <field name="state_key">tagged</field>
+            <field name="color">0</field>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+        <record id="stage_sorted" model="laundry.stage">
+            <field name="name">Sorted</field>
+            <field name="name_ar">مُرتَّب</field>
+            <field name="sequence">30</field>
+            <field name="state_key">sorted</field>
+            <field name="color">3</field>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+        <record id="stage_washing" model="laundry.stage">
+            <field name="name">Washing</field>
+            <field name="name_ar">في الغسيل</field>
+            <field name="sequence">40</field>
+            <field name="state_key">washing</field>
+            <field name="color">4</field>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+        <record id="stage_drying" model="laundry.stage">
+            <field name="name">Drying</field>
+            <field name="name_ar">في التجفيف</field>
+            <field name="sequence">50</field>
+            <field name="state_key">drying</field>
+            <field name="color">4</field>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+        <record id="stage_ironing" model="laundry.stage">
+            <field name="name">Ironing</field>
+            <field name="name_ar">في الكوي</field>
+            <field name="sequence">60</field>
+            <field name="state_key">ironing</field>
+            <field name="color">4</field>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+        <record id="stage_packing" model="laundry.stage">
+            <field name="name">Packing</field>
+            <field name="name_ar">في التعبئة</field>
+            <field name="sequence">70</field>
+            <field name="state_key">packing</field>
+            <field name="color">3</field>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+        <record id="stage_ready" model="laundry.stage">
+            <field name="name">Ready</field>
+            <field name="name_ar">جاهز</field>
+            <field name="sequence">80</field>
+            <field name="state_key">ready</field>
+            <field name="color">10</field>
+            <field name="counter_visible" eval="True"/>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+        <record id="stage_out_delivery" model="laundry.stage">
+            <field name="name">Out for Delivery</field>
+            <field name="name_ar">في الطريق</field>
+            <field name="sequence">85</field>
+            <field name="state_key">out_for_delivery</field>
+            <field name="color">7</field>
+        </record>
+
+        <record id="stage_delivered" model="laundry.stage">
+            <field name="name">Delivered</field>
+            <field name="name_ar">تم التوصيل</field>
+            <field name="sequence">90</field>
+            <field name="state_key">delivered</field>
+            <field name="color">10</field>
+            <field name="is_terminal" eval="True"/>
+            <field name="fold" eval="True"/>
+        </record>
+
+        <record id="stage_picked_up" model="laundry.stage">
+            <field name="name">Picked Up</field>
+            <field name="name_ar">تم الاستلام</field>
+            <field name="sequence">91</field>
+            <field name="state_key">picked_up</field>
+            <field name="color">10</field>
+            <field name="is_terminal" eval="True"/>
+            <field name="fold" eval="True"/>
+        </record>
+
+        <record id="stage_cancelled" model="laundry.stage">
+            <field name="name">Cancelled</field>
+            <field name="name_ar">ملغي</field>
+            <field name="sequence">95</field>
+            <field name="state_key">cancelled</field>
+            <field name="color">1</field>
+            <field name="is_terminal" eval="True"/>
+            <field name="fold" eval="True"/>
+        </record>
+
+        <record id="stage_issue" model="laundry.stage">
+            <field name="name">Issue</field>
+            <field name="name_ar">إشكالية</field>
+            <field name="sequence">88</field>
+            <field name="state_key">issue</field>
+            <field name="color">1</field>
+            <field name="is_blocking" eval="True"/>
+            <field name="production_visible" eval="True"/>
+            <field name="counter_visible" eval="True"/>
+        </record>
+
+        <record id="stage_rewash" model="laundry.stage">
+            <field name="name">Rewash</field>
+            <field name="name_ar">إعادة غسيل</field>
+            <field name="sequence">89</field>
+            <field name="state_key">rewash</field>
+            <field name="color">2</field>
+            <field name="production_visible" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

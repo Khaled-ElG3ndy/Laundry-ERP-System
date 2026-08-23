@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_config_form_grocery" model="ir.ui.view">
+        <field name="name">pos.config.form.grocery</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <group string="Grocery Settings" name="grocery_settings">
+                    <group>
+                        <field name="fps_enable_grocery"/>
+                        <field name="fps_enable_snap" invisible="not fps_enable_grocery"/>
+                        <field name="fps_enable_weighted_barcodes" invisible="not fps_enable_grocery"/>
+                        <field name="fps_default_department_id" invisible="not fps_enable_grocery"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

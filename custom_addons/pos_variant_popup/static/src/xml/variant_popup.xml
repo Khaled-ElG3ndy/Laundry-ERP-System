@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_variant_popup.VariantPopup">
+        <div class="vp-overlay" t-on-click.self="cancel">
+            <div class="vp-modal">
+
+                <div class="vp-modal-header">
+                    <div class="vp-header-text">
+                        <div class="vp-subtitle" t-esc="props.title"/>
+                        <div class="vp-title" t-esc="props.productName"/>
+                    </div>
+
+                    <button class="vp-close-btn" t-on-click="cancel" aria-label="Close">
+                        <i class="fa fa-times"/>
+                    </button>
+                </div>
+
+                <div class="vp-modal-body">
+                    <div class="vp-grid">
+                        <t t-foreach="props.variants" t-as="variant" t-key="variant.id">
+                            <div
+                                t-att-class="'vp-option-card ' + variant.toneClass + (state.selectedId === variant.id ? ' vp-selected' : '')"
+                                t-on-click="() => this.selectVariant(variant)"
+                            >
+                                <div class="vp-checkmark">
+                                    <span t-if="state.selectedId === variant.id">✓</span>
+                                </div>
+
+                                <div class="vp-icon-wrap">
+                                    <span class="vp-icon-box"/>
+                                </div>
+
+                                <div class="vp-option-name" t-esc="variant.variantName"/>
+                                <div class="vp-option-price" t-esc="variant.priceStr"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+
+                <div class="vp-modal-footer">
+                    <button class="vp-btn vp-btn-light" t-on-click="cancel">
+                        <span t-esc="props.cancelText"/>
+                    </button>
+
+                    <button
+                        class="vp-btn vp-btn-primary"
+                        t-att-disabled="!state.selectedId"
+                        t-on-click="confirm"
+                    >
+                        <span t-esc="props.confirmText"/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

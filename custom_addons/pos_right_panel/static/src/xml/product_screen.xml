@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_right_panel.ClearOrderPopup" owl="1">
+        <div class="pos-right-dialog-shell">
+            <section class="pos-right-dialog pos-right-dialog--danger" role="alertdialog" aria-modal="true">
+                <header class="pos-right-dialog__header">
+                    <div class="pos-right-dialog__icon">
+                        <i class="fa fa-trash-o"/>
+                    </div>
+                    <div class="pos-right-dialog__headings">
+                        <h3 class="pos-right-dialog__title" t-esc="props.title"/>
+                        <p class="pos-right-dialog__subtitle" t-esc="props.subtitle"/>
+                    </div>
+                </header>
+
+                <div class="pos-right-dialog__body">
+                    <div class="pos-right-dialog__metrics">
+                        <div class="pos-right-dialog__metric">
+                            <span class="pos-right-dialog__metric-label" t-esc="props.detailLabel"/>
+                            <strong class="pos-right-dialog__metric-value" t-esc="props.detailValue"/>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="pos-right-dialog__footer">
+                    <button type="button"
+                            class="pos-right-dialog__button pos-right-dialog__button--ghost"
+                            t-on-click="cancel">
+                        <t t-esc="props.cancelText"/>
+                    </button>
+                    <button type="button"
+                            class="pos-right-dialog__button pos-right-dialog__button--danger"
+                            t-on-click="confirm">
+                        <i class="fa fa-check"/>
+                        <t t-esc="props.confirmText"/>
+                    </button>
+                </footer>
+            </section>
+        </div>
+    </t>
+
+    <!--
+    ═══════════════════════════════════════════════════════
+     POS RIGHT PANEL — Enhanced Modern Layout
+     All action buttons rendered in a uniform 2-column grid.
+     No hero / secondary / utility size distinction —
+     every button is identical in height for visual harmony.
+    ═══════════════════════════════════════════════════════
+    -->
+
+    <t t-name="pos_right_panel.ProductScreenExtension"
+       t-inherit="point_of_sale.ProductScreen"
+       t-inherit-mode="extension"
+       owl="1">
+
+        <xpath expr="//div[contains(@class, 'product-screen')]" position="inside">
+            <div class="pos-right-panel">
+
+                <!-- ── ACTIONS SECTION ───────────────────────────── -->
+                <div class="pos-right-panel-section pos-right-actions-section">
+                    <div class="pos-right-panel-title">Order Actions</div>
+
+                    <!--
+                        Single unified 2-column grid.
+                        All three groups (primary / secondary / utility)
+                        are merged here so every button shares the same
+                        84 px height defined in the CSS.
+                    -->
+                    <div class="pos-right-actions-grid">
+
+                        <!-- Primary buttons (e.g. New Order, Pay) -->
+                        <t t-foreach="primarySidebarActionButtons" t-as="cb" t-key="cb.name">
+                            <div t-attf-class="pos-right-action-item pos-right-action-item--#{cb.name}">
+                                <t t-component="cb.component" t-key="cb.name"/>
+                            </div>
+                        </t>
+
+                        <!-- Secondary buttons (e.g. Pending Orders, Laundry Receipt) -->
+                        <t t-foreach="secondarySidebarActionButtons" t-as="cb" t-key="cb.name">
+                            <div t-attf-class="pos-right-action-item pos-right-action-item--#{cb.name}">
+                                <t t-component="cb.component" t-key="cb.name"/>
+                            </div>
+                        </t>
+
+                        <!-- Utility buttons (e.g. Note, Refund) -->
+                        <t t-foreach="utilitySidebarActionButtons" t-as="cb" t-key="cb.name">
+                            <div t-attf-class="pos-right-action-item pos-right-action-item--#{cb.name}">
+                                <t t-component="cb.component" t-key="cb.name"/>
+                            </div>
+                        </t>
+
+                    </div>
+
+                    <!-- Danger: Clear order -->
+                    <button
+                        class="shortcut-btn shortcut-danger pos-right-clear-order-btn"
+                        t-on-click="onClickClearOrder"
+                    >
+                        <i class="fa fa-trash"/>
+                        <span>Clear Order</span>
+                    </button>
+                </div>
+
+                <!-- ── CATEGORIES SECTION ────────────────────────── -->
+                <div class="pos-right-panel-section pos-right-categories-section">
+                    <div class="pos-right-panel-title">Categories</div>
+
+                    <div class="categories-center-wrap">
+                        <t t-set="sidebarCategories" t-value="rootCategories || []"/>
+
+                        <!-- "All" button always first -->
+                        <button
+                            t-att-class="'pos-right-category-btn all-btn ' + (selectedCategoryIdForSidebar === 0 ? 'active' : '')"
+                            t-on-click="() => this.selectSidebarCategory(0)"
+                        >
+                            All
+                        </button>
+
+                        <!-- Dynamic category buttons -->
+                        <t t-foreach="sidebarCategories" t-as="category" t-key="category.id">
+                            <button
+                                t-att-class="'pos-right-category-btn ' + (selectedCategoryIdForSidebar === category.id ? 'active' : '')"
+                                t-on-click="() => this.selectSidebarCategory(category.id)"
+                            >
+                                <t t-esc="category.name"/>
+                            </button>
+                        </t>
+                    </div>
+                </div>
+
+            </div>
+        </xpath>
+    </t>
+
+    <t t-name="pos_right_panel.NavbarProductSearch"
+       t-inherit="point_of_sale.Navbar"
+       t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//div[contains(@class, 'pos-branding')]" position="after">
+            <div t-if="showTopProductSearch" class="pos-top-product-search">
+                <div class="pos-top-product-search__field" t-att-dir="topProductSearchDirection">
+                    <i class="fa fa-search pos-top-product-search__icon" aria-hidden="true"/>
+                    <input
+                        type="text"
+                        class="pos-top-product-search__input"
+                        t-att-placeholder="topProductSearchPlaceholder"
+                        t-model="pos.searchProductWord"
+                        t-on-input="onTopProductSearchInput"
+                        t-on-keydown="onTopProductSearchKeydown"
+                        autocomplete="off"
+                        inputmode="search"
+                    />
+                    <button
+                        t-if="hasTopProductSearchValue"
+                        type="button"
+                        class="pos-top-product-search__clear"
+                        t-att-title="topProductSearchClearLabel"
+                        t-on-click="clearTopProductSearch"
+                    >
+                        <i class="fa fa-times" aria-hidden="true"/>
+                    </button>
+                </div>
+            </div>
+        </xpath>
+    </t>
+
+    <!-- ── Left control buttons (native bar) ───────────── -->
+    <t t-name="pos_right_panel.ProductScreenLeftButtons"
+       t-inherit="point_of_sale.ProductScreen"
+       t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//div[hasclass('control-buttons')]" position="replace">
+            <div
+                class="control-buttons d-none"
+                t-if="false"/>
+        </xpath>
+    </t>
+
+    <t t-name="pos_right_panel.HideSetPricelistButton"
+       t-inherit="point_of_sale.SetPricelistButton"
+       t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//div[hasclass('o_pricelist_button')]" position="attributes">
+            <attribute name="class" add=" d-none pos-right-hidden-pricelist-button" separator=" "/>
+            <attribute name="t-if">false</attribute>
+        </xpath>
+    </t>
+
+    <t t-name="pos_right_panel.OrderlineActions"
+       t-inherit="point_of_sale.ProductScreen"
+       t-inherit-mode="extension"
+       owl="1">
+        <xpath expr="//Orderline" position="inside">
+            <li class="pos-orderline-actions" t-if="!line.comboParent">
+                <button
+                    type="button"
+                    class="pos-orderline-action pos-orderline-action--edit"
+                    title="Edit Service"
+                    aria-label="Edit Service"
+                    t-on-click.stop="() => this.onClickEditOrderline(line)"
+                >
+                    <i class="fa fa-pencil"/>
+                </button>
+                <button
+                    type="button"
+                    class="pos-orderline-action pos-orderline-action--delete"
+                    title="Delete Item"
+                    aria-label="Delete Item"
+                    t-on-click.stop="() => this.onClickDeleteOrderline(line)"
+                >
+                    <i class="fa fa-trash"/>
+                </button>
+            </li>
+        </xpath>
+    </t>
+
+</templates>

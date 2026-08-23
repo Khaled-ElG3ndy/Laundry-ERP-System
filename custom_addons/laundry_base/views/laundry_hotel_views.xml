@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hotel_session_list" model="ir.ui.view">
+        <field name="name">laundry.hotel.session.list</field>
+        <field name="model">laundry.hotel.session</field>
+        <field name="arch" type="xml">
+            <tree string="Hotel Pickup Sessions"
+                  decoration-success="state == 'delivered'"
+                  decoration-warning="state == 'dispatched'"
+                  decoration-muted="state == 'draft'">
+                <field name="name"/>
+                <field name="commercial_id"/>
+                <field name="session_date"/>
+                <field name="driver_name"/>
+                <field name="vehicle_plate"/>
+                <field name="order_count" string="Orders"/>
+                <field name="total_amount" string="Total (SAR)"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hotel_session_form" model="ir.ui.view">
+        <field name="name">laundry.hotel.session.form</field>
+        <field name="model">laundry.hotel.session</field>
+        <field name="arch" type="xml">
+            <form string="Hotel Pickup Session / جلسة استلام الفندق">
+                <header>
+                    <button name="action_load_ready_orders"
+                            string="📦 تحميل الطلبات الجاهزة"
+                            type="object" class="btn-secondary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_dispatch"
+                            string="🚗 إرسال السائق / Dispatch"
+                            type="object" class="btn-primary"
+                            invisible="state != 'draft'"
+                            confirm="إرسال السائق الآن؟"/>
+                    <button name="action_mark_delivered"
+                            string="✓ تم التسليم / Mark Delivered"
+                            type="object" class="btn-success"
+                            invisible="state != 'dispatched'"
+                            confirm="تأكيد التسليم للفندق؟"/>
+                    <button name="action_print_manifest"
+                            string="🖨 طباعة البيان / Print Manifest"
+                            type="object"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,dispatched,delivered"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="معلومات الجلسة / Session Info">
+                            <field name="commercial_id" string="الحساب التجاري / Hotel"/>
+                            <field name="session_date" string="تاريخ الاستلام"/>
+                            <field name="branch_id" string="الفرع"/>
+                        </group>
+                        <group string="السائق / Driver">
+                            <field name="driver_name" string="اسم السائق"/>
+                            <field name="vehicle_plate" string="لوحة السيارة"/>
+                            <field name="pickup_time" readonly="1" string="وقت الإرسال"/>
+                            <field name="delivery_time" readonly="1" string="وقت التسليم"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="الطلبات / Orders">
+                            <field name="order_ids" widget="many2many_list">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="partner_id" string="العميل"/>
+                                    <field name="state"/>
+                                    <field name="amount_total" string="المبلغ"/>
+                                    <field name="promise_date" string="موعد التسليم"/>
+                                    <field name="bag_reference" string="الحقيبة"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer">
+                                <field name="total_amount" readonly="1"
+                                       string="الإجمالي / Total" widget="monetary"/>
+                            </group>
+                        </page>
+                        <page string="ملاحظات / Notes">
+                            <field name="notes" placeholder="ملاحظات الجلسة..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hotel_sessions" model="ir.actions.act_window">
+        <field name="name">جلسات الفنادق / Hotel Sessions</field>
+        <field name="res_model">laundry.hotel.session</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_hotel_sessions"
+              name="🏨 جلسات الفنادق / Hotel Pickup"
+              parent="menu_laundry_operations"
+              action="laundry_base.action_hotel_sessions"
+              sequence="65"
+              groups="laundry_base.group_laundry_manager,laundry_base.group_laundry_supervisor"/>
+
+</odoo>

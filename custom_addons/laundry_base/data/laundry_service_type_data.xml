@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Service type products and types created via post-install script -->
+        <!-- See: laundry_base/migrations/create_service_products.py -->
+    </data>
+</odoo>

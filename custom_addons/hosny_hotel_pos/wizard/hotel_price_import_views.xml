@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hotel_price_import_view_form" model="ir.ui.view">
+        <field name="name">hotel.price.import.form</field>
+        <field name="model">hotel.price.import</field>
+        <field name="arch" type="xml">
+            <form string="Import Hotel Contract Prices">
+                <field name="state" invisible="1"/>
+                <group invisible="state == 'done'">
+                    <div class="alert alert-info" role="alert" colspan="2">
+                        Contract prices live in the database as ordinary
+                        pricelist rules. This import is the only thing that
+                        writes over them — upgrading the module never does.
+                    </div>
+                    <field name="mode" widget="radio"/>
+                    <field name="dry_run"/>
+                    <field name="rename_customers"/>
+                </group>
+                <group invisible="state != 'done'">
+                    <field name="summary" nolabel="1" readonly="1"
+                           widget="text" colspan="2"/>
+                </group>
+                <footer>
+                    <button name="action_run" type="object" string="Run"
+                            class="btn-primary" invisible="state == 'done'"/>
+                    <button string="Close" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hotel_price_import" model="ir.actions.act_window">
+        <field name="name">Import Hotel Contract Prices</field>
+        <field name="res_model">hotel.price.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="groups_id" eval="[(4, ref('hosny_hotel_pos.group_hotel_contract_manager'))]"/>
+    </record>
+</odoo>

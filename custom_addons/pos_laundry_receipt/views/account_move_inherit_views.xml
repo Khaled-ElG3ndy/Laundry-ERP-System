@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_account_move_form_inherit_pos_order_button" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.pos.order.button</field>
+        <field name="model">account.move</field>
+        <field name="priority">100</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_view_pos_orders"
+                        type="object"
+                        string="POS Order"
+                        class="oe_stat_button"
+                        icon="fa-shopping-cart"
+                        invisible="pos_order_count == 0">
+                    <field name="pos_order_count" widget="statinfo" string="POS Orders"/>
+                </button>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <field name="pos_order_ids" invisible="1"/>
+                <field name="pos_order_count" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

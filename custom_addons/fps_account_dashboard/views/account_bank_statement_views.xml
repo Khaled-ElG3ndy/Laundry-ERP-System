@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ==================================================================
+         account.bank.statement - Community ships no form view at all and
+         marks the list `create="false"`, so statements cannot be created.
+         ================================================================== -->
+
+    <record id="view_fps_bank_statement_form" model="ir.ui.view">
+        <field name="name">account.bank.statement.form.fps</field>
+        <field name="model">account.bank.statement</field>
+        <field name="arch" type="xml">
+            <form string="Statement">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Reference"/>
+                        <h1><field name="name" placeholder="e.g. BNK/2024/0001"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="journal_id" readonly="1"
+                                   options="{'no_create': True}"/>
+                            <field name="date"/>
+                            <field name="reference"/>
+                        </group>
+                        <group>
+                            <field name="balance_start"/>
+                            <field name="balance_end_real" string="Ending Balance"/>
+                            <field name="balance_end" string="Computed Balance"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-warning" role="alert" invisible="is_valid and is_complete">
+                        <field name="problem_description" readonly="1" nolabel="1"/>
+                    </div>
+                    <field name="is_valid" invisible="1"/>
+                    <field name="is_complete" invisible="1"/>
+                    <notebook>
+                        <page string="Transactions" name="transactions">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="date"/>
+                                    <field name="payment_ref" string="Label"/>
+                                    <field name="partner_id"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="fps_counterpart_account_id"
+                                           string="Counterpart"
+                                           optional="show"/>
+                                    <field name="is_reconciled" string="Reconciled" readonly="1" optional="show"/>
+                                    <field name="suitable_journal_ids" column_invisible="True"/>
+                                    <field name="journal_id" optional="hide"/>
+                                    <field name="company_id" column_invisible="True"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Attachments" name="attachments">
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_fps_bank_statement_tree_inherit" model="ir.ui.view">
+        <field name="name">account.bank.statement.tree.fps</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_tree"/>
+        <field name="arch" type="xml">
+            <!-- Community blocks creation here, which makes the dashboard's
+                 Statements entry a dead end. -->
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">true</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ==================================================================
+         account.bank.statement.line - Community defines no view at all,
+         so a bank or cash transaction cannot be recorded by hand.
+         ================================================================== -->
+
+    <record id="view_fps_bank_statement_line_tree" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.tree.fps</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="arch" type="xml">
+            <tree string="Transactions"
+                  editable="bottom"
+                  multi_edit="1"
+                  decoration-warning="not is_reconciled"
+                  decoration-muted="state != 'posted'">
+                <header>
+                    <button name="action_fps_undo_reconciliation"
+                            type="object"
+                            string="Undo Reconciliation"
+                            groups="account.group_account_user"/>
+                </header>
+                <field name="date"/>
+                <field name="payment_ref" string="Label"/>
+                <field name="partner_id" optional="show"/>
+                <field name="ref" string="Reference" optional="hide"/>
+                <field name="amount" sum="Total"/>
+                <field name="fps_counterpart_account_id" string="Counterpart Account" optional="show"/>
+                <field name="statement_id" optional="hide"/>
+                <field name="journal_id" optional="hide" readonly="1"/>
+                <field name="suitable_journal_ids" column_invisible="True"/>
+                <field name="is_reconciled" string="Reconciled" optional="show" readonly="1"/>
+                <field name="state" optional="hide" readonly="1"/>
+                <field name="company_id" column_invisible="True"/>
+                <field name="currency_id" column_invisible="True"/>
+                <button name="action_fps_reconcile"
+                        type="object"
+                        string="Reconcile"
+                        icon="fa-exchange"
+                        class="text-primary"
+                        invisible="is_reconciled or state != 'posted'"
+                        groups="account.group_account_user"/>
+                <button name="action_fps_open_move"
+                        type="object"
+                        string="Journal Entry"
+                        icon="fa-book"
+                        groups="account.group_account_user"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_fps_bank_statement_line_form" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.form.fps</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="arch" type="xml">
+            <form string="Transaction">
+                <header>
+                    <button name="action_fps_reconcile"
+                            type="object"
+                            string="Reconcile"
+                            class="btn-primary"
+                            invisible="not id or is_reconciled or state != 'posted'"
+                            groups="account.group_account_user"/>
+                    <button name="action_fps_undo_reconciliation"
+                            type="object"
+                            string="Undo Reconciliation"
+                            invisible="not id or not is_reconciled or state != 'posted'"
+                            groups="account.group_account_user"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_fps_open_move"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-book"
+                                invisible="not id"
+                                groups="account.group_account_user">
+                            <span class="o_stat_text">Journal Entry</span>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="payment_ref" string="Label"/>
+                        <h1><field name="payment_ref" placeholder="e.g. Cash sale of the day"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="suitable_journal_ids" invisible="1"/>
+                            <field name="journal_id"
+                                   domain="[('type', 'in', ('bank', 'cash')), ('id', 'in', suitable_journal_ids)]"
+                                   options="{'no_create': True}"
+                                   readonly="id"/>
+                            <field name="date"/>
+                            <field name="partner_id"/>
+                            <field name="ref" string="Reference"/>
+                        </group>
+                        <group>
+                            <label for="amount"/>
+                            <div class="o_row">
+                                <field name="amount"/>
+                                <span class="text-muted ms-2">
+                                    Positive for money in, negative for money out
+                                </span>
+                            </div>
+                            <field name="fps_counterpart_account_id"
+                                   options="{'no_create': True}"
+                                   readonly="is_reconciled and id"/>
+                            <field name="foreign_currency_id" groups="base.group_multi_currency"/>
+                            <field name="amount_currency"
+                                   groups="base.group_multi_currency"
+                                   invisible="not foreign_currency_id"/>
+                            <field name="statement_id"
+                                   options="{'no_create': True}"
+                                   domain="[('journal_id', '=', journal_id)]"/>
+                            <field name="is_reconciled" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert" invisible="fps_counterpart_account_id">
+                        Leave the counterpart account empty to park this transaction on the
+                        journal's suspense account and reconcile it later.
+                    </div>
+                    <notebook>
+                        <page string="Notes" name="notes">
+                            <field name="narration" placeholder="Internal note..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_fps_bank_statement_line_search" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.search.fps</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Transactions">
+                <field name="payment_ref" string="Label"/>
+                <field name="partner_id"/>
+                <field name="amount"/>
+                <field name="journal_id"/>
+                <filter name="unreconciled" string="To Reconcile"
+                        domain="[('is_reconciled', '=', False)]"/>
+                <filter name="reconciled" string="Reconciled"
+                        domain="[('is_reconciled', '=', True)]"/>
+                <separator/>
+                <filter name="inbound" string="Money In" domain="[('amount', '&gt;', 0)]"/>
+                <filter name="outbound" string="Money Out" domain="[('amount', '&lt;', 0)]"/>
+                <separator/>
+                <filter name="filter_date" date="date"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_journal" string="Journal" context="{'group_by': 'journal_id'}"/>
+                    <filter name="group_by_partner" string="Partner" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_by_statement" string="Statement" context="{'group_by': 'statement_id'}"/>
+                    <filter name="group_by_date" string="Date" context="{'group_by': 'date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_fps_bank_statement_line" model="ir.actions.act_window">
+        <field name="name">Bank &amp; Cash Transactions</field>
+        <field name="res_model">account.bank.statement.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_fps_bank_statement_line_search"/>
+        <field name="context">{'search_default_group_by_journal': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Record a bank or cash transaction
+            </p><p>
+                Every transaction posts a journal entry. Set a counterpart account to
+                book it straight away, or leave it empty and reconcile it later against
+                an invoice or a bill.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_fps_bank_statement_line"
+              name="Bank &amp; Cash Transactions"
+              action="action_fps_bank_statement_line"
+              parent="account.menu_finance_entries"
+              groups="account.group_account_user"
+              sequence="16"/>
+
+</odoo>

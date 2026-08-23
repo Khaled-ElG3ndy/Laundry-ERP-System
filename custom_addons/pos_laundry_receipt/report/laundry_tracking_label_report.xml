@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_laundry_label_thermal" model="report.paperformat">
+        <field name="name">Laundry Label Epson POS 80 mm Roll</field>
+        <field name="default">False</field>
+        <field name="format">custom</field>
+        <field name="page_width">80</field>
+        <field name="page_height">500</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line">False</field>
+        <field name="header_spacing">0</field>
+        <field name="dpi">203</field>
+    </record>
+
+    <record id="paperformat_laundry_label_a4" model="report.paperformat">
+        <field name="name">Legacy Laundry Label Paperformat Redirected to Epson POS</field>
+        <field name="default">False</field>
+        <field name="format">custom</field>
+        <field name="page_width">80</field>
+        <field name="page_height">500</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line">False</field>
+        <field name="header_spacing">0</field>
+        <field name="dpi">203</field>
+    </record>
+
+    <record id="action_report_laundry_label_thermal" model="ir.actions.report">
+        <field name="name">Laundry Label — Epson POS 80 mm</field>
+        <field name="model">pos.laundry.label</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">pos_laundry_receipt.report_laundry_label_thermal</field>
+        <field name="report_file">pos_laundry_receipt.report_laundry_label_thermal</field>
+        <field name="paperformat_id" ref="paperformat_laundry_label_thermal"/>
+        <field name="print_report_name">'Laundry Label - %s' % (object.name or '')</field>
+    </record>
+
+    <record id="action_report_laundry_label_a4" model="ir.actions.report">
+        <field name="name">Laundry Label — Epson POS 80 mm (Legacy Redirect)</field>
+        <field name="model">pos.laundry.label</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">pos_laundry_receipt.report_laundry_label_thermal</field>
+        <field name="report_file">pos_laundry_receipt.report_laundry_label_thermal</field>
+        <field name="paperformat_id" ref="paperformat_laundry_label_thermal"/>
+        <field name="print_report_name">'Laundry Label - %s' % (object.name or '')</field>
+    </record>
+
+    <template id="laundry_tracking_label_styles">
+        <style><![CDATA[
+            * {
+                box-sizing: border-box;
+                font-family: "Tajawal", "Noto Sans Arabic", Arial, sans-serif;
+            }
+            html, body {
+                width: 80mm;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #fff !important;
+                color: #071827;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .laundry-label-page {
+                width: 80mm !important;
+                min-width: 80mm !important;
+                max-width: 80mm !important;
+                min-height: 0 !important;
+                height: auto !important;
+                margin: 0 auto !important;
+                padding: 1.6mm 2mm 2mm !important;
+                border: 0 !important;
+                background: #fff !important;
+                overflow: visible !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                break-after: page;
+                page-break-after: always;
+            }
+            .laundry-label-page:last-of-type {
+                break-after: auto;
+                page-break-after: auto;
+            }
+            .laundry-label-card {
+                --label-ink: #082444;
+                --label-teal: #007686;
+                --label-blue: #075fe4;
+                --label-green: #079352;
+                --label-line: #cad5e2;
+                --label-soft: #f5f8fc;
+                display: flex;
+                flex-direction: column;
+                width: 76mm;
+                max-width: 76mm;
+                min-height: 0;
+                height: auto;
+                margin: 0 auto;
+                padding: 2mm 2.2mm 2.2mm;
+                overflow: visible;
+                border: .28mm solid #ccd6e2;
+                border-radius: 2mm;
+                background: #fff;
+                color: var(--label-ink);
+                break-inside: avoid;
+                page-break-inside: avoid;
+                /* Arabic right-to-left is the working default for this floor.
+                   This used to be `direction: inherit`, which quietly beat the
+                   dir="rtl" attribute on the element (CSS direction outranks
+                   the HTML attribute), so the label always laid out
+                   left-to-right with Arabic text poured into it: the status
+                   badges, the quantity column and the totals all ran the wrong
+                   way round. Declaring rtl here makes the layout match the
+                   language; an English render opts out via its dir attribute
+                   below. */
+                direction: rtl;
+                text-align: right;
+            }
+            .laundry-label-card[dir="ltr"] {
+                direction: ltr;
+                text-align: left;
+            }
+
+            /* --- Order number: the one thing a worker looks for first ------ */
+            .laundry-label-header {
+                padding-bottom: 1.4mm;
+                border-bottom: .3mm solid var(--label-ink);
+                text-align: center;
+            }
+            .laundry-label-reference {
+                /* Latin reference inside an RTL card: isolate it so the slash
+                   and digits keep their own order regardless of neighbours. */
+                direction: ltr;
+                unicode-bidi: embed;
+                unicode-bidi: isolate;
+                color: var(--label-ink);
+                font-size: 21pt;
+                font-weight: 900;
+                letter-spacing: .01em;
+                line-height: 1;
+                text-align: center;
+                word-break: break-word;
+            }
+
+            .laundry-label-section {
+                padding: 1.4mm 0;
+                border-bottom: .22mm dashed var(--label-line);
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .laundry-label-section:last-child {
+                border-bottom: 0;
+                padding-bottom: 0;
+            }
+
+            /* --- Customer + phone side by side ---------------------------- */
+            /* Two columns via table layout rather than flex: the label is
+               also rendered by wkhtml-based engines, whose WebKit collapses
+               `flex: 1 1 0` children onto separate lines. Table cells behave
+               identically in every engine, and still follow RTL. */
+            .laundry-label-identity {
+                display: table;
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 2mm 0;
+                table-layout: fixed;
+            }
+            .laundry-label-field {
+                display: table-cell;
+                width: 50%;
+                vertical-align: baseline;
+            }
+            .laundry-label-field-label {
+                margin-inline-end: 1mm;
+                color: #52667a;
+                font-size: 6.6pt;
+                font-weight: 800;
+                white-space: nowrap;
+            }
+            .laundry-label-field-value {
+                min-width: 0;
+                color: var(--label-ink);
+                font-size: 8.2pt;
+                font-weight: 900;
+                line-height: 1.15;
+                overflow-wrap: anywhere;
+            }
+
+            /* --- Status badges + one meta line ---------------------------- */
+            .laundry-label-chip-row {
+                display: table;
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 1.4mm 0;
+                table-layout: fixed;
+            }
+            .laundry-label-chip {
+                display: table-cell;
+                width: 50%;
+                vertical-align: middle;
+                padding: 1mm .8mm;
+                border: .22mm solid #dbe6f1;
+                border-radius: 1.4mm;
+                color: var(--label-blue);
+                background: #f1f6ff;
+                font-size: 8pt;
+                font-weight: 900;
+                line-height: 1.1;
+                text-align: center;
+            }
+            .laundry-label-chip.is-payment {
+                color: var(--label-green);
+                background: #edf8f2;
+            }
+            .laundry-label-meta {
+                margin-top: 1.2mm;
+                color: var(--label-ink);
+                font-size: 7.6pt;
+                font-weight: 800;
+                line-height: 1.15;
+                text-align: center;
+            }
+            .laundry-label-meta-label {
+                color: #52667a;
+                font-size: 6.8pt;
+                font-weight: 800;
+            }
+            /* Date and time are one unit and must not be split or reversed by
+               the surrounding Arabic. */
+            .laundry-label-meta-stamp {
+                display: inline-block;
+                direction: ltr;
+                unicode-bidi: embed;
+                unicode-bidi: isolate;
+            }
+            .laundry-label-meta-sep {
+                color: #97a8bb;
+                padding: 0 .6mm;
+            }
+
+            /* --- Item table ---------------------------------------------- */
+            .laundry-label-section-title {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1.4mm;
+                color: #52667a;
+                font-size: 7.2pt;
+                font-weight: 900;
+                line-height: 1.1;
+            }
+            .laundry-label-items {
+                margin-top: 1mm;
+                border: .22mm solid #dce6f2;
+                border-radius: 1.4mm;
+                overflow: hidden;
+                background: #fff;
+            }
+            .laundry-label-item {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+                border-collapse: separate;
+                border-spacing: 0;
+                border-bottom: .18mm dashed #dce6f2;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            .laundry-label-item:last-child {
+                border-bottom: 0;
+            }
+            .laundry-label-items-more {
+                padding: .9mm 1.2mm;
+                border-top: .18mm dashed #dce6f2;
+                color: var(--label-ink);
+                font-size: 7.4pt;
+                font-weight: 900;
+                line-height: 1.15;
+                text-align: center;
+            }
+            /* The quantity is the number a worker counts against, so it is
+               drawn as dark ink on a light tint with a border -- never light
+               ink on a solid fill, which vanishes outright on any printer or
+               browser that drops background graphics. */
+            .laundry-label-item-qty {
+                display: table-cell;
+                width: 10mm;
+                padding: .95mm .6mm;
+                vertical-align: middle;
+                color: var(--label-teal);
+                background: #e4f4f7;
+                font-weight: 900;
+                font-size: 8.6pt;
+                line-height: 1.15;
+                text-align: center;
+                white-space: nowrap;
+            }
+            .laundry-label-item-name {
+                display: table-cell;
+                padding: .95mm 1.4mm;
+                vertical-align: middle;
+                color: var(--label-ink);
+                font-size: 8pt;
+                font-weight: 800;
+                line-height: 1.15;
+                overflow-wrap: anywhere;
+            }
+            .laundry-label-item-detail {
+                display: block;
+                color: #52667a;
+                font-size: 6.6pt;
+                font-weight: 700;
+                line-height: 1.15;
+                overflow-wrap: anywhere;
+            }
+            .laundry-label-item-amount {
+                display: table-cell;
+                width: 18mm;
+                padding: .95mm 1.2mm;
+                vertical-align: middle;
+                direction: ltr;
+                unicode-bidi: embed;
+                unicode-bidi: isolate;
+                color: var(--label-ink);
+                font-size: 7.9pt;
+                font-weight: 900;
+                line-height: 1.15;
+                text-align: end;
+                white-space: nowrap;
+            }
+
+            /* --- Totals: one strip, still the loudest numbers ------------- */
+            .laundry-label-totals {
+                display: table;
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 1.4mm 0;
+                table-layout: fixed;
+            }
+            .laundry-label-total-box {
+                display: table-cell;
+                width: 50%;
+                vertical-align: middle;
+                padding: 1mm 1.2mm;
+                border: .22mm solid #dce6f2;
+                border-radius: 1.4mm;
+                background: #edf8fa;
+                text-align: center;
+            }
+            .laundry-label-total-label {
+                margin-inline-end: 1.2mm;
+                color: #52667a;
+                font-size: 6.8pt;
+                font-weight: 800;
+            }
+            .laundry-label-total-value {
+                direction: ltr;
+                unicode-bidi: embed;
+                unicode-bidi: isolate;
+                color: var(--label-ink);
+                font-size: 14pt;
+                font-weight: 900;
+                line-height: 1;
+                overflow-wrap: anywhere;
+            }
+            .laundry-label-total-box.is-amount .laundry-label-total-value {
+                color: var(--label-teal);
+                font-size: 11.5pt;
+            }
+
+            /* --- QR: kept at the bottom, still the scan target ------------ */
+            .laundry-label-code-section {
+                display: block;
+                padding-top: 1.4mm;
+                text-align: center;
+            }
+            .laundry-label-qr-frame {
+                display: block;
+                width: 30mm;
+                height: 30mm;
+                margin-left: auto;
+                margin-right: auto;
+                padding: .8mm;
+                border: .28mm solid var(--label-line);
+                border-radius: 1.4mm;
+                background: #fff;
+            }
+            .laundry-label-qr {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+                image-rendering: pixelated;
+            }
+            .laundry-label-scan-text {
+                /* The max-width box needs auto side margins of its own: with
+                   only `text-align: center` it centres the text *inside* a box
+                   that itself sits flush against the start edge, which under
+                   RTL pushed the whole line to the right of the QR above it. */
+                max-width: 62mm;
+                margin-top: .9mm;
+                margin-left: auto;
+                margin-right: auto;
+                color: var(--label-ink);
+                font-size: 7.4pt;
+                font-weight: 800;
+                line-height: 1.15;
+                text-align: center;
+            }
+            @media screen {
+                body {
+                    width: auto;
+                    min-height: 100vh;
+                    background: #eef3f9 !important;
+                }
+                .laundry-label-page {
+                    margin: 8mm auto !important;
+                }
+                .laundry-label-card {
+                    box-shadow: 0 3mm 10mm rgba(15, 35, 63, .13);
+                }
+            }
+            @media print {
+                @page {
+                    size: 80mm auto;
+                    margin: 0;
+                }
+                html, body {
+                    width: 80mm !important;
+                    background: #fff !important;
+                    color: #000 !important;
+                }
+                .laundry-label-page {
+                    padding: 1.6mm !important;
+                    box-shadow: none !important;
+                }
+                .laundry-label-card {
+                    --label-ink: #000;
+                    --label-teal: #000;
+                    --label-blue: #000;
+                    --label-green: #000;
+                    --label-line: #000;
+                    --label-soft: #fff;
+                    width: 76mm;
+                    max-width: 76mm;
+                    border: .28mm solid #000;
+                    color: #000;
+                    box-shadow: none !important;
+                    text-shadow: none !important;
+                }
+                .laundry-label-card,
+                .laundry-label-card * {
+                    background-image: none !important;
+                    text-shadow: none !important;
+                }
+                .laundry-label-chip,
+                .laundry-label-chip.is-payment,
+                .laundry-label-items,
+                .laundry-label-items-more,
+                .laundry-label-total-box,
+                .laundry-label-total-box.is-amount {
+                    color: #000;
+                    border: .25mm solid #000;
+                    background: #fff;
+                }
+                /* Quantity stays black ink on white with a rule around it, so
+                   it survives printers that drop background graphics. */
+                .laundry-label-item-qty {
+                    color: #000 !important;
+                    background: #fff !important;
+                    border-inline-end: .25mm solid #000;
+                }
+                .laundry-label-header,
+                .laundry-label-section,
+                .laundry-label-item,
+                .laundry-label-qr-frame {
+                    border-color: #000;
+                }
+                .laundry-label-field-label,
+                .laundry-label-meta-label,
+                .laundry-label-meta-sep,
+                .laundry-label-item-detail,
+                .laundry-label-total-label,
+                .laundry-label-section-title,
+                .laundry-label-total-box.is-amount .laundry-label-total-value {
+                    color: #000;
+                }
+                .laundry-label-qr {
+                    filter: grayscale(1) contrast(5);
+                }
+            }
+        ]]></style>
+    </template>
+
+    <template id="laundry_tracking_label_card">
+        <article class="laundry-label-card" t-att-dir="payload.get('direction')">
+            <header class="laundry-label-header">
+                <div class="laundry-label-reference" t-esc="payload.get('reference')"/>
+            </header>
+
+            <section class="laundry-label-section laundry-label-identity">
+                <div class="laundry-label-field">
+                    <span class="laundry-label-field-label" t-esc="payload.get('text_customer')"/>
+                    <span class="laundry-label-field-value" t-esc="payload.get('customer')"/>
+                </div>
+                <div class="laundry-label-field">
+                    <span class="laundry-label-field-label" t-esc="payload.get('text_phone')"/>
+                    <span class="laundry-label-field-value">
+                        <t t-if="payload.get('phone')" t-esc="payload.get('phone')"/>
+                        <t t-else="">—</t>
+                    </span>
+                </div>
+            </section>
+
+            <section class="laundry-label-section">
+                <div class="laundry-label-chip-row">
+                    <div class="laundry-label-chip">
+                        <span t-esc="payload.get('laundry_status')"/>
+                    </div>
+                    <div t-attf-class="laundry-label-chip is-payment is-#{payload.get('payment_status_key')}">
+                        <span t-esc="payload.get('payment_status')"/>
+                    </div>
+                </div>
+                <div class="laundry-label-meta">
+                    <span class="laundry-label-meta-stamp">
+                        <span t-esc="payload.get('received_date')"/>
+                        <span> </span>
+                        <span t-esc="payload.get('received_time')"/>
+                    </span>
+                    <t t-if="payload.get('priority')">
+                        <span class="laundry-label-meta-sep">•</span>
+                        <span class="laundry-label-meta-label" t-esc="payload.get('text_priority')"/>
+                        <span> </span>
+                        <span class="laundry-label-meta-value"
+                              t-esc="payload.get('priority').get('label')"/>
+                    </t>
+                </div>
+            </section>
+
+            <section class="laundry-label-section">
+                <div class="laundry-label-section-title">
+                    <span>
+                        <span t-esc="payload.get('text_items')"/>
+                        <span>(<t t-esc="payload.get('item_line_count')"/>)</span>
+                    </span>
+                    <span t-esc="payload.get('text_amount')"/>
+                </div>
+                <div class="laundry-label-items">
+                    <div class="laundry-label-item" t-foreach="payload.get('items')" t-as="item">
+                        <span class="laundry-label-item-qty">x<t t-esc="item.get('qty')"/></span>
+                        <span class="laundry-label-item-name">
+                            <span t-esc="item.get('name')"/>
+                            <span t-if="item.get('details')" class="laundry-label-item-detail">
+                                <t t-esc="' • '.join(item.get('details'))"/>
+                            </span>
+                        </span>
+                        <span class="laundry-label-item-amount" t-esc="item.get('amount')"/>
+                    </div>
+                    <div t-if="payload.get('more_item_lines')" class="laundry-label-items-more">
+                        + <t t-esc="payload.get('more_item_lines')"/>
+                        <span> </span>
+                        <t t-esc="payload.get('text_more_items')"/>
+                    </div>
+                </div>
+            </section>
+
+            <section class="laundry-label-section">
+                <div class="laundry-label-totals">
+                    <div class="laundry-label-total-box">
+                        <span class="laundry-label-total-label"
+                              t-esc="payload.get('text_total_items')"/>
+                        <span class="laundry-label-total-value"
+                              t-esc="payload.get('total_items')"/>
+                    </div>
+                    <div class="laundry-label-total-box is-amount">
+                        <span class="laundry-label-total-label"
+                              t-esc="payload.get('text_total_amount')"/>
+                        <span class="laundry-label-total-value"
+                              t-esc="payload.get('total_amount')"/>
+                    </div>
+                </div>
+            </section>
+
+            <section class="laundry-label-section laundry-label-code-section">
+                <div class="laundry-label-qr-frame">
+                    <img class="laundry-label-qr"
+                         t-att-src="payload.get('qr_barcode_url')"
+                         alt="Order QR code"/>
+                </div>
+                <div class="laundry-label-scan-text">
+                    <span t-esc="payload.get('text_scan')"/>
+                </div>
+            </section>
+        </article>
+    </template>
+
+    <template id="report_laundry_label_thermal">
+        <t t-call="web.html_container">
+            <t t-call="pos_laundry_receipt.laundry_tracking_label_styles"/>
+            <style>@page { size: 80mm auto; margin: 0; }</style>
+            <t t-foreach="payloads" t-as="payload">
+                <div class="page laundry-label-page" t-att-data-label-id="payload.get('label_id')">
+                    <t t-call="pos_laundry_receipt.laundry_tracking_label_card"/>
+                </div>
+            </t>
+            <script t-if="auto_print" type="text/javascript">
+                window.addEventListener("load", function () {
+                    window.setTimeout(function () { window.print(); }, 200);
+                });
+            </script>
+        </t>
+    </template>
+
+    <template id="report_laundry_label_a4">
+        <t t-call="pos_laundry_receipt.report_laundry_label_thermal"/>
+    </template>
+
+    <template id="laundry_label_scan_page" name="Laundry Label Scan">
+        <t t-call="web.layout">
+            <t t-set="title" t-value="title"/>
+            <t t-set="head">
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <t t-call-assets="web.assets_frontend" t-js="false"/>
+                <style><![CDATA[
+                    :root {
+                        color-scheme: light;
+                        --scan-primary: #2563eb;
+                        --scan-success: #15803d;
+                        --scan-ink: #10233f;
+                        --scan-muted: #6b7f99;
+                        --scan-line: #dce6f2;
+                    }
+                    * { box-sizing: border-box; }
+                    body {
+                        margin: 0;
+                        min-height: 100vh;
+                        color: var(--scan-ink);
+                        background:
+                            radial-gradient(circle at top, rgba(37, 99, 235, .12), transparent 34rem),
+                            #f3f7fc;
+                        font-family: "Tajawal", "Noto Sans Arabic", Arial, sans-serif;
+                    }
+                    .laundry-scan-shell {
+                        width: min(100% - 24px, 560px);
+                        margin: 0 auto;
+                        padding: 24px 0 40px;
+                    }
+                    .laundry-scan-brand {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-height: 76px;
+                        margin-bottom: 14px;
+                    }
+                    .laundry-scan-brand img {
+                        max-width: 170px;
+                        max-height: 68px;
+                        object-fit: contain;
+                    }
+                    .laundry-scan-card {
+                        overflow: hidden;
+                        border: 1px solid rgba(178, 197, 220, .8);
+                        border-radius: 24px;
+                        background: #fff;
+                        box-shadow: 0 20px 55px rgba(26, 52, 84, .13);
+                    }
+                    .laundry-scan-card__head {
+                        padding: 22px 22px 18px;
+                        color: #fff;
+                        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+                    }
+                    .laundry-scan-eyebrow {
+                        margin-bottom: 5px;
+                        font-size: 12px;
+                        font-weight: 800;
+                        letter-spacing: .08em;
+                        opacity: .8;
+                        text-transform: uppercase;
+                    }
+                    .laundry-scan-reference {
+                        margin: 0;
+                        font-size: clamp(25px, 7vw, 36px);
+                        font-weight: 900;
+                        line-height: 1.1;
+                    }
+                    .laundry-scan-customer {
+                        margin-top: 7px;
+                        font-size: 15px;
+                        font-weight: 700;
+                        opacity: .9;
+                    }
+                    .laundry-scan-body { padding: 20px 22px 24px; }
+                    .laundry-scan-alert {
+                        margin-bottom: 16px;
+                        padding: 12px 14px;
+                        border-radius: 12px;
+                        font-size: 14px;
+                        font-weight: 700;
+                    }
+                    .laundry-scan-alert.is-success {
+                        color: #166534;
+                        border: 1px solid #bbf7d0;
+                        background: #f0fdf4;
+                    }
+                    .laundry-scan-alert.is-error {
+                        color: #991b1b;
+                        border: 1px solid #fecaca;
+                        background: #fef2f2;
+                    }
+                    .laundry-scan-workflow {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 8px;
+                        margin-bottom: 18px;
+                    }
+                    .laundry-scan-stage {
+                        position: relative;
+                        padding: 10px 6px;
+                        border: 1px solid var(--scan-line);
+                        border-radius: 12px;
+                        color: var(--scan-muted);
+                        background: #f8fafc;
+                        font-size: 12px;
+                        font-weight: 800;
+                        text-align: center;
+                    }
+                    .laundry-scan-stage.is-current {
+                        color: #1d4ed8;
+                        border-color: #93c5fd;
+                        background: #eff6ff;
+                    }
+                    .laundry-scan-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 10px;
+                        margin-bottom: 16px;
+                    }
+                    .laundry-scan-fact {
+                        min-width: 0;
+                        padding: 11px 12px;
+                        border-radius: 12px;
+                        background: #f6f9fd;
+                    }
+                    .laundry-scan-fact__label {
+                        display: block;
+                        margin-bottom: 3px;
+                        color: var(--scan-muted);
+                        font-size: 11px;
+                        font-weight: 700;
+                    }
+                    .laundry-scan-fact__value {
+                        display: block;
+                        overflow: hidden;
+                        font-size: 14px;
+                        font-weight: 850;
+                        text-overflow: ellipsis;
+                    }
+                    .laundry-scan-items {
+                        margin-bottom: 18px;
+                        padding: 13px 14px;
+                        border: 1px solid var(--scan-line);
+                        border-radius: 14px;
+                    }
+                    .laundry-scan-items__title {
+                        margin-bottom: 8px;
+                        font-size: 13px;
+                        font-weight: 900;
+                    }
+                    .laundry-scan-item {
+                        display: flex;
+                        gap: 8px;
+                        padding: 4px 0;
+                        border-bottom: 1px dashed #e5edf6;
+                        font-size: 13px;
+                    }
+                    .laundry-scan-item:last-child { border-bottom: 0; }
+                    .laundry-scan-item__qty {
+                        flex: 0 0 auto;
+                        color: var(--scan-primary);
+                        font-weight: 900;
+                    }
+                    .laundry-scan-more {
+                        padding-top: 5px;
+                        color: var(--scan-primary);
+                        font-size: 12px;
+                        font-weight: 800;
+                    }
+                    .laundry-scan-blocker {
+                        margin-bottom: 12px;
+                        padding: 11px 12px;
+                        border-radius: 12px;
+                        color: #92400e;
+                        background: #fef3c7;
+                        font-size: 13px;
+                        font-weight: 750;
+                    }
+                    .laundry-scan-action {
+                        width: 100%;
+                        min-height: 52px;
+                        border: 0;
+                        border-radius: 14px;
+                        color: #fff;
+                        background: linear-gradient(135deg, #16a34a, #15803d);
+                        box-shadow: 0 10px 24px rgba(21, 128, 61, .22);
+                        cursor: pointer;
+                        font-size: 16px;
+                        font-weight: 900;
+                    }
+                    .laundry-scan-complete {
+                        padding: 14px;
+                        border-radius: 14px;
+                        color: #166534;
+                        background: #dcfce7;
+                        font-size: 15px;
+                        font-weight: 900;
+                        text-align: center;
+                    }
+                    @media (max-width: 420px) {
+                        .laundry-scan-shell { width: min(100% - 16px, 560px); padding-top: 10px; }
+                        .laundry-scan-card { border-radius: 18px; }
+                        .laundry-scan-card__head, .laundry-scan-body { padding-inline: 16px; }
+                        .laundry-scan-grid { grid-template-columns: 1fr; }
+                    }
+                ]]></style>
+            </t>
+            <main class="laundry-scan-shell" t-att-dir="direction">
+                <div class="laundry-scan-brand">
+                    <img t-if="company.logo"
+                         t-attf-src="/web/image/res.company/#{company.id}/logo"
+                         alt="Laundry logo"/>
+                </div>
+                <article class="laundry-scan-card">
+                    <header class="laundry-scan-card__head">
+                        <div class="laundry-scan-eyebrow">Laundry Order</div>
+                        <h1 class="laundry-scan-reference" t-esc="reference"/>
+                        <div class="laundry-scan-customer" t-esc="customer"/>
+                    </header>
+                    <div class="laundry-scan-body">
+                        <div t-if="message" class="laundry-scan-alert is-success" t-esc="message"/>
+                        <div t-if="error" class="laundry-scan-alert is-error" t-esc="error"/>
+
+                        <div class="laundry-scan-workflow">
+                            <div t-attf-class="laundry-scan-stage #{order.x_laundry_status == 'received' and 'is-current' or ''}">Received</div>
+                            <div t-attf-class="laundry-scan-stage #{order.x_laundry_status == 'ready' and 'is-current' or ''}">Ready</div>
+                            <div t-attf-class="laundry-scan-stage #{order.x_laundry_status == 'delivered' and 'is-current' or ''}">Delivered</div>
+                        </div>
+
+                        <div class="laundry-scan-grid">
+                            <div class="laundry-scan-fact">
+                                <span class="laundry-scan-fact__label">Current Status</span>
+                                <span class="laundry-scan-fact__value" t-esc="status"/>
+                            </div>
+                            <div class="laundry-scan-fact">
+                                <span class="laundry-scan-fact__label">Payment Status</span>
+                                <span class="laundry-scan-fact__value" t-esc="payment_status"/>
+                            </div>
+                            <div class="laundry-scan-fact">
+                                <span class="laundry-scan-fact__label">Received Date</span>
+                                <span class="laundry-scan-fact__value" t-esc="received_date or '-'"/>
+                            </div>
+                            <div class="laundry-scan-fact">
+                                <span class="laundry-scan-fact__label">Expected Delivery</span>
+                                <span class="laundry-scan-fact__value" t-esc="expected_delivery_date or '-'"/>
+                            </div>
+                        </div>
+
+                        <section class="laundry-scan-items">
+                            <div class="laundry-scan-items__title">
+                                Items (<t t-esc="item_preview.get('total_items')"/>)
+                            </div>
+                            <div class="laundry-scan-item"
+                                 t-foreach="item_preview.get('items')"
+                                 t-as="item">
+                                <span class="laundry-scan-item__qty">×<t t-esc="item.get('qty')"/></span>
+                                <span t-esc="item.get('name')"/>
+                            </div>
+                            <div t-if="item_preview.get('more_lines')" class="laundry-scan-more">
+                                + <t t-esc="item_preview.get('more_lines')"/> more item lines
+                            </div>
+                        </section>
+
+                        <div t-if="blocker" class="laundry-scan-blocker" t-esc="blocker"/>
+                        <form t-if="can_advance"
+                              method="post"
+                              t-attf-action="/pos_laundry_receipt/scan/#{token}/advance">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <button class="laundry-scan-action" type="submit">
+                                <t t-esc="next_action_label"/>
+                                <span aria-hidden="true"> → </span>
+                                <t t-esc="next_status_label"/>
+                            </button>
+                        </form>
+                        <div t-elif="not next_status" class="laundry-scan-complete">
+                            Workflow complete — Delivered
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </t>
+    </template>
+
+    <template id="laundry_label_print_error" name="Laundry Label Print Error">
+        <t t-call="web.layout">
+            <t t-set="title" t-value="title"/>
+            <t t-set="head">
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <t t-call-assets="web.assets_frontend" t-js="false"/>
+            </t>
+            <main style="max-width:680px;margin:70px auto;padding:32px;border:1px solid #fecaca;border-radius:18px;background:#fff;color:#7f1d1d;font-family:Arial,sans-serif;text-align:center;">
+                <h1 style="margin-top:0;" t-esc="title"/>
+                <p style="color:#475569;" t-esc="message"/>
+            </main>
+        </t>
+    </template>
+</odoo>

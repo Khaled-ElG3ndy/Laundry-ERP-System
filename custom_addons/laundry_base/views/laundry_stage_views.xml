@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_laundry_stage_list" model="ir.ui.view">
+        <field name="name">laundry.stage.list</field>
+        <field name="model">laundry.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Stages" editable="top"><field name="sequence" widget="handle"/><field name="name"/><field name="name_ar"/><field name="state_key"/><field name="color" widget="color_picker"/><field name="is_terminal"/><field name="is_blocking"/><field name="production_visible"/><field name="counter_visible"/></tree>
+        </field>
+    </record>
+    <record id="action_laundry_stage" model="ir.actions.act_window">
+        <field name="name">Stages / المراحل</field>
+        <field name="res_model">laundry.stage</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

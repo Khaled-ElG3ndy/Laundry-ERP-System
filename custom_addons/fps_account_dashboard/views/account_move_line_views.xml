@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Journal items list built for manual matching: select the items sharing an
+         account and a partner, then press Reconcile. Community has `reconcile()` on
+         the model but no interface reaching it. -->
+    <record id="view_fps_move_line_reconcile_tree" model="ir.ui.view">
+        <field name="name">account.move.line.reconcile.tree.fps</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <tree string="Journal Items to Reconcile"
+                  create="false"
+                  edit="false"
+                  expand="context.get('expand', False)"
+                  decoration-info="matching_number">
+                <header>
+                    <button name="action_fps_reconcile"
+                            type="object"
+                            string="Reconcile"
+                            class="btn-primary"
+                            groups="account.group_account_user"/>
+                    <button name="action_fps_unreconcile"
+                            type="object"
+                            string="Undo Reconciliation"
+                            groups="account.group_account_user"/>
+                </header>
+                <field name="date"/>
+                <field name="move_name" string="Journal Entry"/>
+                <field name="journal_id" optional="hide"/>
+                <field name="account_id"/>
+                <field name="partner_id"/>
+                <field name="name" string="Label"/>
+                <field name="ref" optional="hide"/>
+                <field name="date_maturity" optional="hide"/>
+                <field name="debit" sum="Total Debit"/>
+                <field name="credit" sum="Total Credit"/>
+                <field name="amount_residual" string="Open Amount" sum="Total Open"/>
+                <field name="matching_number" string="Matching" optional="show"/>
+                <field name="company_id" column_invisible="True"/>
+                <field name="company_currency_id" column_invisible="True"/>
+                <button name="action_open_business_doc"
+                        type="object"
+                        string="Open Document"
+                        icon="fa-external-link"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

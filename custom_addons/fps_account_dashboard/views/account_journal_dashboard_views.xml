@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_fps_account_journal_dashboard_kanban" model="ir.ui.view">
+        <field name="name">account.journal.dashboard.kanban.fps</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.account_journal_dashboard_kanban_view"/>
+        <field name="arch" type="xml">
+
+            <!-- ==========================================================
+                 BANK & CASH - the card's left column.
+                 Core shows "Connect" (online sync) and a "New Transaction"
+                 link that opens the statement list, which is declared
+                 create="false" in Community and leads nowhere. Replace it
+                 with actions that record and match real transactions.
+                 ========================================================== -->
+            <xpath expr="//t[@t-name='JournalBodyBankCash']/div[@id='dashboard_bank_cash_left']" position="replace">
+                <div id="dashboard_bank_cash_left" class="col-12 col-sm-5 mb-3 mb-sm-0 o_kanban_primary_left">
+                    <button name="action_fps_new_transaction" type="object"
+                            class="btn btn-primary"
+                            groups="account.group_account_invoice">
+                        <span>New Transaction</span>
+                    </button>
+                    <div class="mt-2 d-flex flex-wrap gap-2 fps_journal_actions">
+                        <a name="action_fps_customer_payment" type="object"
+                           groups="account.group_account_invoice">Customer Payment</a>
+                        <a name="action_fps_vendor_payment" type="object"
+                           groups="account.group_account_invoice">Vendor Payment</a>
+                        <a name="action_fps_reconcile" type="object"
+                           groups="account.group_account_user">
+                            <span>Reconcile</span>
+                            <span t-if="dashboard.fps_number_to_reconcile"
+                                  class="badge text-bg-warning ms-1"><t t-out="dashboard.fps_number_to_reconcile"/></span>
+                        </a>
+                    </div>
+                    <div t-if="!dashboard.fps_has_suspense_account"
+                         class="mt-2 small text-warning"
+                         groups="account.group_account_user">
+                        <i class="fa fa-exclamation-triangle me-1" role="img" aria-label="Warning"/>
+                        <a type="edit">Set a suspense account</a>
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- BANK & CASH - the card's right column: surface what is waiting. -->
+            <xpath expr="//t[@t-name='JournalBodyBankCash']/div[@id='dashboard_bank_cash_right']" position="inside">
+                <div class="row" t-if="dashboard.fps_number_to_reconcile > 0">
+                    <div class="col overflow-hidden text-start">
+                        <a type="object" name="action_fps_reconcile" class="text-warning"
+                           groups="account.group_account_user">
+                            <t t-out="dashboard.fps_number_to_reconcile"/> Transactions to Reconcile
+                        </a>
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- ==========================================================
+                 CUSTOMER INVOICES & VENDOR BILLS - add the credit note,
+                 payment and reconciliation entry points.
+                 ========================================================== -->
+            <xpath expr="//t[@t-name='JournalBodySalePurchase']/div[hasclass('o_kanban_primary_left')]" position="inside">
+                <div class="mt-2 d-flex flex-wrap gap-2 fps_journal_actions">
+                    <a t-if="journal_type == 'sale'" name="action_create_new" type="object"
+                       context="{'refund': True}"
+                       groups="account.group_account_invoice">Credit Note</a>
+                    <a t-if="journal_type == 'purchase'" name="action_create_new" type="object"
+                       context="{'refund': True}"
+                       groups="account.group_account_invoice">Refund</a>
+                    <a t-if="journal_type == 'sale'" name="action_fps_customer_payment" type="object"
+                       groups="account.group_account_invoice">Payment</a>
+                    <a t-if="journal_type == 'purchase'" name="action_fps_vendor_payment" type="object"
+                       groups="account.group_account_invoice">Payment</a>
+                    <a name="action_fps_reconcile" type="object"
+                       groups="account.group_account_user">
+                        <span>Reconcile</span>
+                        <span t-if="dashboard.fps_number_to_reconcile"
+                              class="badge text-bg-warning ms-1"><t t-out="dashboard.fps_number_to_reconcile"/></span>
+                    </a>
+                </div>
+            </xpath>
+
+            <!-- ==========================================================
+                 MISCELLANEOUS / GENERAL journals.
+                 ========================================================== -->
+            <xpath expr="//t[@t-name='JournalMiscelaneous']/div[hasclass('o_kanban_primary_left')]" position="inside">
+                <div class="mt-2 d-flex flex-wrap gap-2 fps_journal_actions">
+                    <a name="action_fps_reconcile" type="object"
+                       groups="account.group_account_user">
+                        <span>Reconcile</span>
+                        <span t-if="dashboard.fps_number_to_reconcile"
+                              class="badge text-bg-warning ms-1"><t t-out="dashboard.fps_number_to_reconcile"/></span>
+                    </a>
+                    <a name="open_action_with_context" type="object"
+                       context="{'action_name': 'action_validate_account_move', 'search_default_journal': True}"
+                       groups="account.group_account_user">Post Entries</a>
+                </div>
+            </xpath>
+
+            <!-- ==========================================================
+                 DROPDOWN MENU - bank & cash.
+                 ========================================================== -->
+
+            <!-- Retarget core's broken entry at the action that opens a form. -->
+            <xpath expr="//div[@name='bank_new_actions']/a[@name='action_new_transaction']" position="attributes">
+                <attribute name="name">action_fps_new_transaction</attribute>
+            </xpath>
+
+            <xpath expr="//div[@id='action_card_statements']" position="after">
+                <div name="fps_card_transactions">
+                    <a role="menuitem" type="object" name="action_fps_open_transactions">Transactions</a>
+                </div>
+                <div name="fps_card_reconcile" groups="account.group_account_user">
+                    <a role="menuitem" type="object" name="action_fps_reconcile">To Reconcile</a>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[@id='bank_and_cash_container']/div[hasclass('o_kanban_manage_new')]" position="inside">
+                <!-- Cash journals never had a "New Transaction" entry here. -->
+                <div t-if="journal_type == 'cash'" name="fps_cash_new_transaction">
+                    <a role="menuitem" type="object" name="action_fps_new_transaction"
+                       groups="account.group_account_invoice">New Transaction</a>
+                </div>
+                <div name="fps_new_statement">
+                    <a role="menuitem" type="object" name="action_fps_new_statement">New Statement</a>
+                </div>
+                <div name="fps_internal_transfer">
+                    <a role="menuitem" type="object" name="action_fps_internal_transfer">Internal Transfer</a>
+                </div>
+                <div name="fps_bank_journal_entry">
+                    <a role="menuitem" type="object" name="action_fps_new_entry">Journal Entry</a>
+                </div>
+            </xpath>
+
+            <!-- ==========================================================
+                 DROPDOWN MENU - sale & purchase.
+                 ========================================================== -->
+            <xpath expr="//div[@id='sale_purchase_refund']" position="after">
+                <div name="fps_sale_purchase_reconcile" groups="account.group_account_user">
+                    <a type="object" name="action_fps_reconcile">Items to Reconcile</a>
+                </div>
+            </xpath>
+
+            <!-- ==========================================================
+                 DROPDOWN MENU - general journals.
+                 ========================================================== -->
+            <xpath expr="//div[hasclass('o_kanban_manage_operations')]" position="inside">
+                <div name="fps_general_reconcile">
+                    <a type="object" name="action_fps_reconcile" groups="account.group_account_user">Reconcile</a>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

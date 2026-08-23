@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_laundry_service_type_list" model="ir.ui.view">
+        <field name="name">laundry.service.type.list</field>
+        <field name="model">laundry.service.type</field>
+        <field name="arch" type="xml">
+            <tree string="Service Types" editable="top"><field name="sequence" widget="handle"/><field name="name"/><field name="name_ar"/><field name="code"/><field name="product_id"/><field name="base_price"/><field name="urgent_surcharge_pct"/><field name="standard_duration_hours"/><field name="active"/></tree>
+        </field>
+    </record>
+    <record id="view_laundry_service_type_form" model="ir.ui.view">
+        <field name="name">laundry.service.type.form</field>
+        <field name="model">laundry.service.type</field>
+        <field name="arch" type="xml">
+            <form><sheet><div class="oe_title"><h1><field name="name"/></h1><h3><field name="name_ar"/></h3></div><group><group><field name="code"/><field name="product_id"/><field name="base_price"/><field name="standard_duration_hours"/><field name="urgent_duration_hours"/></group><group><field name="urgent_surcharge_type"/><field name="urgent_surcharge_pct" invisible="urgent_surcharge_type != 'percent'"/><field name="urgent_surcharge_fixed" invisible="urgent_surcharge_type != 'fixed'"/><field name="is_dry_clean"/><field name="is_express"/><field name="active"/></group></group><field name="addon_ids" widget="many2many_tags"/></sheet></form>
+        </field>
+    </record>
+    <record id="action_laundry_service_type" model="ir.actions.act_window">
+        <field name="name">Service Types / الخدمات</field>
+        <field name="res_model">laundry.service.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

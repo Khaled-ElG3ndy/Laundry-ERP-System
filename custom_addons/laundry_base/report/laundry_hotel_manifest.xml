@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_hotel_manifest" model="ir.actions.report">
+        <field name="name">Hotel Pickup Manifest / بيان استلام الفندق</field>
+        <field name="model">laundry.hotel.session</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">laundry_base.report_hotel_manifest</field>
+        <field name="report_file">laundry_base.report_hotel_manifest</field>
+    </record>
+
+    <template id="report_hotel_manifest">
+        <t t-call="web.html_container">
+            <style>
+                * { font-family: "Noto Naskh Arabic", Arial, sans-serif; }
+                body { direction: rtl; padding: 16px; font-size: 10pt; }
+                .mh { text-align:center; border-bottom:3px solid #1B4FD8; padding-bottom:12px; margin-bottom:16px; }
+                .mh-title { font-size:16pt; font-weight:bold; color:#1B4FD8; }
+                table { width:100%; border-collapse:collapse; }
+                th { background:#F3F4F6; padding:7px 10px; text-align:right; font-weight:bold; }
+                td { padding:6px 10px; border-bottom:1px solid #F3F4F6; }
+                .sig-box { border:1px solid #D1D5DB; min-height:60px; border-radius:6px; margin-top:8px; padding:8px; }
+            </style>
+            <t t-foreach="docs" t-as="session">
+                <div class="mh">
+                    <div class="mh-title">بيان استلام الفندق / Hotel Pickup Manifest</div>
+                    <div style="font-size:9pt;color:#6B7280;">
+                        مغسلة فرحة — Farha Laundry |
+                        <t t-esc="session.name"/> |
+                        <t t-esc="session.session_date"/>
+                    </div>
+                </div>
+
+                <table style="margin-bottom:16px;">
+                    <tr><td style="font-weight:bold;">الفندق / Hotel</td>
+                        <td><t t-esc="session.commercial_id.name"/></td>
+                        <td style="font-weight:bold;">السائق / Driver</td>
+                        <td><t t-esc="session.driver_name or '—'"/></td></tr>
+                    <tr><td style="font-weight:bold;">السيارة / Vehicle</td>
+                        <td><t t-esc="session.vehicle_plate or '—'"/></td>
+                        <td style="font-weight:bold;">عدد الطلبات</td>
+                        <td><t t-esc="session.order_count"/></td></tr>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>رقم الطلب</th>
+                            <th>الغرفة / العميل</th>
+                            <th>القطع</th>
+                            <th>المبلغ</th>
+                            <th>الحقيبة</th>
+                            <th>استلم ✓</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="session.order_ids" t-as="order">
+                            <tr>
+                                <td><t t-esc="order_index + 1"/></td>
+                                <td style="font-weight:bold;color:#1B4FD8;"><t t-esc="order.name"/></td>
+                                <td><t t-esc="order.partner_id.name"/></td>
+                                <td><t t-esc="order.line_count"/></td>
+                                <td style="font-weight:bold;"><t t-esc="'%.2f' % order.amount_total"/> SAR</td>
+                                <td><t t-esc="order.bag_reference or '—'"/></td>
+                                <td style="border:1px solid #D1D5DB; width:50px;"></td>
+                            </tr>
+                        </t>
+                        <tr style="font-weight:bold;background:#F3F4F6;">
+                            <td colspan="4">الإجمالي / Total</td>
+                            <td><t t-esc="'%.2f' % session.total_amount"/> SAR</td>
+                            <td colspan="2"/>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="display:flex;gap:40px;margin-top:30px;">
+                    <div style="flex:1;">
+                        <div style="font-weight:bold;margin-bottom:6px;">توقيع السائق / Driver Signature</div>
+                        <div class="sig-box"/>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-weight:bold;margin-bottom:6px;">توقيع مستلم الفندق / Hotel Receiver</div>
+                        <div class="sig-box"/>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-weight:bold;margin-bottom:6px;">توقيع المشرف / Supervisor</div>
+                        <div class="sig-box"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

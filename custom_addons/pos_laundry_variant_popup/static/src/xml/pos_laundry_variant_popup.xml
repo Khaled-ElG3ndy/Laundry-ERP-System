@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_laundry_variant_popup.PriceChip" owl="1">
+        <span class="laundry-variant-card__price"
+              t-esc="item.price"/>
+    </t>
+
+    <t t-name="pos_laundry_variant_popup.ServiceGroupHeader" owl="1">
+        <header class="laundry-service-group__header">
+            <div class="laundry-service-group__title">
+                <span class="laundry-service-group__icon"
+                      t-att-title="group.group"
+                      aria-hidden="true">
+                    <i t-att-class="group.iconClass"/>
+                </span>
+                <span class="laundry-service-group__name"
+                      dir="auto"
+                      t-esc="group.group"/>
+            </div>
+            <span class="laundry-service-group__rule"/>
+        </header>
+    </t>
+
+    <t t-name="pos_laundry_variant_popup.ServiceCard" owl="1">
+        <button type="button"
+                t-att-class="cardClasses(item)"
+                t-att-aria-checked="state.selectedId === item.id ? 'true' : 'false'"
+                role="radio"
+                t-on-click="() => this.selectItem(item)">
+
+            <span class="laundry-variant-card__name"
+                  dir="auto"
+                  t-esc="item.name"/>
+
+            <t t-if="item.price">
+                <t t-call="pos_laundry_variant_popup.PriceChip"/>
+            </t>
+
+            <span class="laundry-variant-card__radio"
+                  aria-hidden="true"/>
+        </button>
+    </t>
+
+    <t t-name="pos_laundry_variant_popup.ServiceGroup" owl="1">
+        <section t-att-class="'laundry-service-group ' + group.themeClass"
+                 role="radiogroup"
+                 t-att-aria-label="group.group">
+            <t t-call="pos_laundry_variant_popup.ServiceGroupHeader"/>
+
+            <div class="laundry-variant-popup__grid">
+                <t t-foreach="group.items"
+                   t-as="item"
+                   t-key="item.productProductId">
+                    <t t-call="pos_laundry_variant_popup.ServiceCard"/>
+                </t>
+            </div>
+        </section>
+    </t>
+
+    <t t-name="pos_laundry_variant_popup.LaundryVariantPopup" owl="1">
+
+        <div class="laundry-pos-popup-shell laundry-pos-popup-shell--variant"
+             t-att-dir="textDirection">
+
+            <section t-att-class="popupCardClasses()"
+                     t-att-dir="textDirection"
+                     role="dialog"
+                     aria-modal="true">
+
+                <header class="laundry-pos-popup-header">
+                    <div class="laundry-pos-popup-header__icon">
+                        <i class="fa fa-shopping-basket"/>
+                    </div>
+
+                    <div class="laundry-pos-popup-header__content">
+                        <h3 class="laundry-pos-popup-title"
+                            t-att-dir="textDirection"
+                            t-esc="props.title"/>
+
+                        <p class="laundry-pos-popup-subtitle"
+                           dir="auto"
+                           t-esc="props.subtitle"/>
+                    </div>
+                </header>
+
+                <div class="laundry-pos-popup-body laundry-variant-popup__body">
+                    <div t-if="props.list.length"
+                         class="laundry-variant-popup__groups">
+                        <t t-foreach="props.list"
+                           t-as="group"
+                           t-key="group.id">
+                            <t t-call="pos_laundry_variant_popup.ServiceGroup"/>
+                        </t>
+                    </div>
+
+                    <div t-else=""
+                         class="laundry-variant-popup__empty"
+                         t-esc="uiText.empty"/>
+
+                    <p t-if="state.invalidSubmit"
+                       class="laundry-pos-error laundry-variant-popup__error"
+                       role="alert"
+                       t-esc="uiText.selectBeforeConfirm"/>
+                </div>
+
+                <footer class="laundry-pos-popup-footer">
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--outline"
+                            t-on-click="cancel">
+                        <t t-esc="props.cancelText"/>
+                    </button>
+
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--primary"
+                            t-att-disabled="!canConfirm || state.confirming"
+                            t-on-click="confirm">
+                        <t t-esc="props.confirmText"/>
+                    </button>
+                </footer>
+
+            </section>
+
+        </div>
+
+    </t>
+
+    <t t-name="pos_laundry_variant_popup.OrderlineSelections"
+       t-inherit="point_of_sale.Orderline"
+       t-inherit-mode="extension">
+
+        <xpath expr="//ul[hasclass('info-list')]" position="inside">
+            <li t-if="line.laundryVariantSummaryItems and line.laundryVariantSummaryItems.length"
+                class="laundry-orderline-selections">
+                <t t-foreach="line.laundryVariantSummaryItems"
+                   t-as="selection"
+                   t-key="selection_index">
+                    <div class="laundry-orderline-selections__item"
+                         t-att-title="selection.displayText"
+                         t-att-class="{ 'laundry-orderline-selections__item--primary': selection_index === 0 }">
+                        <span class="laundry-orderline-selections__service" dir="auto">
+                            <t t-if="selection.group">
+                                <span class="laundry-orderline-selections__group"
+                                      t-esc="selection.group"/>
+                                <span class="laundry-orderline-selections__colon">:</span>
+                            </t>
+                            <span class="laundry-orderline-selections__value"
+                                  t-esc="selection.value"/>
+                        </span>
+                        <span t-if="selection.priceText"
+                              class="laundry-orderline-selections__dash"
+                              aria-hidden="true">-</span>
+                        <bdi t-if="selection.priceText"
+                             class="laundry-orderline-selections__price"
+                             dir="ltr"
+                             t-esc="selection.priceText"/>
+                    </div>
+                </t>
+            </li>
+        </xpath>
+
+    </t>
+
+</templates>

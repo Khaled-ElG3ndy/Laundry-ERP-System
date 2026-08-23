@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_pricelist_view_hotel" model="ir.ui.view">
+        <field name="name">product.pricelist.form.hotel.contract</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field name="hotel_tier" readonly="1" invisible="not hotel_tier"/>
+                <field name="is_hotel_contract" readonly="1"
+                       invisible="not is_hotel_contract"/>
+                <field name="hotel_is_shared" invisible="1"/>
+                <field name="hotel_customer_count" invisible="1"/>
+            </field>
+            <xpath expr="//sheet" position="inside">
+                <div class="alert alert-warning" role="alert"
+                     invisible="not hotel_is_shared">
+                    <i class="fa fa-exclamation-triangle me-1" title="Warning" role="img" aria-label="Warning"/>
+                    <b>Shared pricelist.</b>
+                    <field name="hotel_customer_count" nolabel="1"
+                           class="oe_inline" readonly="1"/>
+                    customers are on this pricelist — changing a price here
+                    changes it for every one of them. To change a price for a
+                    single customer, open that customer and use
+                    <b>Create Customer-Specific Pricelist</b>.
+                </div>
+                <group string="Hotel / Company Customers on this Pricelist"
+                       invisible="not is_hotel_contract">
+                    <field name="hotel_customer_ids" nolabel="1" readonly="1">
+                        <tree>
+                            <field name="name"/>
+                            <field name="hotel_excel_name"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_pricelist_item_view_tree_hotel" model="ir.ui.view">
+        <field name="name">product.pricelist.item.tree.hotel</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="price" position="after">
+                <field name="hotel_price_edited" optional="show"
+                       string="Edited since import"/>
+                <field name="hotel_imported_price" optional="hide"
+                       string="Sheet price"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_hotel_contract_pricelists" model="ir.actions.act_window">
+        <field name="name">Hotel Contract Pricelists</field>
+        <field name="res_model">product.pricelist</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_hotel_contract', '=', True)]</field>
+        <field name="groups_id" eval="[(4, ref('hosny_hotel_pos.group_hotel_contract_manager'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+<t t-name="laundry_theme.NewOrder" owl="1">
+<div class="lf-no-app">
+
+    <!-- TOP BAR -->
+    <div class="lf-no-topbar">
+        <button class="lf-no-back" t-on-click="() => this.goBack()">✕</button>
+        <div class="lf-no-title">
+            <span class="lf-no-title-main">طلب جديد / New Order</span>
+            <span class="lf-no-title-sub" t-if="this.state.selectedCustomer">
+                👤 <t t-esc="this.state.selectedCustomer.name"/>
+                <t t-if="this.state.selectedCommercial">
+                    — 🏢 <t t-esc="this.state.selectedCommercial.name"/>
+                </t>
+            </span>
+        </div>
+        <!-- Step pills -->
+        <div class="lf-no-steps">
+            <div class="lf-no-step" t-att-class="{active: this.state.screen==='customer', done: this.state.screen!=='customer'}">
+                <span class="lf-no-step-num">1</span><span class="lf-no-step-label">العميل</span>
+            </div>
+            <div class="lf-no-step-line"/>
+            <div class="lf-no-step" t-att-class="{active: this.state.screen==='items', done: this.state.screen==='payment'}">
+                <span class="lf-no-step-num">2</span><span class="lf-no-step-label">الملابس</span>
+            </div>
+            <div class="lf-no-step-line"/>
+            <div class="lf-no-step" t-att-class="{active: this.state.screen==='payment'}">
+                <span class="lf-no-step-num">3</span><span class="lf-no-step-label">الدفع</span>
+            </div>
+        </div>
+        <!-- Urgent -->
+        <div class="lf-no-urgent-toggle"
+             t-att-class="{active: this.state.isUrgent}"
+             t-on-click="() => { this.state.isUrgent = !this.state.isUrgent; }">
+            ⚡ <span t-esc="this.state.isUrgent ? 'عاجل' : 'عادي'"/>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════ SCREEN 1: CUSTOMER ═══════════════════════ -->
+    <t t-if="this.state.screen === 'customer'">
+        <div class="lf-no-screen lf-no-cust-screen">
+
+            <!-- Customer Type Selection -->
+            <div class="lf-no-type-section">
+                <div class="lf-no-type-title">من هو العميل؟ / Customer Type</div>
+                <div class="lf-no-type-grid">
+                    <div class="lf-no-type-card"
+                         t-att-class="{active: this.state.customerType === 'individual'}"
+                         t-on-click="() => this.selectType('individual')">
+                        <span class="lf-no-type-icon">👤</span>
+                        <span class="lf-no-type-label">فردي</span>
+                        <span class="lf-no-type-label-en">Individual</span>
+                    </div>
+                    <div class="lf-no-type-card"
+                         t-att-class="{active: this.state.customerType === 'commercial'}"
+                         t-on-click="() => this.selectType('commercial')">
+                        <span class="lf-no-type-icon">🏢</span>
+                        <span class="lf-no-type-label">تجاري</span>
+                        <span class="lf-no-type-label-en">Commercial</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Individual: search -->
+            <t t-if="this.state.customerType === 'individual'">
+                <div class="lf-no-cust-search-section">
+                    <div class="lf-no-cust-search-title">🔍 ابحث عن العميل</div>
+                    <div class="lf-no-search-wrap">
+                        <input class="lf-no-search-input"
+                               id="lf_cust_search" name="lf_cust_search"
+                               type="text"
+                               placeholder="اسم العميل أو رقم الجوال..."
+                               t-att-value="this.state.customerSearch"
+                               t-on-input="(e) => this.onCustomerSearchInput(e)"
+                               autocomplete="off"/>
+                        <button class="lf-no-search-clear"
+                                t-if="this.state.customerSearch"
+                                t-on-click="() => this.clearCustomer()">✕</button>
+                    </div>
+
+                    <!-- Results -->
+                    <div class="lf-no-cust-results" t-if="this.state.customerResults.length">
+                        <t t-foreach="this.state.customerResults" t-as="c" t-key="c.id">
+                            <div class="lf-no-cust-row"
+                                 t-att-class="{selected: this.state.selectedCustomer and this.state.selectedCustomer.id === c.id}"
+                                 t-on-click="() => this.selectCustomer(c)">
+                                <div class="lf-no-cust-av"><t t-esc="c.name[0].toUpperCase()"/></div>
+                                <div class="lf-no-cust-info">
+                                    <div class="lf-no-cust-name" t-esc="c.name"/>
+                                    <div class="lf-no-cust-phone" t-esc="c.mobile or c.phone or ''"/>
+                                </div>
+                                <span t-if="this.state.selectedCustomer and this.state.selectedCustomer.id === c.id"
+                                      class="lf-no-cust-check">✓</span>
+                            </div>
+                        </t>
+                    </div>
+
+                    <!-- Selected badge -->
+                    <div class="lf-no-selected-badge" t-if="this.state.selectedCustomer">
+                        <div class="lf-no-sel-av"><t t-esc="this.state.selectedCustomer.name[0].toUpperCase()"/></div>
+                        <div>
+                            <div class="lf-no-sel-name" t-esc="this.state.selectedCustomer.name"/>
+                        </div>
+                        <span class="lf-no-sel-check">✓ محدد</span>
+                    </div>
+
+                    <!-- New customer -->
+                    <button class="lf-no-new-cust-btn"
+                            t-if="!this.state.showNewCustomer"
+                            t-on-click="() => { this.state.showNewCustomer = true; }">
+                        ➕ إضافة عميل جديد
+                    </button>
+                    <div class="lf-no-new-cust-form" t-if="this.state.showNewCustomer">
+                        <input class="lf-no-input" id="lf_nc_name" name="lf_nc_name"
+                               placeholder="الاسم الكامل *"
+                               t-att-value="this.state.newCustomerName"
+                               t-on-input="(e) => { this.state.newCustomerName = e.target.value; }"/>
+                        <input class="lf-no-input" id="lf_nc_phone" name="lf_nc_phone"
+                               placeholder="رقم الجوال"
+                               t-att-value="this.state.newCustomerPhone"
+                               t-on-input="(e) => { this.state.newCustomerPhone = e.target.value; }"/>
+                        <div class="lf-no-new-cust-btns">
+                            <button class="lf-no-btn-success" t-on-click="() => this.createAndSelectCustomer()">✓ إنشاء</button>
+                            <button class="lf-no-btn-gray" t-on-click="() => { this.state.showNewCustomer = false; }">إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Commercial: account list -->
+            <t t-elif="this.state.customerType === 'commercial'">
+                <div class="lf-no-cust-search-section">
+                    <div class="lf-no-cust-search-title">🏢 اختر الحساب التجاري</div>
+                    <div class="lf-no-commercial-grid">
+                        <t t-foreach="this.state.commercialAccounts" t-as="acc" t-key="acc.id">
+                            <div class="lf-no-commercial-card"
+                                 t-att-class="{active: this.state.selectedCommercial and this.state.selectedCommercial.id === acc.id}"
+                                 t-on-click="() => this.selectCommercial(acc)">
+                                <span class="lf-no-comm-icon">🏢</span>
+                                <div class="lf-no-comm-info">
+                                    <div class="lf-no-comm-name" t-esc="acc.name"/>
+                                    <div class="lf-no-comm-code" t-esc="acc.code"/>
+                                </div>
+                                <span t-if="this.state.selectedCommercial and this.state.selectedCommercial.id === acc.id"
+                                      class="lf-no-cust-check">✓</span>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+
+            <!-- Next -->
+            <div class="lf-no-cust-footer">
+                <button class="lf-no-next-btn"
+                        t-att-class="{disabled: !this.state.selectedCustomer}"
+                        t-on-click="() => this.goToItems()">
+                    التالي — أضف الملابس →
+                </button>
+            </div>
+        </div>
+    </t>
+
+    <!-- ═══════════════════════ SCREEN 2: ITEMS ═══════════════════════ -->
+    <t t-elif="this.state.screen === 'items'">
+        <div class="lf-no-screen lf-no-items-screen">
+            <div class="lf-no-pos-layout">
+
+                <!-- COL A: Categories sidebar -->
+                <div class="lf-no-cat-sidebar">
+                    <div class="lf-no-sidebar-title">الأصناف</div>
+                    <t t-foreach="this.state.categories" t-as="cat" t-key="cat.id">
+                        <t t-set="ci" t-value="this.getCatIcon(cat.code)"/>
+                        <div class="lf-no-cat-item"
+                             t-att-class="{active: this.state.selectedCategory and this.state.selectedCategory.id === cat.id}"
+                             t-att-style="'--cc:' + ci.c"
+                             t-on-click="() => this.pickCategory(cat)">
+                            <span class="lf-no-cat-item-e" t-esc="ci.e"/>
+                            <span class="lf-no-cat-item-l" t-esc="cat.name_ar or cat.name"/>
+                        </div>
+                    </t>
+                </div>
+
+                <!-- COL B: Service grid + qty/addons -->
+                <div class="lf-no-svc-panel">
+                    <!-- Service grid -->
+                    <t t-if="!this.state.selectedCategory">
+                        <div class="lf-no-svc-placeholder">
+                            <div style="font-size:3rem;">👈</div>
+                            <div>اختر نوع الملبس أولاً</div>
+                            <div style="font-size:0.8rem;color:var(--lf-gray-400);">Select item category first</div>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="lf-no-svc-panel-header">
+                            <t t-set="ci" t-value="this.getCatIcon(this.state.selectedCategory.code)"/>
+                            <span t-esc="ci.e"/> 
+                            <strong t-esc="this.state.selectedCategory.name_ar or this.state.selectedCategory.name"/>
+                            — اختر الخدمة
+                        </div>
+                        <div class="lf-no-svc-grid">
+                            <t t-foreach="this.filteredServices" t-as="svc" t-key="svc.id">
+                                <t t-set="si" t-value="this.getSvcIcon(svc.code)"/>
+                                <div class="lf-no-svc-card"
+                                     t-att-class="{active: this.state.selectedService and this.state.selectedService.id === svc.id}"
+                                     t-att-style="'--cc:' + si.c + ';--cb:' + si.b"
+                                     t-on-click="() => this.pickService(svc)">
+                                    <div class="lf-no-svc-e" t-esc="si.e"/>
+                                    <div class="lf-no-svc-l" t-esc="svc.name_ar or svc.name"/>
+                                    <div class="lf-no-svc-p"><t t-esc="(svc.base_price||0).toFixed(0)"/> SAR</div>
+                                </div>
+                            </t>
+                        </div>
+
+                        <!-- Qty + addons (shows when service selected) -->
+                        <t t-if="this.state.selectedService">
+                            <div class="lf-no-item-controls">
+                                <!-- Selected summary -->
+                                <div class="lf-no-item-sel">
+                                    <t t-set="ci" t-value="this.getCatIcon(this.state.selectedCategory.code)"/>
+                                    <t t-set="si" t-value="this.getSvcIcon(this.state.selectedService.code)"/>
+                                    <span t-esc="ci.e"/> <span t-esc="this.state.selectedCategory.name_ar or this.state.selectedCategory.name"/>
+                                    <span class="lf-no-item-sel-plus">+</span>
+                                    <span t-esc="si.e"/> <span t-esc="this.state.selectedService.name_ar or this.state.selectedService.name"/>
+                                    <span class="lf-no-item-sel-price"><t t-esc="this.lineUnitPrice.toFixed(0)"/> SAR/قطعة</span>
+                                </div>
+
+                                <!-- Qty row -->
+                                <div class="lf-no-qty-row">
+                                    <span class="lf-no-qty-label">الكمية:</span>
+                                    <div class="lf-no-qty-ctrl">
+                                        <button class="lf-no-qty-dec" t-on-click="() => this.decQty()">
+                                            <span>−</span>
+                                        </button>
+                                        <input class="lf-no-qty-val"
+                                               id="lf_qty" name="lf_qty"
+                                               type="number" min="1" max="99"
+                                               t-att-value="this.state.qty"
+                                               t-on-change="(e) => this.setQty(e.target.value)"/>
+                                        <button class="lf-no-qty-inc" t-on-click="() => this.incQty()">
+                                            <span>+</span>
+                                        </button>
+                                    </div>
+                                    <!-- Quick presets -->
+                                    <div class="lf-no-qty-presets">
+                                        <t t-foreach="[1,2,3,4,5,6,8,10]" t-as="n" t-key="n">
+                                            <button class="lf-no-qty-preset"
+                                                    t-att-class="{active: this.state.qty === n}"
+                                                    t-on-click="() => this.state.qty = n">
+                                                <t t-esc="n"/>
+                                            </button>
+                                        </t>
+                                    </div>
+                                </div>
+
+                                <!-- Addons -->
+                                <t t-if="this.state.addons.length">
+                                    <div class="lf-no-addon-row">
+                                        <span class="lf-no-qty-label">إضافات:</span>
+                                        <div class="lf-no-addon-chips">
+                                            <t t-foreach="this.state.addons" t-as="addon" t-key="addon.id">
+                                                <div class="lf-no-addon-chip"
+                                                     t-att-class="{active: this.isAddonSelected(addon)}"
+                                                     t-on-click="() => this.toggleAddon(addon)">
+                                                    <t t-esc="addon.name_ar or addon.name"/>
+                                                    <span class="lf-no-addon-p">+<t t-esc="(addon.price||0).toFixed(0)"/></span>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
+
+                                <!-- Damage note + Add button -->
+                                <div class="lf-no-add-row">
+                                    <input class="lf-no-input lf-no-dmg-input"
+                                           id="lf_damage" name="lf_damage"
+                                           placeholder="ملاحظة الضرر المسبق (اختياري)..."
+                                           t-att-value="this.state.damageNote"
+                                           t-on-input="(e) => { this.state.damageNote = e.target.value; }"/>
+                                    <div class="lf-no-add-total">
+                                        <t t-esc="this.lineTotal.toFixed(2)"/> SAR
+                                    </div>
+                                    <button class="lf-no-add-btn" t-on-click="() => this.addLineToBasket()">
+                                        ✓ أضف للطلب
+                                    </button>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+
+                <!-- COL C: Basket -->
+                <div class="lf-no-basket-col">
+                    <div class="lf-no-basket-header">
+                        <span>🧺 الطلب</span>
+                        <span class="lf-no-basket-cnt" t-esc="this.basketItemCount"/> قطعة
+                    </div>
+
+                    <div class="lf-no-basket-body">
+                        <t t-if="!this.state.basket.length">
+                            <div class="lf-no-basket-empty">
+                                <div style="font-size:2.5rem;">🧺</div>
+                                <div>لا توجد أصناف</div>
+                            </div>
+                        </t>
+                        <t t-foreach="this.state.basket" t-as="line" t-key="line.uid">
+                            <div class="lf-no-bline">
+                                <div class="lf-no-bline-icons">
+                                    <span t-esc="line.cat_icon.e"/>
+                                </div>
+                                <div class="lf-no-bline-info">
+                                    <div class="lf-no-bline-name">
+                                        <t t-esc="line.category.name_ar or line.category.name"/>
+                                    </div>
+                                    <div class="lf-no-bline-svc">
+                                        <t t-esc="line.svc_icon.e"/>
+                                        <t t-esc="line.service.name_ar or line.service.name"/>
+                                    </div>
+                                    <div class="lf-no-bline-meta">
+                                        x<t t-esc="line.qty"/> —
+                                        <t t-esc="line.unit_price.toFixed(0)"/> SAR
+                                    </div>
+                                </div>
+                                <div class="lf-no-bline-sub">
+                                    <t t-esc="line.subtotal.toFixed(0)"/>
+                                    <span style="font-size:0.65rem;"> SAR</span>
+                                </div>
+                                <button class="lf-no-bline-del"
+                                        t-on-click="() => this.removeFromBasket(line.uid)">✕</button>
+                            </div>
+                        </t>
+                    </div>
+
+                    <t t-if="this.state.basket.length">
+                        <div class="lf-no-basket-footer">
+                            <div class="lf-no-basket-total">
+                                <span>الإجمالي</span>
+                                <strong><t t-esc="this.orderTotal.toFixed(2)"/> SAR</strong>
+                            </div>
+                            <!-- Promise date quick set -->
+                            <div class="lf-no-basket-promise">
+                                <label style="font-size:0.72rem;color:var(--lf-gray-500);">⏰ موعد التسليم</label>
+                                <input class="lf-no-promise-input"
+                                       id="lf_promise" name="lf_promise"
+                                       type="datetime-local"
+                                       t-att-value="this.state.promiseDate"
+                                       t-on-change="(e) => { this.state.promiseDate = e.target.value; }"/>
+                            </div>
+                            <button class="lf-no-pay-btn" t-on-click="() => this.goToPayment()">
+                                الدفع →
+                            </button>
+                        </div>
+                    </t>
+                </div>
+
+            </div>
+        </div>
+    </t>
+
+    <!-- ═══════════════════════ SCREEN 3: PAYMENT ═══════════════════════ -->
+    <t t-elif="this.state.screen === 'payment'">
+        <div class="lf-no-screen lf-no-pay-screen">
+            <div class="lf-no-pay-layout">
+
+                <!-- LEFT: Payment options -->
+                <div class="lf-no-pay-left">
+                    <div class="lf-no-pay-title">💳 طريقة الدفع / Payment</div>
+
+                    <!-- Method selector -->
+                    <div class="lf-no-pay-methods">
+                        <div class="lf-no-pay-method"
+                             t-att-class="{active: this.state.paymentMethod === 'cash'}"
+                             t-on-click="() => { this.state.paymentMethod = 'cash'; this.state.cashTendered = 0; }">
+                            <span class="lf-no-pay-method-icon">💵</span>
+                            <span class="lf-no-pay-method-label">نقداً</span>
+                            <span class="lf-no-pay-method-sub">Cash</span>
+                        </div>
+                        <div class="lf-no-pay-method"
+                             t-att-class="{active: this.state.paymentMethod === 'card'}"
+                             t-on-click="() => { this.state.paymentMethod = 'card'; this.state.cashTendered = 0; }">
+                            <span class="lf-no-pay-method-icon">💳</span>
+                            <span class="lf-no-pay-method-label">بطاقة</span>
+                            <span class="lf-no-pay-method-sub">Card</span>
+                        </div>
+                        <div class="lf-no-pay-method"
+                             t-att-class="{active: this.state.paymentMethod === 'on_account'}"
+                             t-on-click="() => { this.state.paymentMethod = 'on_account'; this.state.cashTendered = 0; }">
+                            <span class="lf-no-pay-method-icon">🏢</span>
+                            <span class="lf-no-pay-method-label">على الحساب</span>
+                            <span class="lf-no-pay-method-sub">Account</span>
+                        </div>
+                    </div>
+
+                    <!-- Cash: amount input -->
+                    <t t-if="this.state.paymentMethod === 'cash'">
+                        <div class="lf-no-cash-section">
+                            <div class="lf-no-cash-label">المبلغ المقدم / Cash Tendered</div>
+                            <div class="lf-no-cash-presets">
+                                <t t-foreach="this.cashPresets" t-as="p" t-key="p">
+                                    <button class="lf-no-cash-preset"
+                                            t-att-class="{active: this.state.cashTendered === p}"
+                                            t-on-click="() => this.setCashPreset(p)">
+                                        <t t-esc="p"/> SAR
+                                    </button>
+                                </t>
+                            </div>
+                            <div class="lf-no-cash-input-wrap">
+                                <span class="lf-no-cash-currency">SAR</span>
+                                <input class="lf-no-cash-input"
+                                       id="lf_cash" name="lf_cash"
+                                       type="number" min="0" step="0.5"
+                                       t-att-value="this.state.cashTendered || ''"
+                                       placeholder="0.00"
+                                       t-on-input="(e) => { this.state.cashTendered = parseFloat(e.target.value) || 0; }"/>
+                            </div>
+                            <!-- Change -->
+                            <t t-if="this.changeAmount > 0">
+                                <div class="lf-no-change lf-no-change-ok">
+                                    <span>🔄 الباقي / Change</span>
+                                    <strong><t t-esc="this.changeAmount.toFixed(2)"/> SAR</strong>
+                                </div>
+                            </t>
+                            <t t-elif="this.state.cashTendered > 0 and this.state.cashTendered &lt; this.orderTotal">
+                                <div class="lf-no-change lf-no-change-err">
+                                    <span>⚠ مبلغ غير كافٍ</span>
+                                    <strong><t t-esc="(this.orderTotal - this.state.cashTendered).toFixed(2)"/> SAR ناقص</strong>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- Card confirmation -->
+                    <t t-if="this.state.paymentMethod === 'card'">
+                        <div class="lf-no-pay-confirm lf-no-pay-confirm-card">
+                            💳 سيتم الدفع عبر البطاقة
+                            <strong><t t-esc="this.orderTotal.toFixed(2)"/> SAR</strong>
+                        </div>
+                    </t>
+
+                    <!-- On Account -->
+                    <t t-if="this.state.paymentMethod === 'on_account'">
+                        <div class="lf-no-pay-confirm lf-no-pay-confirm-acc">
+                            🏢 سيُضاف للحساب التجاري ويُفوتر لاحقاً
+                            <t t-if="this.state.selectedCommercial">
+                                <br/><strong t-esc="this.state.selectedCommercial.name"/>
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- Bag + notes -->
+                    <div class="lf-no-pay-extras">
+                        <input class="lf-no-input"
+                               id="lf_bag" name="lf_bag"
+                               placeholder="🏷 رقم الحقيبة / Bag Ref (اختياري)"
+                               t-att-value="this.state.bagReference"
+                               t-on-input="(e) => { this.state.bagReference = e.target.value; }"/>
+                        <input class="lf-no-input"
+                               id="lf_notes" name="lf_notes"
+                               placeholder="📝 ملاحظات / Notes (اختياري)"
+                               t-att-value="this.state.orderNotes"
+                               t-on-input="(e) => { this.state.orderNotes = e.target.value; }"/>
+                    </div>
+
+                    <button class="lf-no-back-btn"
+                            t-on-click="() => { this.state.screen = 'items'; }">
+                        ← تعديل الأصناف
+                    </button>
+                </div>
+
+                <!-- RIGHT: Order summary + confirm -->
+                <div class="lf-no-pay-right">
+                    <!-- Customer -->
+                    <div class="lf-no-pay-cust">
+                        <div class="lf-no-pay-cust-av">
+                            <t t-esc="this.state.selectedCustomer.name[0].toUpperCase()"/>
+                        </div>
+                        <div>
+                            <div class="lf-no-pay-cust-name" t-esc="this.state.selectedCustomer.name"/>
+                            <div class="lf-no-pay-cust-type">
+                                <t t-if="this.state.customerType === 'commercial'">🏢 تجاري</t>
+                                <t t-else="">👤 فردي</t>
+                                <t t-if="this.state.isUrgent"> — ⚡ عاجل</t>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Items summary -->
+                    <div class="lf-no-pay-lines">
+                        <t t-foreach="this.state.basket" t-as="line" t-key="line.uid">
+                            <div class="lf-no-pay-line">
+                                <span t-esc="line.cat_icon.e"/>
+                                <div class="lf-no-pay-line-text">
+                                    <t t-esc="line.category.name_ar or line.category.name"/>
+                                    <span class="lf-no-pay-line-svc">
+                                        <t t-esc="line.svc_icon.e"/>
+                                        <t t-esc="line.service.name_ar or line.service.name"/>
+                                    </span>
+                                    × <strong t-esc="line.qty"/>
+                                </div>
+                                <div class="lf-no-pay-line-amt"><t t-esc="line.subtotal.toFixed(2)"/> SAR</div>
+                            </div>
+                        </t>
+                    </div>
+
+                    <!-- Total block -->
+                    <div class="lf-no-pay-total-block">
+                        <div class="lf-no-pay-total-label">الإجمالي / Total</div>
+                        <div class="lf-no-pay-total-amt">
+                            <t t-esc="this.orderTotal.toFixed(2)"/>
+                            <span style="font-size:1rem;font-weight:400;"> SAR</span>
+                        </div>
+                        <div class="lf-no-pay-total-meta">
+                            <t t-esc="this.basketItemCount"/> قطعة —
+                            <t t-esc="this.state.basket.length"/> صنف
+                        </div>
+                    </div>
+
+                    <!-- Confirm button -->
+                    <button class="lf-no-confirm-btn"
+                            t-att-class="{loading: this.state.saving, disabled: !this.isPaymentReady}"
+                            t-att-disabled="this.state.saving or !this.isPaymentReady"
+                            t-on-click="() => this.confirmOrder()">
+                        <t t-if="this.state.saving">
+                            <span class="lf-spinner-sm"/> جاري الإنشاء...
+                        </t>
+                        <t t-elif="!this.isPaymentReady">
+                            أدخل المبلغ أولاً
+                        </t>
+                        <t t-else="">
+                            ✓ تأكيد وإنشاء الطلب
+                        </t>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</div>
+</t>
+</templates>

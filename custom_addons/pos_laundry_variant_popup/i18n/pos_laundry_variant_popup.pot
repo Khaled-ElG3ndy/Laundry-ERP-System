@@ -1,0 +1,238 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_laundry_variant_popup
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-27 15:31+0000\n"
+"PO-Revision-Date: 2026-07-27 15:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__active
+msgid "Active"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model,name:pos_laundry_variant_popup.model_product_attribute_value
+msgid "Attribute Value"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__color_theme__blue
+msgid "Blue"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, python-format
+msgid "Cancel"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__icon_key__clock
+msgid "Clock"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__code
+msgid "Code"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__color_theme
+msgid "Color Theme"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, python-format
+msgid "Confirm"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, python-format
+msgid "Edit Service"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_product__has_legacy_laundry_service_attributes
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_template__has_legacy_laundry_service_attributes
+msgid "Has Legacy Laundry Service Attributes"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__id
+msgid "ID"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__icon_key
+msgid "Icon Key"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute_value__laundry_pos_display_name
+msgid "Laundry POS Display Name"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-python
+#: code:addons/pos_laundry_variant_popup/models/product_template.py:0
+#, python-format
+msgid "Laundry POS attributes updated"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, python-format
+msgid "Laundry Service"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model,name:pos_laundry_variant_popup.model_laundry_service_group
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute_value__laundry_service_group_id
+msgid "Laundry Service Group"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__icon_key__leaf
+msgid "Leaf"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__name
+msgid "Name"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, python-format
+msgid "No services are available for this product."
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model_terms:ir.ui.view,arch_db:pos_laundry_variant_popup.product_template_form_view_laundry_pos_normalize
+msgid "Normalize Laundry POS"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__color_theme__orange
+msgid "Orange"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model,name:pos_laundry_variant_popup.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__color_theme__primary
+msgid "Primary"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model,name:pos_laundry_variant_popup.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, python-format
+msgid "Save"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, python-format
+msgid "Select a service before confirming."
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, python-format
+msgid "Service"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#. odoo-python
+#: code:addons/pos_laundry_variant_popup/models/product_template.py:0
+#, python-format
+msgid ""
+"Service pricing was normalized and optional laundry add-ons were moved to "
+"POS configurator fields."
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,help:pos_laundry_variant_popup.field_product_attribute_value__laundry_pos_display_name
+msgid "Short label shown inside the POS service card."
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__icon_key__sparkles
+msgid "Sparkles"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__icon_key__tag
+msgid "Tag"
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.constraint,message:pos_laundry_variant_popup.constraint_laundry_service_group_laundry_service_group_code_uniq
+msgid "The laundry service group code must be unique."
+msgstr ""
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__icon_key__zap
+msgid "Zap"
+msgstr ""

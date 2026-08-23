@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Structure only: categories, pricelists, missing products, customer
+        marking, the POS and its payment methods. Runs on install and on every
+        upgrade, and never writes a price - contract prices are ordinary
+        pricelist rules that staff edit, and re-importing them is an explicit
+        action under Point of Sale > Hotel Contracts > Import Price Sheet.
+    -->
+    <function model="hotel.pricing.setup" name="sync_structure"/>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- SNAP Summary Banner on Payment Screen -->
+    <t t-name="fps_pos_snap.SnapPaymentSummary" owl="1">
+        <div class="snap-payment-summary" t-if="props.snapEligible > 0">
+            <div class="snap-eligible-box">
+                <i class="fa fa-leaf"/> SNAP Eligible: 
+                <span class="snap-amount" t-esc="env.utils.formatCurrency(props.snapEligible)"/>
+            </div>
+            <t t-if="props.nonSnapTotal > 0">
+                <div class="non-snap-box">
+                    Non-SNAP Items: 
+                    <span t-esc="env.utils.formatCurrency(props.nonSnapTotal)"/>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <!-- SNAP indicator on product -->
+    <t t-name="fps_pos_snap.ProductSnapBadge" owl="1">
+        <span t-if="props.product.snap_eligible" class="snap-badge" title="SNAP Eligible">
+            <i class="fa fa-leaf"/>
+        </span>
+    </t>
+
+</templates>

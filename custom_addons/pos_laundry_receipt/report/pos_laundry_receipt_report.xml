@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- =========================================================
+         PAPER FORMAT
+    ========================================================== -->
+    <record id="paperformat_pos_laundry_58mm" model="report.paperformat">
+        <field name="name">POS Laundry Receipt 58mm</field>
+        <field name="default">False</field>
+        <field name="format">custom</field>
+
+        <field name="page_height">0</field>
+        <field name="page_width">58</field>
+
+        <field name="orientation">Portrait</field>
+
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+
+        <field name="header_line">False</field>
+        <field name="header_spacing">0</field>
+
+        <field name="dpi">203</field>
+    </record>
+
+    <!-- =========================================================
+         REPORT ACTION
+    ========================================================== -->
+    <record id="action_report_pos_laundry_receipt" model="ir.actions.report">
+
+        <field name="name">POS Laundry Receipt</field>
+
+        <field name="model">pos.order</field>
+
+        <field name="report_type">qweb-pdf</field>
+
+        <field name="report_name">pos_laundry_receipt.report_pos_laundry_receipt</field>
+
+        <field name="report_file">pos_laundry_receipt.report_pos_laundry_receipt</field>
+
+        <field name="binding_model_id"
+               ref="point_of_sale.model_pos_order"/>
+
+        <field name="paperformat_id"
+               ref="paperformat_pos_laundry_58mm"/>
+
+        <field name="print_report_name">
+            'Laundry Receipt - %s' % (object.x_display_reference or object.name or '')
+        </field>
+
+    </record>
+
+    <!-- =========================================================
+         TEMPLATE
+    ========================================================== -->
+    <template id="report_pos_laundry_receipt">
+
+        <t t-set="is_pdf" t-value="is_pdf or False"/>
+
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="order">
+
+                <t t-set="payload"
+                   t-value="receipt_payloads.get(order.id, {})"/>
+
+                <!-- PAGE -->
+                <div t-attf-class="page #{is_pdf and 'pdf-mode' or ''}">
+
+                    <!-- =================================================
+                         STYLES
+                    ================================================== -->
+                    <style t-if="font_css">
+                        <t t-raw="font_css"/>
+                    </style>
+                    <style><![CDATA[
+
+@font-face {
+    font-family: 'TajawalReceipt';
+    font-style: normal;
+    font-weight: 400;
+}
+
+* {
+    font-family: Tahoma, Arial, "TajawalReceipt", "Tajawal", sans-serif !important;
+    box-sizing: border-box;
+}
+
+@page {
+    size: 58mm auto;
+    margin: 0;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background: #ffffff !important;
+}
+
+body {
+    min-width: 58mm;
+    color: #1e2f39;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.page {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 58mm !important;
+    margin: 0 !important;
+    min-height: 100vh;
+
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+
+    padding: 18px 0 !important;
+
+    background: #ffffff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+    overflow: visible !important;
+}
+
+.page.pdf-mode {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 58mm !important;
+
+    min-height: auto;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.pos-laundry-receipt-report {
+    width: 58mm;
+    max-width: 58mm;
+    flex: 0 0 58mm;
+
+    margin: 0 auto;
+
+    padding: 2.5mm 2mm 3.5mm;
+
+    background: #ffffff;
+
+    color: #1e2f39;
+
+    font-size: 10pt;
+
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+}
+
+.header-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 8px;
+
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    border-bottom: 1px dashed #c8d7e1;
+}
+
+.brand-box img {
+    max-width: 34mm;
+    max-height: 16mm;
+
+    object-fit: contain;
+}
+
+.receipt-title {
+    margin: 0 0 3px;
+
+    font-size: 18px;
+    font-weight: 900;
+
+    color: #1b75bb;
+}
+
+.receipt-subtitle {
+    margin: 0 0 4px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    color: #5f8faa;
+}
+
+.company-name {
+    font-size: 10px;
+    font-weight: 700;
+
+    color: #7a8f9d;
+}
+
+.meta-grid,
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    gap: 6px;
+}
+
+.meta-grid {
+    margin-bottom: 8px;
+}
+
+.meta-item,
+.info-box {
+    background: #ffffff;
+
+    border: 1px solid #d8e3ea;
+    border-radius: 10px;
+
+    text-align: center;
+
+    padding: 6px 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.meta-item *,
+.info-box * {
+    text-align: center !important;
+}
+
+.meta-label,
+.info-label {
+    font-size: 9px;
+    font-weight: 800;
+
+    color: #79909f;
+
+    margin-bottom: 3px;
+}
+
+.meta-value,
+.info-value {
+    font-size: 10px;
+    font-weight: 900;
+
+    color: #243742;
+
+    line-height: 1.45;
+
+    word-break: break-word;
+    unicode-bidi: plaintext;
+}
+
+.section {
+    margin-bottom: 8px;
+}
+
+.section-title {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 3px 7px;
+    margin-bottom: 6px;
+
+    border-radius: 999px;
+
+    border: 1px solid #d6edf9;
+
+    background: #eef9ff;
+
+    color: #1469ab;
+
+    font-size: 9px;
+    font-weight: 900;
+}
+
+.items-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.item-row {
+    overflow: hidden;
+
+    padding: 0;
+
+    border: 1px solid #dce8f0;
+    border-radius: 8px;
+
+    background: #ffffff;
+    box-shadow: 0 1px 2px rgba(19, 59, 87, 0.04);
+
+    page-break-inside: avoid;
+}
+
+.item-row__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+
+    padding: 7px 8px;
+
+    background: #ffffff;
+    border-bottom: 1px solid #edf3f7;
+
+    direction: inherit;
+}
+
+.item-row__heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+
+    flex: 1;
+    min-width: 0;
+}
+
+.item-row__index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    min-width: 18px;
+    height: 18px;
+
+    border-radius: 999px;
+
+    background: #eaf6fd;
+
+    color: #1b75bb;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    flex-shrink: 0;
+}
+
+.item-row__name {
+    font-size: 11px;
+    font-weight: 900;
+
+    color: #163247;
+    line-height: 1.45;
+    min-width: 0;
+    word-break: break-word;
+    text-align: start;
+    unicode-bidi: plaintext;
+}
+
+.item-row__subtotal {
+    font-size: 10px;
+    font-weight: 900;
+
+    color: #1b75bb;
+    direction: ltr;
+    unicode-bidi: isolate;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.item-row__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 10px;
+
+    margin-top: 0;
+
+    padding: 7px 8px;
+
+    background: #f8fbfe;
+
+    color: #516d80;
+
+    font-size: 10px;
+    font-weight: 800;
+    text-align: start;
+    justify-content: space-between;
+    direction: inherit;
+}
+
+.item-row__meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+}
+
+.item-row__meta bdi {
+    direction: ltr;
+    unicode-bidi: isolate;
+    white-space: nowrap;
+}
+
+.item-row__details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    margin-top: 0;
+
+    padding: 8px;
+
+    border-radius: 0;
+
+    background: #ffffff;
+    border: none;
+    border-top: 1px solid #edf3f7;
+    direction: inherit;
+}
+
+.item-row__details-title {
+    flex-basis: 100%;
+
+    color: #7f96a7;
+
+    font-size: 8px;
+    font-weight: 800;
+    line-height: 1;
+    text-align: start;
+}
+
+.item-row__detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    min-height: 20px;
+
+    padding: 5px 7px;
+
+    border-radius: 7px;
+
+    border: 1px solid #e1ebf2;
+    background: #fbfdff;
+
+    font-size: 9px;
+    font-weight: 900;
+    color: #294457;
+    line-height: 1.35;
+    word-break: break-word;
+    text-align: start;
+    unicode-bidi: plaintext;
+}
+
+.item-row__detail-label {
+    min-width: 0;
+    word-break: break-word;
+    text-align: start;
+}
+
+.item-row__detail-price {
+    flex-shrink: 0;
+    color: #1b75bb;
+    direction: ltr;
+    unicode-bidi: isolate;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.item-row__detail + .item-row__detail {
+    margin-top: 0;
+}
+
+.item-row__detail--primary {
+    background: #f1fbf5;
+    border-color: #cdebd8;
+    color: #164f2a;
+}
+
+.summary-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border-top: none;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    padding: 6px 0;
+
+    border-bottom: 1px dashed #e3edf4;
+
+    font-size: 10px;
+}
+
+.summary-label {
+    font-weight: 700;
+    color: #5a7a8f;
+}
+
+.summary-value {
+    font-weight: 900;
+    color: #1b3a52;
+    font-size: 10px;
+    direction: ltr;
+    unicode-bidi: isolate;
+    white-space: nowrap;
+    text-align: left;
+    flex-shrink: 0;
+}
+
+.total-row {
+    margin-top: 4px;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #1b75bb 0%, #29a1d7 100%);
+}
+
+.total-label,
+.total-row .summary-value {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.total-label {
+    font-size: 11px;
+}
+
+.total-row .summary-value {
+    font-size: 13px;
+}
+
+.qr-section {
+    margin: 10px 0;
+
+    padding: 8px 6px;
+
+    border-radius: 10px;
+
+    background: #f8fcff;
+    border: 1px dashed #1b75bb;
+
+    text-align: center;
+}
+
+.qr-label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    color: #1b75bb;
+}
+
+.qr-hint {
+    margin: 0 0 6px;
+
+    color: #597b93;
+
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.qr-code {
+    max-width: 20mm;
+    height: auto;
+
+    border-radius: 6px;
+
+    padding: 3px;
+
+    background: #ffffff;
+    border: 1px solid #d7e7f1;
+}
+
+.footer-box {
+    margin-top: 10px;
+
+    padding-top: 8px;
+
+    border-top: 1px dashed #d7e7f1;
+
+    text-align: center;
+}
+
+.footer-main {
+    font-size: 10px;
+    font-weight: 900;
+
+    color: #1b75bb;
+}
+
+.footer-sub {
+    font-size: 8px;
+    font-weight: 700;
+
+    color: #7d97a6;
+}
+
+.pdf-mode {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+@media print {
+    html,
+    body,
+    .page {
+        width: 100%;
+        max-width: none;
+        min-width: 58mm;
+        min-height: 100%;
+        background: #ffffff;
+    }
+
+    .page {
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        padding: 18mm 0 12mm !important;
+        margin: 0 auto !important;
+        border: 0 !important;
+        box-shadow: none !important;
+    }
+
+    body {
+        display: block;
+        padding: 0;
+    }
+
+    .pos-laundry-receipt-report {
+        width: 58mm;
+        max-width: 58mm;
+        flex-basis: 58mm;
+        margin: 0 auto;
+        padding: 2.5mm 2mm 3.5mm;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .page.pdf-mode {
+        width: 100% !important;
+        max-width: none !important;
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        padding: 0 !important;
+    }
+}
+
+                    ]]></style>
+
+                    <!-- =================================================
+                         RECEIPT
+                    ================================================== -->
+                    <div class="pos-laundry-receipt-report"
+                         t-att-dir="payload.get('direction', 'ltr')">
+
+                        <!-- HEADER -->
+                        <div class="header-box">
+
+                            <div class="brand-box">
+
+                                <img t-if="payload.get('logo_data_uri')"
+                                     t-att-src="payload.get('logo_data_uri')"
+                                     alt="Company Logo"/>
+
+                            </div>
+
+                            <h1 class="receipt-title">
+                                Intake Receipt
+                            </h1>
+
+                            <p class="receipt-subtitle">
+                                Service intake and customer summary
+                            </p>
+
+                            <div class="company-name"
+                                 t-esc="payload.get('company_name')"/>
+
+                        </div>
+
+                        <!-- META -->
+                        <div class="meta-grid">
+
+                            <div class="meta-item">
+
+                                <div class="meta-label">
+                                    Order Number
+                                </div>
+
+                                <div class="meta-value"
+                                     dir="ltr"
+                                     t-esc="payload.get('reference')"/>
+
+                            </div>
+
+                            <div class="meta-item">
+
+                                <div class="meta-label">
+                                    Intake Date
+                                </div>
+
+                                <div class="meta-value"
+                                     dir="ltr"
+                                     t-esc="payload.get('pickup_date')"/>
+
+                            </div>
+
+                        </div>
+
+                        <!-- CUSTOMER -->
+                        <div class="section">
+
+                            <div class="section-title">
+                                Customer Details
+                            </div>
+
+                            <div class="info-grid">
+
+                                <div class="info-box">
+
+                                    <div class="info-label">
+                                        Customer Name
+                                    </div>
+
+                                    <div class="info-value"
+                                         dir="auto"
+                                         t-esc="payload.get('partner_name')"/>
+
+                                </div>
+
+                                <div class="info-box">
+
+                                    <div class="info-label">
+                                        Phone
+                                    </div>
+
+                                    <div class="info-value"
+                                         dir="ltr"
+                                         t-esc="payload.get('phone')"/>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ITEMS -->
+                        <div class="section">
+
+                            <div class="section-title">
+                                Item Details
+                            </div>
+
+                            <div class="items-list">
+
+                                <t t-foreach="payload.get('lines', [])"
+                                   t-as="line">
+
+                                    <div class="item-row">
+
+                                        <div class="item-row__top">
+
+                                            <div class="item-row__heading">
+
+                                                <span class="item-row__index"
+                                                      t-esc="line_index + 1"/>
+
+                                                <div class="item-row__name"
+                                                     dir="auto"
+                                                     t-esc="line.get('product_name')"/>
+
+                                            </div>
+
+                                            <div class="item-row__subtotal" dir="ltr">
+
+                                                <t t-esc="'%.2f' % line.get('price_subtotal', 0.0)"/>
+                                                <t t-esc="' ' + payload.get('currency_symbol', 'SR')"/>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="item-row__meta">
+
+                                            <span>
+                                                Quantity
+                                                <bdi t-esc="line.get('qty_display') or ('%.2f' % line.get('qty', 0.0))"/>
+                                            </span>
+
+                                            <span>
+                                                Price
+                                                <bdi>
+                                                    <t t-esc="'%.2f' % line.get('price_unit', 0.0)"/>
+                                                    <t t-esc="' ' + payload.get('currency_symbol', 'SR')"/>
+                                                </bdi>
+                                            </span>
+
+                                        </div>
+
+                                        <div t-if="line.get('detail_lines')"
+                                             class="item-row__details">
+
+                                            <div class="item-row__details-title">
+                                                Added Services
+                                            </div>
+
+                                            <t t-foreach="line.get('detail_lines', [])"
+                                               t-as="detail">
+
+                                                <div t-attf-class="item-row__detail #{detail_index == 0 and 'item-row__detail--primary' or ''}"
+                                                     >
+                                                    <span class="item-row__detail-label"
+                                                          dir="auto"
+                                                          t-esc="detail.get('label')"/>
+                                                    <bdi t-if="detail.get('price')"
+                                                         class="item-row__detail-price"
+                                                         t-esc="detail.get('price')"/>
+                                                </div>
+
+                                            </t>
+
+                                        </div>
+
+                                    </div>
+
+                                </t>
+
+                            </div>
+
+                        </div>
+
+                        <!-- SUMMARY -->
+                        <div class="section">
+
+                            <div class="section-title">
+                                Amount Summary
+                            </div>
+
+                            <div class="summary-section">
+
+                            <div class="summary-row">
+
+                                <div class="summary-label">
+                                    Subtotal Before Tax
+                                </div>
+
+                                <div class="summary-value">
+
+                                    <t t-esc="'%.2f' % payload.get('subtotal', 0.0)"/>
+                                    <t t-esc="' ' + payload.get('currency_symbol', 'SR')"/>
+
+                                </div>
+
+                            </div>
+
+                            <div class="summary-row">
+
+                                <div class="summary-label">
+                                    Tax
+                                </div>
+
+                                <div class="summary-value">
+
+                                    <t t-esc="'%.2f' % payload.get('tax', 0.0)"/>
+                                    <t t-esc="' ' + payload.get('currency_symbol', 'SR')"/>
+
+                                </div>
+
+                            </div>
+
+                            <div class="summary-row total-row">
+
+                                <div class="summary-label total-label">
+                                    Grand Total
+                                </div>
+
+                                <div class="summary-value">
+
+                                    <t t-esc="'%.2f' % payload.get('total', 0.0)"/>
+                                    <t t-esc="' ' + payload.get('currency_symbol', 'SR')"/>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        </div>
+
+                        <!-- QR -->
+                        <t t-if="payload.get('qr_barcode_url')">
+
+                            <div class="qr-section">
+
+                                <div class="qr-label">
+                                    QR Code
+                                </div>
+
+                                <div class="qr-hint">
+                                    Scan the code to track the order status.
+                                </div>
+
+                                <img class="qr-code"
+                                     t-att-src="payload.get('qr_barcode_url')"
+                                     alt="QR Code"/>
+
+                            </div>
+
+                        </t>
+
+                        <!-- FOOTER -->
+                        <div class="footer-box">
+
+                            <div class="footer-main">
+                                Thank you for choosing Foam Plus
+                            </div>
+
+                            <div class="footer-sub">
+                                We care for your clothes
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </t>
+
+            <script t-if="auto_print and not is_pdf" type="text/javascript">
+                window.addEventListener("load", function () {
+                    window.print();
+                });
+            </script>
+
+        </t>
+
+    </template>
+
+</odoo>

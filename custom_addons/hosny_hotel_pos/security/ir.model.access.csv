@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hotel_price_import_manager,hotel.price.import manager,model_hotel_price_import,hosny_hotel_pos.group_hotel_contract_manager,1,1,1,1

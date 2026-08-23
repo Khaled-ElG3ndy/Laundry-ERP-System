@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="pos_payment_method_snap" model="pos.payment.method">
+            <field name="name">EBT SNAP</field>
+            <field name="is_snap_ebt">True</field>
+            <field name="snap_restrict_to_eligible">True</field>
+            <field name="split_transactions">True</field>
+        </record>
+    </data>
+</odoo>

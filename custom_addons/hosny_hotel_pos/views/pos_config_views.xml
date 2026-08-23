@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pos_config_view_form_hotel" model="ir.ui.view">
+        <field name="name">pos.config.form.hotel.contract</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='title']" position="after">
+                <div class="o_notification_alert alert alert-info" role="alert"
+                     invisible="not is_hotel_pos">
+                    <field name="is_hotel_pos" invisible="1"/>
+                    Hotel &amp; company point of sale: shows only the
+                    <b>فنادق / Hotels</b> category and applies each customer's
+                    agreed contract pricelist automatically.
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

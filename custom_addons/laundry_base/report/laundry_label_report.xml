@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_laundry_label" model="ir.actions.report">
+        <field name="name">Laundry Label / لاصقة الطلب</field>
+        <field name="model">laundry.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">laundry_base.report_laundry_label</field>
+        <field name="report_file">laundry_base.report_laundry_label</field>
+        <field name="binding_model_id" ref="model_laundry_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="base.paperformat_euro"/>
+    </record>
+
+    <template id="report_laundry_label">
+        <t t-call="web.html_container">
+            <style>
+                * { font-family: "Noto Naskh Arabic", "Noto Sans", Arial, sans-serif !important; }
+                body { direction: rtl; }
+            </style>
+            <t t-foreach="docs" t-as="order">
+                <div style="width:90mm; min-height:60mm; border:2.5px solid #1B4FD8; border-radius:8px; padding:10px 12px; page-break-after:always; background:#fff; box-sizing:border-box; direction:rtl; font-family:Noto Naskh Arabic,Arial,sans-serif;">
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; border-bottom:1.5px solid #E4E9F7; padding-bottom:6px;">
+                        <div>
+                            <div style="font-size:15pt; font-weight:bold; color:#1B4FD8;"><t t-esc="order.name"/></div>
+                            <div style="font-size:8pt; color:#6B7280;"><t t-esc="order.branch_id.name_ar or order.branch_id.name or 'مغسلة فرحة'"/></div>
+                        </div>
+                        <div style="text-align:left;">
+                            <t t-if="order.is_urgent">
+                                <div style="background:#DC2626; color:#fff; padding:3px 8px; border-radius:12px; font-size:8pt; font-weight:bold;">عاجل URGENT</div>
+                            </t>
+                            <div style="font-size:7pt; color:#9CA3AF; margin-top:3px;"><t t-esc="order.date_order and str(order.date_order)[:10]"/></div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+                        <div style="flex:1;">
+                            <table style="font-size:8.5pt; width:100%;">
+                                <tr><td style="color:#6B7280; padding:1px 4px 1px 0; white-space:nowrap;">العميل</td><td style="font-weight:bold;"><t t-esc="order.partner_id.name"/></td></tr>
+                                <t t-if="order.partner_id.mobile or order.partner_id.phone">
+                                    <tr><td style="color:#6B7280; padding:1px 4px 1px 0;">الجوال</td><td><t t-esc="order.partner_id.mobile or order.partner_id.phone"/></td></tr>
+                                </t>
+                                <tr><td style="color:#6B7280; padding:1px 4px 1px 0;">التسليم</td><td style="font-weight:bold; color:#059669;"><t t-esc="order.promise_date and str(order.promise_date)[:16]"/></td></tr>
+                                <tr><td style="color:#6B7280; padding:1px 4px 1px 0;">القطع</td><td><t t-esc="order.line_count"/> قطعة</td></tr>
+                                <t t-if="order.bag_reference">
+                                    <tr><td style="color:#6B7280; padding:1px 4px 1px 0;">الحقيبة</td><td style="font-weight:bold;"><t t-esc="order.bag_reference"/></td></tr>
+                                </t>
+                            </table>
+                        </div>
+                        <div style="margin-right:8px; text-align:center;">
+                            <t t-set="qr_src" t-value="order._get_qr_code_src()"/>
+                            <t t-if="qr_src">
+                                <img t-att-src="'data:image/png;base64,' + qr_src" style="width:28mm; height:28mm;"/>
+                            </t>
+                        </div>
+                    </div>
+
+                    <div style="background:#F0F4FF; padding:5px 8px; border-radius:4px; font-size:7.5pt; margin-bottom:6px;">
+                        <t t-foreach="order.order_line_ids" t-as="line">
+                            <span><t t-esc="line.item_category_id.name_ar or line.item_category_id.name"/> - <t t-esc="line.service_type_id.name_ar or line.service_type_id.name"/> x<t t-esc="int(line.qty)"/>  </span>
+                        </t>
+                    </div>
+
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #E4E9F7; padding-top:5px;">
+                        <div style="font-size:7pt; color:#9CA3AF; font-family:monospace;"><t t-esc="order.barcode"/></div>
+                        <div style="display:flex; align-items:center; gap:6px;">
+                            <div style="font-size:10pt; font-weight:bold; color:#1B4FD8;"><t t-esc="'%.2f' % order.amount_total"/> SAR</div>
+                            <t t-if="order.payment_state == 'paid'">
+                                <div style="background:#059669; color:#fff; padding:2px 6px; border-radius:10px; font-size:7pt;">مدفوع</div>
+                            </t>
+                            <t t-else="">
+                                <div style="background:#DC2626; color:#fff; padding:2px 6px; border-radius:10px; font-size:7pt;">غير مدفوع</div>
+                            </t>
+                        </div>
+                    </div>
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

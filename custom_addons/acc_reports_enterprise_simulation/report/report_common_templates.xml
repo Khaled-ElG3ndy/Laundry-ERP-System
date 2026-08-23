@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_common_enterprise_styles">
+        <style>
+            .o_acc_common_report_page,
+            .o_acc_common_report_scope {
+                direction: inherit;
+                color: #12223a;
+                font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+            }
+            .o_acc_common_report_page {
+                border: 1px solid #d8dde6;
+                border-radius: 4px;
+                background: #fff;
+                padding: 24px 34px;
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+            .o_acc_common_report_scope h1,
+            .o_acc_common_report_scope h2,
+            .o_acc_common_report_scope h3,
+            .o_acc_common_report_page h1,
+            .o_acc_common_report_page h2,
+            .o_acc_common_report_page h3 {
+                color: #12223a;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 1.35;
+                margin: 0 0 22px;
+                text-align: start;
+            }
+            .o_acc_common_report_scope .row,
+            .o_acc_common_report_page .row {
+                direction: inherit;
+                text-align: start;
+                margin-bottom: 18px;
+            }
+            .o_acc_common_report_scope p,
+            .o_acc_common_report_page p {
+                margin-bottom: 4px;
+            }
+            .o_acc_common_report_scope table.table-reports,
+            .o_acc_common_report_page table.table-reports,
+            .o_acc_common_report_scope table.table-bordered,
+            .o_acc_common_report_page table.table-bordered {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: auto;
+                direction: inherit;
+                color: #12223a;
+                margin-top: 10px;
+            }
+            .o_acc_common_report_scope table.table-reports th,
+            .o_acc_common_report_scope table.table-reports td,
+            .o_acc_common_report_page table.table-reports th,
+            .o_acc_common_report_page table.table-reports td,
+            .o_acc_common_report_scope table.table-bordered th,
+            .o_acc_common_report_scope table.table-bordered td,
+            .o_acc_common_report_page table.table-bordered th,
+            .o_acc_common_report_page table.table-bordered td {
+                border: 0;
+                border-bottom: 1px solid #dde2e8;
+                padding: 5px 12px;
+                line-height: 1.25;
+                vertical-align: middle;
+                font-size: 13px;
+                text-align: start;
+            }
+            .o_acc_common_report_scope table.table-reports tbody td,
+            .o_acc_common_report_page table.table-reports tbody td,
+            .o_acc_common_report_scope table.table-bordered tbody td,
+            .o_acc_common_report_page table.table-bordered tbody td {
+                font-weight: 400;
+            }
+            .o_acc_common_report_scope table.table-reports thead th,
+            .o_acc_common_report_page table.table-reports thead th,
+            .o_acc_common_report_scope table.table-bordered thead th,
+            .o_acc_common_report_page table.table-bordered thead th {
+                color: #12223a;
+                font-weight: 700;
+                background: #fff;
+                border-bottom: 1px solid #12223a;
+            }
+            .o_acc_common_report_scope table.table-reports tbody tr[style*="font-weight: bold"] td,
+            .o_acc_common_report_page table.table-reports tbody tr[style*="font-weight: bold"] td,
+            .o_acc_common_report_scope table.table-reports tbody tr.o_total_row td,
+            .o_acc_common_report_page table.table-reports tbody tr.o_total_row td,
+            .o_acc_common_report_scope table.table-bordered tbody tr[style*="font-weight: bold"] td,
+            .o_acc_common_report_page table.table-bordered tbody tr[style*="font-weight: bold"] td {
+                background: #d8dadd;
+                border-bottom-color: #d8dadd;
+                font-weight: 700;
+            }
+            .o_acc_common_report_scope .text-end,
+            .o_acc_common_report_page .text-end,
+            .o_acc_common_report_scope td.text-end,
+            .o_acc_common_report_page td.text-end,
+            .o_acc_common_report_scope th.text-end,
+            .o_acc_common_report_page th.text-end {
+                direction: ltr;
+                text-align: left !important;
+                white-space: nowrap;
+            }
+            .o_acc_common_report_scope .text-center,
+            .o_acc_common_report_page .text-center {
+                text-align: start !important;
+            }
+            table.table-reports,
+            table.table-bordered {
+                width: 100%;
+                border-collapse: collapse;
+                table-layout: auto;
+                direction: inherit;
+                color: #12223a;
+            }
+            table.table-reports th,
+            table.table-reports td,
+            table.table-bordered th,
+            table.table-bordered td {
+                border: 0;
+                border-bottom: 1px solid #dde2e8;
+                padding: 5px 12px;
+                line-height: 1.25;
+                vertical-align: middle;
+                font-size: 13px;
+                text-align: start;
+            }
+            table.table-reports tbody td,
+            table.table-bordered tbody td {
+                font-weight: 400;
+            }
+            table.table-reports thead th,
+            table.table-bordered thead th {
+                color: #12223a;
+                font-weight: 700;
+                background: #fff;
+                border-bottom: 1px solid #12223a;
+            }
+            table.table-reports tbody tr[style*="font-weight: bold"] td,
+            table.table-reports tbody tr.o_total_row td,
+            table.table-bordered tbody tr[style*="font-weight: bold"] td {
+                background: #d8dadd;
+                border-bottom-color: #d8dadd;
+                font-weight: 700;
+            }
+            .text-end,
+            td.text-end,
+            th.text-end {
+                direction: ltr;
+                text-align: left !important;
+                white-space: nowrap;
+            }
+            .text-center {
+                text-align: start !important;
+            }
+        </style>
+    </template>
+
+    <template id="report_analytic_selection">
+        <div t-if="data.get('analytic_account_names')" class="o_report_analytic_selection" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+            <style>
+                .o_report_analytic_selection {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin: 0 0 12px;
+                    padding: 7px 11px;
+                    border: 1px solid #d8dde6;
+                    border-radius: 4px;
+                    background: #f7f9fb;
+                    color: #12223a;
+                    font-size: 13px;
+                    line-height: 1.35;
+                    text-align: start;
+                }
+                .o_report_analytic_selection .o_report_analytic_label {
+                    color: #66758a;
+                    font-weight: 600;
+                    white-space: nowrap;
+                }
+                .o_report_analytic_selection .o_report_analytic_names {
+                    font-weight: 700;
+                    overflow-wrap: anywhere;
+                }
+            </style>
+            <span class="o_report_analytic_label">Filtered by branch:</span>
+            <span class="o_report_analytic_names" t-esc="', '.join(data.get('analytic_account_names') or [])"/>
+        </div>
+    </template>
+
+    <template id="report_general_ledger_enterprise_style" inherit_id="accounting_pdf_reports.report_general_ledger">
+        <xpath expr="//t[@t-call='web.html_container']" position="replace">
+            <t t-call="web.html_container">
+                <div class="page o_general_ledger_summary_page" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                    <style>
+                        .o_general_ledger_summary_page {
+                            direction: inherit;
+                            color: #12223a;
+                            font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+                            padding: 0;
+                            max-width: 1160px;
+                            margin-right: auto;
+                            margin-left: auto;
+                        }
+                        .o_general_ledger_summary_card {
+                            width: min(100%, 920px);
+                            margin: 0 auto;
+                            border-radius: 4px;
+                            background: #fff;
+                            padding: 24px 24px 24px;
+                        }
+                        .o_general_ledger_period {
+                            width: 58%;
+                            margin: 0 auto 6px 0;
+                            border: 1px solid #d8dde6;
+                            padding: 6px 12px;
+                            text-align: center;
+                            color: #001b3d;
+                            font-weight: 700;
+                            line-height: 1.2;
+                        }
+                        .o_general_ledger_summary_table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            table-layout: fixed;
+                            margin: 0;
+                            direction: inherit;
+                        }
+                        .o_general_ledger_summary_table th,
+                        .o_general_ledger_summary_table td {
+                            border: 0;
+                            border-bottom: 1px solid #dde2e8;
+                            padding: 7px 12px;
+                            font-size: 13px;
+                            line-height: 1.35;
+                            vertical-align: middle;
+                        }
+                        .o_general_ledger_summary_table thead th {
+                            color: #001b3d;
+                            font-weight: 700;
+                            text-align: start;
+                            background: #fff;
+                        }
+                        .o_general_ledger_summary_table .o_account_col {
+                            width: 42%;
+                            text-align: start;
+                            overflow-wrap: anywhere;
+                        }
+                        .o_general_ledger_summary_table .o_date_col,
+                        .o_general_ledger_summary_table .o_partner_col {
+                            width: 9%;
+                            background: #f5f6f8;
+                            text-align: start;
+                        }
+                        .o_general_ledger_summary_table .o_value_col {
+                            width: 13%;
+                            text-align: left;
+                            direction: ltr;
+                            white-space: nowrap;
+                        }
+                        .o_general_ledger_summary_table .o_account_cell {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            gap: 8px;
+                            direction: inherit;
+                            max-width: 100%;
+                        }
+                        .o_general_ledger_summary_table .o_account_identity {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 7px;
+                            min-width: 0;
+                        }
+                        .o_general_ledger_summary_table .o_account_name {
+                            min-width: 0;
+                            overflow-wrap: anywhere;
+                        }
+                        .o_general_ledger_summary_table .o_gl_unfold_btn {
+                            border: 0;
+                            background: transparent;
+                            color: #c4cbd4;
+                            width: 18px;
+                            height: 18px;
+                            padding: 0;
+                            line-height: 1;
+                            cursor: pointer;
+                        }
+                        .o_general_ledger_summary_table .o_gl_unfold_btn:hover {
+                            color: #7d8a99;
+                        }
+                        .o_general_ledger_summary_table .o_gl_journal_btn {
+                            border: 1px solid #d8dde6;
+                            background: #fff;
+                            color: #c0c7d0;
+                            border-radius: 4px;
+                            padding: 2px 8px;
+                            font-size: 12px;
+                            line-height: 1.3;
+                            cursor: pointer;
+                            white-space: nowrap;
+                        }
+                        .o_general_ledger_summary_table .o_gl_journal_btn:hover {
+                            color: #687483;
+                            border-color: #c9d1dc;
+                            background: #fff;
+                        }
+                        .o_general_ledger_summary_table .o_gl_detail_row.o_gl_folded_child {
+                            display: none;
+                        }
+                        .o_general_ledger_summary_table .o_gl_detail_row td {
+                            color: #12223a;
+                            background: #fff;
+                        }
+                        .o_general_ledger_summary_table .o_gl_detail_row .o_date_col,
+                        .o_general_ledger_summary_table .o_gl_detail_row .o_partner_col {
+                            background: #f5f6f8;
+                        }
+                        .o_general_ledger_summary_table .o_line_label {
+                            display: block;
+                            padding-right: 25px;
+                        }
+                        .o_general_ledger_summary_table .o_negative {
+                            color: #d83b30;
+                        }
+                        .o_general_ledger_summary_table .o_muted {
+                            color: #c7cdd8;
+                            font-weight: 600;
+                        }
+                        .o_general_ledger_summary_table .o_total_row td {
+                            font-weight: 700;
+                            color: #001b3d;
+                            background: #fff;
+                        }
+                    </style>
+
+                    <div class="o_general_ledger_summary_card">
+                        <t t-call="acc_reports_enterprise_simulation.report_analytic_selection"/>
+                        <div class="o_general_ledger_period">
+                            <span t-esc="general_ledger_period_label"/>
+                        </div>
+                        <table class="o_general_ledger_summary_table table-reports">
+                            <thead>
+                                <tr>
+                                    <th class="o_account_col"></th>
+                                    <th class="o_date_col">Date</th>
+                                    <th class="o_partner_col">Partner</th>
+                                    <th class="o_value_col">Debit</th>
+                                    <th class="o_value_col">Credit</th>
+                                    <th class="o_value_col">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="Accounts" t-as="account">
+                                    <tr class="o_gl_account_row" t-att-data-account-row-id="account['id']">
+                                        <td class="o_account_col">
+                                            <div class="o_account_line o_account_cell" t-att-data-account-id="account['id']">
+                                                <span class="o_account_identity">
+                                                    <button type="button"
+                                                        class="o_gl_unfold_btn"
+                                                        t-att-data-account-toggle="account['id']"
+                                                        aria-expanded="false"
+                                                        title="Show Details">
+                                                        <i class="fa fa-caret-left"/>
+                                                    </button>
+                                                    <span class="o_account_name" t-esc="'%s %s' % (account['code'], account['name']) if account['code'] else account['name']"/>
+                                                </span>
+                                                <button type="button" class="o_account_action_journal o_gl_journal_btn">Journal Items</button>
+                                            </div>
+                                        </td>
+                                        <td class="o_date_col"></td>
+                                        <td class="o_partner_col"></td>
+                                        <td t-attf-class="o_value_col #{gl_value_class(account['debit'])}">
+                                            <span t-esc="format_gl_amount(account['debit'])"/>
+                                        </td>
+                                        <td t-attf-class="o_value_col #{gl_value_class(account['credit'])}">
+                                            <span t-esc="format_gl_amount(account['credit'])"/>
+                                        </td>
+                                        <td t-attf-class="o_value_col #{gl_value_class(account['balance'])}">
+                                            <span t-esc="format_gl_amount(account['balance'])"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="account['move_lines']"
+                                        t-as="line"
+                                        class="o_gl_detail_row o_gl_folded_child"
+                                        t-att-data-parent-account-id="account['id']">
+                                        <td class="o_account_col">
+                                            <span class="o_line_label" t-esc="gl_line_label(line)"/>
+                                        </td>
+                                        <td class="o_date_col">
+                                            <span t-esc="format_gl_date(line['ldate'])"/>
+                                        </td>
+                                        <td class="o_partner_col">
+                                            <span t-esc="line['partner_name'] or ''"/>
+                                        </td>
+                                        <td t-attf-class="o_value_col #{gl_value_class(line['debit'])}">
+                                            <span t-esc="format_gl_amount(line['debit'])"/>
+                                        </td>
+                                        <td t-attf-class="o_value_col #{gl_value_class(line['credit'])}">
+                                            <span t-esc="format_gl_amount(line['credit'])"/>
+                                        </td>
+                                        <td t-attf-class="o_value_col #{gl_value_class(line['balance'])}">
+                                            <span t-esc="format_gl_amount(line['balance'])"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr class="o_total_row">
+                                    <td class="o_account_col">
+                                        <strong>General Ledger Total</strong>
+                                    </td>
+                                    <td class="o_date_col"></td>
+                                    <td class="o_partner_col"></td>
+                                    <td class="o_value_col">
+                                        <span t-esc="format_gl_amount(general_ledger_totals['debit'])"/>
+                                    </td>
+                                    <td class="o_value_col">
+                                        <span t-esc="format_gl_amount(general_ledger_totals['credit'])"/>
+                                    </td>
+                                    <td t-attf-class="o_value_col #{gl_value_class(general_ledger_totals['balance'])}">
+                                        <span t-esc="format_gl_amount(general_ledger_totals['balance'])"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_partnerledger_enterprise_style" inherit_id="accounting_pdf_reports.report_partnerledger">
+        <xpath expr="//t[@t-call='web.html_container']" position="replace">
+            <t t-call="web.html_container">
+                <div class="page o_partner_ledger_page" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                    <style>
+                        .o_partner_ledger_page {
+                            direction: inherit;
+                            color: #07172d;
+                            font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+                            width: min(1320px, calc(100vw - 88px)) !important;
+                            max-width: 1320px !important;
+                            margin-left: auto !important;
+                            margin-right: auto !important;
+                            padding: 0;
+                        }
+                        .o_partner_ledger_card {
+                            border-radius: 4px;
+                            background: #fff;
+                            padding: 22px 26px;
+                        }
+                        .o_partner_ledger_period {
+                            width: 760px;
+                            max-width: 70%;
+                            margin: 0 auto 0 0;
+                            border: 1px solid #d2d7de;
+                            padding: 5px 12px;
+                            text-align: center;
+                            line-height: 1.2;
+                        }
+                        .o_partner_ledger_table_wrap {
+                            width: 100%;
+                            overflow-x: visible;
+                            padding-bottom: 0;
+                        }
+                        .o_partner_ledger_table {
+                            width: 100%;
+                            min-width: 0;
+                            border-collapse: collapse;
+                            table-layout: fixed;
+                            margin: 0;
+                        }
+                        .o_partner_ledger_table th,
+                        .o_partner_ledger_table td {
+                            border: 0;
+                            border-bottom: 1px solid #dde2e8;
+                            padding: 6px 8px;
+                            font-size: 12px;
+                            line-height: 1.35;
+                            vertical-align: middle;
+                        }
+                        .o_partner_ledger_table thead th {
+                            font-weight: 700;
+                            background: #fff;
+                            white-space: nowrap;
+                            color: #07172d;
+                            padding-top: 8px;
+                            padding-bottom: 8px;
+                        }
+                        .o_partner_ledger_table .o_partner_col {
+                            width: 25%;
+                            min-width: 0;
+                            text-align: start;
+                            font-weight: 400;
+                        }
+                        .o_partner_ledger_table .o_journal_col {
+                            width: 9%;
+                            min-width: 0;
+                            text-align: center;
+                            white-space: nowrap;
+                        }
+                        .o_partner_ledger_table .o_account_col {
+                            width: 9%;
+                            min-width: 0;
+                            text-align: center;
+                            white-space: nowrap;
+                        }
+                        .o_partner_ledger_table .o_match_col {
+                            width: 7%;
+                            min-width: 0;
+                            text-align: center;
+                        }
+                        .o_partner_ledger_table .o_date_col {
+                            width: 11%;
+                            min-width: 0;
+                            text-align: start;
+                            white-space: nowrap;
+                        }
+                        .o_partner_ledger_table .o_value_col {
+                            width: 9.33%;
+                            min-width: 0;
+                            text-align: left;
+                            direction: ltr;
+                            white-space: nowrap;
+                            font-weight: 400;
+                        }
+                        .o_partner_ledger_table .o_partner_summary td,
+                        .o_partner_ledger_table .o_pl_detail_row td,
+                        .o_partner_ledger_table .o_total_row td {
+                            background: #fff;
+                        }
+                        .o_partner_ledger_table .o_partner_summary td,
+                        .o_partner_ledger_table .o_total_row td {
+                            font-weight: 700;
+                        }
+                        .o_partner_ledger_table .o_pl_detail_row.o_pl_folded_child {
+                            display: none;
+                        }
+                        .o_partner_ledger_table .o_negative { color: #e3342f; }
+                        .o_partner_ledger_table .o_muted { color: #bcc3ce; }
+                        .o_partner_ledger_table .o_due_date { color: #e3342f; }
+                        .o_partner_ledger_table .o_partner_line {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 5px;
+                            min-width: 0;
+                        }
+                        .o_partner_ledger_table .o_partner_name {
+                            min-width: 0;
+                            font-weight: 700;
+                        }
+                        .o_partner_ledger_table .o_pl_unfold_btn,
+                        .o_partner_ledger_table .o_pl_line_action_menu {
+                            border: 0;
+                            background: transparent;
+                            color: #cbd2dc;
+                            padding: 0 4px;
+                            line-height: 1;
+                            cursor: pointer;
+                        }
+                        .o_partner_ledger_table .o_pl_unfold_btn:hover,
+                        .o_partner_ledger_table .o_pl_line_action_menu:hover {
+                            color: #7d8897;
+                        }
+                        .o_partner_ledger_table .o_partner_actions {
+                            display: inline-flex;
+                            gap: 4px;
+                            margin-right: 6px;
+                            vertical-align: middle;
+                        }
+                        .o_partner_ledger_table .o_partner_action_item {
+                            border: 1px solid #d9dee6;
+                            border-radius: 4px;
+                            background: #fff;
+                            color: #c7ced7;
+                            padding: 2px 7px;
+                            font-size: 11px;
+                            line-height: 1.2;
+                            white-space: nowrap;
+                            cursor: pointer;
+                        }
+                        .o_partner_ledger_table .o_partner_action_item:hover {
+                            color: #07172d;
+                            border-color: #9ecfd6;
+                        }
+                        .o_partner_ledger_table .o_pl_match_badge {
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            min-width: 20px;
+                            height: 16px;
+                            border-radius: 999px;
+                            background: #f8c795;
+                            color: #6d4424;
+                            font-weight: 700;
+                            font-size: 11px;
+                        }
+                        .o_partner_ledger_table .o_pl_line_tools {
+                            display: inline-flex;
+                            position: relative;
+                            align-items: center;
+                            gap: 5px;
+                        }
+                        .o_partner_ledger_table .o_pl_line_action_dropdown {
+                            display: none;
+                            position: absolute;
+                            top: 20px;
+                            right: 0;
+                            min-width: 142px;
+                            padding: 7px 0;
+                            background: #fff;
+                            border: 1px solid #d6dde7;
+                            border-radius: 4px;
+                            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+                            z-index: 40;
+                        }
+                        .o_partner_ledger_table .o_pl_line_tools.is-open .o_pl_line_action_dropdown {
+                            display: block;
+                        }
+                        .o_partner_ledger_table .o_pl_line_action_item {
+                            display: block;
+                            width: 100%;
+                            border: 0;
+                            background: transparent;
+                            text-align: start;
+                            padding: 8px 13px;
+                            color: #1f2a3d;
+                            font-size: 12px;
+                            white-space: nowrap;
+                        }
+                        .o_partner_ledger_table .o_pl_line_action_item:hover {
+                            background: #f6fafb;
+                        }
+                        .o_partner_ledger_table .o_move_name {
+                            color: #23415f;
+                            font-weight: 400;
+                            overflow-wrap: anywhere;
+                        }
+                    </style>
+
+                    <div class="o_partner_ledger_card">
+                        <div class="o_partner_ledger_period">
+                            <span t-esc="str(data['form'].get('date_to') or '')[:4] or 'Partner Ledger'"/>
+                        </div>
+                        <div class="o_partner_ledger_table_wrap">
+                        <table class="o_partner_ledger_table">
+                            <thead>
+                                <tr>
+                                    <th class="o_partner_col"/>
+                                    <th class="o_journal_col">Journal</th>
+                                    <th class="o_account_col">Account</th>
+                                    <th class="o_date_col">Invoice Date</th>
+                                    <th class="o_date_col">Due Date</th>
+                                    <th class="o_match_col">Matching</th>
+                                    <th class="o_value_col">Debit</th>
+                                    <th class="o_value_col">Credit</th>
+                                    <th class="o_value_col">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="partner_rows" t-as="row">
+                                    <tr class="o_partner_summary">
+                                        <td class="o_partner_col">
+                                            <div class="o_partner_line" t-att-data-partner-id="row['partner'].id">
+                                                <span class="o_partner_name" t-esc="row['partner'].display_name"/>
+                                                <button type="button" class="o_pl_unfold_btn is-open" t-att-data-partner-toggle="row['partner'].id" aria-expanded="true" title="Expand/Collapse Entries">
+                                                    <i class="fa fa-caret-down"/>
+                                                </button>
+                                                <span class="o_partner_actions">
+                                                    <button type="button" class="o_partner_action_item" data-action="partner">Partner</button>
+                                                    <button type="button" class="o_partner_action_item" data-action="journal_items">Journal Items</button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="o_journal_col"/>
+                                        <td class="o_account_col"/>
+                                        <td class="o_date_col"/>
+                                        <td class="o_date_col"/>
+                                        <td class="o_match_col"/>
+                                        <td t-attf-class="o_value_col #{pl_value_class(row['debit'])}"><span t-esc="format_pl_amount(row['debit'])"/></td>
+                                        <td t-attf-class="o_value_col #{pl_value_class(row['credit'])}"><span t-esc="format_pl_amount(row['credit'])"/></td>
+                                        <td t-attf-class="o_value_col #{pl_value_class(row['balance'])}"><span t-esc="format_pl_amount(row['balance'])"/></td>
+                                    </tr>
+                                    <tr t-foreach="row['lines']" t-as="line"
+                                        class="o_pl_detail_row"
+                                        t-att-data-parent-partner-id="row['partner'].id">
+                                        <td class="o_partner_col">
+                                            <span class="o_pl_line_tools" t-att-data-move-id="line.get('move_id') or 0">
+                                                <button type="button" class="o_pl_line_action_menu" title="Actions">
+                                                    <i class="fa fa-ellipsis-v"/>
+                                                </button>
+                                                <span class="o_pl_line_action_dropdown">
+                                                    <button type="button" class="o_pl_line_action_item" data-action="open_move">View Journal Entry</button>
+                                                </span>
+                                            </span>
+                                            <span class="o_move_name" t-esc="line.get('move_name') or line.get('displayed_name') or line.get('name') or ''"/>
+                                        </td>
+                                        <td class="o_journal_col"><span t-esc="line.get('code') or ''"/></td>
+                                        <td class="o_account_col"><span t-esc="line.get('account_code') or ''"/></td>
+                                        <td class="o_date_col"><span t-esc="format_pl_date(line.get('date'))"/></td>
+                                        <td class="o_date_col o_due_date"><span t-esc="format_pl_date(line.get('date_maturity') or line.get('date'))"/></td>
+                                        <td class="o_match_col">
+                                            <span t-if="line.get('matching_number')" class="o_pl_match_badge" t-esc="line.get('matching_number')"/>
+                                        </td>
+                                        <td t-attf-class="o_value_col #{pl_value_class(line.get('debit'))}"><span t-esc="format_pl_amount(line.get('debit'))"/></td>
+                                        <td t-attf-class="o_value_col #{pl_value_class(line.get('credit'))}"><span t-esc="format_pl_amount(line.get('credit'))"/></td>
+                                        <td t-attf-class="o_value_col #{pl_value_class(line.get('progress'))}"><span t-esc="format_pl_amount(line.get('progress'))"/></td>
+                                    </tr>
+                                </t>
+                                <tr class="o_total_row">
+                                    <td class="o_partner_col">Total</td>
+                                    <td class="o_journal_col"/>
+                                    <td class="o_account_col"/>
+                                    <td class="o_date_col"/>
+                                    <td class="o_date_col"/>
+                                    <td class="o_match_col"/>
+                                    <td t-attf-class="o_value_col #{pl_value_class(partner_ledger_totals['debit'])}"><span t-esc="format_pl_amount(partner_ledger_totals['debit'])"/></td>
+                                    <td t-attf-class="o_value_col #{pl_value_class(partner_ledger_totals['credit'])}"><span t-esc="format_pl_amount(partner_ledger_totals['credit'])"/></td>
+                                    <td t-attf-class="o_value_col #{pl_value_class(partner_ledger_totals['balance'])}"><span t-esc="format_pl_amount(partner_ledger_totals['balance'])"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_agedpartnerbalance_enterprise_style" inherit_id="accounting_pdf_reports.report_agedpartnerbalance">
+        <xpath expr="//t[@t-call='web.html_container']" position="replace">
+            <t t-call="web.html_container">
+                <div class="page o_aged_receivable_page" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                    <style>
+                        .o_aged_receivable_page {
+                            direction: inherit;
+                            color: #07172d;
+                            font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+                            max-width: 930px;
+                            margin: 0 auto;
+                        }
+                        .o_aged_receivable_card {
+                            border-radius: 4px;
+                            background: #fff;
+                            padding: 22px 20px;
+                        }
+                        .o_aged_receivable_period {
+                            width: 590px;
+                            max-width: 68%;
+                            margin: 0 auto 0 0;
+                            border: 1px solid #d2d7de;
+                            padding: 4px 12px;
+                            text-align: center;
+                            line-height: 1.2;
+                            color: #07172d;
+                        }
+                        .o_aged_receivable_table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            table-layout: fixed;
+                            margin-top: 0;
+                            direction: inherit;
+                        }
+                        .o_aged_receivable_table th,
+                        .o_aged_receivable_table td {
+                            border: 0;
+                            border-bottom: 1px solid #dde2e8;
+                            padding: 5px 10px;
+                            font-size: 12px;
+                            line-height: 1.25;
+                            vertical-align: middle;
+                        }
+                        .o_aged_partner_col {
+                            width: 29%;
+                            text-align: start;
+                            font-weight: 400;
+                        }
+                        .o_aged_date_col {
+                            width: 11%;
+                            text-align: start;
+                        }
+                        .o_aged_amount_col {
+                            width: 8.55%;
+                            direction: ltr;
+                            text-align: left;
+                            white-space: nowrap;
+                            font-weight: 400;
+                        }
+                        .o_aged_receivable_table thead th {
+                            background: #fff;
+                            color: #07172d;
+                            font-weight: 700;
+                        }
+                        .o_aged_receivable_table .o_aged_total_row td {
+                            background: transparent;
+                            font-weight: 700;
+                        }
+                        .o_aged_partner_summary td {
+                            font-weight: 700;
+                        }
+                        .o_aged_detail_row.o_aged_folded_child {
+                            display: none;
+                        }
+                        .o_aged_detail_row td {
+                            font-weight: 400;
+                            background: #fff;
+                        }
+                        .o_aged_receivable_table .o_aged_muted {
+                            color: #c7ced7;
+                        }
+                        .o_aged_receivable_table .o_aged_negative {
+                            color: #c0392b;
+                        }
+                        .o_aged_sort_icon {
+                            color: #d0d6df;
+                            font-size: 11px;
+                            margin-right: 4px;
+                        }
+                        .o_aged_sort_btn {
+                            border: 0;
+                            background: transparent;
+                            padding: 0;
+                            color: inherit;
+                            font: inherit;
+                            font-weight: 700;
+                        }
+                        .o_aged_partner_name {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            min-width: 0;
+                        }
+                        .o_aged_unfold {
+                            border: 0;
+                            background: transparent;
+                            color: #d0d6df;
+                            padding: 0 4px;
+                            line-height: 1;
+                        }
+                        .o_aged_partner_actions {
+                            display: inline-flex;
+                            gap: 4px;
+                            margin-right: 8px;
+                            vertical-align: middle;
+                        }
+                        .o_aged_partner_action_item {
+                            border: 1px solid #d9dee6;
+                            border-radius: 4px;
+                            background: #fff;
+                            color: #9aa3af;
+                            padding: 2px 7px;
+                            font-size: 11px;
+                            line-height: 1.2;
+                        }
+                        .o_aged_partner_action_item:disabled {
+                            color: #c7ced7;
+                            border-color: #e4e8ee;
+                            background: #fff;
+                        }
+                        .o_aged_partner_action_item:hover {
+                            color: #07172d;
+                            border-color: #9ecfd6;
+                        }
+                        .o_aged_detail_move {
+                            color: #23415f;
+                            font-weight: 400;
+                        }
+                    </style>
+
+                    <div class="o_aged_receivable_card">
+                        <div class="o_aged_receivable_period" t-esc="aged_period_label"/>
+                        <table class="o_aged_receivable_table">
+                            <thead>
+                                <tr>
+                                    <th class="o_aged_partner_col">
+                                        <button type="button" class="o_aged_sort_btn" data-aged-sort="partner">Aged Receivable <span class="o_aged_sort_icon">↕</span></button>
+                                    </th>
+                                    <th class="o_aged_date_col">
+                                        <button type="button" class="o_aged_sort_btn" data-aged-sort="invoice_date">Invoice Date <span class="o_aged_sort_icon">↕</span></button>
+                                    </th>
+                                    <t t-foreach="aged_headers" t-as="header">
+                                        <th class="o_aged_amount_col">
+                                            <button type="button" class="o_aged_sort_btn" t-att-data-aged-sort="header['key']">
+                                                <span t-esc="header['label']"/>
+                                                <span class="o_aged_sort_icon">↕</span>
+                                            </button>
+                                        </th>
+                                    </t>
+                                </tr>
+                                <tr t-if="get_partner_lines" class="o_aged_total_row">
+                                    <td class="o_aged_partner_col"/>
+                                    <td class="o_aged_date_col"/>
+                                    <td t-attf-class="o_aged_amount_col #{aged_value_class(get_direction[6])}">
+                                        <span t-esc="format_aged_amount(get_direction[6], data)"/>
+                                    </td>
+                                    <td t-attf-class="o_aged_amount_col #{aged_value_class(get_direction[4])}">
+                                        <span t-esc="format_aged_amount(get_direction[4], data)"/>
+                                    </td>
+                                    <td t-attf-class="o_aged_amount_col #{aged_value_class(get_direction[3])}">
+                                        <span t-esc="format_aged_amount(get_direction[3], data)"/>
+                                    </td>
+                                    <td t-attf-class="o_aged_amount_col #{aged_value_class(get_direction[2])}">
+                                        <span t-esc="format_aged_amount(get_direction[2], data)"/>
+                                    </td>
+                                    <td t-attf-class="o_aged_amount_col #{aged_value_class(get_direction[1])}">
+                                        <span t-esc="format_aged_amount(get_direction[1], data)"/>
+                                    </td>
+                                    <td t-attf-class="o_aged_amount_col #{aged_value_class(get_direction[0])}">
+                                        <span t-esc="format_aged_amount(get_direction[0], data)"/>
+                                    </td>
+                                    <td t-attf-class="o_aged_amount_col #{aged_value_class(get_direction[5])}">
+                                        <span t-esc="format_aged_amount(get_direction[5], data)"/>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="aged_partner_rows" t-as="row">
+                                    <t t-set="partner" t-value="row['partner']"/>
+                                    <tr class="o_aged_partner_summary"
+                                        t-att-data-aged-partner-id="partner['partner_id'] or 0"
+                                        t-att-data-aged-partner="partner['name']"
+                                        t-att-data-aged-invoice-date="''"
+                                        t-att-data-aged-due-date="''"
+                                        t-att-data-aged-direction="partner['direction']"
+                                        t-att-data-aged-4="partner['4']"
+                                        t-att-data-aged-3="partner['3']"
+                                        t-att-data-aged-2="partner['2']"
+                                        t-att-data-aged-1="partner['1']"
+                                        t-att-data-aged-0="partner['0']"
+                                        t-att-data-aged-total="partner['total']">
+                                        <td class="o_aged_partner_col">
+                                            <span class="o_aged_partner_name">
+                                                <button type="button" class="o_aged_unfold" t-att-data-aged-toggle="partner['partner_id'] or 0" aria-expanded="false" title="Expand Entries"><i class="fa fa-caret-left"/></button>
+                                                <span t-esc="partner['name']"/>
+                                            </span>
+                                            <span class="o_aged_partner_actions" t-if="partner['partner_id']">
+                                                <button type="button" class="o_aged_partner_action_item" data-action="partner">Partner</button>
+                                                <button type="button" class="o_aged_partner_action_item" data-action="partner_ledger">Ledger</button>
+                                            </span>
+                                        </td>
+                                        <td class="o_aged_date_col"/>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(partner['direction'])}"><span t-esc="format_aged_amount(partner['direction'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(partner['4'])}"><span t-esc="format_aged_amount(partner['4'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(partner['3'])}"><span t-esc="format_aged_amount(partner['3'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(partner['2'])}"><span t-esc="format_aged_amount(partner['2'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(partner['1'])}"><span t-esc="format_aged_amount(partner['1'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(partner['0'])}"><span t-esc="format_aged_amount(partner['0'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(partner['total'])}"><span t-esc="format_aged_amount(partner['total'], data)"/></td>
+                                    </tr>
+                                    <tr t-foreach="row['details']" t-as="detail"
+                                        class="o_aged_detail_row o_aged_folded_child"
+                                        t-att-data-parent-aged-partner-id="partner['partner_id'] or 0"
+                                        t-att-data-aged-partner="partner['name']"
+                                        t-att-data-aged-invoice-date="detail['invoice_date']"
+                                        t-att-data-aged-due-date="detail['due_date']"
+                                        t-att-data-aged-direction="detail['amounts']['direction']"
+                                        t-att-data-aged-4="detail['amounts']['4']"
+                                        t-att-data-aged-3="detail['amounts']['3']"
+                                        t-att-data-aged-2="detail['amounts']['2']"
+                                        t-att-data-aged-1="detail['amounts']['1']"
+                                        t-att-data-aged-0="detail['amounts']['0']"
+                                        t-att-data-aged-total="detail['amounts']['total']">
+                                        <td class="o_aged_partner_col"><span class="o_aged_detail_move" t-esc="detail['move_name']"/></td>
+                                        <td class="o_aged_date_col"><span t-esc="detail['invoice_date']"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(detail['amounts']['direction'])}"><span t-esc="format_aged_amount(detail['amounts']['direction'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(detail['amounts']['4'])}"><span t-esc="format_aged_amount(detail['amounts']['4'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(detail['amounts']['3'])}"><span t-esc="format_aged_amount(detail['amounts']['3'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(detail['amounts']['2'])}"><span t-esc="format_aged_amount(detail['amounts']['2'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(detail['amounts']['1'])}"><span t-esc="format_aged_amount(detail['amounts']['1'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(detail['amounts']['0'])}"><span t-esc="format_aged_amount(detail['amounts']['0'], data)"/></td>
+                                        <td t-attf-class="o_aged_amount_col #{aged_value_class(detail['amounts']['total'])}"><span t-esc="format_aged_amount(detail['amounts']['total'], data)"/></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_tax_enterprise_style" inherit_id="accounting_pdf_reports.report_tax">
+        <xpath expr="//t[@t-call='web.html_container']" position="replace">
+            <t t-call="web.html_container">
+                <div class="page o_tax_report_page" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                    <style>
+                        .o_tax_report_page {
+                            direction: inherit;
+                            color: #07172d;
+                            font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+                            max-width: 720px;
+                            margin: 0 auto;
+                        }
+                        .o_tax_report_card {
+                            border-radius: 4px;
+                            background: #fff;
+                            padding: 22px;
+                        }
+                        .o_tax_period {
+                            width: 126px;
+                            border: 1px solid #d2d7de;
+                            padding: 5px 10px;
+                            text-align: center;
+                            font-weight: 700;
+                            line-height: 1.2;
+                            margin: 0 auto 8px 0;
+                        }
+                        .o_tax_balance_label {
+                            margin: 0 10px 18px 0;
+                            font-size: 12px;
+                            font-weight: 700;
+                            text-align: left !important;
+                        }
+                        .o_tax_table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            table-layout: fixed;
+                            direction: inherit;
+                        }
+                        .o_tax_table td {
+                            border: 0;
+                            border-bottom: 1px solid #dfe3e8;
+                            padding: 5px 12px;
+                            font-size: 12px;
+                            line-height: 1.25;
+                            vertical-align: middle;
+                        }
+                        .o_tax_label {
+                            width: 76%;
+                            text-align: start;
+                        }
+                        .o_tax_amount {
+                            width: 24%;
+                            direction: ltr;
+                            text-align: left;
+                            color: #07172d;
+                            font-weight: 400;
+                            white-space: nowrap;
+                        }
+                        .o_tax_section td,
+                        .o_tax_due td {
+                            background: #ebeced;
+                            border-bottom-color: #d8dadd;
+                            font-weight: 700;
+                        }
+                        .o_tax_due td {
+                            border-bottom: 0;
+                        }
+                        .o_tax_line .o_tax_label {
+                            padding-right: 42px;
+                        }
+                        .o_tax_muted {
+                            color: #c7ced7 !important;
+                            font-weight: 400;
+                        }
+                        .o_tax_negative {
+                            color: #c0392b !important;
+                        }
+                        .o_tax_drilldown {
+                            color: inherit;
+                            cursor: pointer;
+                            text-decoration: none;
+                        }
+                        .o_tax_drilldown:hover,
+                        .o_tax_drilldown:focus {
+                            color: #0b6e99;
+                            outline: none;
+                            text-decoration: underline;
+                        }
+                    </style>
+                    <div class="o_tax_report_card">
+                        <div class="o_tax_period" t-esc="tax_period_label"/>
+                        <div class="o_tax_balance_label">Balance</div>
+                        <table class="o_tax_table">
+                            <tbody>
+                                <t t-foreach="tax_report_sections" t-as="section">
+                                    <tr t-att-class="'o_tax_%s' % section['row_type']">
+                                        <td class="o_tax_label" t-esc="section['label']"/>
+                                        <td t-attf-class="o_tax_amount #{tax_value_class(section['amount'])}">
+                                            <a t-if="section.get('tax_ids_csv')"
+                                                href="#"
+                                                class="o_tax_drilldown"
+                                                title="View journal items related to this amount"
+                                                t-att-aria-label="'View Journal Items: %s' % section['label']"
+                                                t-att-data-tax-ids="section['tax_ids_csv']"
+                                                t-att-data-tax-drilldown-type="section['drilldown_type']">
+                                                <span t-esc="format_tax_amount(section['amount'], data)"/>
+                                            </a>
+                                            <span t-else="" t-esc="format_tax_amount(section['amount'], data)"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="section['lines']" t-as="line" class="o_tax_line">
+                                        <td class="o_tax_label" t-esc="line['label']"/>
+                                        <td t-attf-class="o_tax_amount #{tax_value_class(line['amount'])}">
+                                            <a t-if="line.get('tax_ids_csv')"
+                                                href="#"
+                                                class="o_tax_drilldown"
+                                                title="View journal items related to this amount"
+                                                t-att-aria-label="'View Journal Items: %s' % line['label']"
+                                                t-att-data-tax-ids="line['tax_ids_csv']"
+                                                t-att-data-tax-drilldown-type="line['drilldown_type']">
+                                                <span t-esc="format_tax_amount(line['amount'], data)"/>
+                                            </a>
+                                            <span t-else="" t-esc="format_tax_amount(line['amount'], data)"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_journal_enterprise_style" inherit_id="accounting_pdf_reports.report_journal">
+        <xpath expr="//t[@t-call='web.internal_layout']" position="inside">
+            <div class="o_acc_common_report_scope" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                <t t-call="acc_reports_enterprise_simulation.report_common_enterprise_styles"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]" position="attributes">
+            <attribute name="class" add="o_acc_common_report_page" separator=" "/>
+            <attribute name="t-att-dir">env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'</attribute>
+            <attribute name="t-att-lang">lang or env.user.lang or 'en_US'</attribute>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]/*[1]" position="before">
+            <t t-call="acc_reports_enterprise_simulation.report_analytic_selection"/>
+        </xpath>
+    </template>
+
+    <template id="report_journal_entries_enterprise_style" inherit_id="accounting_pdf_reports.report_journal_entries">
+        <xpath expr="//t[@t-call='web.external_layout']" position="inside">
+            <div class="o_acc_common_report_scope" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                <t t-call="acc_reports_enterprise_simulation.report_common_enterprise_styles"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]" position="attributes">
+            <attribute name="class" add="o_acc_common_report_page" separator=" "/>
+            <attribute name="t-att-dir">env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'</attribute>
+            <attribute name="t-att-lang">lang or env.user.lang or 'en_US'</attribute>
+        </xpath>
+    </template>
+
+    <template id="report_trialbalance_enterprise_style" inherit_id="accounting_pdf_reports.report_trialbalance">
+        <xpath expr="//t[@t-call='web.html_container']" position="replace">
+            <t t-call="web.html_container">
+                <div class="page o_trial_balance_page" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                    <style>
+                        .o_trial_balance_page {
+                            direction: inherit;
+                            color: #13233a;
+                            font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+                            padding: 0;
+                            max-width: 1180px;
+                            margin-right: auto;
+                            margin-left: auto;
+                        }
+                        .o_trial_balance_card {
+                            width: min(100%, 1120px);
+                            margin: 0 auto;
+                            border: 1px solid #d8dde6;
+                            border-radius: 4px;
+                            background: #fff;
+                            padding: 28px 28px 24px;
+                        }
+                        .o_trial_balance_table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            table-layout: fixed;
+                            margin: 0;
+                        }
+                        .o_trial_balance_table th,
+                        .o_trial_balance_table td {
+                            border-bottom: 1px solid #dde2e8;
+                            padding: 7px 14px;
+                            font-size: 13px;
+                            line-height: 1.35;
+                            vertical-align: middle;
+                        }
+                        .o_trial_balance_table thead th {
+                            color: #12223a;
+                            font-weight: 700;
+                            text-align: center;
+                            background: #fff;
+                        }
+                        .o_trial_balance_table thead .o_group_head th {
+                            border: 1px solid #d8dde6;
+                            border-bottom: 0;
+                            padding-top: 8px;
+                            padding-bottom: 8px;
+                        }
+                        .o_trial_balance_table thead .o_sub_head th {
+                            border-top: 0;
+                            padding-top: 4px;
+                            padding-bottom: 7px;
+                        }
+                        .o_trial_balance_table .o_account_col {
+                            width: 52%;
+                            text-align: start;
+                            overflow-wrap: anywhere;
+                        }
+                        .o_trial_balance_table .o_value_col {
+                            width: 12%;
+                            text-align: left;
+                            direction: ltr;
+                            white-space: nowrap;
+                        }
+                        .o_trial_balance_table .o_period_col {
+                            background: #f5f6f8;
+                        }
+                        .o_trial_balance_table .o_period_group {
+                            background: #fff;
+                        }
+                        .o_trial_balance_table tbody tr:hover td {
+                            background-color: #fbfcfd;
+                        }
+                        .o_trial_balance_table tbody tr:hover td.o_period_col {
+                            background-color: #f0f3f7;
+                        }
+                        .o_trial_balance_table .o_account_line {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 7px;
+                            direction: inherit;
+                            max-width: 100%;
+                        }
+                        .o_trial_balance_table .o_account_name {
+                            min-width: 0;
+                            overflow-wrap: anywhere;
+                        }
+                        .o_trial_balance_table .o_tb_group_row td {
+                            background: #f7f8fa;
+                            font-weight: 700;
+                        }
+                        .o_trial_balance_table .o_tb_group_row:hover td,
+                        .o_trial_balance_table .o_tb_group_row:hover td.o_period_col {
+                            background: #eef2f6;
+                        }
+                        .o_trial_balance_table .o_tb_hierarchy_toggle {
+                            border: 0;
+                            background: transparent;
+                            color: #657387;
+                            width: 18px;
+                            padding: 0;
+                            cursor: pointer;
+                        }
+                        .o_trial_balance_table .o_tb_folded_child {
+                            display: none;
+                        }
+                        .o_trial_balance_table .o_account_row_tools {
+                            position: relative;
+                            display: inline-flex;
+                            align-items: center;
+                            flex: 0 0 auto;
+                        }
+                        .o_trial_balance_table .o_account_action_btn {
+                            width: 18px;
+                            height: 18px;
+                            border: 0;
+                            padding: 0;
+                            background: transparent;
+                            color: #b7c0ca;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
+                        .o_trial_balance_table .o_account_action_btn:hover {
+                            color: #0b7f95;
+                            background: #eef8fb;
+                        }
+                        .o_trial_balance_table .o_account_action_dropdown {
+                            display: none;
+                            position: absolute;
+                            top: 22px;
+                            left: 0;
+                            min-width: 158px;
+                            padding: 8px 0;
+                            background: #fff;
+                            border: 1px solid #d6dde7;
+                            border-radius: 4px;
+                            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+                            z-index: 30;
+                        }
+                        .o_trial_balance_table .o_account_row_tools.is-open .o_account_action_dropdown {
+                            display: block;
+                        }
+                        .o_trial_balance_table .o_account_action_item {
+                            display: block;
+                            width: 100%;
+                            border: 0;
+                            background: transparent;
+                            text-align: start;
+                            padding: 9px 14px;
+                            color: #1f2a3d;
+                            font-size: 0.95rem;
+                            white-space: nowrap;
+                            cursor: pointer;
+                        }
+                        .o_trial_balance_table .o_account_action_item:hover {
+                            background: #f6fafb;
+                        }
+                        .o_trial_balance_table .o_negative {
+                            color: #d83b30;
+                        }
+                        .o_trial_balance_table .o_muted {
+                            color: #c7cdd8;
+                        }
+                        .o_trial_balance_table .o_total_row td {
+                            font-weight: 700;
+                            background: #fff;
+                        }
+                        .o_trial_balance_table .o_total_label {
+                            color: #12223a;
+                        }
+                    </style>
+
+                    <div class="o_trial_balance_card">
+                        <t t-call="acc_reports_enterprise_simulation.report_analytic_selection"/>
+                        <table class="o_trial_balance_table table-reports">
+                            <thead>
+                                <tr class="o_group_head">
+                                    <th class="o_account_col"></th>
+                                    <th class="o_value_col">Opening Balance</th>
+                                    <th class="o_period_col o_period_group" colspan="2">
+                                        <span t-esc="period_label"/>
+                                    </th>
+                                    <th class="o_value_col">Closing Balance</th>
+                                </tr>
+                                <tr class="o_sub_head">
+                                    <th class="o_account_col">Account</th>
+                                    <th class="o_value_col">Balance</th>
+                                    <th class="o_value_col o_period_col">Debit</th>
+                                    <th class="o_value_col o_period_col">Credit</th>
+                                    <th class="o_value_col">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="report_lines" t-as="account"
+                                    t-att-data-tb-line-key="account.get('key') if hierarchy_subtotals else False"
+                                    t-att-data-parent-tb-key="account.get('parent_key') if hierarchy_subtotals and account.get('parent_key') else False"
+                                    t-attf-class="#{'o_tb_group_row' if account.get('line_type') == 'group' else 'o_tb_account_row'} #{'o_tb_folded_child' if hierarchy_subtotals and account.get('parent_key') and not data.get('unfold_all') else ''}">
+                                    <td class="o_account_col">
+                                        <div t-attf-class="o_account_line #{'o_tb_group_line' if account.get('line_type') == 'group' else ''}"
+                                            t-att-data-account-id="account.get('id')"
+                                            t-att-style="'padding-right: %spx' % (account.get('level', 0) * 22) if hierarchy_subtotals else False">
+                                            <button t-if="account.get('line_type') == 'group' and account.get('has_children')" type="button"
+                                                t-attf-class="o_tb_hierarchy_toggle #{'is-open' if account.get('unfolded') else ''}"
+                                                t-att-data-tb-toggle="account.get('key')"
+                                                t-att-aria-expanded="'true' if account.get('unfolded') else 'false'">
+                                                <i t-attf-class="fa #{'fa-caret-down' if account.get('unfolded') else 'fa-caret-left'}"/>
+                                            </button>
+                                            <span class="o_account_name" t-esc="'%s %s' % (account['code'], account['name']) if account['code'] else account['name']"/>
+                                            <div t-if="account.get('line_type') != 'group'" class="o_account_row_tools">
+                                                <button type="button" class="o_account_action_btn o_account_action_menu" title="Account Links">
+                                                    <i class="fa fa-ellipsis-v"/>
+                                                </button>
+                                                <div class="o_account_action_dropdown">
+                                                    <button type="button" class="o_account_action_item" data-action="general_ledger">General Ledger</button>
+                                                    <button type="button" class="o_account_action_item" data-action="journal_items">Journal Items</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td t-attf-class="o_value_col text-end #{'o_negative' if account['opening_balance'] &lt; 0 else 'o_muted' if account['opening_balance'] == 0 else ''}">
+                                        <span t-esc="format_tb_amount(account['opening_balance'])"/>
+                                    </td>
+                                    <td t-attf-class="o_value_col o_period_col text-end #{'o_negative' if account['debit'] &lt; 0 else 'o_muted' if account['debit'] == 0 else ''}">
+                                        <span t-esc="format_tb_amount(account['debit'])"/>
+                                    </td>
+                                    <td t-attf-class="o_value_col o_period_col text-end #{'o_negative' if account['credit'] &lt; 0 else 'o_muted' if account['credit'] == 0 else ''}">
+                                        <span t-esc="format_tb_amount(account['credit'])"/>
+                                    </td>
+                                    <td t-attf-class="o_value_col text-end #{'o_negative' if account['closing_balance'] &lt; 0 else 'o_muted' if account['closing_balance'] == 0 else ''}">
+                                        <span t-esc="format_tb_amount(account['closing_balance'])"/>
+                                    </td>
+                                </tr>
+                                <tr class="o_total_row">
+                                    <td class="o_account_col o_total_label">Total</td>
+                                    <td t-attf-class="o_value_col text-end #{'o_negative' if totals['opening_balance'] &lt; 0 else 'o_muted' if totals['opening_balance'] == 0 else ''}">
+                                        <span t-esc="format_tb_amount(totals['opening_balance'])"/>
+                                    </td>
+                                    <td t-attf-class="o_value_col o_period_col text-end #{'o_negative' if totals['debit'] &lt; 0 else 'o_muted' if totals['debit'] == 0 else ''}">
+                                        <span t-esc="format_tb_amount(totals['debit'])"/>
+                                    </td>
+                                    <td t-attf-class="o_value_col o_period_col text-end #{'o_negative' if totals['credit'] &lt; 0 else 'o_muted' if totals['credit'] == 0 else ''}">
+                                        <span t-esc="format_tb_amount(totals['credit'])"/>
+                                    </td>
+                                    <td t-attf-class="o_value_col text-end #{'o_negative' if totals['closing_balance'] &lt; 0 else 'o_muted' if totals['closing_balance'] == 0 else ''}">
+                                        <span t-esc="format_tb_amount(totals['closing_balance'])"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_daybook_enterprise_style" inherit_id="om_account_daily_reports.report_daybook">
+        <xpath expr="//t[@t-call='web.internal_layout']" position="inside">
+            <div class="o_acc_common_report_scope" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                <t t-call="acc_reports_enterprise_simulation.report_common_enterprise_styles"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]" position="attributes">
+            <attribute name="class" add="o_acc_common_report_page" separator=" "/>
+            <attribute name="t-att-dir">env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'</attribute>
+            <attribute name="t-att-lang">lang or env.user.lang or 'en_US'</attribute>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]/*[1]" position="before">
+            <t t-call="acc_reports_enterprise_simulation.report_analytic_selection"/>
+        </xpath>
+    </template>
+
+    <template id="report_cashbook_enterprise_style" inherit_id="om_account_daily_reports.report_cashbook">
+        <xpath expr="//t[@t-call='web.internal_layout']" position="inside">
+            <div class="o_acc_common_report_scope" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                <t t-call="acc_reports_enterprise_simulation.report_common_enterprise_styles"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]" position="attributes">
+            <attribute name="class" add="o_acc_common_report_page" separator=" "/>
+            <attribute name="t-att-dir">env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'</attribute>
+            <attribute name="t-att-lang">lang or env.user.lang or 'en_US'</attribute>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]/*[1]" position="before">
+            <t t-call="acc_reports_enterprise_simulation.report_analytic_selection"/>
+        </xpath>
+    </template>
+
+    <template id="report_bankbook_enterprise_style" inherit_id="om_account_daily_reports.report_bankbook">
+        <xpath expr="//t[@t-call='web.internal_layout']" position="inside">
+            <div class="o_acc_common_report_scope" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                <t t-call="acc_reports_enterprise_simulation.report_common_enterprise_styles"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]" position="attributes">
+            <attribute name="class" add="o_acc_common_report_page" separator=" "/>
+            <attribute name="t-att-dir">env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'</attribute>
+            <attribute name="t-att-lang">lang or env.user.lang or 'en_US'</attribute>
+        </xpath>
+        <xpath expr="//div[contains(concat(' ', normalize-space(@class), ' '), ' page ')]/*[1]" position="before">
+            <t t-call="acc_reports_enterprise_simulation.report_analytic_selection"/>
+        </xpath>
+    </template>
+</odoo>

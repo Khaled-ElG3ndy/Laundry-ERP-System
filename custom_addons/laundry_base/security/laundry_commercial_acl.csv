@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_billing_wizard_mgr,billing.wizard.mgr,model_laundry_billing_wizard,laundry_base.group_laundry_manager,1,1,1,1
+access_billing_wizard_fin,billing.wizard.fin,model_laundry_billing_wizard,laundry_base.group_laundry_finance,1,1,1,1
+access_billing_wizard_line_mgr,billing.wizard.line.mgr,model_laundry_billing_wizard_line,laundry_base.group_laundry_manager,1,1,1,1
+access_billing_wizard_line_fin,billing.wizard.line.fin,model_laundry_billing_wizard_line,laundry_base.group_laundry_finance,1,1,1,1

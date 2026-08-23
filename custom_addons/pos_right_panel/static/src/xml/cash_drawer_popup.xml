@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_right_panel.CashDrawerPopup" owl="1">
+        <div class="cash-drawer-modal">
+            <div class="cash-drawer-popup">
+                <div class="cash-drawer-header">
+                    <div class="cash-drawer-icon">
+                        <i class="fa fa-money"/>
+                    </div>
+                    <div>
+                        <div class="cash-drawer-title">Cash Drawer</div>
+                        <div class="cash-drawer-subtitle">Record cash in or out</div>
+                    </div>
+                </div>
+
+                <div class="cash-drawer-body">
+                    <div class="cash-drawer-section">
+                        <div class="cash-drawer-label">Action</div>
+                        <div class="cash-action-toggle">
+                            <button type="button"
+                                    class="cash-action-btn"
+                                    t-att-class="state.action === 'in' ? 'active' : ''"
+                                    t-on-click="() => this.setAction('in')">
+                                Cash In
+                            </button>
+                            <button type="button"
+                                    class="cash-action-btn"
+                                    t-att-class="state.action === 'out' ? 'active' : ''"
+                                    t-on-click="() => this.setAction('out')">
+                                Cash Out
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="cash-drawer-section">
+                        <div class="cash-drawer-label">Amount</div>
+                        <input class="cash-drawer-input"
+                               type="number"
+                               min="0"
+                               step="0.01"
+                               placeholder="0.00"
+                               t-model="state.amount"/>
+                        <div class="cash-quick-amounts">
+                            <button type="button" class="quick-amount-btn" t-on-click="() => this.setQuickAmount(10)">10</button>
+                            <button type="button" class="quick-amount-btn" t-on-click="() => this.setQuickAmount(20)">20</button>
+                            <button type="button" class="quick-amount-btn" t-on-click="() => this.setQuickAmount(50)">50</button>
+                            <button type="button" class="quick-amount-btn" t-on-click="() => this.setQuickAmount(100)">100</button>
+                        </div>
+                    </div>
+
+                    <div class="cash-drawer-section">
+                        <div class="cash-drawer-label">Reason</div>
+                        <textarea class="cash-drawer-textarea"
+                                  placeholder="Add a note"
+                                  t-model="state.reason"/>
+                    </div>
+                </div>
+
+                <div class="cash-drawer-footer">
+                    <button type="button" class="cash-footer-btn cancel-btn" t-on-click="cancel">Cancel</button>
+                    <button type="button" class="cash-footer-btn confirm-btn" t-on-click="confirm">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_laundry_receipt_80mm" model="report.paperformat">
+        <field name="name">Laundry Thermal Receipt 80mm</field>
+        <field name="format">custom</field>
+        <field name="page_width">80</field>
+        <field name="page_height">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+        <field name="disable_shrinking" eval="True"/>
+    </record>
+
+    <record id="paperformat_laundry_receipt_58mm" model="report.paperformat">
+        <field name="name">Laundry Thermal Receipt 58mm</field>
+        <field name="format">custom</field>
+        <field name="page_width">58</field>
+        <field name="page_height">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">96</field>
+        <field name="disable_shrinking" eval="True"/>
+    </record>
+
+    <record id="action_report_laundry_receipt" model="ir.actions.report">
+        <field name="name">Laundry Receipt 80mm / إيصال الغسيل</field>
+        <field name="model">laundry.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">laundry_base.report_laundry_receipt</field>
+        <field name="report_file">laundry_base.report_laundry_receipt</field>
+        <field name="binding_model_id" ref="model_laundry_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="laundry_base.paperformat_laundry_receipt_80mm"/>
+    </record>
+
+    <record id="action_report_laundry_receipt_58mm" model="ir.actions.report">
+        <field name="name">Laundry Receipt 58mm / إيصال الغسيل 58mm</field>
+        <field name="model">laundry.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">laundry_base.report_laundry_receipt</field>
+        <field name="report_file">laundry_base.report_laundry_receipt</field>
+        <field name="binding_model_id" ref="model_laundry_order"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="laundry_base.paperformat_laundry_receipt_58mm"/>
+    </record>
+
+    <template id="report_laundry_receipt">
+        <t t-call="web.html_container">
+            <style>
+                @page { size: 80mm auto; margin: 0; }
+                html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; color: #111 !important; direction: rtl; width: 100% !important; height: auto !important; min-height: 0 !important; }
+                body.container, body.container-fluid { padding: 0 !important; margin: 0 !important; max-width: none !important; width: 100% !important; }
+                #wrapwrap, #wrapwrap > main { display: block !important; margin: 0 !important; padding: 0 !important; width: 100% !important; max-width: none !important; }
+                .thermal-receipt-page, .thermal-receipt-page * { box-sizing: border-box; font-family: "Noto Naskh Arabic", "NotoAr", "DejaVu Sans", Arial, sans-serif !important; }
+                .thermal-receipt-page { width: 100%; margin: 0; padding: 0; direction: rtl; text-align: right; color: #111; background: #fff; }
+                .thermal-receipt-page ~ .thermal-receipt-page { page-break-before: always; }
+                .no-break { page-break-inside: avoid; }
+                .thermal-receipt { width: 100%; max-width: 72mm; margin: 0 auto; padding: 2mm; direction: rtl; text-align: right; font-size: 9pt; line-height: 1.28; }
+                .receipt-section { display: block; margin: 0 0 1.4mm; padding: 0 0 1.4mm; border-bottom: 1px dashed #777; }
+                .receipt-section:last-child { border-bottom: 0; }
+                .no-break, .receipt-line, .receipt-meta, .receipt-totals, .qr-section, .receipt-footer { page-break-inside: avoid; }
+                .receipt-header { text-align: center; }
+                .receipt-header, .receipt-meta-section { margin-bottom: 0.8mm; padding-bottom: 0.6mm; border-bottom: 0; }
+                .receipt-logo { display: block; width: auto; max-width: 18mm; max-height: 10mm; margin: 0 auto 0.4mm; }
+                .receipt-company { font-size: 10pt; font-weight: 700; line-height: 1.2; word-wrap: break-word; }
+                .receipt-title { margin-top: 0.4mm; font-size: 11pt; font-weight: 700; }
+                .receipt-subtitle, .receipt-branch, .qr-caption, .receipt-footer { font-size: 7.5pt; }
+                .receipt-alert, .payment-state { text-align: center; font-weight: 700; border-top: 1px solid #111; border-bottom: 1px solid #111; padding: 1mm 0; }
+                .section-title { margin-bottom: 1.2mm; font-size: 8pt; font-weight: 700; }
+                table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+                th, td { padding: 0.3mm 0; vertical-align: top; word-wrap: break-word; overflow-wrap: break-word; white-space: normal; }
+                .receipt-meta th, .receipt-totals th, .line-details th { width: 34%; padding-left: 1.5mm; color: #333; font-size: 7.7pt; font-weight: 400; text-align: right; }
+                .receipt-meta td, .receipt-totals td, .line-details td { width: 66%; font-weight: 700; text-align: left; }
+                .strong { font-weight: 700; }
+                .ltr { direction: ltr; unicode-bidi: embed; text-align: left; white-space: normal; }
+                [dir="auto"] { unicode-bidi: plaintext; }
+                .receipt-line { margin-bottom: 2mm; padding-bottom: 1.8mm; border-bottom: 1px dotted #999; }
+                .receipt-line:last-child { border-bottom: 0; }
+                .line-head td { padding-bottom: 0.6mm; }
+                .line-name { width: 62%; font-size: 9pt; font-weight: 700; text-align: right; }
+                .line-index { display: inline-block; min-width: 4mm; margin-left: 1mm; text-align: center; }
+                .line-total { width: 38%; font-size: 8.5pt; font-weight: 700; }
+                .line-details th, .line-details td { font-size: 7.5pt; }
+                .line-addons { margin-top: 1mm; padding-top: 1mm; border-top: 1px dotted #aaa; }
+                .addons-title { margin-bottom: 0.6mm; font-size: 7.4pt; font-weight: 700; }
+                .addon-name { width: 64%; padding-right: 2mm; font-size: 7.3pt; text-align: right; }
+                .addon-name:before { content: "+ "; }
+                .addon-price { width: 36%; font-size: 7.3pt; font-weight: 700; }
+                .line-note, .note-block { margin-top: 1mm; font-size: 7.3pt; word-wrap: break-word; }
+                .receipt-totals { border-top: 1px solid #111; border-bottom: 1px solid #111; }
+                .receipt-totals th, .receipt-totals td { padding: 0.8mm 0; }
+                .receipt-totals tr:first-child th, .receipt-totals tr:first-child td, .due-row th, .due-row td { font-size: 9.5pt; font-weight: 700; }
+                .payment-state { margin-top: 1.4mm; font-size: 8pt; }
+                .qr-section { text-align: center; }
+                .receipt-qr { display: block; width: 22mm; height: 22mm; margin: 0 auto 1mm; }
+                .receipt-footer { text-align: center; line-height: 1.35; }
+                .barcode { margin-top: 1.2mm; font-size: 7pt; font-family: "DejaVu Sans Mono", monospace !important; letter-spacing: 0; word-wrap: break-word; }
+            </style>
+            <t t-foreach="docs" t-as="order">
+                <main class="thermal-receipt-page" dir="rtl">
+                    <article class="thermal-receipt" dir="rtl">
+                        <header class="receipt-header receipt-section">
+                            <t t-if="order.company_id.id">
+                                <img class="receipt-logo" t-att-src="'/web/image/res.company/' + str(order.company_id.id) + '/logo'" alt="Logo"/>
+                            </t>
+                            <div class="receipt-company" dir="auto">
+                                <t t-esc="order.company_id.name or 'مغسلة فرحة'"/>
+                            </div>
+                            <div class="receipt-title">إيصال الاستلام</div>
+                            <div class="receipt-subtitle">استلام خدمة مغسلة</div>
+                            <div class="receipt-branch" dir="auto">
+                                <t t-esc="order.branch_id.name_ar or order.branch_id.name or 'الفرع الرئيسي'"/>
+                            </div>
+                        </header>
+
+                        <t t-if="order.is_urgent">
+                            <section class="receipt-alert receipt-section no-break">
+                                <span>طلب عاجل</span>
+                                <span class="ltr">URGENT ORDER</span>
+                            </section>
+                        </t>
+
+                        <section class="receipt-section receipt-meta-section no-break">
+                            <table class="receipt-meta">
+                                <tbody>
+                                    <tr>
+                                        <th>رقم الطلب</th>
+                                        <td class="ltr"><t t-esc="order.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>تاريخ الاستلام</th>
+                                        <td class="ltr"><t t-esc="order.date_order and str(order.date_order)[:16] or ''"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>موعد التسليم</th>
+                                        <td class="ltr strong"><t t-esc="order.promise_date and str(order.promise_date)[:16] or ''"/></td>
+                                    </tr>
+                                    <tr>
+                                        <th>العميل</th>
+                                        <td dir="auto"><t t-esc="order.partner_id.name"/></td>
+                                    </tr>
+                                    <t t-if="order.partner_id.mobile or order.partner_id.phone">
+                                        <tr>
+                                            <th>الهاتف</th>
+                                            <td class="ltr"><t t-esc="order.partner_id.mobile or order.partner_id.phone"/></td>
+                                        </tr>
+                                    </t>
+                                    <t t-if="order.bag_reference">
+                                        <tr>
+                                            <th>رقم الحقيبة</th>
+                                            <td dir="auto"><t t-esc="order.bag_reference"/></td>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <th>الكاشير</th>
+                                        <td dir="auto"><t t-esc="order.user_id.name"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section class="receipt-section receipt-lines-section">
+                            <div class="section-title">تفاصيل الطلب</div>
+                            <t t-foreach="order.order_line_ids" t-as="line">
+                                <div class="receipt-line no-break">
+                                    <table class="line-head">
+                                        <tbody>
+                                            <tr>
+                                                <td class="line-name">
+                                                    <span class="line-index ltr"><t t-esc="line_index + 1"/></span>
+                                                    <span dir="auto">
+                                                        <t t-esc="line.item_category_id.name_ar or line.item_category_id.name"/>
+                                                    </span>
+                                                </td>
+                                                <td class="line-total ltr">
+                                                    <t t-esc="'%.2f' % line.price_subtotal"/>
+                                                    <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <table class="line-details">
+                                        <tbody>
+                                            <tr>
+                                                <th>الخدمة</th>
+                                                <td dir="auto"><t t-esc="line.service_type_id.name_ar or line.service_type_id.name"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>الكمية</th>
+                                                <td class="ltr"><t t-esc="'%g' % line.qty"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>السعر</th>
+                                                <td class="ltr">
+                                                    <t t-esc="'%.2f' % line.unit_price"/>
+                                                    <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                                </td>
+                                            </tr>
+                                            <t t-if="line.urgent_surcharge">
+                                                <tr>
+                                                    <th>رسوم عاجل</th>
+                                                    <td class="ltr">
+                                                        <t t-esc="'%.2f' % line.urgent_surcharge"/>
+                                                        <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                            <t t-if="line.discount_pct">
+                                                <tr>
+                                                    <th>خصم</th>
+                                                    <td class="ltr"><t t-esc="'%.2f%%' % line.discount_pct"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+
+                                    <t t-if="line.addon_ids">
+                                        <div class="line-addons">
+                                            <div class="addons-title">الخدمات المضافة</div>
+                                            <t t-foreach="line.addon_ids" t-as="addon">
+                                                <table class="addon-row">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="addon-name" dir="auto">
+                                                                <t t-esc="addon.name_ar or addon.name"/>
+                                                            </td>
+                                                            <td class="addon-price ltr">
+                                                                <t t-esc="'%.2f' % addon.price"/>
+                                                                <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </t>
+                                        </div>
+                                    </t>
+
+                                    <t t-if="line.line_notes or line.damage_note">
+                                        <div class="line-note" dir="auto">
+                                            <t t-esc="line.line_notes or line.damage_note"/>
+                                        </div>
+                                    </t>
+                                </div>
+                            </t>
+                        </section>
+
+                        <section class="receipt-section totals-section no-break">
+                            <div class="section-title">ملخص المبلغ</div>
+                            <table class="receipt-totals">
+                                <tbody>
+                                    <tr>
+                                        <th>الإجمالي</th>
+                                        <td class="ltr">
+                                            <t t-esc="'%.2f' % order.amount_total"/>
+                                            <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                        </td>
+                                    </tr>
+                                    <t t-if="order.amount_paid">
+                                        <tr>
+                                            <th>المدفوع</th>
+                                            <td class="ltr">
+                                                <t t-esc="'%.2f' % order.amount_paid"/>
+                                                <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-if="order.amount_due">
+                                        <tr class="due-row">
+                                            <th>المتبقي</th>
+                                            <td class="ltr">
+                                                <t t-esc="'%.2f' % order.amount_due"/>
+                                                <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-if="order.cash_tendered">
+                                        <tr>
+                                            <th>المبلغ المقدم</th>
+                                            <td class="ltr">
+                                                <t t-esc="'%.2f' % order.cash_tendered"/>
+                                                <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-if="order.change_amount">
+                                        <tr>
+                                            <th>الباقي</th>
+                                            <td class="ltr">
+                                                <t t-esc="'%.2f' % order.change_amount"/>
+                                                <span><t t-esc="order.currency_id.name or 'SAR'"/></span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <div class="payment-state">
+                                <t t-if="order.payment_state == 'paid'">تم الدفع / PAID</t>
+                                <t t-elif="order.payment_state == 'partial'">مدفوع جزئيا / PARTIAL</t>
+                                <t t-elif="order.payment_state == 'on_account'">على الحساب / ON ACCOUNT</t>
+                                <t t-elif="order.payment_state == 'invoiced'">مفوتر / INVOICED</t>
+                                <t t-else="">غير مدفوع / UNPAID</t>
+                            </div>
+                        </section>
+
+                        <t t-if="order.customer_notes or order.intake_notes or order.pre_damage_notes">
+                            <section class="receipt-section notes-section no-break">
+                                <div class="section-title">ملاحظات</div>
+                                <t t-if="order.customer_notes">
+                                    <div class="note-block" dir="auto"><t t-esc="order.customer_notes"/></div>
+                                </t>
+                                <t t-if="order.intake_notes">
+                                    <div class="note-block" dir="auto"><t t-esc="order.intake_notes"/></div>
+                                </t>
+                                <t t-if="order.pre_damage_notes">
+                                    <div class="note-block" dir="auto"><t t-esc="order.pre_damage_notes"/></div>
+                                </t>
+                            </section>
+                        </t>
+
+                        <section class="receipt-section qr-section no-break">
+                            <t t-set="qr_src" t-value="order._get_qr_code_src()"/>
+                            <t t-if="qr_src">
+                                <img class="receipt-qr" t-att-src="'data:image/png;base64,' + qr_src" alt="QR"/>
+                            </t>
+                            <div class="qr-caption">امسح للتحقق من الطلب</div>
+                        </section>
+
+                        <footer class="receipt-footer receipt-section no-break">
+                            <div>يرجى الاحتفاظ بهذا الإيصال لاستلام الطلب</div>
+                            <div class="ltr">Please keep this receipt for pickup</div>
+                            <div class="barcode ltr"><t t-esc="order.barcode"/></div>
+                        </footer>
+                    </article>
+                </main>
+            </t>
+        </t>
+    </template>
+
+</odoo>

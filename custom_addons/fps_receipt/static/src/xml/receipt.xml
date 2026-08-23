@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Add store footer to receipt - SIMPLE VERSION -->
+    <t t-name="fps_receipt.StoreFooter" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-receipt-order-data')]" position="after">
+            <div class="snap-info" style="text-align: center; margin: 10px 0; padding: 8px; border: 1px dashed #000;">
+                <div style="font-weight: bold;">*** EBT/SNAP NOTICE ***</div>
+                <div style="font-size: 11px;">Food items paid with EBT are tax exempt</div>
+            </div>
+        </xpath>
+        
+        <xpath expr="//div[hasclass('after-footer')]" position="after">
+            <div class="store-footer" style="text-align: center; margin-top: 15px; padding-top: 10px; font-size: 11px;">
+                <div style="font-weight: bold;">Thank You for Shopping at</div>
+                <div style="font-weight: bold; font-size: 14px;">Fair Price Supermarket</div>
+                <div>Middle Eastern • Indian • Pakistani Grocery</div>
+                <div style="margin-top: 5px;">5703 Edsall Rd, Alexandria, VA 22304</div>
+                <div>(703) 751-0786</div>
+                <div style="margin-top: 5px;">Open Daily 9 AM - 10 PM</div>
+                <div style="font-weight: bold;">We Accept EBT/SNAP</div>
+                <div style="margin-top: 10px;">*** CUSTOMER COPY ***</div>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

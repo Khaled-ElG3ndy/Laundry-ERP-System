@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_financial_enterprise_style" inherit_id="accounting_pdf_reports.report_financial">
+        <xpath expr="//t[@t-foreach='docs']" position="replace">
+            <t t-foreach="docs" t-as="o">
+                <div t-attf-class="page o_acc_financial_page o_acc_financial_#{financial_report_layout}" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                    <style>
+                        .o_acc_financial_page {
+                            color: #12223a;
+                            font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+                        }
+                        .o_acc_financial_card {
+                            border: 1px solid #d8dde6;
+                            border-radius: 4px;
+                            background: #fff;
+                            padding: 24px;
+                            max-width: 800px;
+                            margin: 0 auto;
+                        }
+                        .o_acc_financial_period {
+                            width: 268px;
+                            min-height: 28px;
+                            border: 1px solid #d8dde6;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 10px 0;
+                            color: #12223a;
+                            font-weight: 700;
+                        }
+                        .o_acc_financial_balance_label {
+                            margin: 0 12px 20px 0;
+                            color: #12223a;
+                            font-weight: 700;
+                            font-size: 14px;
+                        }
+                        .o_acc_financial_table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            table-layout: fixed;
+                            direction: inherit;
+                        }
+                        .o_acc_financial_table th,
+                        .o_acc_financial_table td {
+                            border-bottom: 1px solid #dde2e8;
+                            padding: 5px 12px;
+                            line-height: 1.25;
+                            vertical-align: middle;
+                            font-size: 14px;
+                        }
+                        .o_acc_financial_table thead th {
+                            border-bottom: 0;
+                            color: #12223a;
+                            font-weight: 700;
+                        }
+                        .o_acc_financial_name {
+                            width: 68%;
+                            text-align: start;
+                            overflow-wrap: anywhere;
+                        }
+                        .o_acc_financial_amount {
+                            width: 32%;
+                            direction: ltr;
+                            text-align: left;
+                            white-space: nowrap;
+                            font-weight: 400;
+                        }
+                        .o_acc_financial_metric {
+                            direction: ltr;
+                            text-align: left;
+                            white-space: nowrap;
+                        }
+                        .o_acc_financial_section td,
+                        .o_acc_financial_total td {
+                            background: #ebeced;
+                            border-bottom-color: #d8dadd;
+                            font-weight: 700;
+                        }
+                        .o_acc_financial_report td {
+                            font-weight: 400;
+                        }
+                        .o_acc_financial_report:not(.o_acc_financial_section):not(.o_acc_financial_total) td {
+                            background: #fff;
+                        }
+	                        .o_acc_financial_account .o_acc_financial_name {
+	                            color: #143457;
+	                        }
+	                        .o_acc_financial_folded_child {
+	                            display: none;
+	                        }
+	                        .o_acc_financial_label {
+	                            display: inline-block;
+	                            padding-right: calc(var(--line-level, 0) * 12px);
+	                        }
+	                        .o_acc_financial_report_wrap {
+	                            display: inline-flex;
+	                            align-items: center;
+	                            gap: 8px;
+	                            direction: inherit;
+	                            max-width: 100%;
+	                        }
+	                        .o_acc_financial_unfold_btn {
+	                            width: 18px;
+	                            height: 18px;
+	                            border: 0;
+	                            padding: 0;
+	                            background: transparent;
+	                            color: #7d8897;
+	                            display: inline-flex;
+	                            align-items: center;
+	                            justify-content: center;
+	                            border-radius: 4px;
+	                            cursor: pointer;
+	                        }
+	                        .o_acc_financial_unfold_btn:hover {
+	                            color: #0b7f95;
+	                            background: #eef8fb;
+	                        }
+                        .o_acc_financial_negative {
+                            color: #e02020;
+                        }
+                        .o_acc_financial_muted {
+                            color: #c3cad3;
+                            font-weight: 400;
+                        }
+                        .o_acc_financial_account_wrap {
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 6px;
+                            direction: inherit;
+                            max-width: 100%;
+                        }
+                        .o_acc_financial_account_wrap .o_acc_financial_label {
+                            min-width: 0;
+                        }
+                        .o_acc_financial_page .o_account_row_tools {
+                            display: none;
+                        }
+                        .o_acc_financial_page .o_account_action_menu .fa {
+                            font-size: 12px;
+                        }
+                        .o_acc_financial_profit_loss .o_acc_financial_section td {
+                            background: #fff;
+                        }
+                    </style>
+                    <div class="o_acc_financial_card">
+                        <t t-call="acc_reports_enterprise_simulation.report_analytic_selection"/>
+                        <div t-if="financial_period_label" class="o_acc_financial_period" t-esc="financial_period_label"/>
+                        <table class="o_acc_financial_table table-reports">
+                            <thead>
+                                <tr t-if="data['debit_credit'] == 1">
+                                    <th class="o_acc_financial_name"/>
+                                    <th class="o_acc_financial_metric">Debit</th>
+                                    <th class="o_acc_financial_metric">Credit</th>
+                                    <th class="o_acc_financial_metric">Balance</th>
+                                </tr>
+                                <tr t-elif="data['enable_filter'] == 1">
+                                    <th class="o_acc_financial_name"/>
+                                    <t t-if="(data.get('comparison_order') or 'descending') == 'ascending'">
+                                        <th class="o_acc_financial_metric"><span t-esc="data['label_filter']"/></th>
+                                        <th class="o_acc_financial_metric">Balance</th>
+                                    </t>
+                                    <t t-else="">
+                                        <th class="o_acc_financial_metric">Balance</th>
+                                        <th class="o_acc_financial_metric"><span t-esc="data['label_filter']"/></th>
+                                    </t>
+                                </tr>
+                                <tr t-else="">
+                                    <th class="o_acc_financial_name"/>
+                                    <th class="o_acc_financial_amount">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="get_account_lines" t-as="a">
+                                    <t t-set="level" t-value="int(a.get('level') or 0)"/>
+	                                    <tr t-if="level != 0"
+	                                        t-att-class="'o_acc_financial_line %s%s%s' % (('o_acc_financial_total' if a.get('line_kind') == 'total' else ('o_acc_financial_section' if a.get('line_kind') == 'section' else ('o_acc_financial_report' if a.get('type') == 'report' else 'o_acc_financial_account'))), (' o_acc_financial_folded_child' if a.get('folded') else ''), (' o_acc_financial_has_children' if a.get('has_children') else ''))"
+	                                        t-att-data-report-id="a.get('report_id')"
+	                                        t-att-data-parent-report-id="a.get('parent_report_id')"
+	                                        t-att-style="'--line-level: %s;' % min(level, 6)">
+	                                        <td class="o_acc_financial_name">
+	                                            <t t-if="a.get('type') == 'account' and a.get('account_id')">
+	                                                <div class="o_account_line o_acc_financial_account_wrap" t-att-data-account-id="a.get('account_id')">
+	                                                    <span class="o_acc_financial_label" t-esc="a.get('name')"/>
+                                                    <div class="o_account_row_tools">
+                                                        <button type="button" class="o_account_action_btn o_account_action_menu" title="Internal Links">
+                                                            <i class="fa fa-caret-left"/>
+                                                        </button>
+                                                        <div class="o_account_action_dropdown">
+                                                            <button type="button" class="o_account_action_item" data-action="general_ledger">General Ledger</button>
+                                                            <button type="button" class="o_account_action_item" data-action="journal_items">Journal Items</button>
+                                                        </div>
+	                                                    </div>
+	                                                </div>
+	                                            </t>
+	                                            <t t-elif="a.get('has_children') and a.get('report_id')">
+	                                                <div class="o_acc_financial_report_wrap">
+	                                                    <button type="button"
+	                                                        t-att-class="'o_acc_financial_unfold_btn %s' % ('is-open' if data.get('unfold_all') else '')"
+	                                                        t-att-data-report-toggle="a.get('report_id')"
+	                                                        title="Expand/Collapse Accounts">
+	                                                        <i t-att-class="'fa %s' % ('fa-caret-down' if data.get('unfold_all') else 'fa-caret-left')"/>
+	                                                    </button>
+	                                                    <span class="o_acc_financial_label" t-esc="a.get('name')"/>
+	                                                </div>
+	                                            </t>
+	                                            <span t-else="" class="o_acc_financial_label" t-esc="a.get('name')"/>
+	                                        </td>
+                                        <t t-if="data['debit_credit'] == 1">
+                                            <td class="o_acc_financial_metric">
+                                                <span t-att-class="'%s' % ('o_acc_financial_muted' if not a.get('debit') else '')" t-esc="format_financial_amount(a.get('debit'))"/>
+                                            </td>
+                                            <td class="o_acc_financial_metric">
+                                                <span t-att-class="'%s' % ('o_acc_financial_muted' if not a.get('credit') else '')" t-esc="format_financial_amount(a.get('credit'))"/>
+                                            </td>
+                                            <td class="o_acc_financial_metric">
+                                                <span t-att-class="'o_acc_financial_value %s' % (a.get('value_class') or '')" t-esc="format_financial_amount(a.get('balance'))"/>
+                                            </td>
+                                        </t>
+                                        <t t-elif="data['enable_filter'] == 1">
+                                            <t t-if="(data.get('comparison_order') or 'descending') == 'ascending'">
+                                                <td class="o_acc_financial_metric">
+                                                    <span t-att-class="'o_acc_financial_value %s' % (a.get('comparison_class') or ('o_acc_financial_muted' if not a.get('balance_cmp') else ''))" t-esc="format_financial_amount(a.get('balance_cmp'))"/>
+                                                </td>
+                                                <td class="o_acc_financial_metric">
+                                                    <span t-att-class="'o_acc_financial_value %s' % (a.get('value_class') or '')" t-esc="format_financial_amount(a.get('balance'))"/>
+                                                </td>
+                                            </t>
+                                            <t t-else="">
+                                                <td class="o_acc_financial_metric">
+                                                    <span t-att-class="'o_acc_financial_value %s' % (a.get('value_class') or '')" t-esc="format_financial_amount(a.get('balance'))"/>
+                                                </td>
+                                                <td class="o_acc_financial_metric">
+                                                    <span t-att-class="'o_acc_financial_value %s' % (a.get('comparison_class') or ('o_acc_financial_muted' if not a.get('balance_cmp') else ''))" t-esc="format_financial_amount(a.get('balance_cmp'))"/>
+                                                </td>
+                                            </t>
+                                        </t>
+                                        <td t-else="" class="o_acc_financial_amount">
+                                            <span t-att-class="'o_acc_financial_value %s' % (a.get('value_class') or '')" t-esc="format_financial_amount(a.get('balance'))"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

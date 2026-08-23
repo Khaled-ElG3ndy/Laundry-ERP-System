@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_laundry_intake_user,pos.laundry.intake user,model_pos_laundry_intake,point_of_sale.group_pos_user,1,1,1,1
+access_pos_laundry_intake_line_user,pos.laundry.intake.line user,model_pos_laundry_intake_line,point_of_sale.group_pos_user,1,1,1,1
+access_pos_laundry_label_user,pos.laundry.label user,model_pos_laundry_label,point_of_sale.group_pos_user,1,0,0,0
+access_pos_laundry_label_print_history_user,pos.laundry.label.print.history user,model_pos_laundry_label_print_history,point_of_sale.group_pos_user,1,0,0,0
+access_pos_laundry_label_print_wizard_user,pos.laundry.label.print.wizard user,model_pos_laundry_label_print_wizard,point_of_sale.group_pos_user,1,1,1,1

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account.view_account_invoice_report_graph" model="ir.ui.view">
+        <field name="arch" type="xml">
+            <graph string="Invoice Analysis" type="line" stacked="1" sample="1">
+                <field name="invoice_date" interval="month"/>
+                <field name="price_subtotal" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="account.view_account_invoice_report_pivot" model="ir.ui.view">
+        <field name="arch" type="xml">
+            <pivot string="Invoice Analysis" sample="1">
+                <field name="product_categ_id" type="col"/>
+                <field name="invoice_date" interval="month" type="row"/>
+                <field name="price_subtotal" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="account.action_account_invoice_report_all" model="ir.actions.act_window">
+        <field name="name">Invoice Analysis</field>
+        <field name="res_model">account.invoice.report</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="domain">[('state', 'not in', ['draft', 'cancel'])]</field>
+        <field name="context">{
+            'search_default_customer': 1,
+            'search_default_supplier': 1,
+            'group_by': ['invoice_date:month'],
+            'graph_groupbys': ['invoice_date:month'],
+            'graph_measure': 'price_subtotal',
+            'graph_mode': 'line',
+            'graph_stacked': True,
+            'pivot_measures': ['price_subtotal'],
+            'pivot_column_groupby': ['product_categ_id'],
+        }</field>
+        <field name="search_view_id" ref="account.view_account_invoice_report_search"/>
+        <field name="help">Dynamic invoice analysis based on actual system data.</field>
+    </record>
+
+    <record id="account.menu_action_account_invoice_report_all" model="ir.ui.menu">
+        <field name="name">Invoice Analysis</field>
+        <field name="action" ref="account.action_account_invoice_report_all"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

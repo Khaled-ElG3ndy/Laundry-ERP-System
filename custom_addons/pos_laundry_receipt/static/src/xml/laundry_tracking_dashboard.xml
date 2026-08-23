@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_laundry_receipt.LaundryTrackingDashboard">
+        <div class="o_action o_laundry_dashboard_action">
+            <Layout display="display">
+                <t t-set-slot="control-panel-always-buttons">
+                    <button class="o_laundry_cp_button o_laundry_cp_button--secondary" type="button" t-on-click="loadDashboard">
+                        <i class="fa fa-refresh me-2"/>
+                        <span t-esc="uiText.refresh"/>
+                    </button>
+                    <button class="o_laundry_cp_button o_laundry_cp_button--scanner" type="button" t-on-click="openScannerModal">
+                        <i class="fa fa-qrcode me-2"/>
+                        <span t-esc="uiText.scanQr"/>
+                    </button>
+                    <button class="o_laundry_cp_button o_laundry_cp_button--labels" type="button" t-on-click="openLabelQueue">
+                        <i class="fa fa-tags me-2"/>
+                        <span t-esc="uiText.labelQueue"/>
+                        <span class="o_laundry_cp_counter"
+                              t-att-title="uiText.pendingLabels"
+                              t-esc="state.pendingLabelCount"/>
+                    </button>
+                </t>
+
+                <div class="o_laundry_dashboard" t-att-dir="textDirection">
+                    <section class="o_laundry_dashboard_hero">
+                        <div class="o_laundry_dashboard_topbar">
+                        </div>
+                        <div class="o_laundry_dashboard_hero_content">
+                            <div class="o_laundry_dashboard_summary">
+                                <t t-foreach="summaryCards" t-as="summary" t-key="summary.key">
+                                    <button
+                                        type="button"
+                                        class="o_laundry_summary_card"
+                                        t-att-class="{'is-active': state.selectedFilter === summary.key}"
+                                        t-on-click="() => setFilter(summary.key)"
+                                    >
+                                        <span class="o_laundry_summary_icon">
+                                            <i t-att-class="'fa ' + summary.icon"/>
+                                        </span>
+                                        <span class="o_laundry_summary_label" t-esc="summary.label"/>
+                                        <span class="o_laundry_summary_value" t-esc="summary.value"/>
+                                    </button>
+                                </t>
+                            </div>
+
+                            <div class="o_laundry_dashboard_toolbar o_laundry_dashboard_toolbar--embedded">
+                                <div class="o_laundry_dashboard_search" t-att-dir="textDirection">
+                                    <i class="fa fa-search"/>
+                                    <input
+                                        type="text"
+                                        t-att-dir="textDirection"
+                                        t-att-placeholder="uiText.searchPlaceholder"
+                                        t-att-value="state.searchTerm"
+                                        t-on-input="onSearchInput"
+                                    />
+                                </div>
+
+                                <div class="o_laundry_dashboard_filters" t-att-dir="textDirection">
+                                    <t t-foreach="filters" t-as="filter" t-key="filter.key">
+                                        <button
+                                            type="button"
+                                            class="o_laundry_filter_chip"
+                                            t-att-class="{'is-active': state.selectedFilter === filter.key}"
+                                            t-on-click="() => setFilter(filter.key)"
+                                        >
+                                            <span t-esc="filter.label"/>
+                                        </button>
+                                    </t>
+                                </div>
+
+                                <!-- Inline scanner button removed; scanner is available in the control-panel top buttons -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <div t-if="state.loading" class="o_laundry_dashboard_loading">
+                        <i class="fa fa-circle-o-notch fa-spin me-2"/>
+                        <span t-esc="uiText.loading"/>
+                    </div>
+
+                    <div t-elif="!filteredOrders.length" class="o_laundry_dashboard_empty">
+                        <div class="o_laundry_dashboard_empty_icon">
+                            <i class="fa fa-clipboard"/>
+                        </div>
+                        <div class="o_laundry_dashboard_empty_title" t-esc="uiText.emptyTitle"/>
+                        <div class="o_laundry_dashboard_empty_text">
+                            <t t-esc="uiText.emptyText"/>
+                        </div>
+                    </div>
+
+                    <div t-else="" class="o_laundry_board" t-ref="board">
+                        <t t-foreach="columns" t-as="column" t-key="column.key">
+                            <section
+                                class="o_laundry_board_column"
+                                t-att-dir="textDirection"
+                                t-att-class="{
+                                    'is-drop-target': state.highlightedStatus === column.key,
+                                }"
+                            >
+                                <header class="o_laundry_board_column_header">
+                                    <div class="o_laundry_board_column_title">
+                                        <span
+                                            class="o_laundry_board_column_icon"
+                                            t-att-style="'--status-color:' + column.color"
+                                        >
+                                            <i t-att-class="'fa ' + column.icon"/>
+                                        </span>
+                                        <div class="o_laundry_board_column_heading">
+                                            <span class="o_laundry_board_column_name" t-esc="column.label"/>
+                                            <span class="o_laundry_board_column_description" t-esc="column.description"/>
+                                        </div>
+                                    </div>
+                                    <span class="o_laundry_board_column_count" t-esc="column.count"/>
+                                </header>
+
+                                <div class="o_laundry_board_column_body" t-att-data-status="column.key">
+                                    <div t-if="!column.count" class="o_laundry_board_column_empty">
+                                        <i class="fa fa-inbox"/>
+                                        <span t-esc="uiText.noColumnOrders"/>
+                                    </div>
+                                    <t t-foreach="column.visibleOrders" t-as="order" t-key="order.id">
+                                        <article
+                                            class="o_laundry_board_card o_draggable"
+                                            t-att-class="[
+                                                'o_laundry_board_card--' + order.x_laundry_status,
+                                                isDelayedOrder(order) ? 'is-delayed' : '',
+                                                isUpdating(order.id) ? 'is-updating' : '',
+                                                state.draggingOrderId === order.id ? 'is-dragging' : '',
+                                            ]"
+                                            t-att-data-order-id="order.id"
+                                        >
+                                            <div class="o_laundry_board_card_strip" t-att-style="'background:' + order.status_color"/>
+
+                                            <div class="o_laundry_board_card_header">
+                                                <button
+                                                    type="button"
+                                                    class="o_laundry_card_identity"
+                                                    t-on-click="() => openOrder(order.id)"
+                                                >
+                                                    <span class="o_laundry_card_ref" t-esc="order.name"/>
+                                                    <span class="o_laundry_card_customer" t-esc="order.partner_name || uiText.walkInCustomer"/>
+                                                </button>
+
+                                                <button
+                                                    type="button"
+                                                    class="o_laundry_card_drag_handle"
+                                                    t-att-title="uiText.dragToMove"
+                                                >
+                                                    <i class="fa fa-ellipsis-v"/>
+                                                    <i class="fa fa-ellipsis-v"/>
+                                                </button>
+                                            </div>
+
+                                            <div class="o_laundry_board_card_body">
+                                                <div class="o_laundry_card_meta_row">
+                                                    <span class="o_laundry_card_amount" t-esc="formatAmount(order)"/>
+                                                    <span class="o_laundry_card_date" t-esc="formatOrderDate(order)"/>
+                                                </div>
+
+                                                <div t-if="order.invoice_number" class="o_laundry_card_reference_row">
+                                                    <span class="o_laundry_card_reference_chip">
+                                                        <i class="fa fa-file-text-o"/>
+                                                        <span class="o_laundry_card_chip_label" t-esc="uiText.paidInvoiceNumber"/>
+                                                        <span class="o_laundry_card_chip_value" t-esc="order.invoice_number"/>
+                                                    </span>
+                                                </div>
+
+                                                <div t-if="order.item_preview and order.item_preview.length"
+                                                     class="o_laundry_card_items">
+                                                    <div class="o_laundry_card_items_title">
+                                                        <i class="fa fa-shopping-basket"/>
+                                                        <span><t t-esc="uiText.items"/>: <t t-esc="order.total_items"/></span>
+                                                    </div>
+                                                    <div class="o_laundry_card_item"
+                                                         t-foreach="order.item_preview"
+                                                         t-as="item"
+                                                         t-key="item_index">
+                                                        <span class="o_laundry_card_item_qty">×<t t-esc="item.qty"/></span>
+                                                        <span class="o_laundry_card_item_name" t-esc="item.name"/>
+                                                    </div>
+                                                    <div t-if="order.more_item_lines" class="o_laundry_card_items_more">
+                                                        + <t t-esc="order.more_item_lines"/> <t t-esc="uiText.moreItems"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="o_laundry_board_card_badges">
+                                                    <span class="o_laundry_status_badge" t-att-style="'color:' + order.status_color + '; background:' + order.status_badge">
+                                                        <i class="fa fa-circle"/>
+                                                        <t t-esc="getStatusCardMeta(order).label"/>
+                                                    </span>
+                                                    <span class="o_laundry_age_badge" t-att-class="isDelayedOrder(order) ? 'is-delayed' : ''">
+                                                        <i class="fa fa-clock-o"/>
+                                                        <span class="o_laundry_age_badge_text" t-esc="formatAgeBadge(order)"/>
+                                                    </span>
+                                                    <span
+                                                        class="o_laundry_payment_badge"
+                                                        t-att-style="'background:' + order.payment_color"
+                                                        t-esc="order.x_payment_status_label"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            <div class="o_laundry_board_card_actions">
+                                                <button
+                                                    type="button"
+                                                    class="o_laundry_action_button o_laundry_action_button--ghost"
+                                                    t-on-click.stop="() => openOrder(order.id)"
+                                                >
+                                                    <span t-esc="uiText.viewOrder"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="o_laundry_action_button o_laundry_action_button--ghost o_laundry_action_button--icon"
+                                                    t-att-title="uiText.previewLabel"
+                                                    t-on-click.stop="() => previewLabel(order.id)"
+                                                >
+                                                    <i class="fa fa-eye"/>
+                                                    <span t-esc="uiText.previewLabel"/>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    class="o_laundry_action_button o_laundry_action_button--ghost o_laundry_action_button--icon"
+                                                    t-att-title="order.label_state === 'printed' || order.label_state === 'reprinted' ? uiText.reprintLabel : uiText.printLabel"
+                                                    t-on-click.stop="() => printLabel(order.id)"
+                                                >
+                                                    <i t-att-class="order.label_state === 'printed' || order.label_state === 'reprinted' ? 'fa fa-repeat' : 'fa fa-print'"/>
+                                                    <span t-esc="order.label_state === 'printed' || order.label_state === 'reprinted' ? uiText.reprintLabel : uiText.printLabel"/>
+                                                </button>
+                                                <t t-foreach="getQuickActions(order)" t-as="quickAction" t-key="quickAction.status">
+                                                    <button
+                                                        type="button"
+                                                        class="o_laundry_action_button"
+                                                        t-att-disabled="isUpdating(order.id)"
+                                                        t-on-click.stop="() => updateOrderStatus(order.id, quickAction.status)"
+                                                    >
+                                                        <span t-esc="quickAction.label"/>
+                                                    </button>
+                                                </t>
+                                            </div>
+                                        </article>
+                                    </t>
+                                </div>
+
+                                <footer t-if="column.hasPager" class="o_laundry_board_column_footer">
+                                    <span class="o_laundry_board_column_footer_status" t-esc="column.pageStatus"/>
+                                    <div class="o_laundry_board_pager">
+                                        <button
+                                            type="button"
+                                            class="o_laundry_board_pager_button"
+                                            t-att-disabled="column.page &lt;= 1"
+                                            t-on-click="() => changeColumnPage(column.key, column.page - 1, column.count)"
+                                        >
+                                            <i class="fa fa-chevron-right"/>
+                                        </button>
+                                        <span class="o_laundry_board_pager_label">
+                                            <t t-esc="column.page"/> / <t t-esc="column.totalPages"/>
+                                        </span>
+                                        <button
+                                            type="button"
+                                            class="o_laundry_board_pager_button"
+                                            t-att-disabled="column.page &gt;= column.totalPages"
+                                            t-on-click="() => changeColumnPage(column.key, column.page + 1, column.count)"
+                                        >
+                                            <i class="fa fa-chevron-left"/>
+                                        </button>
+                                    </div>
+                                </footer>
+                            </section>
+                        </t>
+                    </div>
+
+                    <div t-if="state.scannerVisible"
+                         t-attf-class="po-qr-modal {{ state.scannerClosing ? 'is-closing' : 'is-open' }}">
+                        <div class="po-qr-modal__backdrop" t-on-click="closeScannerModal"/>
+                        <section class="po-qr-modal__dialog" role="dialog" aria-modal="true">
+                            <header class="po-qr-modal__header">
+                                <button type="button" class="po-qr-modal__close" t-on-click="closeScannerModal">
+                                    <i class="fa fa-times"/>
+                                </button>
+                                <div class="po-qr-modal__titles">
+                                    <h3 class="po-qr-modal__title"><t t-esc="uiText.scannerTitle"/></h3>
+                                </div>
+                                <div class="po-qr-modal__eyebrow">
+                                    <i class="fa fa-camera"/>
+                                    <span><t t-esc="uiText.scannerLiveLabel"/></span>
+                                </div>
+                            </header>
+
+                            <div class="po-qr-modal__viewport">
+                                <div class="po-qr-modal__viewport-head">
+                                    <div t-attf-class="po-qr-modal__badge is-{{ scannerStatusMeta.tone }}">
+                                        <i t-att-class="'fa ' + scannerStatusMeta.icon"/>
+                                        <span><t t-esc="scannerStatusMeta.label"/></span>
+                                    </div>
+                                </div>
+                                <div class="po-qr-modal__body po-qr-modal__body--simple">
+                                    <div class="po-qr-modal__reader-shell po-qr-modal__reader-shell--simple">
+                                        <div class="po-qr-modal__reader" t-att-id="scannerElementId"/>
+                                        <div t-attf-class="po-qr-modal__frame {{ state.scannerFeedback ? 'is-' + state.scannerFeedback : '' }}">
+                                            <span class="po-qr-modal__corner po-qr-modal__corner--top-start"/>
+                                            <span class="po-qr-modal__corner po-qr-modal__corner--top-end"/>
+                                            <span class="po-qr-modal__corner po-qr-modal__corner--bottom-start"/>
+                                            <span class="po-qr-modal__corner po-qr-modal__corner--bottom-end"/>
+                                            <div class="po-qr-modal__scan-line"/>
+                                            <div t-if="state.scannerFeedback === 'success' and !state.scannerProcessing"
+                                                 class="po-qr-modal__success-mark">
+                                                <span class="po-qr-modal__success-icon">
+                                                    <i class="fa fa-check"/>
+                                                </span>
+                                                <strong><t t-esc="uiText.scannerSuccessLabel"/></strong>
+                                            </div>
+                                        </div>
+                                        <div t-if="state.scannerBooting || state.scannerProcessing" class="po-qr-modal__overlay">
+                                            <div class="po-qr-modal__overlay-card">
+                                                <div class="po-qr-modal__spinner"/>
+                                                <strong><t t-esc="state.scannerProcessing ? uiText.scannerProcessing : uiText.scanning"/></strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <footer class="po-qr-modal__footer">
+                                <div t-attf-class="po-qr-modal__status is-{{ scannerStatusMeta.tone }}">
+                                    <span class="po-qr-modal__status-icon">
+                                        <i t-att-class="'fa ' + scannerStatusMeta.icon"/>
+                                    </span>
+                                    <span><t t-esc="scannerStatusText"/></span>
+                                </div>
+                                <button type="button"
+                                        class="po-qr-modal__action"
+                                        t-att-disabled="state.scannerProcessing"
+                                        t-on-click="closeScannerModal">
+                                    <span><t t-esc="uiText.scannerClose"/></span>
+                                </button>
+                            </footer>
+                        </section>
+                    </div>
+                </div>
+            </Layout>
+        </div>
+    </t>
+
+    <t
+        t-name="pos_laundry_receipt.AppsBarCollapseToggle"
+        t-inherit="muk_web_appsbar.AppsBar"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//div[hasclass('mk_apps_sidebar_panel')]" position="attributes">
+            <attribute name="t-attf-class">mk_apps_sidebar_panel {{ state.isCollapsed ? 'is-collapsed' : 'is-expanded' }}</attribute>
+        </xpath>
+
+        <xpath expr="//a[hasclass('nav-link')]" position="attributes">
+            <attribute name="t-att-title">app.name</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('mk_apps_sidebar')]" position="after">
+            <button
+                type="button"
+                class="o_laundry_sidebar_toggle"
+                t-att-title="sidebarToggleTitle"
+                t-att-aria-label="sidebarToggleTitle"
+                t-att-aria-pressed="state.isCollapsed ? 'true' : 'false'"
+                t-att-disabled="state.isSaving"
+                t-on-click="toggleSidebar"
+            >
+                <span class="o_laundry_sidebar_toggle_icon">
+                    <i t-att-class="state.isCollapsed ? 'fa fa-angle-right' : 'fa fa-angle-left'"/>
+                </span>
+            </button>
+        </xpath>
+    </t>
+</templates>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="laundry_theme.OrderLinePicker" owl="1">
+<div class="lf-picker-wrap">
+
+    <!-- LOADING -->
+    <t t-if="state.loading">
+        <div class="lf-loading"><div class="lf-spinner"/><span>جاري التحميل...</span></div>
+    </t>
+
+    <!-- STEP: CATEGORY SELECTION -->
+    <t t-elif="state.step === 'category'">
+        <div class="lf-picker-header">
+            <span class="lf-picker-title">① اختر نوع الملبس / Select Item</span>
+        </div>
+        <div class="lf-icon-grid">
+            <t t-foreach="state.categories" t-as="cat" t-key="cat.id">
+                <t t-set="ci" t-value="getCategoryIcon(cat.code)"/>
+                <div class="lf-icon-card"
+                     t-att-style="'--card-color:' + ci.color + ';--card-bg:' + ci.bg"
+                     t-on-click="() => selectCategory(cat)">
+                    <div class="lf-icon-card-icon" t-esc="ci.icon"/>
+                    <div class="lf-icon-card-label" t-esc="cat.name_ar or cat.name"/>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <!-- STEP: SERVICE SELECTION -->
+    <t t-elif="state.step === 'service'">
+        <div class="lf-picker-header">
+            <button class="lf-picker-back" t-on-click="goBack">← رجوع</button>
+            <span class="lf-picker-title">
+                <t t-set="ci" t-value="getCategoryIcon(state.selectedCategory.code)"/>
+                <t t-esc="ci.icon"/>
+                <t t-esc="state.selectedCategory.name_ar or state.selectedCategory.name"/>
+                — ② اختر الخدمة
+            </span>
+        </div>
+        <div class="lf-icon-grid lf-service-grid-layout">
+            <t t-foreach="availableServices" t-as="svc" t-key="svc.id">
+                <t t-set="si" t-value="getServiceIcon(svc.code)"/>
+                <div class="lf-icon-card lf-service-card"
+                     t-att-style="'--card-color:' + si.color + ';--card-bg:' + si.bg"
+                     t-on-click="() => selectService(svc)">
+                    <div class="lf-icon-card-icon" t-esc="si.icon"/>
+                    <div class="lf-icon-card-label" t-esc="svc.name_ar or svc.name"/>
+                    <div class="lf-icon-card-price">
+                        <t t-esc="svc.base_price.toFixed(2)"/> SAR
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <!-- STEP: CONFIRM + QTY + ADDONS -->
+    <t t-elif="state.step === 'confirm'">
+        <div class="lf-picker-header">
+            <button class="lf-picker-back" t-on-click="goBack">← رجوع</button>
+            <span class="lf-picker-title">③ تأكيد الإضافة / Confirm</span>
+        </div>
+
+        <!-- Summary Card -->
+        <div class="lf-confirm-summary">
+            <t t-set="ci" t-value="getCategoryIcon(state.selectedCategory.code)"/>
+            <t t-set="si" t-value="getServiceIcon(state.selectedService.code)"/>
+            <div class="lf-confirm-icons">
+                <span class="lf-confirm-big-icon" t-esc="ci.icon"/>
+                <span class="lf-confirm-arrow">+</span>
+                <span class="lf-confirm-big-icon" t-esc="si.icon"/>
+            </div>
+            <div class="lf-confirm-names">
+                <strong t-esc="state.selectedCategory.name_ar or state.selectedCategory.name"/>
+                <span class="lf-confirm-sep">—</span>
+                <strong t-esc="state.selectedService.name_ar or state.selectedService.name"/>
+            </div>
+            <div class="lf-confirm-price">
+                <t t-esc="computeUnitPrice().toFixed(2)"/> SAR / قطعة
+            </div>
+        </div>
+
+        <!-- Quantity Control -->
+        <div class="lf-qty-section">
+            <label class="lf-section-label">الكمية / Quantity</label>
+            <div class="lf-qty-big-ctrl">
+                <button class="lf-qty-big-btn" t-on-click="decQty">−</button>
+                <span class="lf-qty-display" t-esc="state.qty"/>
+                <button class="lf-qty-big-btn" t-on-click="incQty">+</button>
+            </div>
+        </div>
+
+        <!-- Add-ons -->
+        <t t-if="state.addons.length > 0">
+            <div class="lf-addon-section">
+                <label class="lf-section-label">إضافات / Add-ons (اختياري)</label>
+                <div class="lf-addon-chips">
+                    <t t-foreach="state.addons" t-as="addon" t-key="addon.id">
+                        <div class="lf-addon-chip"
+                             t-att-class="{selected: isAddonSelected(addon)}"
+                             t-on-click="() => toggleAddon(addon)">
+                            <span t-esc="addon.name_ar or addon.name"/>
+                            <span class="lf-addon-chip-price">+<t t-esc="addon.price.toFixed(2)"/></span>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+
+        <!-- Notes -->
+        <div class="lf-notes-section">
+            <div class="lf-notes-row">
+                <textarea class="lf-picker-textarea"
+                          placeholder="ملاحظة الضرر / Damage note (اختياري)..."
+                          t-model="state.damageNote"/>
+            </div>
+        </div>
+
+        <!-- Line Total + Add Button -->
+        <div class="lf-confirm-footer">
+            <div class="lf-confirm-total">
+                <span>الإجمالي:</span>
+                <strong><t t-esc="computeLineTotal().toFixed(2)"/> SAR</strong>
+            </div>
+            <button class="lf-add-line-btn" t-on-click="addToOrder">
+                ✓ إضافة للطلب / Add to Order
+            </button>
+        </div>
+    </t>
+
+</div>
+</t>
+
+</templates>

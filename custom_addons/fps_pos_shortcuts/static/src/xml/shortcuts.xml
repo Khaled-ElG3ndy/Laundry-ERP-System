@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Add shortcuts panel above product screen -->
+    <t t-name="fps_pos_shortcuts.ShortcutsPanel" t-inherit="point_of_sale.ProductScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-screen')]" position="inside">
+            <div class="fps-shortcuts-panel">
+                <button class="fps-shortcut-btn cash-drawer" t-on-click="openCashDrawer">
+                    <span class="fps-icon">💵</span>
+                    <span class="fps-label">Cash Drawer</span>
+                </button>
+                
+                <button class="fps-shortcut-btn manual-item" t-on-click="addManualItem">
+                    <span class="fps-icon">✏️</span>
+                    <span class="fps-label">Manual Item</span>
+                </button>
+                
+                <button class="fps-shortcut-btn reprint" t-on-click="reprintLastReceipt">
+                    <span class="fps-icon">🖨️</span>
+                    <span class="fps-label">Reprint</span>
+                </button>
+                
+                <button class="fps-shortcut-btn daily-report" t-on-click="printDailyReport">
+                    <span class="fps-icon">📊</span>
+                    <span class="fps-label">Daily Report</span>
+                </button>
+                
+                <button class="fps-shortcut-btn attendance" t-on-click="showAttendance">
+                    <span class="fps-icon">👤</span>
+                    <span class="fps-label">Clock In/Out</span>
+                </button>
+                
+                <button class="fps-shortcut-btn price-check" t-on-click="priceCheck">
+                    <span class="fps-icon">🔍</span>
+                    <span class="fps-label">Price Check</span>
+                </button>
+                
+                <button class="fps-shortcut-btn hold-order" t-on-click="holdOrder">
+                    <span class="fps-icon">⏸️</span>
+                    <span class="fps-label">Hold Order</span>
+                </button>
+                
+                <button class="fps-shortcut-btn recall-order" t-on-click="recallOrder">
+                    <span class="fps-icon">📋</span>
+                    <span class="fps-label">Recall</span>
+                </button>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

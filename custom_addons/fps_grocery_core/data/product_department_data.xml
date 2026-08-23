@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="dept_grocery" model="fps.product.department">
+            <field name="name">Grocery</field>
+            <field name="code">GROC</field>
+            <field name="sequence">10</field>
+            <field name="default_snap_eligible">True</field>
+        </record>
+        <record id="dept_produce" model="fps.product.department">
+            <field name="name">Produce</field>
+            <field name="code">PROD</field>
+            <field name="sequence">20</field>
+            <field name="is_fresh">True</field>
+            <field name="is_weighted">True</field>
+            <field name="default_snap_eligible">True</field>
+        </record>
+        <record id="dept_meat" model="fps.product.department">
+            <field name="name">Meat</field>
+            <field name="code">MEAT</field>
+            <field name="sequence">30</field>
+            <field name="is_fresh">True</field>
+            <field name="is_weighted">True</field>
+            <field name="default_snap_eligible">True</field>
+        </record>
+        <record id="dept_dairy" model="fps.product.department">
+            <field name="name">Dairy</field>
+            <field name="code">DAIR</field>
+            <field name="sequence">40</field>
+            <field name="default_snap_eligible">True</field>
+        </record>
+        <record id="dept_frozen" model="fps.product.department">
+            <field name="name">Frozen</field>
+            <field name="code">FROZ</field>
+            <field name="sequence">50</field>
+            <field name="default_snap_eligible">True</field>
+        </record>
+        <record id="dept_bakery" model="fps.product.department">
+            <field name="name">Bakery</field>
+            <field name="code">BAKE</field>
+            <field name="sequence">60</field>
+            <field name="is_fresh">True</field>
+            <field name="default_snap_eligible">True</field>
+        </record>
+        <record id="dept_deli" model="fps.product.department">
+            <field name="name">Deli</field>
+            <field name="code">DELI</field>
+            <field name="sequence">70</field>
+            <field name="is_fresh">True</field>
+            <field name="is_weighted">True</field>
+            <field name="default_snap_eligible">True</field>
+        </record>
+        <record id="dept_beverages" model="fps.product.department">
+            <field name="name">Beverages</field>
+            <field name="code">BEVR</field>
+            <field name="sequence">80</field>
+            <field name="default_snap_eligible">True</field>
+        </record>
+        <record id="dept_household" model="fps.product.department">
+            <field name="name">Household</field>
+            <field name="code">HOUS</field>
+            <field name="sequence">90</field>
+            <field name="default_snap_eligible">False</field>
+        </record>
+        <record id="dept_alcohol" model="fps.product.department">
+            <field name="name">Beer/Wine</field>
+            <field name="code">ALCL</field>
+            <field name="sequence">100</field>
+            <field name="default_snap_eligible">False</field>
+        </record>
+    </data>
+</odoo>

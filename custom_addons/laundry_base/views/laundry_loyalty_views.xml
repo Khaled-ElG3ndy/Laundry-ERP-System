@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Loyalty Program Config -->
+    <record id="view_loyalty_program_form" model="ir.ui.view">
+        <field name="name">laundry.loyalty.program.form</field>
+        <field name="model">laundry.loyalty.program</field>
+        <field name="arch" type="xml">
+            <form string="برنامج الولاء / Loyalty Program">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Points Earning / كسب النقاط">
+                            <field name="points_per_sar" string="نقطة لكل ريال / Points per SAR"/>
+                            <field name="welcome_points" string="نقاط الترحيب / Welcome Points"/>
+                        </group>
+                        <group string="Redemption / الاستبدال">
+                            <field name="sar_per_point" string="قيمة النقطة SAR"/>
+                            <field name="min_redeem" string="الحد الأدنى للاستبدال"/>
+                            <field name="max_redeem_pct" string="أقصى نسبة خصم %"/>
+                            <field name="expiry_months" string="انتهاء الصلاحية (شهر)"/>
+                        </group>
+                    </group>
+                    <group string="Tiers / المستويات">
+                        <div class="alert alert-info" role="alert">
+                            🥈 Silver: 0–1999 نقطة |
+                            🥇 Gold: 2000–4999 |
+                            💎 VIP: 5000+
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Loyalty Card List -->
+    <record id="view_loyalty_card_list" model="ir.ui.view">
+        <field name="name">laundry.loyalty.card.list</field>
+        <field name="model">laundry.loyalty.card</field>
+        <field name="arch" type="xml">
+            <tree string="بطاقات الولاء"
+                  decoration-warning="tier == 'gold'"
+                  decoration-primary="tier == 'vip'">
+                <field name="card_number"/>
+                <field name="partner_id"/>
+                <field name="tier"/>
+                <field name="points" string="الرصيد الحالي"/>
+                <field name="total_earned" string="إجمالي المكتسب"/>
+                <field name="total_redeemed" string="إجمالي المستبدل"/>
+                <field name="order_count" string="الطلبات"/>
+                <field name="active" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Loyalty Card Form -->
+    <record id="view_loyalty_card_form" model="ir.ui.view">
+        <field name="name">laundry.loyalty.card.form</field>
+        <field name="model">laundry.loyalty.card</field>
+        <field name="arch" type="xml">
+            <form string="بطاقة ولاء / Loyalty Card">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object"
+                                name="action_view_orders" icon="fa-shopping-bag">
+                            <field name="order_count" widget="statinfo" string="Orders"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="card_number" readonly="1"/></h1>
+                        <h3><field name="tier" readonly="1"/></h3>
+                    </div>
+                    <group>
+                        <group string="بيانات البطاقة">
+                            <field name="partner_id"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="النقاط / Points">
+                            <field name="points" string="🎯 الرصيد الحالي"/>
+                            <field name="total_earned" readonly="1" string="إجمالي المكتسب"/>
+                            <field name="total_redeemed" readonly="1" string="إجمالي المستبدل"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="سجل النقاط / Points History">
+                            <field name="log_ids" readonly="1">
+                                <tree decoration-success="type == 'earn'"
+                                      decoration-danger="type == 'redeem'">
+                                    <field name="date" string="التاريخ"/>
+                                    <field name="type" string="النوع"/>
+                                    <field name="points" string="التغيير"/>
+                                    <field name="balance" string="الرصيد بعد"/>
+                                    <field name="order_id" string="الطلب"/>
+                                    <field name="reason" string="السبب"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_loyalty_program" model="ir.actions.act_window">
+        <field name="name">إعداد برنامج الولاء</field>
+        <field name="res_model">laundry.loyalty.program</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_loyalty_cards" model="ir.actions.act_window">
+        <field name="name">بطاقات الولاء / Loyalty Cards</field>
+        <field name="res_model">laundry.loyalty.card</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Menus -->
+    <menuitem id="menu_loyalty_cards"
+              name="🎯 بطاقات الولاء / Loyalty"
+              parent="menu_laundry_operations"
+              action="laundry_base.action_loyalty_cards"
+              sequence="70"
+              groups="laundry_base.group_laundry_manager,laundry_base.group_laundry_finance"/>
+
+    <menuitem id="menu_loyalty_program_config"
+              name="برنامج الولاء"
+              parent="menu_laundry_config"
+              action="laundry_base.action_loyalty_program"
+              sequence="40"
+              groups="laundry_base.group_laundry_admin"/>
+
+</odoo>

@@ -1,0 +1,556 @@
+/*
+ * Simplified tax invoice used by the POS ReceiptScreen.
+ *
+ * The laundry intake receipt and its backend report are both configured for
+ * 58 mm paper.  Keep this receipt on the same physical size, but do not change
+ * the 512 px raster width used by Odoo when an IoT/hardware printer is active.
+ */
+.laundry-payment-receipt,
+.laundry-payment-receipt *,
+.laundry-payment-receipt *::before,
+.laundry-payment-receipt *::after {
+    box-sizing: border-box;
+}
+
+.laundry-payment-receipt {
+    direction: inherit;
+    margin: 0 auto;
+    padding: 2mm;
+    color: #000;
+    background: #fff;
+    font-family: Tahoma, Arial, "Noto Sans Arabic", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: start;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* The right-hand preview uses the same width as the proven intake receipt. */
+.pos-receipt-container .laundry-payment-receipt {
+    width: 58mm;
+    max-width: 58mm;
+}
+
+/* Preserve Odoo's high-resolution canvas width for IoT/hardware printing. */
+.laundry-payment-receipt.pos-receipt-print {
+    max-width: none;
+}
+
+.laundry-payment-receipt [dir="ltr"],
+.laundry-payment-receipt bdi {
+    direction: ltr;
+    unicode-bidi: isolate;
+}
+
+.laundry-payment-receipt img,
+.laundry-payment-receipt table {
+    max-width: 100%;
+}
+
+.laundry-payment-receipt .laundry-receipt-section {
+    margin: 0 0 2mm;
+}
+
+.laundry-payment-receipt .laundry-receipt-box {
+    border: 1.25px solid #000;
+    border-radius: 7px;
+    background: #fff;
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+.laundry-payment-receipt .laundry-receipt-table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+/* Header */
+.laundry-payment-receipt .custom-pos-payment-receipt__header {
+    padding: 0 0 0.5mm;
+    text-align: center;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__logo {
+    display: block;
+    width: auto;
+    max-width: 31mm;
+    max-height: 14mm;
+    object-fit: contain;
+    margin: 0 auto 1mm;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__title {
+    margin: 0.7mm 0 0;
+    color: #000;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__subtitle {
+    margin: 0 0 1.5mm;
+    color: #000;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__header-cards {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5mm;
+    width: 100%;
+    margin: 0;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__header-card {
+    min-width: 0;
+    padding: 1.4mm 1mm;
+    text-align: center;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__header-card-label {
+    margin-bottom: 0.4mm;
+    color: #000;
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__header-card-value {
+    min-width: 0;
+    margin: 0;
+    color: #000;
+    font-size: 9.5px;
+    font-weight: 900;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__header-card-value[dir="ltr"] {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__date-value {
+    font-family: Arial, Tahoma, sans-serif;
+    font-size: 10px;
+    white-space: nowrap;
+    overflow-wrap: normal;
+    word-break: keep-all;
+}
+
+/* Establishment and customer data */
+.laundry-payment-receipt .custom-pos-payment-receipt__info-card {
+    padding: 1.5mm 1.7mm;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__section-title {
+    display: inline-block;
+    max-width: 100%;
+    margin: 0 0 1.2mm;
+    padding: 0.45mm 1.8mm;
+    border: 1px solid #000;
+    border-radius: 999px;
+    color: #000;
+    background: #fff;
+    font-size: 8.5px;
+    font-weight: 900;
+    line-height: 1.25;
+    white-space: nowrap;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__info-table {
+    border-collapse: collapse;
+    font-size: 8.5px;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__info-table th,
+.laundry-payment-receipt .custom-pos-payment-receipt__info-table td {
+    padding: 0.65mm 0;
+    border: 0;
+    border-bottom: 0.75px solid #000;
+    vertical-align: top;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__info-table tr:last-child th,
+.laundry-payment-receipt .custom-pos-payment-receipt__info-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__info-table th {
+    width: 38%;
+    padding-left: 1mm;
+    color: #000;
+    font-weight: 700;
+    text-align: start;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__info-table td {
+    width: 62%;
+    color: #000;
+    font-weight: 800;
+    text-align: left;
+}
+
+/* Products and laundry services */
+.laundry-payment-receipt .custom-pos-payment-receipt__section--items {
+    padding: 0;
+    border: 0;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line {
+    overflow: hidden;
+    margin: 0 0 1.5mm;
+    padding: 0;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line:last-child {
+    margin-bottom: 0;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-head {
+    display: grid;
+    grid-template-columns: 5mm minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1mm;
+    min-width: 0;
+    padding: 1.4mm;
+    border-bottom: 1px solid #000;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 5mm;
+    height: 5mm;
+    border: 1px solid #000;
+    border-radius: 50%;
+    color: #000;
+    background: #fff;
+    font-size: 8px;
+    font-weight: 900;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-name {
+    min-width: 0;
+    color: #000;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1.35;
+    text-align: start;
+    overflow-wrap: anywhere;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-total {
+    color: #000;
+    font-size: 9.5px;
+    font-weight: 900;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1mm;
+    margin: 0;
+    padding: 1.1mm 1.5mm;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-meta-pair {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8mm;
+    min-width: 0;
+    font-size: 8.5px;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-meta-label,
+.laundry-payment-receipt .custom-pos-payment-receipt__line-meta-value {
+    color: #000;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-meta-label {
+    font-weight: 700;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-meta-value {
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-services {
+    margin: 0;
+    padding: 1.2mm 1.5mm;
+    border-top: 1px solid #000;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__line-services-title {
+    margin: 0 0 0.5mm;
+    color: #000;
+    font-size: 8px;
+    font-weight: 900;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__service-table {
+    display: block;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__service-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1mm;
+    padding: 0.65mm 0;
+    border-top: 0.75px solid #000;
+    color: #000;
+    font-size: 8.5px;
+    line-height: 1.3;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__service-name {
+    min-width: 0;
+    color: #000;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__service-price {
+    margin: 0;
+    color: #000;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+/* Totals and payment methods */
+.laundry-payment-receipt .custom-pos-payment-receipt__section--summary {
+    padding: 0;
+    border: 0;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-total-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2mm;
+    margin: 0 0 1.5mm;
+    padding: 1.6mm 2mm;
+    border-width: 1.5px;
+    color: #fff;
+    background: #000;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-total-label,
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-total-value {
+    color: inherit;
+    font-weight: 900;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-total-label {
+    font-size: 10px;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-total-value {
+    flex-shrink: 0;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-badge-wrap {
+    margin: 0 0 1mm;
+    text-align: center;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-badge {
+    display: inline-block;
+    padding: 0.4mm 2mm;
+    border: 1px solid #000;
+    border-radius: 999px;
+    color: #000;
+    background: #fff;
+    font-size: 8px;
+    font-weight: 900;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-card {
+    margin: 0 0 1.5mm;
+    padding: 1.1mm 1.6mm;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2mm;
+    padding: 0.65mm 0;
+    border-bottom: 0.75px solid #000;
+    color: #000;
+    font-size: 8.5px;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-row:last-child {
+    border-bottom: 0;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-row strong {
+    flex-shrink: 0;
+    color: #000;
+    font-weight: 900;
+    white-space: nowrap;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-table {
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 8.5px;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-table th,
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-table td {
+    padding: 1mm 1.5mm;
+    border: 0;
+    border-bottom: 0.75px solid #000;
+    color: #000;
+    line-height: 1.35;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-table tr:last-child th,
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-table th {
+    width: 66%;
+    font-weight: 700;
+    text-align: start;
+    overflow-wrap: anywhere;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__summary-table td {
+    width: 34%;
+    font-weight: 900;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* ZATCA QR and footer */
+.laundry-payment-receipt .custom-pos-payment-receipt__qr {
+    margin-bottom: 1mm;
+    padding: 2mm;
+    border-style: dashed;
+    text-align: center;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__qr-image {
+    display: block;
+    width: 40mm;
+    height: 40mm;
+    min-width: 40mm;
+    min-height: 40mm;
+    max-width: 40mm;
+    max-height: 40mm;
+    margin: 0 auto;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+    background: #fff;
+    image-rendering: crisp-edges;
+}
+
+.laundry-payment-receipt .custom-pos-payment-receipt__footer {
+    position: static;
+    margin: 0;
+    padding: 1.5mm 0 0;
+    border-top: 1px solid #000;
+    color: #000;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+    overflow: visible;
+    break-before: auto;
+    break-after: auto;
+    break-inside: avoid;
+    page-break-before: auto;
+    page-break-after: auto;
+    page-break-inside: avoid;
+}
+
+.pos .custom-pos-payment-status {
+    min-height: 112px;
+}
+
+.pos .custom-pos-payment-status__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+    align-items: stretch;
+}
+
+.pos .custom-pos-payment-status__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 14px 18px;
+    border: 1px solid #d7eaf5;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.pos .custom-pos-payment-status__item--remaining {
+    border-color: #8dc9ee;
+}
+
+.pos .custom-pos-payment-status__item--paid {
+    border-color: #9fd9bd;
+}
+
+.pos .custom-pos-payment-status__label {
+    color: #607486;
+    font-size: 15px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.pos .custom-pos-payment-status__amount {
+    color: #0a3456;
+    font-size: 22px;
+    font-weight: 900;
+    direction: ltr;
+    unicode-bidi: isolate;
+    white-space: nowrap;
+}
+
+.pos .custom-pos-payment-status__total {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.pos .custom-pos-payment-status__total-amount {
+    direction: ltr;
+    unicode-bidi: isolate;
+    white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+    .pos .custom-pos-payment-status__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pos .custom-pos-payment-status__item {
+        padding: 10px 12px;
+    }
+
+    .pos .custom-pos-payment-status__amount {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="item_cat_thobe" model="laundry.item.category">
+            <field name="name">Thobe</field>
+            <field name="name_ar">ثوب</field>
+            <field name="code">THOBE</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="item_cat_shirt" model="laundry.item.category">
+            <field name="name">Shirt</field>
+            <field name="name_ar">قميص</field>
+            <field name="code">SHIRT</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="item_cat_trouser" model="laundry.item.category">
+            <field name="name">Trouser / Pants</field>
+            <field name="name_ar">بنطال</field>
+            <field name="code">TROUSER</field>
+            <field name="sequence">30</field>
+        </record>
+
+        <record id="item_cat_abaya" model="laundry.item.category">
+            <field name="name">Abaya</field>
+            <field name="name_ar">عباءة</field>
+            <field name="code">ABAYA</field>
+            <field name="sequence">40</field>
+        </record>
+
+        <record id="item_cat_suit" model="laundry.item.category">
+            <field name="name">Suit</field>
+            <field name="name_ar">بدلة</field>
+            <field name="code">SUIT</field>
+            <field name="sequence">50</field>
+        </record>
+
+        <record id="item_cat_blanket" model="laundry.item.category">
+            <field name="name">Blanket</field>
+            <field name="name_ar">بطانية</field>
+            <field name="code">BLANKET</field>
+            <field name="sequence">60</field>
+        </record>
+
+        <record id="item_cat_carpet" model="laundry.item.category">
+            <field name="name">Carpet / Rug</field>
+            <field name="name_ar">سجادة</field>
+            <field name="code">CARPET</field>
+            <field name="sequence">70</field>
+        </record>
+
+        <record id="item_cat_uniform" model="laundry.item.category">
+            <field name="name">Uniform</field>
+            <field name="name_ar">يونيفورم</field>
+            <field name="code">UNIFORM</field>
+            <field name="sequence">80</field>
+        </record>
+
+        <record id="item_cat_kids" model="laundry.item.category">
+            <field name="name">Kids Items</field>
+            <field name="name_ar">ملابس أطفال</field>
+            <field name="code">KIDS</field>
+            <field name="sequence">90</field>
+        </record>
+
+        <record id="item_cat_linen" model="laundry.item.category">
+            <field name="name">Linen / Bedsheet</field>
+            <field name="name_ar">بياضات</field>
+            <field name="code">LINEN</field>
+            <field name="sequence">100</field>
+        </record>
+
+        <record id="item_cat_curtain" model="laundry.item.category">
+            <field name="name">Curtain</field>
+            <field name="name_ar">ستارة</field>
+            <field name="code">CURTAIN</field>
+            <field name="sequence">110</field>
+        </record>
+
+        <record id="item_cat_other" model="laundry.item.category">
+            <field name="name">Other</field>
+            <field name="name_ar">أخرى</field>
+            <field name="code">OTHER</field>
+            <field name="sequence">200</field>
+        </record>
+
+    </data>
+</odoo>

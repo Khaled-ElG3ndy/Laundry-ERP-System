@@ -1,0 +1,434 @@
+.o_acc_reports_enterprise_simulation {
+    background: #f5f6f8;
+}
+
+.o_pivot_cell_value.o_acc_pivot_negative_value,
+.o_pivot_cell_value.o_acc_pivot_negative_value .o_value,
+.o_pivot_cell_value.o_acc_pivot_negative_value span {
+    color: #dc3545 !important;
+}
+
+.o_acc_reports_enterprise_simulation_toolbar {
+    min-height: 62px;
+    padding: 0 14px;
+    border-bottom: 1px solid #dfe4eb;
+    background: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.o_acc_reports_enterprise_simulation_toolbar_grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) auto minmax(320px, 1fr);
+    align-items: center;
+    gap: 12px;
+    direction: ltr;
+}
+
+.o_preview_search_box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 260px;
+    min-width: 220px;
+    max-width: 320px;
+    grid-column: 1;
+    justify-self: start;
+}
+
+.o_preview_search_box .fa {
+    position: absolute;
+    left: 12px;
+    color: #0f2350;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.o_preview_search_box input {
+    width: 100%;
+    height: 36px;
+    border: 1px solid #d6dde7;
+    border-radius: 4px;
+    padding: 0 36px 0 34px;
+    font-size: 0.95rem;
+    color: #1f2a3d;
+    background: #fff;
+    box-shadow: inset 0 1px 1px rgba(15, 23, 42, 0.03);
+    direction: rtl;
+    text-align: right;
+}
+
+.o_preview_search_box input::placeholder {
+    color: #9aa6b2;
+}
+
+.o_preview_search_box input:focus {
+    outline: none;
+    border-color: #159fbc;
+    box-shadow: 0 0 0 2px rgba(21, 159, 188, 0.12);
+}
+
+.o_preview_search_clear {
+    position: absolute;
+    right: 10px;
+    border: 0;
+    background: transparent;
+    color: #7a8797;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.o_preview_search_clear:hover,
+.o_preview_search_clear:focus {
+    color: #22314a;
+    background: #eef3f8;
+    outline: none;
+}
+
+.o_acc_reports_enterprise_simulation_filters {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    gap: 5px;
+    direction: ltr;
+    grid-column: 2;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+}
+
+.o_acc_reports_enterprise_simulation_actions {
+    grid-column: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    min-width: 0;
+    direction: ltr;
+}
+
+.o_acc_reports_enterprise_simulation_title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-inline-end: 6px;
+    direction: rtl;
+}
+
+.o_acc_reports_enterprise_simulation_title_stack {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    line-height: 1.15;
+    margin-inline-end: 6px;
+    direction: rtl;
+}
+
+.o_acc_reports_enterprise_simulation_title_stack .o_acc_reports_enterprise_simulation_title {
+    margin-inline-end: 0;
+}
+
+.o_acc_reports_enterprise_simulation_return_link {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: #007f7a;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.1;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.o_acc_reports_enterprise_simulation_return_link:hover,
+.o_acc_reports_enterprise_simulation_return_link:focus {
+    color: #005f5b;
+    text-decoration: underline;
+    outline: none;
+}
+
+.o_acc_reports_enterprise_simulation_export {
+    min-width: 46px;
+    height: 32px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.o_acc_reports_enterprise_simulation_pdf {
+    background: #70436d;
+    border-color: #70436d;
+}
+
+.o_acc_reports_enterprise_simulation_notice {
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    background: #cfeff5;
+    color: #005569;
+    border-bottom: 1px solid #c0e5ed;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    direction: rtl;
+}
+
+.o_preview_chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    border: 1px solid #d8dde6;
+    background: #e9edf4;
+    color: #0b1f45;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.15;
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: none;
+    direction: ltr;
+    white-space: nowrap;
+}
+
+.o_preview_chip:hover {
+    background: #e3e9f0;
+    border-color: #c7d1dd;
+}
+
+.o_preview_chip_dropdown.show .o_preview_chip,
+.o_preview_chip:focus,
+.o_preview_chip_active:focus {
+    border-color: #1aa0bd;
+    box-shadow: 0 0 0 2px rgba(26, 160, 189, 0.12);
+}
+
+.o_preview_chip .fa {
+    font-size: 0.86rem;
+    color: #0f2350;
+}
+
+.o_preview_chip.dropdown-toggle::after {
+    display: none;
+}
+
+.o_preview_comparison_menu {
+    min-width: 190px;
+    padding: 6px 0;
+    border: 1px solid #d6dde7;
+    border-radius: 4px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    direction: rtl;
+    text-align: right;
+}
+
+.o_preview_journals_menu {
+    min-width: 220px;
+    max-width: 260px;
+}
+
+.o_preview_companies_menu {
+    min-width: 240px;
+    max-width: 320px;
+}
+
+.o_preview_date_menu {
+    min-width: 360px;
+}
+
+.o_preview_journals_list {
+    max-height: 320px;
+    overflow: auto;
+}
+
+.o_preview_dropdown_item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    direction: rtl;
+    text-align: right;
+}
+
+.o_preview_dropdown_item.selected {
+    background: #f6fafb;
+}
+
+.o_preview_date_menu_item {
+    gap: 10px;
+    position: relative;
+    padding-left: 30px;
+    justify-content: flex-start;
+}
+
+.o_preview_date_menu_item.selected::before {
+    content: "\f00c";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #198754;
+    font-family: FontAwesome;
+    font-size: 0.85rem;
+}
+
+.o_preview_date_menu_main {
+    flex: 1 1 auto;
+    min-width: 86px;
+}
+
+.o_preview_date_menu_period {
+    margin-right: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #111827;
+    min-width: 128px;
+    justify-content: flex-end;
+}
+
+.o_preview_date_menu_meta {
+    color: #526176;
+    white-space: nowrap;
+}
+
+.o_preview_date_menu_nav {
+    border: 0;
+    background: transparent;
+    color: #9aa7b7;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.o_preview_date_menu_nav:hover {
+    background: #e9eef5;
+    color: #22314a;
+}
+
+.o_preview_date_menu_nav:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.o_preview_dropdown_check {
+    width: 14px;
+    display: inline-flex;
+    justify-content: center;
+    flex: 0 0 14px;
+}
+
+.o_preview_dropdown_footer {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    color: #526176;
+}
+
+.o_preview_dropdown_footer_actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+}
+
+.o_preview_footer_link {
+    padding: 0;
+    color: #526176;
+    text-decoration: none;
+}
+
+.o_preview_footer_link:hover {
+    color: #22314a;
+    text-decoration: none;
+}
+
+.o_preview_footer_apply {
+    min-width: 66px;
+}
+
+.o_preview_order_switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.o_preview_order_btn {
+    border: 1px solid #d6dde7;
+    background: #fff;
+    color: #526176;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.82rem;
+    line-height: 1.2;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.o_preview_order_btn:hover {
+    background: #f6f8fb;
+    color: #22314a;
+}
+
+.o_preview_order_btn.selected {
+    background: #eef4fb;
+    border-color: #9fbfe1;
+    color: #22314a;
+}
+
+.o_acc_reports_enterprise_simulation iframe {
+    background: #f5f7fb;
+}
+
+@media (max-width: 991.98px) {
+    .o_acc_reports_enterprise_simulation_toolbar_grid {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        padding: 8px 0;
+    }
+
+    .o_acc_reports_enterprise_simulation_filters {
+        flex: 1 1 100%;
+        justify-content: center;
+        order: 2;
+    }
+
+    .o_acc_reports_enterprise_simulation_actions {
+        order: 1;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .o_preview_search_box {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+}

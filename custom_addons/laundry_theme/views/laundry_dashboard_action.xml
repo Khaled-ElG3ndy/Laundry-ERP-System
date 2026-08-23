@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_laundry_dashboard" model="ir.actions.client">
+        <field name="name">Laundry Dashboard / لوحة تحكم المغسلة</field>
+        <field name="tag">laundry_theme.dashboard</field>
+    </record>
+
+    <menuitem id="menu_laundry_dashboard"
+              name="🏠 الرئيسية / Dashboard"
+              parent="laundry_base.menu_laundry_root"
+              action="laundry_theme.action_laundry_dashboard"
+              sequence="1"
+              groups="laundry_base.group_laundry_cashier"/>
+
+</odoo>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_hotel" model="ir.ui.view">
+        <field name="name">res.partner.form.hotel.contract</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_open_hotel_contract_prices" type="object"
+                        class="oe_stat_button" icon="fa-money"
+                        invisible="not is_hotel_customer or not hotel_pricelist_id"
+                        groups="hosny_hotel_pos.group_hotel_contract_manager">
+                    <field name="hotel_price_rule_count" widget="statinfo"
+                           string="أسعار عقد الفندق"/>
+                </button>
+            </div>
+            <field name="vat" position="after">
+                <field name="is_hotel_customer"/>
+                <field name="hotel_excel_name" readonly="1"
+                       invisible="not hotel_excel_name"/>
+            </field>
+            <xpath expr="//page[@name='sales_purchases']" position="inside">
+                <group string="Hotel Contract / عقد الفندق"
+                       invisible="not is_hotel_customer">
+                    <field name="hotel_pricelist_id" readonly="1"/>
+                    <field name="hotel_price_rule_count" readonly="1"
+                           string="Agreed prices"/>
+                    <field name="hotel_pricelist_is_shared" invisible="1"/>
+                    <field name="hotel_pricelist_sharer_count" invisible="1"/>
+                    <div colspan="2" class="alert alert-warning" role="alert"
+                         invisible="not hotel_pricelist_is_shared">
+                        <i class="fa fa-users me-1" title="Shared" role="img" aria-label="Shared"/>
+                        This pricelist is shared with
+                        <field name="hotel_pricelist_sharer_count" nolabel="1"
+                               class="oe_inline" readonly="1"/>
+                        other customer(s). Editing a price here changes it for
+                        all of them. To negotiate a price for this customer
+                        alone, create a customer-specific pricelist first.
+                    </div>
+                    <div colspan="2">
+                        <button name="action_open_hotel_contract_prices"
+                                type="object" class="btn btn-primary"
+                                string="أسعار عقد الفندق / Hotel Contract Prices"
+                                invisible="not hotel_pricelist_id"
+                                groups="hosny_hotel_pos.group_hotel_contract_manager"/>
+                        <button name="action_open_hotel_pricelist"
+                                type="object" class="btn btn-secondary ms-1"
+                                string="Open Pricelist"
+                                invisible="not hotel_pricelist_id"
+                                groups="hosny_hotel_pos.group_hotel_contract_manager"/>
+                        <button name="action_create_customer_specific_pricelist"
+                                type="object" class="btn btn-secondary ms-1"
+                                string="إنشاء قائمة أسعار خاصة بالعميل / Create Customer-Specific Pricelist"
+                                confirm="This copies the shared pricelist, moves only this customer onto the copy, and leaves everyone else where they are. Continue?"
+                                invisible="not hotel_pricelist_is_shared"
+                                groups="hosny_hotel_pos.group_hotel_contract_manager"/>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_filter_hotel" model="ir.ui.view">
+        <field name="name">res.partner.search.hotel.contract</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <filter name="type_company" position="after">
+                <separator/>
+                <filter string="Hotel / Company Customers" name="hotel_customers"
+                        domain="[('is_hotel_customer', '=', True)]"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="action_hotel_customers" model="ir.actions.act_window">
+        <field name="name">Hotel &amp; Company Customers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('is_hotel_customer', '=', True)]</field>
+        <field name="context">{'default_is_hotel_customer': True, 'default_company_type': 'company'}</field>
+    </record>
+</odoo>

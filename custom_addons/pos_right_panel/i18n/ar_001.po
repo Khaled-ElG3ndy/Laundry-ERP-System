@@ -1,0 +1,26 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-09 00:00+0000\n"
+"PO-Revision-Date: 2026-08-09 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3 && n%100<=10?3:n%100>=11 && n%100<=99?4:5);\n"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Clear search"
+msgstr "مسح البحث"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Search products..."
+msgstr "ابحث عن المنتجات"

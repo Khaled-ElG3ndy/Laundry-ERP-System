@@ -1,0 +1,673 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-27 00:00+0000\n"
+"PO-Revision-Date: 2026-07-27 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3 && n%100<=10?3:n%100>=11 && n%100<=99?4:5);\n"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "A customer with the same phone number was found."
+msgstr "تم العثور على عميل بنفس رقم الهاتف."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "A new order was opened and the previous order was kept."
+msgstr "تم فتح طلب جديد وترك الطلب السابق محفوظًا."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Action"
+msgstr "الإجراء"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Add"
+msgstr "إضافة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Add Customer"
+msgstr "إضافة عميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Add a note"
+msgstr "أضف ملاحظة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "All"
+msgstr "الكل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Back"
+msgstr "رجوع"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Cash Drawer"
+msgstr "درج النقدية"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Cash In"
+msgstr "إيداع نقدي"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Cash Out"
+msgstr "سحب نقدي"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Categories"
+msgstr "الفئات"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Clear Current Order"
+msgstr "مسح الطلب الحالي"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Clear Customer"
+msgstr "إزالة العميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Clear Order"
+msgstr "مسح الطلب"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Clear search"
+msgstr "مسح البحث"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Close Form"
+msgstr "إغلاق النموذج"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Company"
+msgstr "شركة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Company Name"
+msgstr "اسم الشركة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Confirm Clear"
+msgstr "تأكيد المسح"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Continue"
+msgstr "متابعة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Create Customer"
+msgstr "إنشاء عميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Creating..."
+msgstr "جارٍ الإنشاء..."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Current Items"
+msgstr "العناصر الحالية"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Customer"
+msgstr "العميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Customer Cannot Be Changed"
+msgstr "لا يمكن تغيير العميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Customer Name"
+msgstr "اسم العميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Customer Search"
+msgstr "بحث عن عميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Customer created successfully."
+msgstr "تم إنشاء العميل بنجاح."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Customer name is required."
+msgstr "اسم العميل مطلوب."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Daily Report action is not connected yet."
+msgstr "إجراء التقرير اليومي غير مربوط بعد."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Delete Item"
+msgstr "حذف العنصر"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Edit Service"
+msgstr "تعديل الخدمة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Enter Phone Number"
+msgstr "أدخل رقم الهاتف"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Enter a 10-digit phone number"
+msgstr "أدخل رقم الهاتف من 10 أرقام"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Enter the phone number in 10 boxes."
+msgstr "أدخل رقم الهاتف في 10 خانات."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Existing Customer"
+msgstr "العميل الموجود"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Existing Phone Number"
+msgstr "رقم الهاتف الموجود"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Failed to create the customer."
+msgstr "فشل إنشاء العميل."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Individual"
+msgstr "فرد"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Item Count"
+msgstr "عدد العناصر"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "New Order"
+msgstr "طلب جديد"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "No customers found."
+msgstr "لم يتم العثور على عملاء."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Open New Order"
+msgstr "فتح الطلب الجديد"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Open Order"
+msgstr "فتح الطلب"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Open a New Order"
+msgstr "فتح طلب جديد"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Open an order from Orders to refund it."
+msgstr "افتح طلبًا من شاشة الطلبات لاسترداده."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Order Actions"
+msgstr "إجراءات الطلب"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Orders screen is not available."
+msgstr "شاشة الطلبات غير متاحة."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Payment screen is not available."
+msgstr "شاشة الدفع غير متاحة."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Phone"
+msgstr "الهاتف"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Phone Number Already in Use"
+msgstr "رقم الهاتف مستخدم مسبقًا"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Phone number %(phone)s is already in use."
+msgstr "رقم الهاتف %(phone)s مستخدم مسبقًا."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Phone number %(phone)s is already used by customer %(customer)s."
+msgstr "رقم الهاتف %(phone)s مستخدم مسبقًا لدى العميل %(customer)s."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Phone number is required."
+msgstr "رقم الهاتف مطلوب."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Quick Create"
+msgstr "إنشاء سريع"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Reason"
+msgstr "السبب"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Record cash in or out"
+msgstr "سجّل حركة إيداع أو سحب نقدي"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Refund flow is not available."
+msgstr "عملية الاسترداد غير متاحة."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Remove Customer"
+msgstr "إزالة العميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Reprint action is not connected yet."
+msgstr "إجراء إعادة الطباعة غير مربوط بعد."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Search by name or phone"
+msgstr "ابحث بالاسم أو الهاتف"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Search products..."
+msgstr "ابحث عن المنتجات"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Search customers by name, phone, or email"
+msgstr "ابحث عن العملاء بالاسم أو الهاتف أو البريد الإلكتروني"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Search for and select the customer for this order."
+msgstr "ابحث وحدد العميل لهذا الطلب."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Select Customer"
+msgstr "اختيار العميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Select This Customer"
+msgstr "تحديد هذا العميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Select a customer first."
+msgstr "اختر عميلًا أولًا."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Selected"
+msgstr "محدد"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Set Customer"
+msgstr "تحديد العميل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Start a New Order"
+msgstr "بدء طلب جديد"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "The current items will be cleared and a new order will be opened."
+msgstr "سيتم مسح العناصر الحالية وفتح طلب جديد."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "The current order was cleared and a new order was opened."
+msgstr "تم مسح الطلب الحالي وفتح طلب جديد."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid ""
+"The current order will remain saved and a clean order will be opened for the"
+" next customer."
+msgstr ""
+"سيبقى الطلب الحالي محفوظًا كما هو، وسيتم فتح طلب جديد نظيف للعميل التالي."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "The existing customer with the same phone number was selected."
+msgstr "تم تحديد العميل الموجود بنفس رقم الهاتف."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid ""
+"The items in this order will be deleted and a new empty order will be "
+"opened."
+msgstr "سيتم حذف عناصر هذا الطلب الحالي وفتح طلب جديد فارغ مباشرة."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "The phone number must contain 10 digits."
+msgstr "رقم الهاتف يجب أن يكون 10 أرقام."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "The phone number must contain 8 or 11 digits"
+msgstr "يجب أن يكون رقم الهاتف 8 أو 11 رقم"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "The phone number must contain 8 or 11 digits."
+msgstr "رقم الهاتف يجب أن يكون 8 أو 11 رقم."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "The service edit window cannot be opened for this item."
+msgstr "لا يمكن فتح نافذة تعديل الخدمة لهذا العنصر."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "There are no customers."
+msgstr "لا يوجد عملاء."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "There are no items to remove."
+msgstr "لا توجد عناصر لإزالتها."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "There is no active order."
+msgstr "لا يوجد طلب نشط."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid ""
+"This number is already registered to a customer. Select that customer "
+"instead of creating a new one."
+msgstr ""
+"هذا الرقم مسجل بالفعل لعميل موجود. يمكنك تحديده مباشرة بدلًا من إنشاء عميل "
+"جديد."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid ""
+"This order already contains refunded items for customer %s, so its customer "
+"cannot be changed. Create a new order for the new customer."
+msgstr ""
+"هذا الطلب يحتوي بالفعل على عناصر مرتجعة للعميل %s، لذلك لا يمكن تغيير العميل"
+" المرتبط به. قم بإنشاء طلب جديد للعميل الجديد."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Type"
+msgstr "النوع"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Qty"
+msgstr "الكمية"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "% Disc"
+msgstr "الخصم %"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Price"
+msgstr "السعر"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Pay"
+msgstr "دفع"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Review"
+msgstr "مراجعة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Items"
+msgstr "عناصر"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Total:"
+msgstr "الإجمالي:"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Taxes:"
+msgstr "الضرائب:"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Do you want to change the current customer? Click Select to change it."
+msgstr "هل تريد تغيير العميل الحالي؟ اضغط تحديد لتغييره."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Please select a customer from the next screen."
+msgstr "يرجى اختيار العميل من الشاشة التالية."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "Select"
+msgstr "تحديد"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid "You need to select the customer before taking payment."
+msgstr "يجب اختيار العميل قبل الانتقال إلى الدفع."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/core_translation_terms.js:0
+msgid ""
+"You need to select the customer before you can validate payment for this "
+"order."
+msgstr "يجب اختيار العميل قبل تأكيد دفع هذا الطلب."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+#, python-format
+msgid "Hotel or company account. Needs a contract pricelist before selling."
+msgstr "حساب فندق أو شركة. يحتاج قائمة أسعار عقد قبل البيع."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+#, python-format
+msgid "Individual customer for the retail counter."
+msgstr "عميل أفراد لنقطة بيع التجزئة."

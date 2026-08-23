@@ -1,0 +1,694 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hosny_hotel_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-06 15:41+0000\n"
+"PO-Revision-Date: 2026-08-06 15:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/wizard/hotel_price_import.py:0
+#, python-format
+msgid ""
+"\n"
+"  ... and %d more"
+msgstr ""
+"\n"
+"  ... و%d أخرى"
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/pos_order.py:0
+#, python-format
+msgid ""
+"\"%(name)s\" has no agreed contract pricelist, so this order cannot be "
+"priced correctly. Assign that customer a hotel contract pricelist first."
+msgstr ""
+"العميل \"%(name)s\" ليس لديه قائمة أسعار متعاقد عليها، لذا لا يمكن تسعير هذا"
+" الطلب بشكل صحيح. عيّن له قائمة أسعار عقد فندقي أولاً."
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/pos_order.py:0
+#, python-format
+msgid ""
+"\"%(name)s\" is not a hotel or company customer. Only contract customers can"
+" be served from this point of sale."
+msgstr ""
+"العميل \"%(name)s\" ليس من عملاء الفنادق أو الشركات. لا يمكن الخدمة من هذه "
+"النقطة إلا لعملاء العقود."
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/res_partner.py:0
+#, python-format
+msgid ""
+"\"%(pricelist)s\" is already used by %(partner)s alone, so editing it "
+"affects nobody else. Copying it would only add a pricelist to maintain."
+msgstr ""
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/wizard/hotel_price_import.py:0
+#, python-format
+msgid "%(code)s %(name)s / %(tier)s: %(old).2f -> %(new).2f"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/wizard/hotel_price_import.py:0
+#, python-format
+msgid ""
+"%(code)s %(name)s / %(tier)s: kept the edited price %(current).2f (sheet "
+"says %(sheet).2f)"
+msgstr ""
+"%(code)s %(name)s / %(tier)s: تم الإبقاء على السعر المعدّل %(current).2f "
+"(الكشف يقول %(sheet).2f)"
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/product_pricelist.py:0
+#, python-format
+msgid "%(customer)s - Contract Prices"
+msgstr "%(customer)s - أسعار العقد"
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/res_partner.py:0
+#, python-format
+msgid "%(partner)s has no hotel contract pricelist to copy."
+msgstr "لا توجد قائمة أسعار عقد فندقي لنسخها للعميل %(partner)s."
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/res_partner.py:0
+#, python-format
+msgid "%(partner)s has no hotel contract pricelist yet."
+msgstr "لا توجد قائمة أسعار عقد فندقي للعميل %(partner)s بعد."
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/res_partner.py:0
+#, python-format
+msgid ""
+"%(partner)s has no hotel contract pricelist yet. Assign one in the Sales tab"
+" before reviewing agreed prices."
+msgstr ""
+"لا توجد قائمة أسعار عقد فندقي للعميل %(partner)s بعد. عيّن واحدة في تبويب "
+"المبيعات قبل مراجعة الأسعار المتفق عليها."
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/product_pricelist.py:0
+#, python-format
+msgid ""
+"%(partner)s is not on \"%(pricelist)s\", so a copy of it would not change "
+"what they are charged."
+msgstr ""
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/wizard/hotel_price_import.py:0
+#, python-format
+msgid ""
+"%(what)s\n"
+"\n"
+"Prices  created %(created)d | updated %(updated)d | skipped %(skipped)d | unchanged %(unchanged)d | ambiguous %(ambiguous)d | failed %(failed)d\n"
+"Customers  created %(c_created)d | linked %(c_linked)d | renamed %(c_renamed)d | unchanged %(c_unchanged)d | ambiguous %(c_ambiguous)d | failed %(c_failed)d"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_hotel_price_import__mode
+msgid ""
+"'Add missing, update untouched' leaves alone any price that has been edited in the backend since it was last imported.\n"
+"'Only add missing' never changes an existing price.\n"
+"'Overwrite everything' discards manual edits and restores the sheet's prices."
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.product_pricelist_view_hotel
+msgid ""
+"<i class=\"fa fa-exclamation-triangle me-1\" title=\"Warning\" role=\"img\" aria-label=\"Warning\"/>\n"
+"                    <b>Shared pricelist.</b>"
+msgstr ""
+"<i class=\"fa fa-exclamation-triangle me-1\" title=\"تحذير\" role=\"img\" aria-label=\"تحذير\"/>\n"
+"                    <b>قائمة أسعار مشتركة.</b>"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid ""
+"<i class=\"fa fa-users me-1\" title=\"Shared\" role=\"img\" aria-label=\"Shared\"/>\n"
+"                        This pricelist is shared with"
+msgstr ""
+"<i class=\"fa fa-users me-1\" title=\"مشتركة\" role=\"img\" aria-label=\"مشتركة\"/>\n"
+"                        قائمة الأسعار هذه مشتركة مع"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields.selection,name:hosny_hotel_pos.selection__hotel_price_import__mode__skip_manual
+msgid "Add missing prices, update untouched ones (recommended)"
+msgstr "إضافة الأسعار الناقصة وتحديث غير المعدّلة يدويًا (موصى به)"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid "Agreed prices"
+msgstr "الأسعار المتفق عليها"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__rename_customers
+msgid "Apply price-sheet customer names"
+msgstr "تطبيق أسماء العملاء من كشف الأسعار"
+
+#. module: hosny_hotel_pos
+#. odoo-javascript
+#: code:addons/hosny_hotel_pos/static/src/js/hotel_pos.js:0
+#, python-format
+msgid ""
+"Choose the hotel or company customer before adding products, so their agreed"
+" contract prices are applied."
+msgstr ""
+"اختر عميل الفنادق أو الشركات قبل إضافة المنتجات، حتى يتم تطبيق أسعار العقد "
+"الخاصة به."
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.hotel_price_import_view_form
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: hosny_hotel_pos
+#: model:ir.model,name:hosny_hotel_pos.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_partner__hotel_pricelist_id
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_users__hotel_pricelist_id
+msgid "Contract Pricelist"
+msgstr "قائمة أسعار العقد"
+
+#. module: hosny_hotel_pos
+#: model:ir.ui.menu,name:hosny_hotel_pos.menu_hotel_pricelists
+msgid "Contract Pricelists"
+msgstr "قوائم أسعار العقود"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.hotel_price_import_view_form
+msgid ""
+"Contract prices live in the database as ordinary\n"
+"                        pricelist rules. This import is the only thing that\n"
+"                        writes over them — upgrading the module never does."
+msgstr ""
+"أسعار العقود محفوظة في قاعدة البيانات كقواعد أسعار عادية.\n"
+"                        هذا الاستيراد هو الشيء الوحيد الذي يكتب فوقها،\n"
+"                        وترقية الوحدة لا تفعل ذلك أبدًا."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_product_pricelist__hotel_customer_ids
+msgid "Customers on this Pricelist"
+msgstr "العملاء على قائمة الأسعار هذه"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields.selection,name:hosny_hotel_pos.selection__hotel_price_import__state__done
+msgid "Done"
+msgstr "تم"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_product_pricelist_item__hotel_price_edited
+msgid "Edited Since Import"
+msgstr "عُدّل بعد الاستيراد"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.product_pricelist_item_view_tree_hotel
+msgid "Edited since import"
+msgstr "عُدّل بعد الاستيراد"
+
+#. module: hosny_hotel_pos
+#: model:ir.actions.act_window,name:hosny_hotel_pos.action_hotel_customers
+#: model:ir.ui.menu,name:hosny_hotel_pos.menu_hotel_customers
+msgid "Hotel & Company Customers"
+msgstr "عملاء الفنادق والشركات"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_pos_config__is_hotel_pos
+msgid "Hotel & Company POS"
+msgstr "نقطة بيع الفنادق والشركات"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.pos_config_view_form_hotel
+msgid ""
+"Hotel &amp; company point of sale: shows only the\n"
+"                    <b>فنادق / Hotels</b> category and applies each customer's\n"
+"                    agreed contract pricelist automatically."
+msgstr ""
+"نقطة بيع الفنادق والشركات: تعرض فئة\n"
+"                    <b>فنادق</b> فقط وتطبّق تلقائيًا قائمة أسعار العقد\n"
+"                    الخاصة بكل عميل."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_partner__is_hotel_customer
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_users__is_hotel_customer
+msgid "Hotel / Company Customer"
+msgstr "عميل فنادق أو شركات"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_res_partner_filter_hotel
+msgid "Hotel / Company Customers"
+msgstr "عملاء الفنادق والشركات"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.product_pricelist_view_hotel
+msgid "Hotel / Company Customers on this Pricelist"
+msgstr "عملاء الفنادق والشركات على قائمة الأسعار هذه"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid "Hotel Contract / عقد الفندق"
+msgstr "عقد الفندق"
+
+#. module: hosny_hotel_pos
+#: model:res.groups,name:hosny_hotel_pos.group_hotel_contract_manager
+msgid "Hotel Contract Manager"
+msgstr "مدير عقود الفنادق"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_product_pricelist__is_hotel_contract
+msgid "Hotel Contract Pricelist"
+msgstr "قائمة أسعار عقد فندقي"
+
+#. module: hosny_hotel_pos
+#: model:ir.actions.act_window,name:hosny_hotel_pos.action_hotel_contract_pricelists
+msgid "Hotel Contract Pricelists"
+msgstr "قوائم أسعار عقود الفنادق"
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/res_partner.py:0
+#, python-format
+msgid "Hotel Contract Prices - %(partner)s"
+msgstr "أسعار عقد الفندق - %(partner)s"
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/product_pricelist.py:0
+#, python-format
+msgid "Hotel Contract Prices - %s"
+msgstr "أسعار عقد الفندق - %s"
+
+#. module: hosny_hotel_pos
+#: model:ir.module.category,name:hosny_hotel_pos.module_category_hotel_contract
+msgid "Hotel Contract Pricing"
+msgstr "تسعير عقود الفنادق"
+
+#. module: hosny_hotel_pos
+#: model:ir.model,name:hosny_hotel_pos.model_hotel_pricing_setup
+msgid "Hotel Contract Pricing Setup"
+msgstr "إعداد تسعير عقود الفنادق"
+
+#. module: hosny_hotel_pos
+#: model:ir.ui.menu,name:hosny_hotel_pos.menu_hotel_root
+msgid "Hotel Contracts"
+msgstr "عقود الفنادق"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_product_pricelist__hotel_customer_count
+msgid "Hotel Customer Count"
+msgstr "عدد عملاء الفنادق"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_product_pricelist__hotel_is_shared
+msgid "Hotel Is Shared"
+msgstr "مشتركة بين عدة عملاء"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_partner__hotel_price_rule_count
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_users__hotel_price_rule_count
+msgid "Hotel Price Rule Count"
+msgstr "عدد قواعد الأسعار"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_partner__hotel_pricelist_is_shared
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_users__hotel_pricelist_is_shared
+msgid "Hotel Pricelist Is Shared"
+msgstr "قائمة الأسعار مشتركة"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_partner__hotel_pricelist_sharer_count
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_users__hotel_pricelist_sharer_count
+msgid "Hotel Pricelist Sharer Count"
+msgstr "عدد العملاء المشاركين"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__id
+msgid "ID"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.actions.act_window,name:hosny_hotel_pos.action_hotel_price_import
+#: model:ir.model,name:hosny_hotel_pos.model_hotel_price_import
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.hotel_price_import_view_form
+msgid "Import Hotel Contract Prices"
+msgstr "استيراد أسعار عقود الفنادق"
+
+#. module: hosny_hotel_pos
+#: model:ir.ui.menu,name:hosny_hotel_pos.menu_hotel_price_import
+msgid "Import Price Sheet"
+msgstr "استيراد كشف الأسعار"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_res_partner__is_hotel_customer
+#: model:ir.model.fields,help:hosny_hotel_pos.field_res_users__is_hotel_customer
+msgid ""
+"Makes this customer selectable in the Hotel & Company point of sale. The POS"
+" filters on this field, so marking a new customer here is all that is needed"
+" to make them available at the till."
+msgstr ""
+"يجعل هذا العميل قابلاً للاختيار في نقطة بيع الفنادق والشركات. تعتمد نقطة "
+"البيع على هذا الحقل في التصفية، لذا يكفي تفعيله ليظهر العميل في الكاشير."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_pos_config__is_hotel_pos
+msgid ""
+"Marks the dedicated hotel/company point of sale. The import keys on this "
+"flag, so renaming the POS never creates a second one."
+msgstr ""
+"يحدّد نقطة بيع الفنادق والشركات المخصّصة. يعتمد الاستيراد على هذه العلامة، "
+"لذا لا تؤدي إعادة تسمية نقطة البيع إلى إنشاء نقطة ثانية."
+
+#. module: hosny_hotel_pos
+#: model:res.groups,comment:hosny_hotel_pos.group_hotel_contract_manager
+msgid ""
+"May edit hotel contract pricelists, create\n"
+"                customer-specific copies, and run the price-sheet import.\n"
+"                Cashiers do not need this group to sell."
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_partner__hotel_excel_name
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_res_users__hotel_excel_name
+msgid "Name in Price Sheet"
+msgstr "الاسم في كشف الأسعار"
+
+#. module: hosny_hotel_pos
+#. odoo-javascript
+#: code:addons/hosny_hotel_pos/static/src/js/hotel_pos.js:0
+#, python-format
+msgid "No contract prices"
+msgstr "لا توجد أسعار عقد"
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/wizard/hotel_price_import.py:0
+#, python-format
+msgid "Only a Hotel Contract Manager may import contract prices."
+msgstr "لا يمكن استيراد أسعار العقود إلا لمدير عقود الفنادق."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields.selection,name:hosny_hotel_pos.selection__hotel_price_import__mode__create_only
+msgid "Only add prices that are missing"
+msgstr "إضافة الأسعار الناقصة فقط"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid "Open Pricelist"
+msgstr "فتح قائمة الأسعار"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields.selection,name:hosny_hotel_pos.selection__hotel_price_import__mode__update_all
+msgid "Overwrite every price from the sheet"
+msgstr "استبدال كل الأسعار من الكشف"
+
+#. module: hosny_hotel_pos
+#: model:ir.model,name:hosny_hotel_pos.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model,name:hosny_hotel_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model,name:hosny_hotel_pos.model_pos_session
+msgid "Point of Sale Session"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__dry_run
+msgid "Preview only"
+msgstr "معاينة فقط"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_product_pricelist__hotel_tier
+msgid "Price Sheet Block"
+msgstr "قسم كشف الأسعار"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_product_pricelist_item__hotel_imported_price
+msgid "Price as Imported"
+msgstr "السعر عند الاستيراد"
+
+#. module: hosny_hotel_pos
+#: model:ir.model,name:hosny_hotel_pos.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model,name:hosny_hotel_pos.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_hotel_price_import__rename_customers
+msgid ""
+"Rename each matched customer to the name used in the price sheet. The "
+"original sheet name is always kept in the traceability field either way."
+msgstr ""
+"إعادة تسمية كل عميل مطابق بالاسم المستخدم في كشف الأسعار. يُحفظ اسم الكشف "
+"الأصلي في حقل التتبّع في الحالتين."
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.hotel_price_import_view_form
+msgid "Run"
+msgstr "تنفيذ"
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/pos_order.py:0
+#, python-format
+msgid ""
+"Select a hotel or company customer before taking payment. This point of sale"
+" applies agreed contract prices, so an order without a customer cannot be "
+"settled here."
+msgstr ""
+"اختر عميل الفنادق أو الشركات قبل الدفع. تطبّق هذه النقطة أسعار العقود المتفق"
+" عليها، لذا لا يمكن إتمام طلب بدون عميل."
+
+#. module: hosny_hotel_pos
+#. odoo-javascript
+#: code:addons/hosny_hotel_pos/static/src/js/hotel_pos.js:0
+#, python-format
+msgid "Select the customer first"
+msgstr "اختر العميل أولاً"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_product_pricelist_item__hotel_import_tracked
+msgid "Set by the Price Sheet"
+msgstr "مضبوط من كشف الأسعار"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_product_pricelist_item__hotel_price_edited
+msgid "Set once someone changes the price away from the imported value."
+msgstr "يُضبط عند تغيير السعر عن القيمة المستوردة."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields.selection,name:hosny_hotel_pos.selection__hotel_price_import__state__setup
+msgid "Setup"
+msgstr "الإعداد"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.product_pricelist_item_view_tree_hotel
+msgid "Sheet price"
+msgstr "سعر الكشف"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__state
+msgid "State"
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__summary
+msgid "Summary"
+msgstr "الملخص"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_res_partner__hotel_pricelist_id
+#: model:ir.model.fields,help:hosny_hotel_pos.field_res_users__hotel_pricelist_id
+msgid ""
+"The contract pricelist this customer is on, when it is one of the hotel "
+"ones."
+msgstr "قائمة أسعار العقد المرتبطة بهذا العميل، إذا كانت إحدى قوائم الفنادق."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_res_partner__hotel_excel_name
+#: model:ir.model.fields,help:hosny_hotel_pos.field_res_users__hotel_excel_name
+msgid ""
+"The customer's name exactly as spelled in the agreed price sheet, kept so a "
+"partner can always be traced back to its source row even after the display "
+"name is tidied up."
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid ""
+"This copies the shared pricelist, moves only this customer onto the copy, "
+"and leaves everyone else where they are. Continue?"
+msgstr ""
+"سيتم نسخ قائمة الأسعار المشتركة ونقل هذا العميل وحده إلى النسخة، مع بقاء "
+"بقية العملاء كما هم. هل تريد المتابعة؟"
+
+#. module: hosny_hotel_pos
+#. odoo-javascript
+#: code:addons/hosny_hotel_pos/static/src/js/hotel_pos.js:0
+#, python-format
+msgid ""
+"This customer has no agreed contract pricelist, so they cannot be served "
+"from this point of sale. Ask a manager to assign their contract prices "
+"first."
+msgstr ""
+"هذا العميل ليس لديه قائمة أسعار متعاقد عليها، ولا يمكن البيع له من هذه "
+"النقطة. اطلب من المدير تعيين أسعار العقد الخاصة به أولاً."
+
+#. module: hosny_hotel_pos
+#. odoo-python
+#: code:addons/hosny_hotel_pos/models/pos_order.py:0
+#, python-format
+msgid ""
+"This order was priced with a different pricelist than \"%(name)s\" is "
+"contracted on. Re-select the customer so the lines are recalculated, then "
+"take payment again."
+msgstr ""
+"تم تسعير هذا الطلب بقائمة أسعار مختلفة عن عقد العميل \"%(name)s\". أعد "
+"اختيار العميل ليُعاد حساب البنود، ثم أتمم الدفع مرة أخرى."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_product_pricelist_item__hotel_import_tracked
+msgid ""
+"This rule came from the agreed price sheet, so the importer watches it. "
+"Rules created by hand are never touched by an import."
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_product_pricelist__is_hotel_contract
+msgid ""
+"Usable as a hotel/company contract pricelist. Covers the four shared tiers "
+"and every customer-specific copy made from them."
+msgstr ""
+"قابلة للاستخدام كقائمة أسعار عقد للفنادق والشركات. تشمل الفئات الأربع "
+"المشتركة وكل نسخة خاصة بعميل مأخوذة منها."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,field_description:hosny_hotel_pos.field_hotel_price_import__mode
+msgid "What should the import do?"
+msgstr "ماذا تريد أن يفعل الاستيراد؟"
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_product_pricelist_item__hotel_imported_price
+msgid ""
+"What the price sheet last set this rule to. Comparing it with the current "
+"price is how the importer knows a price was edited by hand, so it can leave "
+"it alone. A separate flag records that an import happened at all, because a "
+"genuine imported price of 0.00 must not read as 'never imported'."
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_product_pricelist__hotel_tier
+msgid ""
+"Which block of the agreed price sheet this pricelist was built from. Only "
+"the four shared tiers carry one; the Excel import matches on it, so a "
+"customer-specific copy (which has none) is never overwritten by a re-import."
+msgstr ""
+
+#. module: hosny_hotel_pos
+#: model:ir.module.category,description:hosny_hotel_pos.module_category_hotel_contract
+msgid "Who may manage agreed hotel and company contract prices."
+msgstr "من له صلاحية إدارة أسعار عقود الفنادق والشركات المتفق عليها."
+
+#. module: hosny_hotel_pos
+#: model:ir.model.fields,help:hosny_hotel_pos.field_hotel_price_import__dry_run
+msgid ""
+"Work out exactly what would change and report it, without writing anything."
+msgstr "يحسب بالضبط ما سيتغيّر ويعرضه دون كتابة أي شيء."
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.product_pricelist_view_hotel
+msgid ""
+"customers are on this pricelist — changing a price here\n"
+"                    changes it for every one of them. To change a price for a\n"
+"                    single customer, open that customer and use\n"
+"                    <b>Create Customer-Specific Pricelist</b>."
+msgstr ""
+"عميل على قائمة الأسعار هذه — تغيير أي سعر هنا\n"
+"                    يغيّره لهم جميعًا. لتغيير سعر لعميل واحد فقط،\n"
+"                    افتح بطاقة العميل واستخدم\n"
+"                    <b>إنشاء قائمة أسعار خاصة بالعميل</b>."
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid ""
+"other customer(s). Editing a price here changes it for\n"
+"                        all of them. To negotiate a price for this customer\n"
+"                        alone, create a customer-specific pricelist first."
+msgstr ""
+"عميل آخر. تعديل أي سعر هنا يغيّره لهم جميعًا.\n"
+"                        للاتفاق على سعر لهذا العميل وحده،\n"
+"                        أنشئ قائمة أسعار خاصة به أولًا."
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid "أسعار عقد الفندق"
+msgstr "أسعار عقد الفندق"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid "أسعار عقد الفندق / Hotel Contract Prices"
+msgstr "أسعار عقد الفندق"
+
+#. module: hosny_hotel_pos
+#: model_terms:ir.ui.view,arch_db:hosny_hotel_pos.view_partner_form_hotel
+msgid "إنشاء قائمة أسعار خاصة بالعميل / Create Customer-Specific Pricelist"
+msgstr "إنشاء قائمة أسعار خاصة بالعميل"

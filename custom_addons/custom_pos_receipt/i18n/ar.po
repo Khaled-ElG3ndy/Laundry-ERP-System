@@ -1,0 +1,230 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-27 00:00+0000\n"
+"PO-Revision-Date: 2026-07-27 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3 && n%100<=10?3:n%100>=11 && n%100<=99?4:5);\n"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Added Services"
+msgstr "الخدمات المضافة"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Address"
+msgstr "العنوان"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Always Happy to Serve You"
+msgstr "نسعد بخدمتكم دائماً"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Amount Summary"
+msgstr "ملخص المبالغ"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Change"
+msgstr "الباقي"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Commercial Registration"
+msgstr "السجل التجاري"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Company"
+msgstr "شركة"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Company Name"
+msgstr "اسم الشركة"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Customer"
+msgstr "العميل"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Customer Details"
+msgstr "تفاصيل العميل"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Customer Name"
+msgstr "اسم العميل"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Date and Time"
+msgstr "التاريخ والوقت"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Establishment Details"
+msgstr "بيانات المنشأة"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Final Total"
+msgstr "الإجمالي النهائي"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Invoice Number"
+msgstr "رقم الفاتورة"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Item Details"
+msgstr "تفاصيل الأصناف"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Logo"
+msgstr "شعار"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Pay"
+msgstr "دفع"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Payment"
+msgstr "الدفع"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Payment Method:"
+msgstr "طريقة الدفع:"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Payment Receipt"
+msgstr "إيصال الدفع"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Phone"
+msgstr "الهاتف"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Price"
+msgstr "السعر"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "QR"
+msgstr "QR"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Refund Receipt"
+msgstr "إيصال استرداد"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Simplified Tax Invoice"
+msgstr "فاتورة ضريبية مبسطة"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Simplified Tax Refund Receipt"
+msgstr "إيصال استرداد ضريبي مبسط"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Subtotal Before Tax"
+msgstr "الإجمالي قبل الضريبة"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Tax"
+msgstr "الضريبة"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Thank you for choosing Foam Plus"
+msgstr "شكراً لاختيارك رغوة بلس"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "Unable to open the print window. Please allow pop-ups."
+msgstr "تعذر فتح نافذة الطباعة. يرجى السماح بالنوافذ المنبثقة."
+
+#. module: custom_pos_receipt
+#. odoo-javascript
+#: code:addons/custom_pos_receipt/static/src/js/order_receipt.js:0
+msgid "VAT Number"
+msgstr "الرقم الضريبي"

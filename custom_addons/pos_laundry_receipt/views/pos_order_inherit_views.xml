@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_pos_order_tree_inherit_laundry_ref" model="ir.ui.view">
+        <field name="name">pos.order.tree.inherit.laundry.ref</field>
+        <field name="model">pos.order</field>
+
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="replace">
+                <field name="x_display_reference" string="Order Reference"/>
+                <field name="x_laundry_invoice_number" string="Paid Invoice Number" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_search_inherit_laundry_invoice" model="ir.ui.view">
+        <field name="name">pos.order.search.inherit.laundry.invoice</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">Order / Paid Invoice</attribute>
+                <attribute name="filter_domain">['|', '|', '|', ('name', 'ilike', self), ('x_display_reference', 'ilike', self), ('pos_reference', 'ilike', self), ('x_laundry_invoice_number', 'ilike', self)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="x_laundry_invoice_number" string="Paid Invoice Number" filter_domain="[('x_laundry_invoice_number', 'ilike', self)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_filter_inherit_laundry_invoice" model="ir.ui.view">
+        <field name="name">pos.order.filter.inherit.laundry.invoice</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">Order / Paid Invoice</attribute>
+                <attribute name="filter_domain">['|', '|', '|', ('name', 'ilike', self), ('x_display_reference', 'ilike', self), ('pos_reference', 'ilike', self), ('x_laundry_invoice_number', 'ilike', self)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='pos_reference']" position="after">
+                <field name="x_laundry_invoice_number" string="Paid Invoice Number" filter_domain="[('x_laundry_invoice_number', 'ilike', self)]"/>
+            </xpath>
+            <xpath expr="//filter[@name='invoiced']" position="after">
+                <filter string="Paid Invoices" name="paid_laundry_invoices" domain="[('x_payment_status', '=', 'paid'), ('x_laundry_invoice_number', '!=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_form_inherit_laundry_receipt_button" model="ir.ui.view">
+        <field name="name">pos.order.form.inherit.laundry.receipt.button</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="x_laundry_intake_id" invisible="1"/>
+                <button name="action_print_laundry_receipt"
+                    string="Intake Receipt"
+                    type="object"
+                    class="oe_highlight"
+                    invisible="not x_laundry_intake_id"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

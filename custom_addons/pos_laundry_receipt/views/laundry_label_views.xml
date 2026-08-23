@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_pos_laundry_label_search" model="ir.ui.view">
+        <field name="name">pos.laundry.label.search</field>
+        <field name="model">pos.laundry.label</field>
+        <field name="arch" type="xml">
+            <search string="Laundry Label Print Queue">
+                <field name="name"/>
+                <field name="order_id"/>
+                <field name="partner_id"/>
+                <filter name="pending" string="Pending"
+                        domain="[('is_pending', '=', True)]"/>
+                <filter name="printed" string="Printed"
+                        domain="[('state', '=', 'printed')]"/>
+                <filter name="reprinted" string="Reprinted"
+                        domain="[('state', '=', 'reprinted')]"/>
+                <filter name="failed" string="Print Failed"
+                        domain="[('state', '=', 'failed')]"/>
+                <separator/>
+                <filter name="today" string="Received Today"
+                        domain="[('received_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_state" string="Print Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_laundry_status" string="Laundry Status" context="{'group_by': 'laundry_status'}"/>
+                    <filter name="group_customer" string="Customer" context="{'group_by': 'partner_id'}"/>
+                    <filter name="group_date" string="Received Date" context="{'group_by': 'received_date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pos_laundry_label_tree" model="ir.ui.view">
+        <field name="name">pos.laundry.label.tree</field>
+        <field name="model">pos.laundry.label</field>
+        <field name="arch" type="xml">
+            <tree string="Laundry Label Print Queue"
+                  create="0"
+                  edit="0"
+                  delete="0"
+                  default_order="is_pending desc, received_date desc"
+                  decoration-warning="state == 'pending'"
+                  decoration-danger="state == 'failed'"
+                  decoration-success="state in ('printed', 'reprinted')">
+                <header>
+                    <button name="action_open_print_wizard"
+                            type="object"
+                            string="Print Selected"
+                            class="btn-primary"/>
+                    <button name="action_open_all_pending_wizard"
+                            type="object"
+                            string="Print All Pending"
+                            class="btn-secondary"
+                            display="always"/>
+                </header>
+                <field name="is_pending" column_invisible="True"/>
+                <field name="name" string="Order Number" decoration-bf="1"/>
+                <field name="partner_id"/>
+                <field name="laundry_status"
+                       widget="label_selection"
+                       options="{'classes': {'received': 'default', 'ready': 'success', 'delivered': 'primary'}}"/>
+                <field name="payment_status"
+                       widget="label_selection"
+                       optional="show"
+                       options="{'classes': {'unpaid': 'default', 'partial': 'warning', 'paid': 'success', 'refunded': 'info', 'cancelled': 'danger'}}"/>
+                <field name="received_date"/>
+                <field name="expected_delivery_date" optional="show"/>
+                <field name="total_items"/>
+                <field name="state"
+                       string="Print Status"
+                       widget="badge"
+                       decoration-warning="state == 'pending'"
+                       decoration-danger="state == 'failed'"
+                       decoration-success="state in ('printed', 'reprinted')"/>
+                <field name="print_count" optional="show"/>
+                <field name="last_printed_on" optional="show"/>
+                <button name="action_preview"
+                        type="object"
+                        string="Preview"
+                        icon="fa-eye"/>
+                <button name="action_print"
+                        type="object"
+                        string="Print"
+                        icon="fa-print"
+                        invisible="state in ('printed', 'reprinted')"/>
+                <button name="action_reprint"
+                        type="object"
+                        string="Reprint"
+                        icon="fa-repeat"
+                        invisible="state not in ('printed', 'reprinted')"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_laundry_label_form" model="ir.ui.view">
+        <field name="name">pos.laundry.label.form</field>
+        <field name="model">pos.laundry.label</field>
+        <field name="arch" type="xml">
+            <form string="Laundry Tracking Label" create="0" edit="0" delete="0">
+                <header>
+                    <button name="action_preview" string="Preview Label" type="object" class="btn-secondary"/>
+                    <button name="action_print" string="Print Label" type="object" class="btn-primary"
+                            invisible="state in ('printed', 'reprinted')"/>
+                    <button name="action_reprint" string="Reprint Label" type="object" class="btn-primary"
+                            invisible="state not in ('printed', 'reprinted')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,printed,reprinted,failed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_print_history"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-history">
+                            <field name="print_count" widget="statinfo" string="Successful Prints"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group string="Order">
+                            <field name="order_id"/>
+                            <field name="partner_id"/>
+                            <field name="laundry_status"
+                                   widget="label_selection"
+                                   options="{'classes': {'received': 'default', 'ready': 'success', 'delivered': 'primary'}}"/>
+                            <field name="payment_status"
+                                   widget="label_selection"
+                                   options="{'classes': {'unpaid': 'default', 'partial': 'warning', 'paid': 'success', 'refunded': 'info', 'cancelled': 'danger'}}"/>
+                            <field name="total_items"/>
+                        </group>
+                        <group string="Queue">
+                            <field name="received_date"/>
+                            <field name="expected_delivery_date"/>
+                            <field name="print_count"/>
+                            <field name="failed_count"/>
+                            <field name="last_printed_on"/>
+                            <field name="last_printed_by_id"/>
+                        </group>
+                    </group>
+                    <group string="Last Print Error" invisible="not last_error">
+                        <field name="last_error" nolabel="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Print &amp; Reprint History">
+                            <field name="history_ids" nolabel="1">
+                                <tree create="0" edit="0" delete="0"
+                                      decoration-danger="result == 'failed'"
+                                      decoration-success="result in ('printed', 'reprinted')">
+                                    <field name="printed_on"/>
+                                    <field name="user_id"/>
+                                    <field name="result" widget="badge"/>
+                                    <field name="copy_number"/>
+                                    <field name="batch_reference" optional="hide"/>
+                                    <field name="error_message" optional="show"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pos_laundry_label_print_history_search" model="ir.ui.view">
+        <field name="name">pos.laundry.label.print.history.search</field>
+        <field name="model">pos.laundry.label.print.history</field>
+        <field name="arch" type="xml">
+            <search string="Laundry Label Print History">
+                <field name="label_id"/>
+                <field name="order_id"/>
+                <field name="user_id"/>
+                <filter name="failed" string="Print Failed" domain="[('result', '=', 'failed')]"/>
+                <filter name="reprints" string="Reprints" domain="[('result', '=', 'reprinted')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_result" string="Result" context="{'group_by': 'result'}"/>
+                    <filter name="group_user" string="User" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_date" string="Date" context="{'group_by': 'printed_on:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pos_laundry_label_print_history_tree" model="ir.ui.view">
+        <field name="name">pos.laundry.label.print.history.tree</field>
+        <field name="model">pos.laundry.label.print.history</field>
+        <field name="arch" type="xml">
+            <tree string="Laundry Label Print History"
+                  create="0"
+                  edit="0"
+                  delete="0"
+                  decoration-danger="result == 'failed'"
+                  decoration-success="result in ('printed', 'reprinted')">
+                <field name="printed_on"/>
+                <field name="label_id"/>
+                <field name="order_id"/>
+                <field name="user_id"/>
+                <field name="result" widget="badge"/>
+                <field name="copy_number"/>
+                <field name="batch_reference" optional="show"/>
+                <field name="error_message" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_laundry_label_print_wizard_form" model="ir.ui.view">
+        <field name="name">pos.laundry.label.print.wizard.form</field>
+        <field name="model">pos.laundry.label.print.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Print Laundry Labels">
+                <group string="Batch Summary" col="6">
+                    <field name="label_count" readonly="1"/>
+                    <field name="pending_count" readonly="1"/>
+                    <field name="reprint_count" readonly="1"/>
+                </group>
+                <field name="label_ids" widget="many2many_tags" readonly="1"/>
+                <footer>
+                    <button name="action_preview" string="Preview" type="object" class="btn-secondary"/>
+                    <button name="action_print" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_laundry_label_print_wizard" model="ir.actions.act_window">
+        <field name="name">Print Laundry Labels</field>
+        <field name="res_model">pos.laundry.label.print.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_pos_laundry_label_print_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_pos_laundry_label_queue" model="ir.actions.act_window">
+        <field name="name">Laundry Label Print Queue</field>
+        <field name="res_model">pos.laundry.label</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_pos_laundry_label_search"/>
+        <field name="context">{'search_default_pending': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No labels match this queue view.</p>
+            <p>Every laundry order receives a durable label automatically.</p>
+        </field>
+    </record>
+
+    <record id="action_pos_laundry_label_print_history" model="ir.actions.act_window">
+        <field name="name">Laundry Label Print History</field>
+        <field name="res_model">pos.laundry.label.print.history</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="view_pos_laundry_label_print_history_search"/>
+    </record>
+
+    <menuitem id="menu_pos_laundry_label_queue"
+              name="Label Print Queue"
+              parent="point_of_sale.menu_point_root"
+              action="action_pos_laundry_label_queue"
+              sequence="97"
+              groups="point_of_sale.group_pos_user"/>
+
+    <menuitem id="menu_pos_laundry_label_print_history"
+              name="Label Print History"
+              parent="point_of_sale.menu_point_root"
+              action="action_pos_laundry_label_print_history"
+              sequence="98"
+              groups="point_of_sale.group_pos_user"/>
+</odoo>

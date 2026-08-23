@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+    <record id="resource_calendar_laundry_default" model="resource.calendar">
+        <field name="name">Laundry SLA Demo Calendar</field>
+    </record>
+    </data>
+    <function model="ir.model.data" name="write">
+        <value model="ir.model.data"
+               search="[('module', '=', 'pos_laundry_receipt'), ('name', '=', 'resource_calendar_laundry_default')]"/>
+        <value eval="{'noupdate': True}"/>
+    </function>
+</odoo>

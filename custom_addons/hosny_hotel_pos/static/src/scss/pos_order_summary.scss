@@ -1,0 +1,55 @@
+// Order summary: label on the right, then the colon, then the amount.
+//
+//     9.00 SR  :الإجمالي
+//     1.19 SR  :الضرائب
+//
+// Everything here is pinned explicitly rather than inherited, because three
+// things fight over this block and the result was drifting:
+//
+//   * point_of_sale.OrderWidget writes the amount *before* its label in the
+//     DOM and leans on `justify-content-end` to push the pair to the edge.
+//   * pos_right_panel forces `html[dir="rtl"] .pos * { direction: rtl; }` --
+//     a universal selector that also overrides the `dir="ltr"` attribute Odoo
+//     puts on the amount, which is what turned "9.00 SR" into "SR 9.00".
+//   * the colon is a neutral character, so which side of the Arabic word it
+//     lands on depends entirely on whichever direction wins above.
+//
+// So the row states its own direction, its own order and its own bidi
+// contexts. The outcome no longer depends on what the page or another module
+// decides about direction.
+//
+// Display only: no markup, no amounts and no other screen is touched. Scoped
+// to the product screen because the receipt and ticket screens reuse the same
+// widget with layouts that were tuned separately.
+.product-screen .order-summary,
+.product-screen .order-summary > div {
+    // Lay the row out right-to-left, and pack it to the right. Bootstrap's
+    // `justify-content-end` is `!important`, so overriding it needs the same.
+    direction: rtl;
+    justify-content: flex-start !important;
+
+    // First along an RTL main axis means rightmost.
+    .order-summary__label {
+        order: 1;
+        // Keeps the trailing colon on the *left* of the word, which is where
+        // Arabic puts it -- so it ends up between the word and the figure.
+        direction: rtl;
+        unicode-bidi: isolate;
+    }
+
+    // Then the amount, immediately to its left.
+    .order-summary__amount {
+        order: 2;
+        // Restores what `dir="ltr"` was supposed to do, so the figure reads
+        // "9.00 SR" and not "SR 9.00". `isolate` stops it from disturbing the
+        // colon next to it.
+        direction: ltr;
+        unicode-bidi: isolate;
+    }
+}
+
+// The taxes row is itself a flex item of the summary and has to stay last;
+// ordering it with the labels would drag it between the total and its amount.
+.product-screen .order-summary > div {
+    order: 3;
+}

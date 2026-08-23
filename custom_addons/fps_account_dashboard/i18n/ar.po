@@ -1,0 +1,748 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* fps_account_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3 && n%100<=10?3:n%100>=11 && n%100<=99?4:5);\n"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid "%s is not a bank or cash journal, so it cannot hold transactions."
+msgstr "%s ليس دفتر يومية بنكي أو نقدي، لذا لا يمكنه تسجيل المعاملات."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "<i class=\"fa fa-exclamation-triangle me-1\" role=\"img\" aria-label=\"Warning\"/>"
+msgstr "<i class=\"fa fa-exclamation-triangle me-1\" role=\"img\" aria-label=\"تحذير\"/>"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+msgid "<span class=\"o_stat_text\">Journal Entry</span>"
+msgstr "<span class=\"o_stat_text\">قيد اليومية</span>"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+msgid ""
+"<span class=\"text-muted ms-2\">\n"
+"                                    Positive for money in, negative for money out\n"
+"                                </span>"
+msgstr ""
+"<span class=\"text-muted ms-2\">\n"
+"                                    موجب للمبالغ الواردة، وسالب للمبالغ الصادرة\n"
+"                                </span>"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "<span>New Transaction</span>"
+msgstr "<span>معاملة جديدة</span>"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "<span>Reconcile</span>"
+msgstr "<span>تسوية</span>"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__account_id
+msgid "Account"
+msgstr "الحساب"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line__fps_counterpart_account_id
+msgid ""
+"Account holding the other side of this transaction. Leave it on the "
+"journal's suspense account to reconcile the transaction later."
+msgstr "الحساب الذي يستقبل الطرف المقابل لهذه المعاملة. اتركه فارغاً لتبقى المعاملة في الحساب المعلّق لدفتر اليومية وتتم تسويتها لاحقاً."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line_reconcile__counterpart_account_id
+msgid ""
+"Account receiving whatever is left after the allocations below. Leave it "
+"empty to keep the remainder open for a later reconciliation."
+msgstr "الحساب الذي يستقبل المبلغ المتبقي بعد التخصيصات أدناه. اتركه فارغاً لإبقاء المتبقي مفتوحاً لتسويته لاحقاً."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__amount_allocated
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__amount_applied
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Allocated"
+msgstr "المبلغ المخصص"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+msgid "Attachments"
+msgstr "المرفقات"
+
+#. module: fps_account_dashboard
+#: model:ir.actions.act_window,name:fps_account_dashboard.action_fps_bank_statement_line
+#: model:ir.ui.menu,name:fps_account_dashboard.menu_fps_bank_statement_line
+msgid "Bank & Cash Transactions"
+msgstr "المعاملات البنكية والنقدية"
+
+#. module: fps_account_dashboard
+#: model:ir.model,name:fps_account_dashboard.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "بند كشف الحساب البنكي"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_bank_statement_line.py:0
+#, python-format
+msgid ""
+"Choose a counterpart account for this transaction.\n"
+"\n"
+"The journal %s has no suspense account, so the transaction cannot be parked for a later reconciliation. Either pick a counterpart account here, or set a suspense account in the journal configuration."
+msgstr ""
+"اختر حساباً مقابلاً لهذه المعاملة.\n"
+"\n"
+"دفتر اليومية %s ليس له حساب معلّق، لذا لا يمكن ترك المعاملة لتسويتها لاحقاً. إما أن تختار حساباً مقابلاً هنا، أو أن تحدد حساباً معلّقاً في إعدادات دفتر اليومية."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Clear Allocations"
+msgstr "مسح التخصيصات"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__company_currency_id
+msgid "Company Currency"
+msgstr "عملة الشركة"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+msgid "Computed Balance"
+msgstr "الرصيد المحتسب"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+msgid "Counterpart"
+msgstr "الحساب المقابل"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line__fps_counterpart_account_id
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+msgid "Counterpart Account"
+msgstr "الحساب المقابل"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__create_uid
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__create_date
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "Credit Note"
+msgstr "إشعار دائن"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#, python-format
+msgid "Customer Payment"
+msgstr "سداد العميل"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__date
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__date
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__display_name
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line_reconcile__aml_domain
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__aml_domain
+msgid "Domain restricting what can be picked in the list below."
+msgstr "النطاق الذي يحدد ما يمكن اختياره في القائمة أدناه."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+msgid "Ending Balance"
+msgstr "الرصيد الختامي"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid ""
+"Every transaction of this journal has been matched with a journal item. New "
+"transactions will show up here."
+msgstr "تمت تسوية كل معاملات دفتر اليومية هذا مع عناصر اليومية. ستظهر المعاملات الجديدة هنا."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.actions.act_window,help:fps_account_dashboard.action_fps_bank_statement_line
+msgid ""
+"Every transaction posts a journal entry. Set a counterpart account to\n"
+"                book it straight away, or leave it empty and reconcile it later against\n"
+"                an invoice or a bill."
+msgstr ""
+"كل معاملة تُرحّل قيد يومية. حدد حساباً مقابلاً لترحيلها مباشرة، أو اتركه فارغاً\n"
+"                لتسويتها لاحقاً مع فاتورة عميل أو فاتورة مورد."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__id
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__id
+msgid "ID"
+msgstr "المُعرف"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#, python-format
+msgid "Internal Transfer"
+msgstr "تحويل داخلي"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+msgid "Internal note..."
+msgstr "ملاحظة داخلية..."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__aml_currency_id
+msgid "Item Currency"
+msgstr "عملة العنصر"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "Items to Reconcile"
+msgstr "العناصر المطلوب تسويتها"
+
+#. module: fps_account_dashboard
+#: model:ir.model,name:fps_account_dashboard.model_account_journal
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__journal_id
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "Journal"
+msgstr "دفتر اليومية"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_bank_statement_line.py:0
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__move_id
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+#, python-format
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: fps_account_dashboard
+#: model:ir.model,name:fps_account_dashboard.model_account_move_line
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__aml_id
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Journal Item"
+msgstr "عنصر اليومية"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+msgid "Journal Items to Reconcile"
+msgstr "عناصر اليومية المطلوب تسويتها"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Keep open on the suspense account"
+msgstr "الإبقاء عليه في الحساب المعلّق"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__payment_ref
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__name
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Label"
+msgstr "البيان"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line_reconcile__writeoff_label
+msgid "Label of the journal item created for the remaining amount."
+msgstr "بيان عنصر اليومية الذي يُنشأ للمبلغ المتبقي."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__write_uid
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__write_date
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+msgid ""
+"Leave the counterpart account empty to park this transaction on the\n"
+"                        journal's suspense account and reconcile it later."
+msgstr ""
+"اترك الحساب المقابل فارغاً لتبقى هذه المعاملة في الحساب المعلّق لدفتر\n"
+"                        اليومية وتتم تسويتها لاحقاً."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Matching"
+msgstr "المطابقة"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "Money In"
+msgstr "مبالغ واردة"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "Money Out"
+msgstr "مبالغ صادرة"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid "New Journal Entry"
+msgstr "قيد يومية جديد"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#, python-format
+msgid "New Statement"
+msgstr "كشف حساب جديد"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#, python-format
+msgid "New Transaction"
+msgstr "معاملة جديدة"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_move_line.py:0
+#, python-format
+msgid "None of the selected journal items is reconciled."
+msgstr "لا يوجد بين عناصر اليومية المحددة أي عنصر تمت تسويته."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+msgid "Notes"
+msgstr "الملاحظات"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid "Nothing left to reconcile"
+msgstr "لا يوجد ما يحتاج إلى تسوية"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/wizard/account_reconcile_wizard.py:0
+#, python-format
+msgid ""
+"Nothing to reconcile: allocate an amount on at least one journal item, or "
+"choose an account for the remaining amount."
+msgstr "لا يوجد ما تتم تسويته: خصص مبلغاً على عنصر يومية واحد على الأقل، أو اختر حساباً للمبلغ المتبقي."
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_bank_statement_line.py:0
+#: code:addons/fps_account_dashboard/wizard/account_reconcile_wizard.py:0
+#, python-format
+msgid "Only posted transactions can be reconciled."
+msgstr "لا يمكن تسوية سوى المعاملات المُرحّلة."
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_bank_statement_line.py:0
+#, python-format
+msgid "Only posted transactions can be unreconciled."
+msgstr "لا يمكن إلغاء تسوية سوى المعاملات المُرحّلة."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__amount_open
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__amount_residual_currency
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Open Amount"
+msgstr "المبلغ المفتوح"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+msgid "Open Document"
+msgstr "فتح المستند"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__line_ids
+msgid "Open Items"
+msgstr "العناصر المفتوحة"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__amount_applied
+msgid "Part of the open amount settled by this transaction. Always positive."
+msgstr "الجزء من المبلغ المفتوح الذي تسدده هذه المعاملة. يكون موجباً دائماً."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line_reconcile__amount_open
+msgid ""
+"Part of the transaction still sitting on the suspense account. It is smaller"
+" than the transaction amount once a first reconciliation has been made."
+msgstr "الجزء من المعاملة الذي ما زال في الحساب المعلّق. يصبح أقل من مبلغ المعاملة بعد إجراء أول تسوية."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__partner_id
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__partner_id
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "Partner"
+msgstr "الشريك"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "Payment"
+msgstr "الدفع"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "Post Entries"
+msgstr "ترحيل القيود"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__counterpart_account_id
+msgid "Post Remaining To"
+msgstr "ترحيل المتبقي إلى"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Reconcile"
+msgstr "تسوية"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid "Reconcile - %s"
+msgstr "تسوية - %s"
+
+#. module: fps_account_dashboard
+#: model:ir.model,name:fps_account_dashboard.model_account_bank_statement_line_reconcile
+msgid "Reconcile Bank/Cash Transaction"
+msgstr "تسوية معاملة بنكية/نقدية"
+
+#. module: fps_account_dashboard
+#: model:ir.model,name:fps_account_dashboard.model_account_bank_statement_line_reconcile_line
+msgid "Reconcile Bank/Cash Transaction Line"
+msgstr "بند تسوية معاملة بنكية/نقدية"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_bank_statement_line.py:0
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+#, python-format
+msgid "Reconcile Transaction"
+msgstr "تسوية المعاملة"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+msgid "Reconciled"
+msgstr "تمت التسوية"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.actions.act_window,help:fps_account_dashboard.action_fps_bank_statement_line
+msgid "Record a bank or cash transaction"
+msgstr "سجّل معاملة بنكية أو نقدية"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+msgid "Reference"
+msgstr "الرقم المرجعي"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "Refund"
+msgstr "استرداد الأموال"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Reload Suggestions"
+msgstr "إعادة تحميل الاقتراحات"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__amount_remaining
+msgid "Remaining"
+msgstr "المتبقي"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Remaining Amount"
+msgstr "المبلغ المتبقي"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__writeoff_label
+msgid "Remaining Label"
+msgstr "بيان المتبقي"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line_reconcile__partner_id
+msgid "Restrict the suggested journal items to this partner."
+msgstr "قصر عناصر اليومية المقترحة على هذا الشريك."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "Search Transactions"
+msgstr "البحث في المعاملات"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_move_line.py:0
+#, python-format
+msgid "Select at least two journal items to reconcile them together."
+msgstr "حدد عنصري يومية على الأقل لتتم تسويتهما معاً."
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid ""
+"Select journal items sharing the same account and partner, then press "
+"Reconcile to match them together."
+msgstr "حدد عناصر اليومية التي تشترك في الحساب والشريك نفسه، ثم اضغط تسوية لمطابقتها معاً."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__aml_domain
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__aml_domain
+msgid "Selectable Journal Items"
+msgstr "عناصر اليومية القابلة للاختيار"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "Set a suspense account"
+msgstr "حدد حساباً معلّقاً"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "Statement"
+msgstr "كشف الحساب"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid "Statements - %s"
+msgstr "كشوفات الحسابات - %s"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/wizard/account_reconcile_wizard.py:0
+#, python-format
+msgid ""
+"The allocated amount (%(allocated)s) exceeds the amount left on this "
+"transaction (%(amount)s)."
+msgstr "المبلغ المخصص (%(allocated)s) يتجاوز المبلغ المتبقي على هذه المعاملة (%(amount)s)."
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid ""
+"The journal %s has no suspense account, so a transaction cannot be recorded on it yet.\n"
+"\n"
+"Open the journal configuration and set the \"Suspense Account\" field, or pick a counterpart account directly on the transaction."
+msgstr ""
+"دفتر اليومية %s ليس له حساب معلّق، لذا لا يمكن تسجيل معاملة عليه بعد.\n"
+"\n"
+"افتح إعدادات دفتر اليومية وحدد حقل \"الحساب المعلّق\"، أو اختر حساباً مقابلاً مباشرة على المعاملة."
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/wizard/account_reconcile_wizard.py:0
+#, python-format
+msgid ""
+"The journal item %s has been reconciled in the meantime. Reload this screen "
+"and try again."
+msgstr "تمت تسوية عنصر اليومية %s في هذه الأثناء. أعد تحميل هذه الشاشة ثم حاول مرة أخرى."
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,help:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__amount_residual_currency
+msgid ""
+"The residual amount on a journal item expressed in its currency (possibly "
+"not the company currency)."
+msgstr "المبلغ المتبقي على عنصر اليومية مقوّماً بعملته (وقد لا تكون عملة الشركة)."
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_bank_statement_line.py:0
+#, python-format
+msgid ""
+"The transaction %s is already fully reconciled. Use \"Undo Reconciliation\" "
+"first if you need to change it."
+msgstr "تمت تسوية المعاملة %s بالكامل بالفعل. استخدم \"إلغاء التسوية\" أولاً إذا كنت بحاجة إلى تغييرها."
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/wizard/account_reconcile_wizard.py:0
+#, python-format
+msgid ""
+"The transaction %s is not waiting on the suspense account, so there is "
+"nothing left to reconcile."
+msgstr "المعاملة %s ليست في انتظار الحساب المعلّق، لذا لم يعد هناك ما تتم تسويته."
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_bank_statement_line.py:0
+#, python-format
+msgid ""
+"The transaction %s is split over several journal items, so its counterpart "
+"account cannot be changed from here. Use Reconcile instead, or open the "
+"journal entry."
+msgstr "المعاملة %s موزعة على عدة عناصر يومية، لذا لا يمكن تغيير حسابها المقابل من هنا. استخدم التسوية بدلاً من ذلك، أو افتح قيد اليومية."
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_search
+msgid "To Reconcile"
+msgstr "بحاجة إلى تسوية"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Total Allocated"
+msgstr "إجمالي المخصص"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+msgid "Total Credit"
+msgstr "إجمالي الدائن"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+msgid "Total Debit"
+msgstr "إجمالي المدين"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+msgid "Total Open"
+msgstr "إجمالي المفتوح"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__st_line_id
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_st_line_reconcile_form
+msgid "Transaction"
+msgstr "المعاملة"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile__amount
+msgid "Transaction Amount"
+msgstr "مبلغ المعاملة"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+msgid "Transactions"
+msgstr "المعاملات"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#, python-format
+msgid "Transactions - %s"
+msgstr "المعاملات - %s"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+msgid "Transactions to Reconcile"
+msgstr "معاملات بحاجة إلى تسوية"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_tree
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_move_line_reconcile_tree
+msgid "Undo Reconciliation"
+msgstr "إلغاء التسوية"
+
+#. module: fps_account_dashboard
+#. odoo-python
+#: code:addons/fps_account_dashboard/models/account_journal.py:0
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_account_journal_dashboard_kanban
+#, python-format
+msgid "Vendor Payment"
+msgstr "مدفوعات المورد"
+
+#. module: fps_account_dashboard
+#: model:ir.model.fields,field_description:fps_account_dashboard.field_account_bank_statement_line_reconcile_line__wizard_id
+msgid "Wizard"
+msgstr "المعالج"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_form
+msgid "e.g. BNK/2024/0001"
+msgstr "مثال: BNK/2024/0001"
+
+#. module: fps_account_dashboard
+#: model_terms:ir.ui.view,arch_db:fps_account_dashboard.view_fps_bank_statement_line_form
+msgid "e.g. Cash sale of the day"
+msgstr "مثال: مبيعات نقدية لليوم"

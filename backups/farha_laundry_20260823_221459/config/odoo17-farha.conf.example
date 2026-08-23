@@ -1,0 +1,24 @@
+[options]
+admin_passwd = 1234
+db_host = False
+db_port = False
+db_user = odoo17
+db_password = 1234
+db_name = farha_laundry
+db_filter = ^farha_laundry$
+addons_path = /opt/odoo17/odoo/addons, /opt/odoo17/custom_addons
+data_dir = /opt/odoo17/farha-data/.local/share/Odoo
+http_port = 8072
+http_interface = 127.0.0.1
+proxy_mode = True
+logfile = /var/log/odoo17-farha/odoo.log
+log_level = info
+list_db = False
+workers = 5
+db_maxconn = 16
+max_cron_threads = 1
+limit_memory_hard = 2147483648
+limit_memory_soft = 1610612736
+limit_time_cpu = 600
+limit_time_real = 1200
+gevent_port = 8073

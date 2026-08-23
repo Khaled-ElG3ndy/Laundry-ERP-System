@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="laundry_theme.Dashboard" owl="1">
+<div class="laundry-app">
+
+    <!-- NAVBAR -->
+    <nav class="lf-navbar">
+        <div class="lf-navbar-brand">
+            <div class="lf-navbar-icon">👔</div>
+            <div>
+                <div class="lf-navbar-title">مغسلة فرحة</div>
+                <div class="lf-navbar-subtitle">Farha Laundry — نظام الإدارة</div>
+            </div>
+        </div>
+        <div class="lf-navbar-right">
+            <div class="lf-navbar-user">
+                <div class="lf-navbar-avatar">م</div>
+                <span>مرحباً، المدير</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- TABS -->
+    <div class="lf-nav-tabs">
+        <button class="lf-tab" t-att-class="{active: state.activeTab === 'dashboard'}"
+                t-on-click="onTabDashboard">
+            📊 الرئيسية
+            <span class="lf-tab-badge" t-if="state.stats.total_active > 0"
+                  t-esc="state.stats.total_active"/>
+        </button>
+        <button class="lf-tab" t-att-class="{active: state.activeTab === 'orders'}"
+                t-on-click="onTabOrders">
+            📋 الطلبات
+        </button>
+        <button class="lf-tab" t-att-class="{active: state.activeTab === 'pipeline'}"
+                t-on-click="onTabPipeline">
+            🔄 الإنتاج
+            <span class="lf-tab-badge warning" t-if="state.stats.urgent > 0"
+                  t-esc="state.stats.urgent"/>
+        </button>
+        <button class="lf-tab" t-att-class="{active: state.activeTab === 'ready'}"
+                t-on-click="onTabReady">
+            ✅ جاهز للاستلام
+            <span class="lf-tab-badge success" t-if="state.stats.ready > 0"
+                  t-esc="state.stats.ready"/>
+        </button>
+        <button class="lf-tab" t-on-click="onNewOrder">
+            ➕ طلب جديد
+        </button>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="lf-content">
+
+        <!-- ══ DASHBOARD ══ -->
+        <t t-if="state.activeTab === 'dashboard'">
+            <div class="lf-dashboard">
+
+                <!-- Quick Actions -->
+                <div class="lf-quick-actions">
+                    <button class="lf-action-btn primary" t-on-click="onNewOrder">
+                        <span>➕</span> طلب جديد
+                    </button>
+                    <button class="lf-action-btn success" t-on-click="onGoReady">
+                        <span>✅</span> جاهز للاستلام
+                        <t t-if="state.stats.ready > 0">
+                            (<t t-esc="state.stats.ready"/>)
+                        </t>
+                    </button>
+                    <button class="lf-action-btn secondary" t-on-click="onGoKanban">
+                        <span>⚙️</span> لوحة الإنتاج
+                    </button>
+                    <button class="lf-action-btn secondary" t-on-click="onTabOrders">
+                        <span>📋</span> جميع الطلبات
+                    </button>
+                    <button class="lf-action-btn danger" t-on-click="onCloseSession">
+                        <span>🔒</span> إغلاق الجلسة
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="lf-stat-card primary" t-on-click="onTabOrders">
+                    <div class="lf-stat-icon">📦</div>
+                    <div class="lf-stat-value" t-esc="state.stats.total_active"/>
+                    <div class="lf-stat-label">Active Orders</div>
+                    <div class="lf-stat-label-ar">الطلبات النشطة</div>
+                </div>
+
+                <div class="lf-stat-card success" t-on-click="onGoReady">
+                    <div class="lf-stat-icon">✅</div>
+                    <div class="lf-stat-value" t-esc="state.stats.ready"/>
+                    <div class="lf-stat-label">Ready for Pickup</div>
+                    <div class="lf-stat-label-ar">جاهز للاستلام</div>
+                </div>
+
+                <div class="lf-stat-card warning" t-on-click="onFilterUrgent">
+                    <div class="lf-stat-icon">⚡</div>
+                    <div class="lf-stat-value" t-esc="state.stats.urgent"/>
+                    <div class="lf-stat-label">Urgent Orders</div>
+                    <div class="lf-stat-label-ar">طلبات عاجلة</div>
+                </div>
+
+                <div class="lf-stat-card danger" t-on-click="onFilterOverdue">
+                    <div class="lf-stat-icon">⏰</div>
+                    <div class="lf-stat-value" t-esc="state.stats.overdue"/>
+                    <div class="lf-stat-label">Overdue</div>
+                    <div class="lf-stat-label-ar">متأخرة</div>
+                </div>
+
+                <div class="lf-stat-card danger" t-on-click="onFilterIssue">
+                    <div class="lf-stat-icon">🔴</div>
+                    <div class="lf-stat-value" t-esc="state.stats.issues"/>
+                    <div class="lf-stat-label">Issues</div>
+                    <div class="lf-stat-label-ar">إشكاليات</div>
+                </div>
+
+                <div class="lf-stat-card info">
+                    <div class="lf-stat-icon">💰</div>
+                    <div class="lf-stat-value"
+                         t-esc="state.stats.today_revenue.toFixed(0)"/>
+                    <div class="lf-stat-label">Today Revenue (SAR)</div>
+                    <div class="lf-stat-label-ar">إيرادات اليوم</div>
+                </div>
+                <div class="lf-stat-card secondary" t-on-click="onCloseSession"
+                     style="cursor:pointer;">
+                    <div class="lf-stat-icon">🔒</div>
+                    <div class="lf-stat-value" style="font-size:1rem;">Z</div>
+                    <div class="lf-stat-label">Close Session</div>
+                    <div class="lf-stat-label-ar">إغلاق الجلسة</div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div style="grid-column: span 12;">
+                    <div class="lf-board-header">
+                        <div class="lf-section-title">
+                            📋 آخر الطلبات
+                            <span class="lf-section-title-ar">Recent Orders</span>
+                        </div>
+                    </div>
+                    <t t-if="state.loading">
+                        <div class="lf-loading"><div class="lf-spinner"/><span>جاري التحميل...</span></div>
+                    </t>
+                    <t t-elif="state.orders.length === 0">
+                        <div class="lf-empty">
+                            <div class="lf-empty-icon">📦</div>
+                            <div class="lf-empty-title">لا توجد طلبات نشطة</div>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="lf-order-grid">
+                            <t t-foreach="state.orders.slice(0,12)" t-as="order" t-key="order.id">
+                                <div class="lf-order-card"
+                                     t-att-class="{
+                                         urgent:  order.priority === 'urgent',
+                                         overdue: order.is_overdue,
+                                         ready:   order.state === 'ready',
+                                         issue:   order.state === 'issue'
+                                     }"
+                                     t-att-data-id="order.id"
+                                     t-on-click="onOpenOrder">
+                                    <div class="lf-card-strip" t-att-class="order.state"/>
+                                    <div class="lf-card-body">
+                                        <div class="lf-card-header">
+                                            <span class="lf-card-ref" t-esc="order.name"/>
+                                            <div class="lf-card-badges">
+                                                <span t-if="order.priority === 'urgent'" class="lf-badge lf-badge-urgent">⚡ عاجل</span>
+                                                <span t-if="order.is_overdue" class="lf-badge lf-badge-overdue">⏰ متأخر</span>
+                                                <span t-if="order.payment_state === 'paid'" class="lf-badge lf-badge-paid">✓ مدفوع</span>
+                                                <span t-if="order.payment_state === 'unpaid'" class="lf-badge lf-badge-unpaid">غير مدفوع</span>
+                                            </div>
+                                        </div>
+                                        <div class="lf-card-customer" t-esc="order.partner_id[1]"/>
+                                        <div class="lf-card-service">
+                                            <t t-esc="order.line_count"/> قطعة
+                                            <t t-if="order.branch_id"> · <t t-esc="order.branch_id[1]"/></t>
+                                        </div>
+                                        <div class="lf-card-meta">
+                                            <div class="lf-card-promise">
+                                                📅 <t t-esc="formatDate(order.promise_date)"/>
+                                            </div>
+                                            <div class="lf-card-amount">
+                                                SAR <t t-esc="order.amount_total"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="lf-card-footer">
+                                        <span class="lf-card-state-badge"
+                                              t-att-class="order.state"
+                                              t-esc="stateLabel(order.state)"/>
+                                        <span class="lf-card-bag" t-if="order.bag_reference">
+                                            🏷 <t t-esc="order.bag_reference"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </div>
+
+            </div>
+        </t>
+
+        <!-- ══ ALL ORDERS TAB ══ -->
+        <t t-elif="state.activeTab === 'orders'">
+            <div class="lf-board-header">
+                <div class="lf-section-title">
+                    📋 جميع الطلبات
+                    <span class="lf-section-title-ar">All Orders</span>
+                </div>
+            </div>
+            <div class="lf-filter-pills">
+                <button class="lf-pill" t-att-class="{active: state.filterState === 'all'}"
+                        t-on-click="onFilterAll">الكل</button>
+                <button class="lf-pill"
+                        t-att-class="{'active-warning': state.filterState === 'urgent'}"
+                        t-on-click="onFilterUrgent">
+                    ⚡ عاجل
+                    <t t-if="state.stats.urgent > 0">(<t t-esc="state.stats.urgent"/>)</t>
+                </button>
+                <button class="lf-pill"
+                        t-att-class="{'active-danger': state.filterState === 'overdue'}"
+                        t-on-click="onFilterOverdue">
+                    ⏰ متأخر
+                    <t t-if="state.stats.overdue > 0">(<t t-esc="state.stats.overdue"/>)</t>
+                </button>
+                <button class="lf-pill"
+                        t-att-class="{'active-success': state.filterState === 'ready'}"
+                        t-on-click="onFilterReady">
+                    ✅ جاهز
+                    <t t-if="state.stats.ready > 0">(<t t-esc="state.stats.ready"/>)</t>
+                </button>
+                <button class="lf-pill"
+                        t-att-class="{'active-danger': state.filterState === 'issue'}"
+                        t-on-click="onFilterIssue">
+                    🔴 إشكالية
+                    <t t-if="state.stats.issues > 0">(<t t-esc="state.stats.issues"/>)</t>
+                </button>
+            </div>
+            <t t-if="state.loading">
+                <div class="lf-loading"><div class="lf-spinner"/></div>
+            </t>
+            <t t-elif="state.orders.length === 0">
+                <div class="lf-empty">
+                    <div class="lf-empty-icon">🎉</div>
+                    <div class="lf-empty-title">لا توجد طلبات</div>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="lf-order-grid">
+                    <t t-foreach="state.orders" t-as="order" t-key="order.id">
+                        <div class="lf-order-card"
+                             t-att-class="{
+                                 urgent:  order.priority === 'urgent',
+                                 overdue: order.is_overdue,
+                                 ready:   order.state === 'ready',
+                                 issue:   order.state === 'issue'
+                             }"
+                             t-att-data-id="order.id"
+                             t-on-click="onOpenOrder">
+                            <div class="lf-card-strip" t-att-class="order.state"/>
+                            <div class="lf-card-body">
+                                <div class="lf-card-header">
+                                    <span class="lf-card-ref" t-esc="order.name"/>
+                                    <div class="lf-card-badges">
+                                        <span t-if="order.priority === 'urgent'" class="lf-badge lf-badge-urgent">⚡ عاجل</span>
+                                        <span t-if="order.is_overdue" class="lf-badge lf-badge-overdue">⏰ متأخر</span>
+                                        <span t-if="order.payment_state === 'paid'" class="lf-badge lf-badge-paid">✓ مدفوع</span>
+                                        <span t-if="order.payment_state === 'unpaid'" class="lf-badge lf-badge-unpaid">غير مدفوع</span>
+                                    </div>
+                                </div>
+                                <div class="lf-card-customer" t-esc="order.partner_id[1]"/>
+                                <div class="lf-card-service">
+                                    <t t-esc="order.line_count"/> قطعة
+                                    <t t-if="order.branch_id"> · <t t-esc="order.branch_id[1]"/></t>
+                                </div>
+                                <div class="lf-card-meta">
+                                    <div class="lf-card-promise">
+                                        📅 <t t-esc="formatDate(order.promise_date)"/>
+                                    </div>
+                                    <div class="lf-card-amount">SAR <t t-esc="order.amount_total"/></div>
+                                </div>
+                            </div>
+                            <div class="lf-card-footer">
+                                <span class="lf-card-state-badge" t-att-class="order.state"
+                                      t-esc="stateLabel(order.state)"/>
+                                <span class="lf-card-bag" t-if="order.bag_reference">
+                                    🏷 <t t-esc="order.bag_reference"/>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+
+        <!-- ══ PIPELINE TAB ══ -->
+        <t t-elif="state.activeTab === 'pipeline'">
+            <div class="lf-board-header">
+                <div class="lf-section-title">
+                    🔄 لوحة الإنتاج
+                    <span class="lf-section-title-ar">Production Pipeline</span>
+                </div>
+                <button class="lf-action-btn primary" t-on-click="onNewOrder"
+                        style="padding: 10px 18px; font-size: 0.875rem;">
+                    ➕ طلب جديد
+                </button>
+            </div>
+            <t t-if="state.loading">
+                <div class="lf-loading"><div class="lf-spinner"/></div>
+            </t>
+            <t t-else="">
+                <div class="lf-pipeline">
+                    <t t-foreach="pipelineCols" t-as="col" t-key="col.key">
+                        <div class="lf-pipeline-col">
+                            <div class="lf-pipeline-header" t-att-class="col.key">
+                                <span t-esc="col.label"/>
+                                <span class="lf-pipeline-count" t-esc="col.orders.length"/>
+                            </div>
+                            <div class="lf-pipeline-cards">
+                                <t t-foreach="col.orders" t-as="order" t-key="order.id">
+                                    <div class="lf-pipeline-card"
+                                         t-att-class="{
+                                             urgent:  order.priority === 'urgent',
+                                             overdue: order.is_overdue
+                                         }"
+                                         t-att-data-id="order.id"
+                                         t-on-click="onOpenOrder">
+                                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                                            <strong style="font-size:0.8rem;color:var(--lf-primary);"
+                                                    t-esc="order.name"/>
+                                            <span t-if="order.priority === 'urgent'"
+                                                  class="lf-badge lf-badge-urgent">⚡</span>
+                                            <span t-if="order.is_overdue"
+                                                  class="lf-badge lf-badge-overdue">⏰</span>
+                                        </div>
+                                        <div style="font-size:0.8rem;color:var(--lf-gray-600);margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
+                                             t-esc="order.partner_id[1]"/>
+                                        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:0.75rem;color:var(--lf-gray-400);">
+                                            <span t-esc="formatDate(order.promise_date)"/>
+                                            <strong style="color:var(--lf-gray-700);">
+                                                SAR <t t-esc="order.amount_total"/>
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-if="col.orders.length === 0">
+                                    <div style="text-align:center;padding:24px 8px;color:var(--lf-gray-300);font-size:0.8rem;">
+                                        لا توجد طلبات
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+
+        <!-- ══ READY TAB ══ -->
+        <t t-elif="state.activeTab === 'ready'">
+            <div class="lf-board-header">
+                <div class="lf-section-title">
+                    ✅ جاهز للاستلام
+                    <span class="lf-section-title-ar">Ready for Pickup</span>
+                </div>
+            </div>
+            <t t-if="state.loading">
+                <div class="lf-loading"><div class="lf-spinner"/></div>
+            </t>
+            <t t-elif="state.orders.filter(o => o.state === 'ready').length === 0">
+                <div class="lf-empty">
+                    <div class="lf-empty-icon">🎉</div>
+                    <div class="lf-empty-title">لا توجد طلبات جاهزة حالياً</div>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="lf-order-grid">
+                    <t t-foreach="state.orders.filter(o => o.state === 'ready')" t-as="order" t-key="order.id">
+                        <div class="lf-order-card ready"
+                             t-att-data-id="order.id"
+                             t-on-click="onOpenOrder">
+                            <div class="lf-card-strip ready"/>
+                            <div class="lf-card-body">
+                                <div class="lf-card-header">
+                                    <span class="lf-card-ref" t-esc="order.name"/>
+                                    <span class="lf-badge lf-badge-ready">✅ جاهز</span>
+                                </div>
+                                <div class="lf-card-customer" t-esc="order.partner_id[1]"/>
+                                <div class="lf-card-service">
+                                    <t t-esc="order.line_count"/> قطعة
+                                    <t t-if="order.branch_id"> · <t t-esc="order.branch_id[1]"/></t>
+                                </div>
+                                <div class="lf-card-meta">
+                                    <div class="lf-card-promise">
+                                        📅 <t t-esc="formatDate(order.promise_date)"/>
+                                    </div>
+                                    <div class="lf-card-amount">SAR <t t-esc="order.amount_total"/></div>
+                                </div>
+                            </div>
+                            <div class="lf-card-footer">
+                                <span class="lf-card-state-badge ready">جاهز للاستلام</span>
+                                <span class="lf-card-bag" t-if="order.bag_reference">
+                                    🏷 <t t-esc="order.bag_reference"/>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+
+    </div>
+</div>
+</t>
+
+</templates>

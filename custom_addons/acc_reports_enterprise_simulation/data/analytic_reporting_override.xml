@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account.action_analytic_reporting" model="ir.actions.act_window">
+        <field name="name">Analytic Reporting</field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">pivot,list,kanban,graph,form</field>
+        <field name="view_id" ref="analytic.view_account_analytic_line_pivot"/>
+        <field name="search_view_id" ref="account.view_account_analytic_line_filter_inherit_account"/>
+        <field name="context">{
+            'search_default_fiscal_date': 1,
+            'pivot_measures': ['amount'],
+            'pivot_column_groupby': ['date:month'],
+            'graph_measure': 'amount',
+            'graph_mode': 'line',
+            'graph_groupbys': ['account_id'],
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No analytic items yet
+            </p>
+        </field>
+    </record>
+
+    <record id="account.menu_action_analytic_reporting" model="ir.ui.menu">
+        <field name="name">Analytic Reporting</field>
+        <field name="action" ref="account.action_analytic_reporting"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

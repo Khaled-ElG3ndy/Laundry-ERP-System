@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="custom_pos_receipt.OrderReceipt"
+       t-inherit="point_of_sale.OrderReceipt"
+       t-inherit-mode="extension">
+
+        <xpath expr="//div[hasclass('pos-receipt')]" position="replace">
+
+            <div class="pos-receipt custom-pos-payment-receipt laundry-payment-receipt"
+                 t-att-dir="props.data.receipt_direction || 'ltr'">
+
+                <!-- ══ HEADER ══ -->
+                <header class="custom-pos-payment-receipt__section custom-pos-payment-receipt__header laundry-receipt-section">
+
+                    <!-- Logo: base64 from JS patch takes priority -->
+                    <t t-if="props.data.company_logo || (props.data.headerData &amp;&amp; props.data.headerData.company_logo)">
+                        <img
+                            t-att-src="props.data.company_logo || props.data.headerData.company_logo"
+                            alt="Logo"
+                            loading="eager"
+                            class="custom-pos-payment-receipt__logo"
+                        />
+                    </t>
+                    <t t-elif="props.data.headerData
+                               &amp;&amp; props.data.headerData.company
+                               &amp;&amp; props.data.headerData.company.id
+                               &amp;&amp; !props.data.company_logo
+                               &amp;&amp; !props.data.headerData.company_logo">
+                        <img
+                            t-attf-src="/web/image?model=res.company&amp;id={{props.data.headerData.company.id}}&amp;field=logo"
+                            alt="Logo"
+                            loading="eager"
+                            class="custom-pos-payment-receipt__logo"
+                        />
+                    </t>
+                    <div class="custom-pos-payment-receipt__subtitle">Simplified Tax Invoice</div>
+
+                    <t t-if="props.data.amount_total &lt; 0">
+                        <div class="custom-pos-payment-receipt__title">Refund Receipt</div>
+                        <div class="custom-pos-payment-receipt__subtitle">Simplified Tax Refund Receipt</div>
+                    </t>
+
+                    <div class="custom-pos-payment-receipt__header-cards">
+                        <div class="custom-pos-payment-receipt__header-card laundry-receipt-box">
+                            <div class="custom-pos-payment-receipt__header-card-label">Invoice Number</div>
+                            <div class="custom-pos-payment-receipt__header-card-value" dir="ltr">
+                                <t t-esc="props.data.receipt_number
+                                    || props.data.account_move_name
+                                    || props.data.invoice_number
+                                    || (props.data.headerData &amp;&amp; props.data.headerData.account_move_name)
+                                    || (props.data.headerData &amp;&amp; props.data.headerData.invoice_number)
+                                    || (props.data.headerData &amp;&amp; props.data.headerData.x_display_reference)
+                                    || props.data.x_display_reference
+                                    || (props.data.headerData &amp;&amp; props.data.headerData.name)
+                                    || props.data.name"/>
+                            </div>
+                        </div>
+                        <div class="custom-pos-payment-receipt__header-card laundry-receipt-box">
+                            <div class="custom-pos-payment-receipt__header-card-label">Date and Time</div>
+                            <div
+                                class="custom-pos-payment-receipt__header-card-value custom-pos-payment-receipt__date-value"
+                                dir="ltr"
+                                translate="no"
+                            >
+                                <t t-esc="props.data.receipt_datetime || props.data.date"/>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <t t-set="companyTaxInfo"
+                   t-value="props.data.company_tax_info || (props.data.headerData &amp;&amp; props.data.headerData.company_tax_info)"/>
+
+                <section t-if="companyTaxInfo &amp;&amp; companyTaxInfo.has_any" class="custom-pos-payment-receipt__section custom-pos-payment-receipt__info-card laundry-receipt-section laundry-receipt-box">
+                    <div class="custom-pos-payment-receipt__section-title">Establishment Details</div>
+                    <table class="custom-pos-payment-receipt__info-table laundry-receipt-table">
+                        <tbody>
+                            <tr t-if="companyTaxInfo.name || (props.data.headerData &amp;&amp; props.data.headerData.company &amp;&amp; props.data.headerData.company.name)">
+                                <th>Company Name</th>
+                                <td dir="auto" t-esc="companyTaxInfo.name || props.data.headerData.company.name"/>
+                            </tr>
+                            <tr t-if="companyTaxInfo.vat">
+                                <th>VAT Number</th>
+                                <td dir="ltr" t-esc="companyTaxInfo.vat"/>
+                            </tr>
+                            <tr t-if="companyTaxInfo.registry">
+                                <th>Commercial Registration</th>
+                                <td dir="ltr" t-esc="companyTaxInfo.registry"/>
+                            </tr>
+                            <tr t-if="companyTaxInfo.address">
+                                <th>Address</th>
+                                <td dir="auto" t-esc="companyTaxInfo.address"/>
+                            </tr>
+                            <tr t-if="companyTaxInfo.phone">
+                                <th>Phone Number</th>
+                                <td dir="ltr" t-esc="companyTaxInfo.phone"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section t-if="props.data.partner" class="custom-pos-payment-receipt__section custom-pos-payment-receipt__info-card laundry-receipt-section laundry-receipt-box">
+                    <div class="custom-pos-payment-receipt__section-title">Customer Details</div>
+                    <table class="custom-pos-payment-receipt__info-table laundry-receipt-table">
+                        <tbody>
+                            <tr>
+                                <th>Customer Name</th>
+                                <td dir="auto" t-esc="props.data.partner.name || props.data.partner.display_name"/>
+                            </tr>
+                            <tr t-if="props.data.partner.phone || props.data.partner.mobile">
+                                <th>Phone</th>
+                                <td dir="ltr" t-esc="props.data.partner.phone || props.data.partner.mobile"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- ══ ORDER LINES ══ -->
+                <section class="custom-pos-payment-receipt__section custom-pos-payment-receipt__section--items laundry-receipt-section">
+                    <div class="custom-pos-payment-receipt__section-title">Item Details</div>
+
+                    <div
+                        t-foreach="props.data.orderlines"
+                        t-as="line"
+                        t-key="line_index"
+                        class="custom-pos-payment-receipt__line laundry-receipt-box"
+                    >
+                        <div class="custom-pos-payment-receipt__line-head">
+                            <span class="custom-pos-payment-receipt__line-badge" dir="ltr">
+                                <t t-esc="line_index + 1"/>
+                            </span>
+                            <div class="custom-pos-payment-receipt__line-name" dir="auto">
+                                <t t-esc="line.productName"/>
+                            </div>
+                            <div class="custom-pos-payment-receipt__line-total" dir="ltr">
+                                <t t-esc="props.formatCurrency(line.price_amount)"/>
+                            </div>
+                        </div>
+                        <div class="custom-pos-payment-receipt__line-meta">
+                            <div class="custom-pos-payment-receipt__line-meta-pair">
+                                <span class="custom-pos-payment-receipt__line-meta-label">Quantity</span>
+                                <span class="custom-pos-payment-receipt__line-meta-value" dir="ltr">
+                                    <t t-esc="line.qty"/>
+                                </span>
+                            </div>
+                            <div class="custom-pos-payment-receipt__line-meta-pair">
+                                <span class="custom-pos-payment-receipt__line-meta-label">Price</span>
+                                <span class="custom-pos-payment-receipt__line-meta-value" dir="ltr">
+                                    <t t-esc="props.formatCurrency(line.unit_price_amount)"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div t-if="line.laundryVariantSummaryLines &amp;&amp; line.laundryVariantSummaryLines.length"
+                             class="custom-pos-payment-receipt__line-services">
+                            <div class="custom-pos-payment-receipt__line-services-title">Added Services</div>
+                            <div class="custom-pos-payment-receipt__service-table laundry-receipt-table">
+                                <div
+                                    t-foreach="line.laundryVariantSummaryLines"
+                                    t-as="selection"
+                                    t-key="selection_index"
+                                    class="custom-pos-payment-receipt__service-row"
+                                >
+                                    <div class="custom-pos-payment-receipt__service-name" dir="auto"
+                                         t-esc="selection.label || selection.text || selection"/>
+                                     <div class="custom-pos-payment-receipt__service-price" dir="ltr"
+                                         t-if="selection.price_amount"
+                                         t-esc="props.formatCurrency(selection.price_amount)"/>
+                                     <div class="custom-pos-payment-receipt__service-price" dir="ltr"
+                                         t-if="!selection.price_amount"> </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /t-foreach orderlines -->
+                </section>
+
+                <!-- ══ AMOUNT SUMMARY ══ -->
+                <section class="custom-pos-payment-receipt__section custom-pos-payment-receipt__section--summary laundry-receipt-section laundry-amount-summary">
+
+                    <!-- 1) Grand total bar (solid black) — shown FIRST -->
+                    <div class="custom-pos-payment-receipt__summary-total-card laundry-receipt-box">
+                        <div class="custom-pos-payment-receipt__summary-total-label">Final Total</div>
+                        <div class="custom-pos-payment-receipt__summary-total-value" dir="ltr"
+                             t-esc="props.formatCurrency(props.data.amount_total)"/>
+                    </div>
+
+                    <!-- 2) "Amount Summary" pill badge -->
+                    <div class="custom-pos-payment-receipt__summary-badge-wrap">
+                        <span class="custom-pos-payment-receipt__summary-badge">Amount Summary</span>
+                    </div>
+
+                    <!-- 3) Sub-total rows (before tax + tax) -->
+                    <div class="custom-pos-payment-receipt__summary-card laundry-receipt-box">
+                        <div class="custom-pos-payment-receipt__summary-row">
+                            <span>Subtotal Before Tax</span>
+                            <strong dir="ltr" t-esc="props.formatCurrency(props.data.total_without_tax)"/>
+                        </div>
+                        <div class="custom-pos-payment-receipt__summary-row">
+                            <span>Tax</span>
+                            <strong dir="ltr" t-esc="props.formatCurrency(props.data.amount_tax)"/>
+                        </div>
+                    </div>
+
+                    <!-- 4) Payment methods -->
+                    <table class="custom-pos-payment-receipt__summary-table laundry-receipt-table laundry-receipt-box">
+                        <tbody>
+                            <tr t-foreach="props.data.paymentlines" t-as="payment" t-key="payment_index">
+                                <th dir="auto">Payment Method: <t t-esc="payment.name"/></th>
+                                <td dir="ltr" t-esc="props.formatCurrency(payment.amount, false)"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- ══ QR CODE ══ -->
+                <section t-if="props.data.qr_code || props.data.pos_qr_code"
+                         class="custom-pos-payment-receipt__section custom-pos-payment-receipt__qr laundry-receipt-section laundry-receipt-box">
+                    <img
+                        t-att-src="props.data.qr_code || props.data.pos_qr_code"
+                        class="custom-pos-payment-receipt__qr-image"
+                        alt="QR"
+                    />
+                </section>
+
+                <!-- ══ FOOTER ══ -->
+                <footer class="custom-pos-payment-receipt__footer laundry-payment-receipt__footer">
+                    <div>Thank you for choosing Foam Plus</div>
+                    <div>Always Happy to Serve You</div>
+                </footer>
+
+            </div>
+
+        </xpath>
+
+    </t>
+
+    <t t-name="custom_pos_receipt.PaymentScreenStatus"
+       t-inherit="point_of_sale.PaymentScreenStatus"
+       t-inherit-mode="extension">
+
+        <xpath expr="//section[hasclass('paymentlines-container')]" position="replace">
+            <section class="paymentlines-container custom-pos-payment-status bg-view p-3 mb-1 border-bottom">
+                <div t-if="props.order.get_paymentlines().length === 0" class="paymentlines-empty">
+                    <div class="total text-center py-2 text-success">
+                        <t t-esc="strictTotalDueText" />
+                    </div>
+                    <div class="message text-center">
+                        <t t-esc="strictPaymentPrompt" />
+                    </div>
+                </div>
+
+                <t t-else="">
+                    <div class="custom-pos-payment-status__grid">
+                        <div class="custom-pos-payment-status__item custom-pos-payment-status__item--remaining">
+                            <span class="custom-pos-payment-status__label">
+                                <t t-esc="strictRemainingLabel" />
+                            </span>
+                            <span
+                                class="custom-pos-payment-status__amount"
+                                t-att-class="{ 'highlight text-primary fw-bolder': props.order.get_due() > 0 }"
+                            >
+                                <t t-esc="strictRemainingText" />
+                            </span>
+                        </div>
+
+                        <div class="custom-pos-payment-status__item custom-pos-payment-status__item--paid">
+                            <span class="custom-pos-payment-status__label">
+                                <t t-esc="strictPaidLabel" />
+                            </span>
+                            <span class="custom-pos-payment-status__amount">
+                                <t t-esc="strictPaidText" />
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="custom-pos-payment-status__total text-muted">
+                        <span class="custom-pos-payment-status__label">
+                            <t t-esc="strictTotalDueLabel" />
+                        </span>
+                        <span class="custom-pos-payment-status__total-amount">
+                            <t t-esc="strictTotalDueText" />
+                        </span>
+                    </div>
+                </t>
+            </section>
+        </xpath>
+
+    </t>
+
+</templates>

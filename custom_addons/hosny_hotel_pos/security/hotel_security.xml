@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="module_category_hotel_contract" model="ir.module.category">
+            <field name="name">Hotel Contract Pricing</field>
+            <field name="description">Who may manage agreed hotel and company contract prices.</field>
+            <field name="sequence">40</field>
+        </record>
+
+        <!--
+            Deliberately narrow: this group only gates the contract-price tools
+            this module adds. It grants no write or unlink access on res.partner,
+            pos.config, pos.order or product.pricelist - those keep whatever
+            rights Odoo's own POS and Sales groups already define, so a cashier
+            stays a cashier.
+        -->
+        <record id="group_hotel_contract_manager" model="res.groups">
+            <field name="name">Hotel Contract Manager</field>
+            <field name="category_id" ref="module_category_hotel_contract"/>
+            <field name="comment">May edit hotel contract pricelists, create
+                customer-specific copies, and run the price-sheet import.
+                Cashiers do not need this group to sell.</field>
+            <field name="implied_ids" eval="[(4, ref('product.group_product_pricelist'))]"/>
+            <!--
+                Membership is written from this side on purpose: base.user_admin
+                is a noupdate record, so a <record id="base.user_admin"> here
+                would be silently skipped on every upgrade.
+            -->
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <function model="pos.session" name="_ensure_pos_bilingual_record_names"/>
+</odoo>

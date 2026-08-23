@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!-- Button -->
+    <t t-name="pos_laundry_receipt.LaundryReceiptButton">
+        <button t-attf-class="control-button btn btn-light rounded-3 shadow-sm o_laundry_receipt_btn o_receive_laundry_btn {{ state.isProcessing ? 'is-busy' : '' }}"
+                t-att-disabled="state.isProcessing"
+                t-on-click="onClick">
+            <i class="fa fa-cubes me-2"/>
+            <span t-esc="buttonLabel"/>
+        </button>
+    </t>
+
+    <t t-name="pos_laundry_receipt.LaundryReceiptDuplicateWarningPopup">
+        <div class="laundry-pos-popup-shell laundry-pos-popup-shell--compact">
+            <section class="laundry-pos-popup-card laundry-pos-popup-card--warning laundry-pos-popup-card--compact"
+                     role="alertdialog"
+                     aria-modal="true">
+                <header class="laundry-pos-popup-header laundry-pos-popup-header--warning">
+                    <div class="laundry-pos-popup-header__icon laundry-pos-popup-header__icon--warning">
+                        <i class="fa fa-exclamation"/>
+                    </div>
+                    <div class="laundry-pos-popup-header__content">
+                        <h3 class="laundry-pos-popup-title" t-esc="props.title"/>
+                        <p class="laundry-pos-popup-subtitle" t-esc="props.message"/>
+                    </div>
+                </header>
+
+                <div class="laundry-pos-popup-body">
+                    <section class="laundry-pos-section laundry-delay-2">
+                        <div class="laundry-receipt-warning-card">
+                            <div class="laundry-receipt-warning-card__badge">
+                                <i class="fa fa-shield"/>
+                                <span t-esc="props.badgeText"/>
+                            </div>
+                            <p class="laundry-receipt-warning-card__hint" t-esc="props.hint"/>
+                            <div t-if="hasDetailItems" class="laundry-receipt-warning-card__items">
+                                <span t-foreach="detailItems"
+                                      t-as="item"
+                                      t-key="item"
+                                      class="laundry-receipt-warning-card__item"
+                                      t-esc="item"/>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <footer class="laundry-pos-popup-footer laundry-pos-section laundry-delay-3">
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--warning"
+                            t-on-click="confirm">
+                        <i class="fa fa-check"/>
+                        <t t-esc="props.confirmText"/>
+                    </button>
+                </footer>
+            </section>
+        </div>
+    </t>
+
+    <t t-name="pos_laundry_receipt.LaundryCustomerNotePopup">
+        <div class="laundry-pos-popup-shell laundry-pos-popup-shell--compact">
+            <section class="laundry-pos-popup-card laundry-pos-popup-card--compact laundry-pos-popup-card--note"
+                     role="dialog"
+                     aria-modal="true">
+                <header class="laundry-pos-popup-header laundry-pos-popup-header--note">
+                    <div class="laundry-pos-popup-header__icon laundry-pos-popup-header__icon--note">
+                        <i class="fa fa-sticky-note-o"/>
+                    </div>
+                    <div class="laundry-pos-popup-header__content">
+                        <h3 class="laundry-pos-popup-title" t-esc="props.title"/>
+                        <p class="laundry-pos-popup-subtitle" t-esc="props.subtitle"/>
+                    </div>
+                </header>
+
+                <div class="laundry-pos-popup-body">
+                    <section class="laundry-pos-section laundry-delay-2">
+                        <div class="laundry-note-popup-card">
+                            <textarea class="laundry-note-popup__textarea"
+                                      t-ref="input"
+                                      rows="6"
+                                      t-att-placeholder="props.placeholder"
+                                      t-model="state.inputValue"/>
+                        </div>
+                    </section>
+                </div>
+
+                <footer class="laundry-pos-popup-footer laundry-pos-section laundry-delay-3">
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--outline"
+                            t-on-click="cancel">
+                        <t t-esc="props.cancelText"/>
+                    </button>
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--primary"
+                            t-on-click="confirm">
+                        <i class="fa fa-check"/>
+                        <t t-esc="props.confirmText"/>
+                    </button>
+                </footer>
+            </section>
+        </div>
+    </t>
+
+    <t t-name="pos_laundry_receipt.LaundryOrderTrackingButton">
+        <button class="control-button btn btn-light rounded-3 shadow-sm o_laundry_receipt_btn"
+                t-on-click="onClick">
+            <i class="fa fa-tasks me-2"/>
+            <span t-esc="buttonLabel"/>
+        </button>
+    </t>
+
+    <t t-name="pos_laundry_receipt.PendingOrdersButton">
+        <button class="control-button btn btn-light rounded-3 shadow-sm o_laundry_receipt_btn o_pay_bills_btn"
+                t-on-click="onClick">
+            <i class="fa fa-credit-card me-2"/>
+            <span t-esc="buttonLabel"/>
+        </button>
+    </t>
+
+    <t t-name="pos_laundry_receipt.NewOrderButton" owl="1">
+        <button class="control-button btn btn-success rounded-3 shadow-sm o_new_order_btn"
+                t-on-click="onClick">
+            <i class="fa fa-plus me-2"/>
+            <span t-esc="buttonLabel"/>
+        </button>
+    </t>
+
+    <t t-name="pos_laundry_receipt.PendingOrdersScreen">
+        <div t-att-class="screenClasses" t-att-dir="textDirection" t-att-lang="interfaceLang">
+            <section class="po-workflow-top-panel">
+                <header class="po-workflow-header">
+                    <button type="button" class="po-workflow-back-btn" t-on-click="goBack">
+                        <i t-att-class="backIconClass"/>
+                        <span><t t-esc="uiText.back"/></span>
+                    </button>
+
+                    <div class="po-workflow-hero">
+                        <div class="po-workflow-hero__content">
+                            <h1 class="po-workflow-hero__title"><t t-esc="uiText.workflowTitle"/></h1>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="po-workflow-toolbar">
+                    <div class="po-workflow-toolbar__top">
+                        <div class="po-workflow-search" t-att-dir="textDirection">
+                            <i class="fa fa-search po-workflow-search__icon"/>
+                            <input type="search"
+                                   class="po-workflow-search__input"
+                                   t-att-dir="textDirection"
+                                   t-att-placeholder="uiText.searchPlaceholder"
+                                   t-att-value="state.search || ''"
+                                   t-on-input="onSearchInput"/>
+                            <button type="button"
+                                    t-if="state.search"
+                                    class="po-workflow-search__clear"
+                                    t-on-click="clearSearch"
+                                    t-att-aria-label="uiText.clearSearch">
+                                <i class="fa fa-times"/>
+                            </button>
+                        </div>
+
+                        <div class="po-workflow-toolbar__actions">
+                            <button t-if="state.isScannerSupported"
+                                    type="button"
+                                    class="po-workflow-scan-btn"
+                                    t-att-disabled="isScannerBusy"
+                                    t-on-click="openScannerModal">
+                                <i class="fa fa-qrcode"/>
+                                <span><t t-esc="isScannerBusy ? uiText.scanning : uiText.scanQr"/></span>
+                            </button>
+                            <button type="button" class="po-workflow-refresh-btn" t-on-click="loadPendingOrders">
+                                <i class="fa fa-refresh"/>
+                                <span><t t-esc="uiText.refresh"/></span>
+                            </button>
+                        </div>
+
+                        <div class="po-workflow-toolbar__filters-inline">
+                            <button type="button"
+                                    t-attf-class="po-workflow-chip {{ state.filter === 'all' ? 'is-active' : '' }}"
+                                    t-on-click="() => this.setFilter('all')">
+                                <i class="fa fa-th-large"/>
+                                <span><t t-esc="uiText.filterAll"/></span>
+                            </button>
+                            <button type="button"
+                                    t-attf-class="po-workflow-chip {{ state.filter === 'olderThanMonth' ? 'is-active' : '' }}"
+                                    t-on-click="() => this.setFilter('olderThanMonth')">
+                                <i class="fa fa-clock-o"/>
+                                <span><t t-esc="uiText.filterOlderThanMonth"/></span>
+                            </button>
+                            <button type="button"
+                                    t-attf-class="po-workflow-chip {{ state.showAdvancedFilters ? 'is-active' : '' }}"
+                                    t-on-click="toggleAdvancedFilters">
+                                <i class="fa fa-sliders"/>
+                                <span><t t-esc="uiText.filterRange"/></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="po-workflow-toolbar__bottom">
+                        <div class="po-workflow-toolbar__meta" t-if="state.generated_at">
+                            <i class="fa fa-history"/>
+                            <strong class="po-workflow-generated-at" t-att-dir="textDirection">
+                                <t t-esc="formatGeneratedAt()"/>
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div t-if="state.showAdvancedFilters" class="po-workflow-filters">
+                    <div class="po-workflow-filters__grid">
+                        <label class="po-workflow-field">
+                            <span class="po-workflow-field__label"><t t-esc="uiText.fromDate"/></span>
+                            <input type="date" name="start_date" class="po-workflow-field__input" t-att-value="state.start_date" t-on-input="onRangeInput"/>
+                        </label>
+                        <label class="po-workflow-field">
+                            <span class="po-workflow-field__label"><t t-esc="uiText.toDate"/></span>
+                            <input type="date" name="end_date" class="po-workflow-field__input" t-att-value="state.end_date" t-on-input="onRangeInput"/>
+                        </label>
+                        <label class="po-workflow-field">
+                            <span class="po-workflow-field__label"><t t-esc="uiText.minAmount"/></span>
+                            <input type="number" name="min_amount" min="0" step="0.01" class="po-workflow-field__input" t-att-value="state.min_amount" t-on-input="onRangeInput"/>
+                        </label>
+                        <label class="po-workflow-field">
+                            <span class="po-workflow-field__label"><t t-esc="uiText.maxAmount"/></span>
+                            <input type="number" name="max_amount" min="0" step="0.01" class="po-workflow-field__input" t-att-value="state.max_amount" t-on-input="onRangeInput"/>
+                        </label>
+                    </div>
+                    <div class="po-workflow-filters__footer">
+                        <button type="button" class="po-workflow-reset-btn" t-on-click="clearFilters">
+                            <i class="fa fa-eraser"/>
+                            <span><t t-esc="uiText.clearFilters"/></span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="po-content po-workflow-content">
+                <div class="po-workflow-table-panel">
+                    <header class="po-workflow-table-panel__header">
+                        <div class="po-workflow-table-panel__title-wrap">
+                            <h2 class="po-workflow-table-panel__title"><t t-esc="uiText.ordersTableTitle"/></h2>
+                        </div>
+                        <div class="po-workflow-filter-groups">
+                            <label class="po-workflow-filter-select">
+                                <span class="po-workflow-filter-select__label"><t t-esc="uiText.statusFilters"/></span>
+                                <span class="po-workflow-filter-select__control">
+                                    <i class="fa fa-sliders"/>
+                                    <select class="po-workflow-filter-select__input"
+                                            t-att-aria-label="uiText.statusFilters"
+                                            t-on-change="onStatusFilterChange">
+                                        <option t-foreach="statusFilterOptions"
+                                                t-as="filter"
+                                                t-key="filter.key"
+                                                t-att-value="filter.key"
+                                                t-att-selected="state.statusFilter === filter.key ? 'selected' : undefined">
+                                            <t t-esc="getFilterOptionLabel(filter)"/>
+                                        </option>
+                                    </select>
+                                </span>
+                            </label>
+                            <label class="po-workflow-filter-select">
+                                <span class="po-workflow-filter-select__label"><t t-esc="uiText.paymentFilters"/></span>
+                                <span class="po-workflow-filter-select__control">
+                                    <i class="fa fa-credit-card"/>
+                                    <select class="po-workflow-filter-select__input"
+                                            t-att-aria-label="uiText.paymentFilters"
+                                            t-on-change="onPaymentFilterChange">
+                                        <option t-foreach="paymentFilterOptions"
+                                                t-as="filter"
+                                                t-key="filter.key"
+                                                t-att-value="filter.key"
+                                                t-att-selected="state.paymentFilter === filter.key ? 'selected' : undefined">
+                                            <t t-esc="getFilterOptionLabel(filter)"/>
+                                        </option>
+                                    </select>
+                                </span>
+                            </label>
+                        </div>
+                    </header>
+
+                    <div t-if="state.loading" class="po-empty-state">
+                        <div class="po-empty-state__icon po-empty-state__icon--spin">
+                            <i class="fa fa-spinner fa-pulse"/>
+                        </div>
+                        <p class="po-empty-state__text"><t t-esc="uiText.loading"/></p>
+                    </div>
+
+                    <div t-elif="!hasOrdersValue" class="po-empty-state">
+                        <div class="po-empty-state__icon">
+                            <i class="fa fa-folder-open-o"/>
+                        </div>
+                        <p class="po-empty-state__text">
+                            <t t-esc="hasAnyOrders ? uiText.noSearchResults : uiText.noOrders"/>
+                        </p>
+                    </div>
+
+                    <div t-else="" class="po-workflow-table-wrap">
+                        <t t-set="tablePageData" t-value="tablePagination"/>
+                        <table class="po-workflow-table">
+                            <thead>
+                                <tr>
+                                    <th><t t-esc="uiText.invoiceNumber"/></th>
+                                    <th><t t-esc="uiText.customer"/></th>
+                                    <th><t t-esc="uiText.date"/></th>
+                                    <th><t t-esc="uiText.total"/></th>
+                                    <th><t t-esc="uiText.status"/></th>
+                                    <th><t t-esc="uiText.paymentStatus"/></th>
+                                    <th><t t-esc="uiText.actions"/></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="tablePageData.items"
+                                    t-as="order"
+                                    t-key="order.id"
+                                    t-attf-class="po-workflow-table__row {{ isUpdating(order.id) ? 'is-updating' : '' }} {{ isHighlighted(order.id) ? 'is-highlighted' : '' }}"
+                                    t-att-style="'--po-row-accent:' + (order.status_color || '#2563eb')">
+                                    <td class="po-workflow-table__cell po-workflow-table__cell--reference">
+                                        <span class="po-workflow-table__mobile-label"><t t-esc="uiText.invoiceNumber"/></span>
+                                        <div class="po-workflow-table__reference">
+                                            <strong class="po-workflow-code"><t t-esc="order.x_laundry_intake_ref || order.name"/></strong>
+                                            <span><t t-esc="order.pos_reference || uiText.orderReference"/></span>
+                                        </div>
+                                    </td>
+                                    <td class="po-workflow-table__cell">
+                                        <span class="po-workflow-table__mobile-label"><t t-esc="uiText.customer"/></span>
+                                        <div class="po-workflow-table__customer">
+                                            <span class="po-workflow-table__avatar">
+                                                <t t-esc="(order.partner_name || uiText.walkInCustomer).charAt(0)"/>
+                                            </span>
+                                            <div class="po-workflow-table__customer-meta">
+                                                <strong><t t-esc="order.partner_name || uiText.walkInCustomer"/></strong>
+                                                <span><t t-esc="uiText.customer"/></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="po-workflow-table__cell">
+                                        <span class="po-workflow-table__mobile-label"><t t-esc="uiText.date"/></span>
+                                        <span class="po-workflow-table__text po-workflow-table__date" t-att-dir="textDirection">
+                                            <t t-esc="formatDate(order.date_order)"/>
+                                        </span>
+                                    </td>
+                                    <td class="po-workflow-table__cell">
+                                        <span class="po-workflow-table__mobile-label"><t t-esc="uiText.total"/></span>
+                                        <strong class="po-workflow-table__amount"><t t-esc="formatMoney(order.amount_total)"/></strong>
+                                    </td>
+                                    <td class="po-workflow-table__cell">
+                                        <span class="po-workflow-table__mobile-label"><t t-esc="uiText.status"/></span>
+                                        <span class="po-workflow-table__badge"
+                                              t-att-style="'color:' + (order.status_color || '#2563eb') + '; background:' + (order.status_badge || '#dbeafe')">
+                                            <i class="fa fa-circle"/>
+                                            <t t-esc="order.laundry_status_label || order.x_laundry_status_label"/>
+                                        </span>
+                                    </td>
+                                    <td class="po-workflow-table__cell">
+                                        <span class="po-workflow-table__mobile-label"><t t-esc="uiText.paymentStatus"/></span>
+                                        <span class="po-workflow-table__payment"
+                                              t-att-style="'color:' + (order.payment_color || '#155f99') + '; background:' + (order.payment_surface || '#eff6ff')">
+                                            <i class="fa fa-credit-card"/>
+                                            <t t-esc="order.x_payment_status_label || uiText.paymentStatus"/>
+                                        </span>
+                                    </td>
+                                    <td class="po-workflow-table__cell po-workflow-table__cell--actions">
+                                        <span class="po-workflow-table__mobile-label"><t t-esc="uiText.actions"/></span>
+                                        <div class="po-workflow-table__actions">
+                                            <t t-set="primaryAction" t-value="getPrimaryAction(order)"/>
+                                            <button t-if="primaryAction"
+                                                    type="button"
+                                                    class="po-workflow-table__btn po-workflow-table__btn--status"
+                                                    t-att-disabled="isUpdating(order.id)"
+                                                    t-on-click="() => this.changeOrderStatus(order, primaryAction.key)">
+                                                <i t-att-class="'fa ' + (primaryAction.icon || 'fa-check-circle')"/>
+                                                <span><t t-esc="primaryAction.label"/></span>
+                                            </button>
+                                            <button t-if="canPayOrder(order)"
+                                                    type="button"
+                                                    class="po-workflow-table__btn po-workflow-table__btn--pay"
+                                                    t-att-disabled="state.loading"
+                                                    t-on-click="() => this.payOrder(order)">
+                                                <i class="fa fa-credit-card"/>
+                                                <span><t t-esc="getPayButtonLabel(order)"/></span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div t-if="tablePageData.totalPages &gt; 1" class="po-workflow-pager">
+                            <span class="po-workflow-pager__status" t-esc="formatPageStatus(tablePageData)"/>
+                            <div class="po-workflow-pager__controls">
+                                <button
+                                    type="button"
+                                    class="po-workflow-pager__button"
+                                    t-att-disabled="tablePageData.page &lt;= 1"
+                                    t-on-click="() => this.changeTablePage(tablePageData.page - 1)"
+                                >
+                                    <i t-att-class="previousPageIconClass"/>
+                                </button>
+                                <span class="po-workflow-pager__label">
+                                    <t t-esc="formatInteger(tablePageData.page)"/> / <t t-esc="formatInteger(tablePageData.totalPages)"/>
+                                </span>
+                                <button
+                                    type="button"
+                                    class="po-workflow-pager__button"
+                                    t-att-disabled="tablePageData.page &gt;= tablePageData.totalPages"
+                                    t-on-click="() => this.changeTablePage(tablePageData.page + 1)"
+                                >
+                                    <i t-att-class="nextPageIconClass"/>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div t-if="state.toastVisible"
+                 t-attf-class="po-workflow-toast po-workflow-toast--{{ state.toastType }}">
+                <div class="po-workflow-toast__icon">
+                    <i t-att-class="'fa ' + toastMeta.icon"/>
+                </div>
+                <div class="po-workflow-toast__content">
+                    <strong class="po-workflow-toast__title"><t t-esc="toastMeta.title"/></strong>
+                    <p class="po-workflow-toast__message"><t t-esc="state.toastMessage"/></p>
+                </div>
+                <button type="button"
+                        class="po-workflow-toast__close"
+                        t-on-click="() => this.state.toastVisible = false">
+                    <i class="fa fa-times"/>
+                </button>
+            </div>
+
+            <div t-if="state.scannerVisible"
+                 t-attf-class="po-qr-modal {{ state.scannerClosing ? 'is-closing' : 'is-open' }}">
+                <div class="po-qr-modal__backdrop" t-on-click="closeScannerModal"/>
+                <section class="po-qr-modal__dialog" role="dialog" aria-modal="true">
+                    <header class="po-qr-modal__header">
+                        <button type="button" class="po-qr-modal__close" t-on-click="closeScannerModal">
+                            <i class="fa fa-times"/>
+                        </button>
+                        <div class="po-qr-modal__titles">
+                            <h3 class="po-qr-modal__title"><t t-esc="uiText.scannerTitle"/></h3>
+                        </div>
+                        <div class="po-qr-modal__eyebrow">
+                            <i class="fa fa-camera"/>
+                            <span><t t-esc="uiText.scannerLiveLabel"/></span>
+                        </div>
+                    </header>
+
+                    <div class="po-qr-modal__viewport">
+                        <div class="po-qr-modal__viewport-head">
+                            <div t-attf-class="po-qr-modal__badge is-{{ scannerStatusMeta.tone }}">
+                                <i t-att-class="'fa ' + scannerStatusMeta.icon"/>
+                                <span><t t-esc="scannerStatusMeta.label"/></span>
+                            </div>
+                        </div>
+                        <div class="po-qr-modal__body po-qr-modal__body--simple">
+                            <div class="po-qr-modal__reader-shell po-qr-modal__reader-shell--simple">
+                                <div class="po-qr-modal__reader" t-att-id="scannerElementId"/>
+                                <div t-attf-class="po-qr-modal__frame {{ state.scannerFeedback ? 'is-' + state.scannerFeedback : '' }}">
+                                    <span class="po-qr-modal__corner po-qr-modal__corner--top-start"/>
+                                    <span class="po-qr-modal__corner po-qr-modal__corner--top-end"/>
+                                    <span class="po-qr-modal__corner po-qr-modal__corner--bottom-start"/>
+                                    <span class="po-qr-modal__corner po-qr-modal__corner--bottom-end"/>
+                                    <div class="po-qr-modal__scan-line"/>
+                                    <div t-if="state.scannerFeedback === 'success' and !state.scannerProcessing"
+                                         class="po-qr-modal__success-mark">
+                                        <span class="po-qr-modal__success-icon">
+                                            <i class="fa fa-check"/>
+                                        </span>
+                                        <strong><t t-esc="uiText.scannerSuccessLabel"/></strong>
+                                    </div>
+                                </div>
+                                <div t-if="state.scannerBooting || state.scannerProcessing"
+                                     class="po-qr-modal__overlay">
+                                    <div class="po-qr-modal__overlay-card">
+                                        <div class="po-qr-modal__spinner"/>
+                                        <strong><t t-esc="state.scannerProcessing ? uiText.scannerProcessing : uiText.scanning"/></strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer class="po-qr-modal__footer">
+                        <div t-attf-class="po-qr-modal__status is-{{ scannerStatusMeta.tone }}">
+                            <span class="po-qr-modal__status-icon">
+                                <i t-att-class="'fa ' + scannerStatusMeta.icon"/>
+                            </span>
+                            <span><t t-esc="scannerStatusText"/></span>
+                        </div>
+                        <button type="button"
+                                class="po-qr-modal__action"
+                                t-att-disabled="state.scannerProcessing"
+                                t-on-click="closeScannerModal">
+                            <span><t t-esc="uiText.scannerClose"/></span>
+                        </button>
+                    </footer>
+                </section>
+            </div>
+        </div>
+    </t>
+
+    <!-- Popup -->
+    <t t-name="pos_laundry_receipt.LaundryReceiptPopup">
+        <div class="laundry-pos-popup-shell laundry-pos-popup-shell--receipt">
+            <section t-att-class="popupClasses() + ' customer-popup'" role="dialog" aria-modal="true" t-att-aria-labelledby="fieldId('title')">
+                <header class="laundry-pos-popup-header laundry-pos-section laundry-delay-1">
+                    <div class="laundry-pos-popup-header__icon">
+                        <i class="fa fa-file-text-o"/>
+                    </div>
+                    <div class="laundry-pos-popup-header__content">
+                        <h3 class="laundry-pos-popup-title" t-att-id="fieldId('title')" t-esc="props.title"/>
+                        <p class="laundry-pos-popup-subtitle" t-att-dir="textDirection" t-esc="uiText.receiptPopupSubtitle"/>
+                    </div>
+                </header>
+
+                <div class="laundry-pos-popup-body">
+                    <section class="laundry-pos-section laundry-delay-2">
+                        <span class="laundry-pos-kicker" t-esc="uiText.customerSection"/>
+                        <div class="laundry-receipt-popup__search-row">
+                            <div t-att-class="fieldClasses({ filled: !!state.customer_search }) + ' laundry-pos-field--stacked'">
+                                <div class="laundry-pos-field__header">
+                                    <label class="laundry-pos-field__caption" t-att-for="fieldId('customer-search')" t-esc="uiText.searchFieldLabel"/>
+                                </div>
+                                <div class="laundry-pos-field__control">
+                                    <i class="laundry-pos-field__icon fa fa-search"/>
+                                    <input t-att-id="fieldId('customer-search')"
+                                           class="laundry-pos-input"
+                                           type="text"
+                                           t-att-dir="textDirection"
+                                           t-att-value="state.customer_search"
+                                           t-on-input="onSearchInput"
+                                           t-on-focus="onSearchFocus"
+                                           t-on-click="onSearchClick"
+                                           t-on-blur="closeSearchMenu"
+                                           t-ref="customerSearchInput"/>
+                                </div>
+                            </div>
+                            <button type="button"
+                                    class="laundry-pos-button laundry-pos-button--ghost"
+                                    t-att-disabled="state.creating_customer"
+                                    t-on-click="toggleCreateCustomer">
+                                <i t-att-class="state.show_create_customer ? 'fa fa-times' : 'fa fa-plus'"/>
+                                <t t-esc="state.show_create_customer ? uiText.closeForm : uiText.addCustomer"/>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- Search Results Section - NOW ABOVE OTHER INPUTS -->
+                    <section t-if="showSearchResults and searchResults.length" class="laundry-pos-section laundry-delay-2b laundry-receipt-popup__search-results-section">
+                        <div class="laundry-customer-search-menu-enhanced">
+                            <button
+                                t-foreach="searchResults"
+                                t-as="partner"
+                                t-key="partner.id"
+                                type="button"
+                                class="laundry-customer-search-item-enhanced"
+                                t-att-class="state.selected_partner_id === partner.id ? 'is-selected' : ''"
+                                t-att-data-partner-id="partner.id"
+                                t-on-mousedown.prevent="onSearchResultMouseDown">
+
+                                <div class="laundry-customer-search-avatar-enhanced">
+                                    <t t-esc="(partner.name || '').charAt(0)"/>
+                                </div>
+
+                                <div class="laundry-customer-search-content-enhanced">
+                                    <div class="laundry-customer-search-item__name-enhanced"
+                                        t-att-dir="'auto'"
+                                        t-esc="partner.name"/>
+                                    <div t-if="partner.mobile or partner.phone"
+                                        class="laundry-customer-search-item__meta-enhanced"
+                                        t-esc="partner.mobile or partner.phone"/>
+                                </div>
+
+                                <span t-if="state.selected_partner_id === partner.id" class="laundry-customer-search-checkmark">✓</span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <section t-if="showSearchResults and !searchResults.length and state.customer_search" class="laundry-pos-section laundry-delay-2b">
+                        <div class="laundry-customer-search-empty-enhanced" t-esc="uiText.searchEmpty"/>
+                    </section>
+
+                    <section t-if="state.show_create_customer" class="laundry-pos-section laundry-delay-3">
+                        <div class="laundry-receipt-popup__create-card laundry-pos-card">
+                            <div class="laundry-customer-type-switch is-single" role="group" t-att-aria-label="uiText.customerTypeLabel">
+                                <div class="laundry-customer-type-btn is-active">
+                                    <i t-att-class="'fa ' + (isHotelPos ? 'fa-building' : 'fa-user')"/>
+                                    <span t-esc="isHotelPos ? uiText.customerTypeCompany : uiText.customerTypeCustomer"/>
+                                </div>
+                            </div>
+                            <div class="laundry-receipt-popup__create-grid">
+                                <div t-att-class="fieldClasses({ filled: !!state.new_customer_name, error: !!state.errors.new_customer_name }) + ' laundry-pos-field--stacked'">
+                                    <div class="laundry-pos-field__header">
+                                        <label class="laundry-pos-field__caption"
+                                        t-att-for="fieldId('new-customer-name')">
+
+                                        <t t-esc="state.customer_type === 'company' ? uiText.companyName : uiText.customerName"/>
+
+                                    </label>
+                                    </div>
+                                    <div class="laundry-pos-field__control">
+                                        <i t-att-class="
+                                            'laundry-pos-field__icon fa ' +
+                                            (state.customer_type === 'company'
+                                                ? 'fa-building'
+                                                : 'fa-user')
+                                        "/>
+                                        <input t-att-id="fieldId('new-customer-name')"
+                                               class="laundry-pos-input"
+                                               type="text"
+                                               t-att-dir="textDirection"
+                                               t-att-value="state.new_customer_name"
+                                               t-on-input="onNewCustomerNameInput"/>
+                                    </div>
+                                    <p t-if="state.errors.new_customer_name" class="laundry-pos-error" role="alert" t-esc="state.errors.new_customer_name"/>
+                                </div>
+                                <div t-att-class="fieldClasses({ filled: !!state.new_customer_phone, error: !!state.errors.new_customer_phone }) + ' laundry-pos-field--stacked'">
+   
+                                    <div class="laundry-pos-field__header">
+                                        <label class="laundry-pos-field__caption"
+                                               t-att-for="isTenDigitPhoneModeEnabled
+                                                   ? fieldId('new-customer-phone-digit-0')
+                                                   : fieldId('new-customer-phone')"
+                                               t-esc="uiText.phone"/>
+                                    </div>
+                                    <t t-if="isTenDigitPhoneModeEnabled">
+                                        <div class="laundry-pos-field__control laundry-pos-field__control--phone-digits">
+                                            <i class="laundry-pos-field__icon fa fa-phone"/>
+                                            <div class="laundry-phone-digit-grid" dir="ltr" role="group" t-att-aria-label="uiText.phone">
+                                                <t t-foreach="phoneDigitIndexes" t-as="digitIndex" t-key="digitIndex">
+                                                    <input t-att-id="fieldId('new-customer-phone-digit-' + digitIndex)"
+                                                           class="laundry-phone-digit-box"
+                                                           type="text"
+                                                           dir="ltr"
+                                                           inputmode="numeric"
+                                                           autocomplete="one-time-code"
+                                                           maxlength="1"
+                                                           t-att-value="getPhoneDigitValue(digitIndex)"
+                                                           t-att-aria-label="phoneBoxAriaLabel(digitIndex)"
+                                                           t-on-input="(ev) => this.onPhoneBoxInput(digitIndex, ev)"
+                                                           t-on-keydown="(ev) => this.onPhoneBoxKeyDown(digitIndex, ev)"
+                                                           t-on-paste="(ev) => this.onPhoneBoxPaste(digitIndex, ev)"
+                                                           t-on-focus="this.onPhoneBoxFocus"/>
+                                                </t>
+                                            </div>
+                                        </div>
+                                        <p t-if="!state.errors.new_customer_phone" class="laundry-pos-helper" t-esc="uiText.phoneDigitsHelper"/>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="laundry-pos-field__control">
+                                            <i class="laundry-pos-field__icon fa fa-phone"/>
+                                            <input t-att-id="fieldId('new-customer-phone')"
+                                                   class="laundry-pos-input"
+                                                   type="tel"
+                                                   inputmode="tel"
+                                                   autocomplete="tel-national"
+                                                   maxlength="32"
+                                                   t-att-dir="textDirection"
+                                                   t-att-placeholder="uiText.phonePlaceholder"
+                                                   t-att-value="state.new_customer_phone"
+                                                   t-on-input="onNewCustomerPhoneInput"/>
+                                        </div>
+                                    </t>
+                                    <p t-if="state.errors.new_customer_phone" class="laundry-pos-error" role="alert" t-esc="state.errors.new_customer_phone"/>
+                                </div>
+                            </div>
+                            <t t-if="state.duplicate_phone_info">
+                                <div class="laundry-pos-card laundry-receipt-duplicate-alert">
+                                    <div class="laundry-receipt-duplicate-alert__top-row">
+                                        <div class="laundry-receipt-duplicate-alert__phone-pill">
+                                            <span t-esc="state.duplicate_phone_info.partnerPhone"/>
+                                        </div>
+                                        <div class="laundry-receipt-duplicate-alert__title-row">
+                                            <div class="laundry-receipt-duplicate-alert__title">
+                                                <strong t-esc="uiText.duplicatePhoneTitle"/>
+                                            </div>
+                                            <div class="laundry-receipt-duplicate-alert__icon">
+                                                <i class="fa fa-exclamation-triangle"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="laundry-receipt-duplicate-alert__message" t-esc="state.duplicate_phone_info.message"/>
+                                    <div class="laundry-receipt-duplicate-alert__info-grid">
+                                        <div class="laundry-receipt-duplicate-alert__info-item">
+                                            <span class="laundry-receipt-duplicate-alert__info-label" t-esc="uiText.existingCustomerLabel"/>
+                                            <span class="laundry-receipt-duplicate-alert__info-value" t-att-dir="'auto'" t-esc="state.duplicate_phone_info.partnerName"/>
+                                        </div>
+                                        <div class="laundry-receipt-duplicate-alert__info-item">
+                                            <span class="laundry-receipt-duplicate-alert__info-label" t-esc="uiText.duplicatePhoneLabel"/>
+                                            <span class="laundry-receipt-duplicate-alert__info-value" t-esc="state.duplicate_phone_info.partnerPhone"/>
+                                        </div>
+                                    </div>
+                                    <div class="laundry-receipt-duplicate-alert__actions">
+                                        <button type="button"
+                                                class="laundry-pos-button laundry-pos-button--primary laundry-receipt-duplicate-alert__action"
+                                                t-on-click="useDuplicatePhonePartner">
+                                            <i class="fa fa-check-circle"/>
+                                            <t t-esc="uiText.useExistingCustomer"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </t>
+                            <div class="laundry-receipt-popup__create-actions">
+                                <button type="button"
+                                        class="laundry-pos-button laundry-pos-button--primary"
+                                        t-att-disabled="state.creating_customer"
+                                        t-on-click="createCustomer">
+                                    <span t-if="state.creating_customer" class="laundry-pos-button__spinner"/>
+                                    <i t-if="!state.creating_customer" class="fa fa-user-plus"/>
+                                    <t t-esc="createCustomerButtonText"/>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="laundry-pos-section laundry-delay-4">
+                        <span class="laundry-pos-kicker" t-esc="uiText.detailsSection"/>
+                        <div class="laundry-receipt-popup__details-grid">
+                            <div t-att-class="fieldClasses({ filled: !!state.selected_partner_id, error: !!state.errors.selected_partner_id }) + ' laundry-pos-field--stacked'">
+                                <div class="laundry-pos-field__header">
+                                    <label class="laundry-pos-field__caption" t-att-for="fieldId('selected-partner')" t-esc="uiText.customerSection"/>
+                                </div>
+                                <div class="laundry-pos-field__control">
+                                    <i class="laundry-pos-field__icon fa fa-users"/>
+                                    <select t-att-id="fieldId('selected-partner')"
+                                            class="laundry-pos-select"
+                                            t-att-value="state.selected_partner_id || ''"
+                                            t-on-change="onPartnerChange">
+                                        <option value="" t-esc="uiText.customerSelectPlaceholder"/>
+                                        <t t-foreach="selectablePartners" t-as="partner" t-key="partner.id">
+                                            <option t-att-value="partner.id">
+                                                <t t-esc="partner.name"/>
+                                                <t t-if="partner.mobile or partner.phone">
+                                                    <t t-esc="' / ' + (partner.mobile or partner.phone)"/>
+                                                </t>
+                                            </option>
+                                        </t>
+                                    </select>
+                                    <span class="laundry-pos-select-indicator">
+                                        <i class="fa fa-chevron-down"/>
+                                    </span>
+                                </div>
+                                <p t-if="state.errors.selected_partner_id" class="laundry-pos-error" role="alert" t-esc="state.errors.selected_partner_id"/>
+                            </div>
+
+                            <div t-att-class="fieldClasses({ filled: !!state.partner_phone, readonly: true }) + ' laundry-pos-field--stacked'">
+                                <div class="laundry-pos-field__header">
+                                    <label class="laundry-pos-field__caption" t-att-for="fieldId('partner-phone')" t-esc="uiText.phone"/>
+                                </div>
+                                <div class="laundry-pos-field__control">
+                                    <i class="laundry-pos-field__icon fa fa-phone"/>
+                                    <input t-att-id="fieldId('partner-phone')"
+                                           class="laundry-pos-input"
+                                           type="text"
+                                           t-att-dir="textDirection"
+                                           readonly="readonly"
+                                           t-att-value="state.partner_phone"/>
+                                </div>
+                            </div>
+
+                            <div t-att-class="fieldClasses({ filled: !!selectedPartnerName, readonly: true }) + ' laundry-pos-field--stacked'">
+                                <div class="laundry-pos-field__header">
+                                    <label class="laundry-pos-field__caption" t-att-for="fieldId('partner-name')" t-esc="uiText.customerName"/>
+                                </div>
+                                <div class="laundry-pos-field__control">
+                                    <i t-att-class="
+                                        'laundry-pos-field__icon fa ' +
+                                        (state.customer_type === 'company'
+                                            ? 'fa-building'
+                                            : 'fa-user')
+                                    "/>
+                                    <input t-att-id="fieldId('partner-name')"
+                                           class="laundry-pos-input"
+                                           type="text"
+                                           t-att-dir="textDirection"
+                                           readonly="readonly"
+                                           t-att-value="selectedPartnerName"/>
+                                </div>
+                            </div>
+
+                            <div t-att-class="fieldClasses({ filled: !!state.delivery_date, error: !!state.errors.delivery_date }) + ' laundry-pos-field--stacked'">
+                                <div class="laundry-pos-field__header">
+                                    <label class="laundry-pos-field__caption" t-att-for="fieldId('delivery-date')" t-esc="uiText.deliveryDate"/>
+                                </div>
+                                <div class="laundry-pos-field__control">
+                                    <i class="laundry-pos-field__icon fa fa-calendar"/>
+                                    <input t-att-id="fieldId('delivery-date')"
+                                           class="laundry-pos-input laundry-pos-input--datetime"
+                                           type="datetime-local"
+                                           t-att-value="state.delivery_date"
+                                           t-on-input="onDeliveryDateInput"/>
+                                </div>
+                                <p t-if="state.errors.delivery_date" class="laundry-pos-error" role="alert" t-esc="state.errors.delivery_date"/>
+                            </div>
+
+                            <div t-att-class="fieldClasses({ filled: !!state.priority }) + ' laundry-pos-field--stacked'">
+                                <div class="laundry-pos-field__header">
+                                    <label class="laundry-pos-field__caption" t-att-for="fieldId('priority')" t-esc="uiText.priority"/>
+                                </div>
+                                <div class="laundry-pos-field__control">
+                                    <i class="laundry-pos-field__icon fa fa-flag-o"/>
+                                    <select t-att-id="fieldId('priority')"
+                                            class="laundry-pos-select"
+                                            t-att-value="state.priority || 'normal'"
+                                            t-on-change="onPriorityChange">
+                                        <option value="normal" t-esc="uiText.priorityNormal"/>
+                                        <option value="urgent" t-esc="uiText.priorityUrgent"/>
+                                    </select>
+                                    <span class="laundry-pos-select-indicator">
+                                        <i class="fa fa-chevron-down"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="laundry-pos-section laundry-delay-5">
+                        <span class="laundry-pos-kicker" t-esc="uiText.notesSection"/>
+                        <div t-att-class="fieldClasses({ filled: !!state.note }) + ' laundry-pos-field--stacked'">
+                            <div class="laundry-pos-field__header">
+                                <label class="laundry-pos-field__caption" t-att-for="fieldId('note')" t-esc="uiText.specialNotes"/>
+                            </div>
+                            <div class="laundry-pos-field__control">
+                                <textarea t-att-id="fieldId('note')"
+                                          class="laundry-pos-textarea"
+                                          rows="5"
+                                          t-att-dir="textDirection"
+                                          t-att-value="state.note"
+                                          t-on-input="onNoteInput"/>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <footer class="laundry-pos-popup-footer laundry-pos-section laundry-delay-6">
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--outline"
+                            t-on-click="cancel">
+                        <t t-esc="props.cancelText"/>
+                    </button>
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--primary"
+                            t-att-disabled="isSaveDisabled"
+                            t-on-click="confirm">
+                        <i class="fa fa-print"/>
+                        <t t-esc="props.confirmText"/>
+                    </button>
+                </footer>
+            </section>
+        </div>
+    </t>
+
+</templates>

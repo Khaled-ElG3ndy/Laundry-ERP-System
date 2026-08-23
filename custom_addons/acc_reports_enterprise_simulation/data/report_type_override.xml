@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="accounting_pdf_reports.action_report_general_ledger" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="accounting_pdf_reports.action_report_partnerledger" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="accounting_pdf_reports.action_report_trial_balance" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="accounting_pdf_reports.action_report_financial" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="accounting_pdf_reports.action_report_account_tax" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="accounting_pdf_reports.action_report_aged_partner_balance" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="accounting_pdf_reports.action_report_journal" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="accounting_pdf_reports.action_report_journal_entries" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="om_account_daily_reports.action_report_day_book" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="om_account_daily_reports.action_report_cash_book" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+        <record id="om_account_daily_reports.action_report_bank_book" model="ir.actions.report">
+            <field name="report_type">qweb-html</field>
+        </record>
+    </data>
+</odoo>

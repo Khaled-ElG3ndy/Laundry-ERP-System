@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_branch_list" model="ir.ui.view">
+        <field name="name">laundry.branch.list</field>
+        <field name="model">laundry.branch</field>
+        <field name="arch" type="xml">
+            <tree string="Branches">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="name_ar"/>
+                <field name="manager_id"/>
+                <field name="phone"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_laundry_branch_form" model="ir.ui.view">
+        <field name="name">laundry.branch.form</field>
+        <field name="model">laundry.branch</field>
+        <field name="arch" type="xml">
+            <form string="Laundry Branch">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                        <h3><field name="name_ar"/></h3>
+                    </div>
+                    <group>
+                        <group string="Branch Info">
+                            <field name="code"/>
+                            <field name="sequence"/>
+                            <field name="manager_id"/>
+                            <field name="phone"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="POS and Location">
+                            <field name="pos_config_id"/>
+                            <field name="city"/>
+                            <field name="street"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_laundry_branch" model="ir.actions.act_window">
+        <field name="name">Branches / الفروع</field>
+        <field name="res_model">laundry.branch</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_billing_wizard_form" model="ir.ui.view">
+        <field name="name">laundry.billing.wizard.form</field>
+        <field name="model">laundry.billing.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Commercial Billing / فوترة تجارية">
+                <sheet>
+                    <div class="oe_title">
+                        <h2>Commercial Billing Run</h2>
+                    </div>
+                    <div class="alert alert-success" role="alert"
+                         invisible="state != 'previewed'">
+                        Found <field name="order_count" readonly="1"/> orders
+                        — Total: <field name="total_amount" readonly="1"/> SAR
+                    </div>
+                    <group>
+                        <group string="Settings">
+                            <field name="account_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group string="Summary" invisible="state == 'draft'">
+                            <field name="order_count" readonly="1"/>
+                            <field name="total_amount" readonly="1"/>
+                            <field name="state" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook invisible="state == 'draft'">
+                        <page string="Orders to Invoice">
+                            <field name="preview_line_ids" readonly="1">
+                                <tree>
+                                    <field name="order_id"/>
+                                    <field name="partner_name"/>
+                                    <field name="date_order"/>
+                                    <field name="line_count" string="Items"/>
+                                    <field name="amount_total" string="Amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_preview" string="Preview"
+                            type="object" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_confirm"
+                            string="Confirm and Create Invoice"
+                            type="object" class="btn-success"
+                            invisible="state != 'previewed'"
+                            confirm="Create invoice? This cannot be undone."/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_laundry_billing_wizard" model="ir.actions.act_window">
+        <field name="name">Commercial Billing</field>
+        <field name="res_model">laundry.billing.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

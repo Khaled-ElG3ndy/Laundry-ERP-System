@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_laundry_receipt.LaundrySlaPerformanceDashboard">
+        <div class="o_action o_laundry_sla_dashboard_action">
+            <Layout display="display">
+                <div class="o_laundry_sla_dashboard" t-att-dir="textDirection">
+                    <header class="o_laundry_sla_page_header">
+                        <div class="o_laundry_sla_title_wrap">
+                            <span class="o_laundry_sla_title_icon">
+                                <i class="fa fa-line-chart"/>
+                            </span>
+                            <div>
+                                <h1 t-esc="labels.page_title"/>
+                            </div>
+                        </div>
+
+                        <div class="o_laundry_sla_header_actions">
+                            <button class="o_laundry_cp_button o_laundry_cp_button--secondary" type="button" t-on-click="loadDashboard">
+                                <i class="fa fa-refresh"/>
+                                <span t-esc="labels.refresh"/>
+                            </button>
+                            <button class="o_laundry_cp_button o_laundry_cp_button--primary" type="button" t-on-click="openReport">
+                                <i class="fa fa-file-text-o"/>
+                                <span t-esc="labels.detailed_reports"/>
+                            </button>
+                        </div>
+                    </header>
+
+                    <section t-if="!state.loading" class="o_laundry_performance">
+                        <header class="o_laundry_performance_header">
+                            <div class="o_laundry_performance_title">
+                                <span class="o_laundry_performance_icon">
+                                    <i class="fa fa-bar-chart"/>
+                                </span>
+                                <h2 t-esc="labels.performance_analytics"/>
+                            </div>
+                            <div class="o_laundry_performance_periods">
+                                <t t-foreach="performancePeriodOptions" t-as="period" t-key="period.key">
+                                    <button
+                                        type="button"
+                                        class="o_laundry_performance_period"
+                                        t-att-class="{'is-active': state.analyticsPeriod === period.key}"
+                                        t-on-click="() => setAnalyticsPeriod(period.key)"
+                                    >
+                                        <span t-esc="period.label"/>
+                                    </button>
+                                </t>
+                            </div>
+                        </header>
+
+                        <div t-if="state.analyticsPeriod === 'custom'" class="o_laundry_performance_custom_range">
+                            <label>
+                                <span t-esc="labels.date_from"/>
+                                <input type="date" t-att-value="state.analyticsDateFrom" t-on-change="onAnalyticsDateFromChange"/>
+                            </label>
+                            <label>
+                                <span t-esc="labels.date_to"/>
+                                <input type="date" t-att-value="state.analyticsDateTo" t-on-change="onAnalyticsDateToChange"/>
+                            </label>
+                        </div>
+
+                        <div t-if="!hasAnalyticsData" class="o_laundry_performance_no_data">
+                            <i class="fa fa-info-circle"/>
+                            <span t-esc="labels.no_delivery_data"/>
+                        </div>
+
+                        <t t-else="">
+                            <div class="o_laundry_performance_kpis">
+                                <t t-foreach="analytics.kpis" t-as="kpi" t-key="kpi.key">
+                                    <article class="o_laundry_performance_kpi" t-att-class="'is-' + kpi.tone">
+                                        <span class="o_laundry_performance_kpi_icon">
+                                            <i t-att-class="'fa ' + kpi.icon"/>
+                                        </span>
+                                        <span class="o_laundry_performance_kpi_text">
+                                            <span class="o_laundry_performance_kpi_label" t-esc="kpi.label"/>
+                                            <strong class="o_laundry_performance_kpi_value" t-esc="kpi.display_value"/>
+                                        </span>
+                                    </article>
+                                </t>
+                            </div>
+
+                            <div class="o_laundry_performance_charts">
+                                <article class="o_laundry_performance_panel">
+                                    <h3 t-esc="labels.on_time_vs_late"/>
+                                    <div class="o_laundry_bar_list">
+                                        <t t-foreach="analytics.charts.on_time_vs_late" t-as="item" t-key="item.key">
+                                            <div class="o_laundry_bar_row" t-att-class="'is-' + item.tone">
+                                                <span class="o_laundry_bar_label" t-esc="item.label"/>
+                                                <div class="o_laundry_bar_track">
+                                                    <span class="o_laundry_bar_fill" t-att-style="'width: ' + getChartWidth(item.percentage)"/>
+                                                </div>
+                                                <strong t-esc="item.value"/>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </article>
+
+                                <article class="o_laundry_performance_panel">
+                                    <h3 t-esc="labels.weekly_on_time_percentage"/>
+                                    <div class="o_laundry_bar_list">
+                                        <t t-foreach="analytics.charts.weekly_on_time" t-as="item" t-key="item.key">
+                                            <div class="o_laundry_bar_row is-success">
+                                                <span class="o_laundry_bar_label" t-esc="item.label"/>
+                                                <div class="o_laundry_bar_track">
+                                                    <span class="o_laundry_bar_fill" t-att-style="'width: ' + getChartWidth(item.value)"/>
+                                                </div>
+                                                <strong t-esc="item.display_value"/>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </article>
+
+                                <article class="o_laundry_performance_panel">
+                                    <h3 t-esc="labels.performance_by_priority"/>
+                                    <div class="o_laundry_bar_list">
+                                        <t t-foreach="analytics.priority_rows" t-as="row" t-key="row.key">
+                                            <div class="o_laundry_bar_row is-neutral">
+                                                <span class="o_laundry_bar_label" t-esc="row.label"/>
+                                                <div class="o_laundry_bar_track">
+                                                    <span class="o_laundry_bar_fill" t-att-style="'width: ' + getChartWidth(row.on_time_percentage)"/>
+                                                </div>
+                                                <strong t-esc="row.on_time_percentage_display"/>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </article>
+
+                                <article class="o_laundry_performance_panel">
+                                    <h3 t-esc="labels.performance_by_worker"/>
+                                    <div class="o_laundry_bar_list">
+                                        <t t-foreach="analytics.worker_rows.slice(0, 6)" t-as="row" t-key="row.key">
+                                            <div class="o_laundry_bar_row is-success">
+                                                <span class="o_laundry_bar_label" t-esc="row.label"/>
+                                                <div class="o_laundry_bar_track">
+                                                    <span class="o_laundry_bar_fill" t-att-style="'width: ' + getChartWidth(row.on_time_percentage)"/>
+                                                </div>
+                                                <strong t-esc="row.on_time_percentage_display"/>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </article>
+
+                                <article class="o_laundry_performance_panel">
+                                    <h3 t-esc="labels.performance_by_branch"/>
+                                    <div class="o_laundry_bar_list">
+                                        <t t-foreach="analytics.branch_rows.slice(0, 6)" t-as="row" t-key="row.key">
+                                            <div class="o_laundry_bar_row is-success">
+                                                <span class="o_laundry_bar_label" t-esc="row.label"/>
+                                                <div class="o_laundry_bar_track">
+                                                    <span class="o_laundry_bar_fill" t-att-style="'width: ' + getChartWidth(row.on_time_percentage)"/>
+                                                </div>
+                                                <strong t-esc="row.on_time_percentage_display"/>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="o_laundry_performance_tables">
+                                <article class="o_laundry_performance_table_panel">
+                                    <h3 t-esc="labels.performance_by_worker"/>
+                                    <div class="table-responsive">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th t-esc="labels.worker"/>
+                                                    <th t-esc="labels.delivered_orders"/>
+                                                    <th t-esc="labels.delivered_on_time_count"/>
+                                                    <th t-esc="labels.delivered_late_count"/>
+                                                    <th t-esc="labels.on_time_percentage"/>
+                                                    <th t-esc="labels.average_processing_time"/>
+                                                    <th t-esc="labels.average_delay"/>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="getPerformanceTableRows('worker')" t-as="row" t-key="row.key">
+                                                    <tr>
+                                                        <td t-esc="row.label"/>
+                                                        <td t-esc="row.delivered_orders"/>
+                                                        <td t-esc="row.delivered_on_time"/>
+                                                        <td t-esc="row.delivered_late"/>
+                                                        <td t-esc="row.on_time_percentage_display"/>
+                                                        <td t-esc="row.average_processing_display"/>
+                                                        <td t-esc="row.average_delay_display"/>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <button
+                                        t-if="shouldShowPerformanceTableViewAll('worker')"
+                                        type="button"
+                                        class="o_laundry_performance_view_all"
+                                        t-on-click="() => expandPerformanceTable('worker')"
+                                    >
+                                        <span t-esc="labels.view_all"/>
+                                        <i class="fa fa-angle-left"/>
+                                    </button>
+                                </article>
+
+                                <article class="o_laundry_performance_table_panel">
+                                    <h3 t-esc="labels.performance_by_branch"/>
+                                    <div class="table-responsive">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th t-esc="labels.branch"/>
+                                                    <th t-esc="labels.delivered_orders"/>
+                                                    <th t-esc="labels.on_time_percentage"/>
+                                                    <th t-esc="labels.overdue_orders"/>
+                                                    <th t-esc="labels.average_processing_time"/>
+                                                    <th t-esc="labels.average_delay"/>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="getPerformanceTableRows('branch')" t-as="row" t-key="row.key">
+                                                    <tr>
+                                                        <td t-esc="row.label"/>
+                                                        <td t-esc="row.delivered_orders"/>
+                                                        <td t-esc="row.on_time_percentage_display"/>
+                                                        <td t-esc="row.overdue_orders"/>
+                                                        <td t-esc="row.average_processing_display"/>
+                                                        <td t-esc="row.average_delay_display"/>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <button
+                                        t-if="shouldShowPerformanceTableViewAll('branch')"
+                                        type="button"
+                                        class="o_laundry_performance_view_all"
+                                        t-on-click="() => expandPerformanceTable('branch')"
+                                    >
+                                        <span t-esc="labels.view_all"/>
+                                        <i class="fa fa-angle-left"/>
+                                    </button>
+                                </article>
+                            </div>
+                        </t>
+                    </section>
+
+                    <section class="o_laundry_sla_summary" aria-label="SLA summary">
+                        <t t-foreach="summaryCards" t-as="summary" t-key="summary.key">
+                            <button
+                                type="button"
+                                class="o_laundry_sla_summary_card"
+                                t-att-class="'is-' + summary.tone"
+                                t-on-click="() => setFilter(summary.key)"
+                            >
+                                <span class="o_laundry_sla_summary_icon">
+                                    <i t-att-class="'fa ' + summary.icon"/>
+                                </span>
+                                <span class="o_laundry_sla_summary_text">
+                                    <span class="o_laundry_sla_summary_label" t-esc="summary.label"/>
+                                    <span class="o_laundry_sla_summary_value" t-esc="summary.value"/>
+                                </span>
+                            </button>
+                        </t>
+                    </section>
+
+                    <div t-if="state.loading" class="o_laundry_sla_loading">
+                        <i class="fa fa-circle-o-notch fa-spin"/>
+                        <span t-esc="labels.orders"/>
+                    </div>
+
+                    <div t-else="" class="o_laundry_sla_groups">
+                        <t t-foreach="sectionedOrders" t-as="section" t-key="section.key">
+                            <section class="o_laundry_sla_group" t-att-class="'is-' + section.tone">
+                                <header class="o_laundry_sla_group_header">
+                                    <span class="o_laundry_sla_group_title">
+                                        <i t-att-class="'fa ' + section.icon"/>
+                                        <span t-esc="section.label"/>
+                                        <span class="o_laundry_sla_group_count" t-esc="section.totalCount"/>
+                                    </span>
+                                    <button
+                                        t-if="section.filterKey and section.totalCount"
+                                        type="button"
+                                        class="o_laundry_sla_group_link"
+                                        t-on-click="() => setFilter(section.filterKey)"
+                                    >
+                                        <span t-esc="labels.view_all"/>
+                                        <i class="fa fa-angle-left"/>
+                                    </button>
+                                    <button
+                                        t-elif="!isOverviewMode"
+                                        type="button"
+                                        class="o_laundry_sla_group_link o_laundry_sla_back_link"
+                                        t-on-click="backToOverview"
+                                    >
+                                        <i class="fa fa-angle-right"/>
+                                        <span t-esc="labels.back_to_overview"/>
+                                    </button>
+                                </header>
+
+                                <div t-if="!section.orders.length" class="o_laundry_sla_section_empty">
+                                    <i class="fa fa-inbox"/>
+                                    <span t-esc="labels.empty_category"/>
+                                </div>
+
+                                <div t-else="" class="o_laundry_sla_cards">
+                                    <t t-foreach="section.orders" t-as="order" t-key="order.id">
+                                        <article
+                                            class="o_laundry_sla_order_card"
+                                            t-att-class="getOrderCardClasses(order)"
+                                        >
+                                            <header class="o_laundry_sla_order_header">
+                                                <div class="o_laundry_sla_order_identity">
+                                                    <span class="o_laundry_sla_order_ref" t-esc="order.name"/>
+                                                </div>
+                                                <span class="o_laundry_sla_badge o_laundry_sla_priority_badge" t-att-class="getPriorityClass(order)">
+                                                    <span t-esc="order.x_laundry_priority_label"/>
+                                                </span>
+                                            </header>
+
+                                            <div class="o_laundry_sla_customer_block">
+                                                <span class="o_laundry_sla_order_customer" t-esc="order.partner_name"/>
+                                                <span class="o_laundry_sla_order_meta">
+                                                    <i class="fa fa-building-o"/>
+                                                    <span t-esc="order.config_name || labels.not_available"/>
+                                                </span>
+                                            </div>
+
+                                            <div class="o_laundry_sla_remaining_block">
+                                                <span class="o_laundry_sla_remaining_label" t-esc="order.x_laundry_sla_status_label || labels.remaining_time"/>
+                                                <strong class="o_laundry_sla_remaining_value" t-esc="getRemainingText(order)"/>
+                                            </div>
+
+                                            <div class="o_laundry_sla_status_row">
+                                                <span class="o_laundry_sla_badge o_laundry_sla_stage_badge">
+                                                    <span t-esc="order.x_laundry_status_label"/>
+                                                </span>
+                                                <span class="o_laundry_sla_badge o_laundry_sla_worker_badge">
+                                                    <span t-esc="order.x_laundry_worker_name || labels.unassigned"/>
+                                                </span>
+                                            </div>
+
+                                            <footer class="o_laundry_sla_card_actions">
+                                                <span class="o_laundry_sla_deadline">
+                                                    <i class="fa fa-calendar-o"/>
+                                                    <span t-esc="formatDate(order.x_laundry_sla_deadline)"/>
+                                                </span>
+                                                <button type="button" t-on-click="() => openOrder(order.id)">
+                                                    <i class="fa fa-external-link"/>
+                                                    <span t-esc="labels.open_order"/>
+                                                </button>
+                                            </footer>
+                                        </article>
+                                    </t>
+                                </div>
+                            </section>
+                        </t>
+
+                        <footer t-if="showPagination" class="o_laundry_sla_pager">
+                            <span class="o_laundry_sla_pager_label" t-esc="paginationSummary"/>
+                            <div class="o_laundry_sla_pager_controls">
+                                <button type="button" t-att-disabled="state.page &lt;= 1" t-on-click="previousPage" t-att-title="labels.previous">
+                                    <i class="fa fa-angle-right"/>
+                                </button>
+                                <t t-foreach="paginationPages" t-as="pageNumber" t-key="pageNumber">
+                                    <button
+                                        type="button"
+                                        class="o_laundry_sla_page_button"
+                                        t-att-class="{'is-active': pageNumber === state.page}"
+                                        t-on-click="() => setPage(pageNumber)"
+                                    >
+                                        <span t-esc="pageNumber"/>
+                                    </button>
+                                </t>
+                                <button type="button" t-att-disabled="state.page >= totalPages" t-on-click="nextPage" t-att-title="labels.next">
+                                    <i class="fa fa-angle-left"/>
+                                </button>
+                            </div>
+                        </footer>
+                    </div>
+
+                </div>
+            </Layout>
+        </div>
+    </t>
+
+</templates>

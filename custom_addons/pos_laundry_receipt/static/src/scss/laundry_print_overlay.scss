@@ -1,0 +1,524 @@
+.o_laundry_print_overlay {
+    --lp-accent: #2588f7;
+    --lp-accent-strong: #20c7e8;
+    --lp-accent-soft: #eaf5ff;
+    --lp-ink: #071f42;
+    --lp-muted: #7c8da5;
+    --lp-track: #e7f1fb;
+    --lp-panel-start: rgba(255, 255, 255, 0.99);
+    --lp-panel-end: rgba(247, 251, 255, 0.97);
+    position: fixed;
+    inset: 0;
+    z-index: 2147483000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: rgba(246, 251, 255, 0.34);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: all;
+    isolation: isolate;
+    transition: opacity 70ms ease;
+    will-change: opacity;
+}
+
+.o_laundry_print_overlay.is-visible {
+    opacity: 1;
+}
+
+.o_laundry_print_overlay,
+.o_laundry_print_overlay *,
+.o_laundry_print_overlay *::before,
+.o_laundry_print_overlay *::after {
+    box-sizing: border-box;
+}
+
+.o_laundry_print_panel {
+    position: relative;
+    width: 72vw;
+    min-width: 640px;
+    max-width: 1080px;
+    min-height: 330px;
+    overflow: hidden;
+    border: 1px solid rgba(197, 219, 244, 0.58);
+    border-radius: 32px;
+    background: linear-gradient(135deg, var(--lp-panel-start) 0%, var(--lp-panel-end) 100%);
+    box-shadow:
+        0 28px 70px -38px rgba(69, 109, 155, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    color: var(--lp-ink);
+    padding: 40px 48px 38px;
+    font-family:
+        "SF Pro Text",
+        "Noto Sans Arabic",
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+    transform: translateY(4px) scale(0.995);
+    transition: transform 90ms cubic-bezier(0.2, 0, 0.2, 1);
+    will-change: transform;
+    contain: layout paint style;
+}
+
+.o_laundry_print_panel::before,
+.o_laundry_print_panel::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.o_laundry_print_panel::before {
+    inset: -43% auto auto -11%;
+    width: 38%;
+    aspect-ratio: 1;
+    border-radius: 0 0 100% 0;
+    background: linear-gradient(135deg, rgba(221, 239, 255, 0.82), rgba(255, 255, 255, 0));
+}
+
+.o_laundry_print_panel::after {
+    right: -7%;
+    bottom: -50%;
+    width: 34%;
+    aspect-ratio: 1;
+    border-radius: 100% 0 0 0;
+    background: linear-gradient(315deg, rgba(221, 239, 255, 0.86), rgba(255, 255, 255, 0));
+}
+
+.o_laundry_print_overlay.is-visible .o_laundry_print_panel {
+    transform: translateY(0) scale(1);
+}
+
+.o_laundry_print_x_icon {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2.4;
+}
+
+.o_laundry_print_header {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 110px;
+    gap: 28px;
+    align-items: start;
+    direction: ltr;
+}
+
+.o_laundry_print_loader {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    flex: 0 0 auto;
+    border-radius: 28px;
+    background: linear-gradient(145deg, #eef7ff 0%, #dcecff 100%);
+    color: var(--lp-accent);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.88),
+        0 24px 42px -30px rgba(37, 136, 247, 0.62);
+    transition:
+        background 100ms ease,
+        color 100ms ease;
+}
+
+.o_laundry_print_loader i,
+.o_laundry_print_loader svg {
+    position: relative;
+    line-height: 1;
+}
+
+.o_laundry_print_loader i {
+    font-size: 62px;
+}
+
+.o_laundry_print_printer_icon {
+    width: 66px;
+    height: 66px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 4.4;
+}
+
+.o_laundry_print_title_block {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    min-width: 0;
+    padding-top: 7px;
+    text-align: right;
+    direction: rtl;
+}
+
+.o_laundry_print_title {
+    margin: 0;
+    color: var(--lp-ink);
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: 0;
+    unicode-bidi: plaintext;
+}
+
+.o_laundry_print_detail {
+    margin: 12px 0 0;
+    color: var(--lp-muted);
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+    unicode-bidi: plaintext;
+}
+
+.o_laundry_print_counter {
+    display: none;
+}
+
+.o_laundry_print_progress {
+    position: relative;
+    z-index: 1;
+    height: 16px;
+    margin-top: 34px;
+    border-radius: 999px;
+    background: var(--lp-track);
+    overflow: hidden;
+    direction: ltr;
+    box-shadow: inset 0 1px 2px rgba(37, 99, 142, 0.06);
+}
+
+.o_laundry_print_progress_bar {
+    position: relative;
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--lp-accent) 0%, var(--lp-accent-strong) 100%);
+    box-shadow: 0 8px 18px -12px var(--lp-accent-strong);
+    transition:
+        width 140ms cubic-bezier(0.3, 0.8, 0.35, 1),
+        background 100ms ease;
+}
+
+.o_laundry_print_actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 34px;
+    direction: ltr;
+}
+
+.o_laundry_print_cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 176px;
+    min-height: 58px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #fff1f7 0%, #fde6f0 100%);
+    color: #e72d59;
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0;
+    direction: ltr;
+    unicode-bidi: plaintext;
+    cursor: pointer;
+    transition:
+        background 90ms ease,
+        color 90ms ease,
+        opacity 90ms ease,
+        transform 90ms ease;
+}
+
+.o_laundry_print_cancel_text {
+    direction: rtl;
+}
+
+.o_laundry_print_cancel_icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    border-radius: 999px;
+    background: #e92f5b;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.o_laundry_print_cancel_icon .o_laundry_print_x_icon {
+    width: 20px;
+    height: 20px;
+    stroke-width: 3.2;
+}
+
+.o_laundry_print_overlay[dir="ltr"] .o_laundry_print_header {
+    grid-template-columns: 110px minmax(0, 1fr);
+}
+
+.o_laundry_print_overlay[dir="ltr"] .o_laundry_print_loader {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.o_laundry_print_overlay[dir="ltr"] .o_laundry_print_title_block {
+    grid-column: 2;
+    justify-self: start;
+    text-align: left;
+    direction: ltr;
+}
+
+.o_laundry_print_overlay[dir="ltr"] .o_laundry_print_actions {
+    justify-content: flex-end;
+}
+
+.o_laundry_print_overlay[dir="ltr"] .o_laundry_print_cancel_text {
+    direction: ltr;
+}
+
+.o_laundry_print_cancel:hover:not(:disabled) {
+    background: linear-gradient(180deg, #ffe8f2 0%, #fbd9e7 100%);
+    color: #d51f4d;
+    transform: translateY(-1px);
+}
+
+.o_laundry_print_cancel:focus-visible {
+    outline: 3px solid rgba(233, 47, 91, 0.26);
+    outline-offset: 4px;
+}
+
+.o_laundry_print_cancel:disabled {
+    opacity: 0.56;
+    cursor: default;
+    transform: none;
+}
+
+.o_laundry_print_overlay[data-state="done"] {
+    --lp-accent: #19a55a;
+    --lp-accent-strong: #11b978;
+    --lp-accent-soft: #e7f8ef;
+    --lp-panel-end: rgba(246, 255, 250, 0.97);
+}
+
+.o_laundry_print_overlay[data-state="failed"] {
+    --lp-accent: #e92f5b;
+    --lp-accent-strong: #d8204e;
+    --lp-accent-soft: #fff0f6;
+    --lp-panel-end: rgba(255, 247, 250, 0.97);
+}
+
+.o_laundry_print_overlay[data-state="warning"] {
+    --lp-accent: #f08b2b;
+    --lp-accent-strong: #e76a24;
+    --lp-accent-soft: #fff4e8;
+    --lp-panel-end: rgba(255, 250, 244, 0.97);
+}
+
+.o_laundry_print_overlay[data-state="cancelled"] {
+    --lp-accent: #7d8da5;
+    --lp-accent-strong: #64758f;
+    --lp-accent-soft: #eef4fa;
+    --lp-panel-end: rgba(248, 251, 254, 0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .o_laundry_print_overlay,
+    .o_laundry_print_panel,
+    .o_laundry_print_cancel,
+    .o_laundry_print_progress_bar {
+        transition: none;
+    }
+}
+
+@media (max-width: 1500px) {
+    .o_laundry_print_overlay {
+        padding: 28px;
+    }
+
+    .o_laundry_print_panel {
+        width: 74vw;
+        max-width: 980px;
+        min-height: 318px;
+        border-radius: 30px;
+        padding: 36px 42px 34px;
+    }
+
+    .o_laundry_print_header {
+        grid-template-columns: minmax(0, 1fr) 96px;
+        gap: 24px;
+    }
+
+    .o_laundry_print_loader {
+        width: 96px;
+        height: 96px;
+        border-radius: 24px;
+    }
+
+    .o_laundry_print_loader i {
+        font-size: 56px;
+    }
+
+    .o_laundry_print_printer_icon {
+        width: 58px;
+        height: 58px;
+    }
+
+    .o_laundry_print_title_block {
+        padding-top: 6px;
+    }
+
+    .o_laundry_print_title {
+        font-size: 32px;
+    }
+
+    .o_laundry_print_detail {
+        margin-top: 10px;
+        font-size: 22px;
+    }
+
+    .o_laundry_print_progress {
+        height: 14px;
+        margin-top: 32px;
+    }
+
+    .o_laundry_print_actions {
+        margin-top: 30px;
+    }
+
+    .o_laundry_print_cancel {
+        min-width: 156px;
+        min-height: 52px;
+        border-radius: 22px;
+        gap: 10px;
+        font-size: 20px;
+    }
+
+    .o_laundry_print_cancel_icon {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+
+    .o_laundry_print_cancel_icon .o_laundry_print_x_icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .o_laundry_print_overlay[dir="ltr"] .o_laundry_print_header {
+        grid-template-columns: 96px minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 720px) {
+    .o_laundry_print_overlay {
+        padding: 18px;
+    }
+
+    .o_laundry_print_panel {
+        width: 100%;
+        min-width: 0;
+        max-width: 520px;
+        min-height: auto;
+        border-radius: 28px;
+        padding: 30px 26px;
+    }
+
+    .o_laundry_print_panel::before {
+        width: 72%;
+        inset: -36% auto auto -28%;
+    }
+
+    .o_laundry_print_panel::after {
+        width: 70%;
+        right: -24%;
+        bottom: -42%;
+    }
+
+    .o_laundry_print_header {
+        grid-template-columns: minmax(0, 1fr) 74px;
+        gap: 16px;
+    }
+
+    .o_laundry_print_loader {
+        width: 74px;
+        height: 74px;
+        border-radius: 22px;
+    }
+
+    .o_laundry_print_loader i {
+        font-size: 42px;
+    }
+
+    .o_laundry_print_printer_icon {
+        width: 42px;
+        height: 42px;
+        stroke-width: 4;
+    }
+
+    .o_laundry_print_title_block {
+        padding-top: 4px;
+    }
+
+    .o_laundry_print_title {
+        font-size: 28px;
+    }
+
+    .o_laundry_print_detail {
+        margin-top: 8px;
+        font-size: 18px;
+    }
+
+    .o_laundry_print_progress {
+        height: 12px;
+        margin-top: 34px;
+    }
+
+    .o_laundry_print_actions {
+        margin-top: 28px;
+    }
+
+    .o_laundry_print_cancel {
+        min-width: 164px;
+        min-height: 56px;
+        border-radius: 22px;
+        padding: 0 20px;
+        gap: 12px;
+        font-size: 20px;
+    }
+
+    .o_laundry_print_cancel_icon {
+        width: 34px;
+        height: 34px;
+        font-size: 20px;
+    }
+
+    .o_laundry_print_cancel_icon .o_laundry_print_x_icon {
+        width: 20px;
+        height: 20px;
+        stroke-width: 3.4;
+    }
+
+    .o_laundry_print_overlay[dir="ltr"] .o_laundry_print_header {
+        grid-template-columns: 74px minmax(0, 1fr);
+    }
+}

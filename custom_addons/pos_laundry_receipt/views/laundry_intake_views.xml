@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <!-- Tree View -->
+    <record id="view_pos_laundry_intake_tree" model="ir.ui.view">
+        <field name="name">pos.laundry.intake.tree</field>
+        <field name="model">pos.laundry.intake</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Intake Number"/>
+                <field name="partner_name" string="Customer Name"/>
+                <field name="phone" string="Phone"/>
+                <field name="pickup_date" string="Intake Date"/>
+                <field name="delivery_date" string="Delivery Date"/>
+                <field name="priority" string="Priority"/>
+                <field name="amount_total" string="Total"/>
+                <field name="state" string="Status"/>
+                <field name="pos_config_id" string="Point of Sale Configuration"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_pos_laundry_intake_form" model="ir.ui.view">
+        <field name="name">pos.laundry.intake.form</field>
+        <field name="model">pos.laundry.intake</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="partner_name"/>
+                            <field name="phone"/>
+                        </group>
+                        <group>
+                            <field name="pickup_date" string="Intake Date"/>
+                            <field name="delivery_date" string="Delivery Date"/>
+                            <field name="priority" string="Priority" readonly="1"/>
+                            <field name="state" string="Status"/>
+                            <field name="pos_config_id" string="Point of Sale Configuration"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <field name="note" string="Notes"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Items">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id" string="Item"/>
+                                    <field name="product_name" string="Item Name"/>
+                                    <field name="qty" string="Quantity"/>
+                                    <field name="price_unit" string="Unit Price"/>
+                                    <field name="price_subtotal" string="Subtotal" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                    <group class="oe_subtotal_footer oe_right">
+                        <field name="amount_total" readonly="1"/>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_pos_laundry_intake" model="ir.actions.act_window">
+        <field name="name">Laundry Intakes</field>
+        <field name="res_model">pos.laundry.intake</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_pos_laundry_intake_root"
+              name="Laundry Intakes"
+              parent="point_of_sale.menu_point_root"
+              action="action_pos_laundry_intake"
+              sequence="95"/>
+</odoo>

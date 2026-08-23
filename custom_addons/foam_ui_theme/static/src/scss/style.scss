@@ -1,0 +1,584 @@
+:root {
+    --foam-primary: #1686e3;
+    --foam-primary-dark: #0d5fb0;
+    --foam-bg: #eef8ff;
+    --foam-card: rgba(255, 255, 255, 0.78);
+    --foam-border: rgba(22, 134, 227, 0.15);
+    --foam-text: #1f4e6b;
+    --foam-radius: 14px;
+    --foam-shadow: 0 8px 25px rgba(22, 134, 227, 0.12);
+    --foam-transition: all 0.25s ease;
+}
+
+/* ===== Background ===== */
+body {
+    background: linear-gradient(180deg, #eef8ff, #e3f3ff);
+    color: var(--foam-text);
+}
+
+/* ===== Navbar ===== */
+.o_navbar {
+    background: linear-gradient(135deg, #1686e3, #0d5fb0);
+    border-bottom: none;
+    box-shadow: var(--foam-shadow);
+}
+
+
+
+/* ===== Main Content ===== */
+.o_web_client .o_action_manager {
+    background: transparent !important;
+}
+
+/* ===== Cards / Views ===== */
+.o_form_view,
+.o_kanban_renderer,
+.o_list_renderer,
+.o_control_panel {
+    background: var(--foam-card);
+    border-radius: var(--foam-radius);
+    border: 1px solid var(--foam-border);
+    box-shadow: var(--foam-shadow);
+}
+
+/* ===== Form Sheet ===== */
+.o_form_view .o_form_sheet {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 18px;
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--foam-primary), var(--foam-primary-dark)) !important;
+    border: none !important;
+    border-radius: 10px;
+    transition: var(--foam-transition);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(22, 134, 227, 0.25);
+}
+
+/* ===== Inputs ===== */
+.form-control,
+.o_input {
+    border-radius: 10px !important;
+    border: 1px solid var(--foam-border) !important;
+    background: rgba(255,255,255,0.9) !important;
+}
+
+.form-control:focus,
+.o_input:focus {
+    border-color: var(--foam-primary) !important;
+    box-shadow: 0 0 0 2px rgba(22, 134, 227, 0.15);
+}
+
+/* ===== Table ===== */
+.o_list_renderer thead {
+    background: rgba(22, 134, 227, 0.08);
+}
+
+.o_list_renderer tbody tr:hover {
+    background: rgba(22, 134, 227, 0.05);
+}
+
+/* ===== Kanban Hover ===== */
+.o_kanban_record {
+    transition: var(--foam-transition);
+}
+
+.o_kanban_record:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(22, 134, 227, 0.18);
+}
+
+/* ===== App Menu ===== */
+.o_app {
+    border-radius: 16px;
+  
+    transition: var(--foam-transition);
+}
+
+.o_app:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--foam-shadow);
+}
+
+/* ===== Modal Animation (خفيف) ===== */
+.modal-content {
+    border-radius: 16px;
+    animation: fadeInUp 0.2s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== App Menu ===== */
+.o_apps_menu,
+.o-dropdown--menu {
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.o_dropdown_menu,
+.o-dropdown--menu {
+    padding: 22px 28px !important;
+}
+
+.o-dropdown--menu .o_app {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px 14px !important;
+    border-radius: 18px !important;
+    transition: all 0.25s ease;
+}
+
+.o-dropdown--menu .o_app > a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none !important;
+}
+
+/* icon box */
+.o-dropdown--menu .o_app .mk_app_icon,
+.o-dropdown--menu .o_app img {
+    width: 68px !important;
+    height: 68px !important;
+    object-fit: contain;
+    padding: 14px;
+    border-radius: 16px !important;
+    background: rgba(255, 255, 255, 0.72) !important;
+    border: 1px solid rgba(255, 255, 255, 0.65) !important;
+    box-shadow: 0 8px 20px rgba(31, 78, 107, 0.10);
+    transition: all 0.25s ease;
+}
+
+/* app name */
+.o-dropdown--menu .o_app .mk_app_name,
+.o-dropdown--menu .o_app .o_app_name,
+.o-dropdown--menu .o_app span {
+    color: #ffffff !important;
+    font-size: 15px !important;
+    font-weight: 600;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.20);
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* hover */
+.o-dropdown--menu .o_app:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+    transform: translateY(-2px);
+}
+
+.o-dropdown--menu .o_app:hover .mk_app_icon,
+.o-dropdown--menu .o_app:hover img {
+    transform: translateY(-2px) scale(1.04);
+    background: rgba(255, 255, 255, 0.88) !important;
+    box-shadow: 0 14px 28px rgba(31, 78, 107, 0.16);
+}
+
+/* active / focus */
+.o-dropdown--menu .o_app.focus,
+.o-dropdown--menu .o_app:focus,
+.o-dropdown--menu .o_app:focus-within {
+    background: rgba(255, 255, 255, 0.14) !important;
+    outline: none !important;
+}
+
+.o-dropdown--menu .o_app.focus .mk_app_icon,
+.o-dropdown--menu .o_app:focus .mk_app_icon,
+.o-dropdown--menu .o_app:focus-within .mk_app_icon,
+.o-dropdown--menu .o_app.focus img,
+.o-dropdown--menu .o_app:focus img,
+.o-dropdown--menu .o_app:focus-within img {
+    background: rgba(255, 255, 255, 0.92) !important;
+    box-shadow: 0 14px 30px rgba(13, 95, 176, 0.18);
+}
+
+/* spacing */
+.o-dropdown--menu .o_app {
+    min-width: 120px;
+}
+
+/* hide ugly default borders if any */
+.o-dropdown--menu .dropdown-item {
+    border: none !important;
+}
+
+.o_navbar_apps_menu.show .dropdown-menu .o_app > a .mk_app_name {
+    color: #0a3d66 !important;
+    font-weight: 600;
+}
+
+/* =========================================
+   FOAM SIDEBAR
+   نفس ستايل المرجع لكن بألوان مناسبة للثيم
+========================================= */
+
+:root {
+    --foam-side-1: rgba(20, 71, 116, 0.92);
+    --foam-side-2: rgba(40, 119, 184, 0.88);
+    --foam-side-3: rgba(110, 196, 255, 0.18);
+
+    --foam-side-text: rgba(255, 255, 255, 0.92);
+    --foam-side-text-soft: rgba(255, 255, 255, 0.72);
+
+    --foam-side-hover-1: rgba(255, 255, 255, 0.18);
+    --foam-side-hover-2: rgba(255, 255, 255, 0.08);
+
+    --foam-side-active-1: rgba(255, 255, 255, 0.28);
+    --foam-side-active-2: rgba(255, 255, 255, 0.14);
+
+    --foam-side-border: rgba(255, 255, 255, 0.12);
+    --foam-side-indicator-1: #9be7ff;
+    --foam-side-indicator-2: #dff7ff;
+
+    --foam-side-shadow: 0 12px 30px rgba(8, 49, 87, 0.16);
+}
+
+/* panel */
+.mk_apps_sidebar_panel {
+    position: relative;
+    width: 250px !important;
+    overflow-y: auto !important;
+    border-inline-end: 1px solid var(--foam-side-border) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: var(--foam-side-shadow) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background:
+        linear-gradient(180deg, var(--foam-side-1), var(--foam-side-2)) !important;
+}
+
+.mk_apps_sidebar_panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 34%),
+        radial-gradient(circle at bottom right, var(--foam-side-3), transparent 32%);
+    pointer-events: none;
+}
+
+/* inner */
+.mk_apps_sidebar {
+    width: 250px !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* list */
+.mk_apps_sidebar_menu {
+    padding: 12px 10px !important;
+    margin: 0 !important;
+    list-style: none !important;
+}
+
+/* each item */
+.mk_apps_sidebar_menu .nav-item {
+    margin-bottom: 6px !important;
+}
+
+.mk_apps_sidebar_menu .nav-item + .nav-item {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 6px;
+}
+
+/* link */
+.mk_apps_sidebar_menu .nav-link {
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-height: 48px !important;
+    padding: 10px 14px !important;
+    border-radius: 14px !important;
+    color: var(--foam-side-text) !important;
+    background: transparent !important;
+    transition: all 0.25s ease !important;
+    text-decoration: none !important;
+    overflow: hidden;
+}
+
+/* underline effect */
+.mk_apps_sidebar_menu .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 6px;
+    left: 12px;
+    width: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--foam-side-indicator-1), var(--foam-side-indicator-2));
+    transition: width 0.28s ease;
+}
+
+.mk_apps_sidebar_menu .nav-link:hover::after {
+    width: 58%;
+}
+
+.mk_apps_sidebar_menu .nav-item.active .nav-link::after,
+.mk_apps_sidebar_menu .nav-link.active::after {
+    width: 68%;
+}
+
+/* hover */
+.mk_apps_sidebar_panel .nav-link:hover {
+    background: linear-gradient(
+        135deg,
+        var(--foam-side-hover-1),
+        var(--foam-side-hover-2)
+    ) !important;
+    color: #ffffff !important;
+    transform: translateX(-3px) translateY(-1px);
+    box-shadow: 0 8px 18px rgba(7, 52, 90, 0.14);
+}
+
+/* active */
+.mk_apps_sidebar_panel .nav-item.active .nav-link,
+.mk_apps_sidebar_panel .nav-link.active {
+    background: linear-gradient(
+        135deg,
+        var(--foam-side-active-1),
+        var(--foam-side-active-2)
+    ) !important;
+    color: #ffffff !important;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.10),
+        0 6px 16px rgba(40, 119, 184, 0.20);
+}
+
+/* left indicator */
+.mk_apps_sidebar_menu .nav-item.active .nav-link::before,
+.mk_apps_sidebar_menu .nav-link.active::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    border-radius: 0 8px 8px 0;
+    background: linear-gradient(180deg, var(--foam-side-indicator-1), var(--foam-side-indicator-2));
+}
+
+/* icon */
+.mk_apps_sidebar_icon {
+    width: 22px !important;
+    height: 22px !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+    border-radius: 7px;
+    transition: all 0.25s ease;
+    filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.08));
+}
+
+.mk_apps_sidebar_menu .nav-link:hover .mk_apps_sidebar_icon {
+    transform: scale(1.08) rotate(-3deg);
+}
+
+/* text */
+.mk_apps_sidebar_name {
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: inherit !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* logo */
+.mk_apps_sidebar_logo {
+    position: relative;
+    z-index: 1;
+    padding: 14px 12px !important;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+}
+
+.mk_apps_sidebar_panel img {
+    max-width: 140px;
+    opacity: 0.92;
+}
+
+/* scrollbar */
+.mk_apps_sidebar_panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mk_apps_sidebar_panel::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.22);
+    border-radius: 10px;
+}
+
+/* responsive */
+@media (max-width: 1200px) {
+    .mk_apps_sidebar,
+    .mk_apps_sidebar_panel {
+        width: 82px !important;
+    }
+
+    .mk_apps_sidebar_menu .nav-link {
+        justify-content: center !important;
+        padding: 10px !important;
+    }
+
+    .mk_apps_sidebar_name {
+        display: none !important;
+    }
+
+    .mk_apps_sidebar_menu .nav-link::after,
+    .mk_apps_sidebar_menu .nav-link::before {
+        display: none !important;
+    }
+}
+
+
+/* =========================================
+   FOAM NAVBAR + DROPDOWN (LIGHT GLASS STYLE)
+========================================= */
+
+/* ===== NAVBAR ===== */
+.o_main_navbar {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.85),
+        rgba(210, 235, 255, 0.75)
+    ) !important;
+
+
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+/* ===== TEXT ===== */
+.o_main_navbar,
+.o_main_navbar a,
+.o_main_navbar .dropdown-toggle,
+.o_main_navbar .o_nav_entry {
+    color: #1f4e6b !important;
+}
+
+/* ===== HOVER ===== */
+.o_main_navbar .o_menu_sections > * > .dropdown-toggle:hover,
+.o_main_navbar .o_nav_entry:hover {
+    border-radius: 8px;
+}
+
+
+
+
+.o_main_navbar .o_menu_sections .o_nav_entry, .o_main_navbar .o_menu_sections .dropdown-toggle {
+    background-color: transparent;
+
+}
+
+.o-dropdown--menu.dropdown-menu {
+    z-index: 9999 !important;
+}
+
+.o-dropdown.dropdown {
+    position: relative;
+    z-index: 1000;
+}
+
+.o-dropdown--menu.dropdown-menu {
+    z-index: 9999 !important;
+}
+
+.o_action_manager,
+.o_content,
+.o_form_view,
+.o_cp_action_menus {
+    overflow: visible !important;
+}
+
+.o-dropdown--menu.dropdown-menu {
+    z-index: 99999 !important;
+}
+
+/* Keep top navbar dropdowns above sidebar and page content. */
+.o_web_client > .o_navbar,
+.o_main_navbar {
+    position: relative;
+    z-index: 1200 !important;
+    overflow: visible !important;
+}
+
+.o_main_navbar .o_menu_sections,
+.o_main_navbar .o_menu_sections .o-dropdown,
+.o_main_navbar .o_menu_sections .dropdown {
+    overflow: visible !important;
+}
+
+.o_main_navbar .o_menu_sections .o-dropdown.show,
+.o_main_navbar .o_menu_sections .dropdown.show {
+    position: relative;
+    z-index: 1201 !important;
+}
+
+.o_main_navbar .o_menu_sections .o-dropdown--menu.dropdown-menu,
+.o_main_navbar .o_menu_sections .dropdown-menu {
+    z-index: 1202 !important;
+}
+
+/* ===== Compact navbar section dropdowns ===== */
+.o_main_navbar .o_menu_sections .o-dropdown--menu.dropdown-menu,
+.o_main_navbar .o_menu_sections .dropdown-menu {
+    min-width: 185px;
+    max-width: 260px;
+    padding: 6px 0 !important;
+    text-align: left;
+    direction: ltr;
+}
+
+.o_main_navbar .o_menu_sections .dropdown-item,
+.o_main_navbar .o_menu_sections .dropdown-header {
+    min-height: 26px;
+    padding: 4px 14px !important;
+    line-height: 1.35;
+    text-align: inherit;
+    white-space: nowrap;
+}
+
+.o_main_navbar .o_menu_sections .dropdown-header.dropdown-menu_group {
+    padding-top: 7px !important;
+    padding-bottom: 3px !important;
+    color: #667481;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.o_main_navbar .o_menu_sections .o_dropdown_menu_group_entry.dropdown-item {
+    padding-left: 22px !important;
+}
+
+.o_rtl .o_main_navbar .o_menu_sections .o-dropdown--menu.dropdown-menu,
+.o_rtl .o_main_navbar .o_menu_sections .dropdown-menu {
+    text-align: right;
+    direction: rtl;
+}
+
+.o_rtl .o_main_navbar .o_menu_sections .dropdown-item,
+.o_rtl .o_main_navbar .o_menu_sections .dropdown-header {
+    padding-right: 14px !important;
+    padding-left: 14px !important;
+}
+
+.o_rtl .o_main_navbar .o_menu_sections .o_dropdown_menu_group_entry.dropdown-item {
+    padding-right: 22px !important;
+    padding-left: 14px !important;
+}

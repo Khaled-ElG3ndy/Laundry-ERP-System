@@ -1,0 +1,1558 @@
+.pos .category-selector,
+.pos .categories,
+.pos .category-list,
+.pos .category-button,
+.pos .control-buttons .category-selector,
+.pos .top-content .category-selector,
+.pos .header-categories,
+.pos .products-widget .header,
+.pos .products-widget .products-header,
+.pos .product-screen .top-content,
+.pos .products-widget .controls,
+.pos .products-widget .searchbox,
+.pos .products-widget .input-search,
+.pos .products-widget > div:first-child {
+    display: none !important;
+}
+
+.pos .product-screen .o_pricelist_button,
+.pos .product-screen .control-buttons:has(.o_pricelist_button) {
+    display: none !important;
+}
+
+.pos .pos-topheader {
+    position: relative;
+    align-items: center;
+    overflow: visible;
+}
+
+.pos .pos-top-product-search {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(320px, 34vw, 540px);
+    max-width: calc(100vw - 720px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 3;
+}
+
+.pos .pos-top-product-search__field {
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 0 12px;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 251, 255, 0.94));
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 10px 24px rgba(15, 23, 42, 0.07);
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+.pos .pos-top-product-search__field[dir="rtl"] {
+    direction: rtl;
+    flex-direction: row;
+}
+
+.pos .pos-top-product-search__field[dir="ltr"] {
+    direction: ltr;
+    flex-direction: row;
+}
+
+.pos .pos-top-product-search__field:focus-within {
+    border-color: rgba(37, 99, 235, 0.42);
+    background: #ffffff;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        0 0 0 3px rgba(37, 99, 235, 0.10),
+        0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.pos .pos-top-product-search__icon {
+    flex: 0 0 auto;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.pos .pos-top-product-search__input {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+    border: 0 !important;
+    outline: 0 !important;
+    padding: 0;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #0f172a;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-align: start;
+    unicode-bidi: plaintext;
+}
+
+.pos .pos-top-product-search__field[dir="rtl"] .pos-top-product-search__input {
+    direction: rtl;
+    text-align: right;
+}
+
+.pos .pos-top-product-search__field[dir="ltr"] .pos-top-product-search__input {
+    direction: ltr;
+    text-align: left;
+}
+
+.pos .pos-top-product-search__input::placeholder {
+    color: #94a3b8;
+    font-weight: 700;
+    opacity: 1;
+}
+
+.pos .pos-top-product-search__input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.pos .pos-top-product-search__clear {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #64748b;
+    cursor: pointer;
+    transition:
+        background 160ms ease,
+        color 160ms ease,
+        border-color 160ms ease;
+}
+
+.pos .pos-top-product-search__clear:hover,
+.pos .pos-top-product-search__clear:focus-visible {
+    border-color: rgba(37, 99, 235, 0.22);
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+@media (max-width: 900px) {
+    .pos .pos-top-product-search {
+        display: none;
+    }
+}
+
+.pos .product-screen {
+    --pos-sidebar-bg:
+        linear-gradient(180deg, rgba(244, 249, 255, 0.82) 0%, rgba(236, 243, 252, 0.72) 100%);
+    --pos-sidebar-surface:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.66) 0%, rgba(255, 255, 255, 0.48) 100%);
+    --pos-sidebar-surface-strong:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(248, 251, 255, 0.62) 100%);
+    --pos-sidebar-border: rgba(255, 255, 255, 0.58);
+    --pos-sidebar-border-soft: rgba(148, 163, 184, 0.24);
+    --pos-sidebar-text: #0f172a;
+    --pos-sidebar-text-soft: #475569;
+    --pos-sidebar-primary: #2563eb;
+    --pos-sidebar-primary-light: #3b82f6;
+    --pos-sidebar-emerald: #10b981;
+    --pos-sidebar-emerald-soft: rgba(16, 185, 129, 0.16);
+    --pos-sidebar-blue-soft: rgba(59, 130, 246, 0.16);
+    --pos-sidebar-gray-soft: rgba(148, 163, 184, 0.18);
+    --pos-sidebar-danger: #ef4444;
+    --pos-sidebar-danger-deep: #dc2626;
+    --pos-sidebar-danger-soft: rgba(239, 68, 68, 0.18);
+    --pos-sidebar-shadow:
+        0 18px 44px rgba(15, 23, 42, 0.08),
+        0 6px 16px rgba(15, 23, 42, 0.05);
+    --pos-sidebar-shadow-hover:
+        0 22px 50px rgba(15, 23, 42, 0.12),
+        0 8px 22px rgba(15, 23, 42, 0.08);
+    --pos-sidebar-shadow-pressed:
+        0 10px 24px rgba(15, 23, 42, 0.08);
+    --pos-sidebar-radius-xl: 24px;
+    --pos-sidebar-radius-lg: 20px;
+    --pos-sidebar-radius-md: 18px;
+
+    /* ─── Refined transition tokens ─────────────────────────────────────────── */
+    /* Spring-style easing: fast-out then overshoot-settle for lift, soft ease-out for shadow */
+    --pos-t-spring:      cubic-bezier(0.22, 1, 0.36, 1);
+    --pos-t-smooth:      cubic-bezier(0.22, 1, 0.36, 1);
+    --pos-t-shadow:      cubic-bezier(0.16, 1, 0.3, 1);
+    --pos-t-fade:        cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Per-property durations — shadows linger a touch longer than motion */
+    --pos-dur-transform: 420ms;
+    --pos-dur-shadow:    460ms;
+    --pos-dur-border:    200ms;
+    --pos-dur-bg:        240ms;
+    --pos-dur-color:     160ms;
+    --pos-dur-opacity:   180ms;
+    --pos-dur-shimmer:   420ms;
+
+    --pos-sidebar-transition:
+        transform          var(--pos-dur-transform) var(--pos-t-spring),
+        box-shadow         var(--pos-dur-shadow)    var(--pos-t-shadow),
+        border-color       var(--pos-dur-border)    var(--pos-t-fade),
+        background         var(--pos-dur-bg)        var(--pos-t-smooth),
+        color              var(--pos-dur-color)      ease,
+        opacity            var(--pos-dur-opacity)    ease,
+        outline-color      var(--pos-dur-border)     var(--pos-t-fade);
+
+    display: flex !important;
+    flex-direction: row !important;
+    position: relative !important;
+    overflow: hidden;
+}
+
+.pos .product-screen .leftpane {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.pos .product-list.d-grid {
+    --pos-product-card-height: 284px;
+    --pos-product-image-height: 160px;
+    align-items: stretch !important;
+    grid-auto-rows: var(--pos-product-card-height) !important;
+}
+
+.pos .product-list.d-grid .product {
+    width: 100% !important;
+    height: var(--pos-product-card-height) !important;
+    min-height: var(--pos-product-card-height) !important;
+    max-height: var(--pos-product-card-height) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    overflow: hidden !important;
+}
+
+.pos .product-list.d-grid .product > * {
+    min-width: 0;
+}
+
+.pos .product-list.d-grid .product .product-img {
+    width: 100% !important;
+    height: var(--pos-product-image-height) !important;
+    min-height: var(--pos-product-image-height) !important;
+    max-height: var(--pos-product-image-height) !important;
+    flex: 0 0 var(--pos-product-image-height) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+.pos .product-list.d-grid .product .product-img img {
+    position: relative !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    display: block !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    image-rendering: auto !important;
+}
+
+.pos .product-list.d-grid .product .product-content {
+    height: calc(var(--pos-product-card-height) - var(--pos-product-image-height)) !important;
+    min-height: calc(var(--pos-product-card-height) - var(--pos-product-image-height)) !important;
+    max-height: calc(var(--pos-product-card-height) - var(--pos-product-image-height)) !important;
+    flex: 0 0 calc(var(--pos-product-card-height) - var(--pos-product-image-height)) !important;
+    margin: 0 8px !important;
+    padding-top: 10px !important;
+    padding-bottom: 8px !important;
+    overflow: hidden !important;
+}
+
+.pos .product-list.d-grid .product .product-name {
+    min-height: 46px !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-line-clamp: 2 !important;
+    line-height: 1.35 !important;
+}
+
+.pos .product-list.d-grid .product .price-tag {
+    min-height: 48px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.pos-right-panel {
+    width: clamp(336px, 23vw, 408px);
+    min-width: clamp(336px, 23vw, 408px);
+    max-width: clamp(336px, 23vw, 408px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px;
+    overflow: hidden;
+    position: relative;
+    background: var(--pos-sidebar-bg);
+    border-left: 1px solid rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(30px) saturate(1.28);
+    -webkit-backdrop-filter: blur(30px) saturate(1.28);
+    box-shadow: -18px 0 40px rgba(15, 23, 42, 0.08);
+}
+
+.pos-right-panel::before,
+.pos-right-panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.pos-right-panel::before {
+    background:
+        radial-gradient(circle at 16% 10%, rgba(59, 130, 246, 0.16) 0%, transparent 34%),
+        radial-gradient(circle at 88% 22%, rgba(16, 185, 129, 0.10) 0%, transparent 30%),
+        radial-gradient(circle at 72% 88%, rgba(59, 130, 246, 0.08) 0%, transparent 34%);
+    opacity: 0.95;
+}
+
+.pos-right-panel::after {
+    inset: 12px 10px auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+}
+
+.pos-right-panel > * {
+    position: relative;
+    z-index: 1;
+}
+
+.pos-right-panel-section {
+    position: relative;
+    background: var(--pos-sidebar-surface);
+    border: 1px solid var(--pos-sidebar-border);
+    border-radius: var(--pos-sidebar-radius-xl);
+    padding: 18px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.62),
+        inset 0 -1px 0 rgba(148, 163, 184, 0.06),
+        var(--pos-sidebar-shadow);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    overflow: hidden;
+}
+
+.pos-right-panel-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 55%);
+    opacity: 0.9;
+}
+
+.pos-right-actions-section {
+    flex: 0 0 auto;
+}
+
+.pos-right-categories-section {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.pos-right-panel-title {
+    margin: 0 0 16px;
+    color: var(--pos-sidebar-text);
+    text-align: center;
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 0;
+    line-height: 1.35;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.pos-right-panel-title::after {
+    content: "";
+    position: absolute;
+    right: 50%;
+    bottom: 0;
+    width: 46px;
+    height: 3px;
+    border-radius: 999px;
+    transform: translateX(50%);
+    background: linear-gradient(90deg, var(--pos-sidebar-primary), var(--pos-sidebar-primary-light));
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.18);
+}
+
+.pos-right-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.pos-right-action-item {
+    display: contents;
+}
+
+.pos-right-action-item:empty {
+    display: none !important;
+}
+
+/* ─── Compact order line actions ─────────────────────────────────────────── */
+.pos .product-screen .orderlines .orderline,
+.pos .orderlines .orderline:has(.pos-orderline-actions) {
+    padding-left: 58px !important;
+    position: relative !important;
+}
+
+.pos-orderline-actions,
+.pos .product-screen .orderlines .orderline .pos-orderline-actions {
+    position: absolute !important;
+    left: 15px !important;
+    top: 53% !important;
+    transform: translateY(-50%) !important;
+    z-index: 4;
+    display: flex !important;
+    align-items: center;
+    justify-content: center !important;
+    gap: 7px;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.pos-orderline-action,
+.pos .product-screen .orderlines .orderline .pos-orderline-action {
+    width: 29px !important;
+    height: 29px !important;
+    min-width: 29px !important;
+    min-height: 29px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    border: 1px solid rgba(148, 163, 184, 0.18) !important;
+    border-radius: 9px !important;
+    outline: none !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(241, 245, 249, 0.92)) !important;
+    color: #334155 !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.78),
+        0 7px 16px rgba(15, 23, 42, 0.10) !important;
+    cursor: pointer !important;
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease,
+        color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.pos-orderline-action i,
+.pos .product-screen .orderlines .orderline .pos-orderline-action i {
+    font-size: 13px !important;
+    line-height: 1 !important;
+    pointer-events: none !important;
+}
+
+.pos-orderline-action:hover,
+.pos .product-screen .orderlines .orderline .pos-orderline-action:hover {
+    transform: translateY(-1px) !important;
+    border-color: rgba(37, 99, 235, 0.28) !important;
+    background:
+        linear-gradient(180deg, #ffffff, #eff6ff) !important;
+    color: #1d4ed8 !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        0 10px 22px rgba(37, 99, 235, 0.18) !important;
+}
+
+.pos-orderline-action:active,
+.pos .product-screen .orderlines .orderline .pos-orderline-action:active {
+    transform: translateY(0) scale(0.96) !important;
+}
+
+.pos-orderline-action--delete,
+.pos .product-screen .orderlines .orderline .pos-orderline-action--delete {
+    color: #475569 !important;
+}
+
+.pos-orderline-action--delete:hover,
+.pos .product-screen .orderlines .orderline .pos-orderline-action--delete:hover {
+    border-color: rgba(239, 68, 68, 0.30) !important;
+    background:
+        linear-gradient(180deg, #ffffff, #fef2f2) !important;
+    color: #dc2626 !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        0 10px 22px rgba(220, 38, 38, 0.18) !important;
+}
+
+@media (max-width: 768px) {
+    .pos .product-screen .orderlines .orderline,
+    .pos .orderlines .orderline:has(.pos-orderline-actions) {
+        padding-left: 54px !important;
+    }
+
+    .pos-orderline-actions,
+    .pos .product-screen .orderlines .orderline .pos-orderline-actions {
+        left: 12px !important;
+        top: 50% !important;
+    }
+
+    .pos-orderline-action,
+    .pos .product-screen .orderlines .orderline .pos-orderline-action {
+        width: 27px !important;
+        height: 27px !important;
+        min-width: 27px !important;
+        min-height: 27px !important;
+        border-radius: 8px !important;
+    }
+}
+
+/* ─── Action button base ─────────────────────────────────────────────────── */
+.pos-right-action-item .control-button {
+    --action-surface-start: rgba(255, 255, 255, 0.78);
+    --action-surface-end:   rgba(246, 249, 252, 0.54);
+    --action-border:        rgba(255, 255, 255, 0.62);
+    --action-outline:       rgba(148, 163, 184, 0.14);
+    --action-accent:        var(--pos-sidebar-gray-soft);
+    --action-text:          var(--pos-sidebar-text);
+    --action-icon-bg:       rgba(255, 255, 255, 0.54);
+    --action-icon-color:    var(--pos-sidebar-text);
+    --action-glow:          rgba(59, 130, 246, 0.14);
+
+    width: 100% !important;
+    min-height: 86px !important;
+    height: 86px !important;
+    padding: 14px 12px !important;
+    border: 1px solid var(--action-border) !important;
+    border-radius: var(--pos-sidebar-radius-lg) !important;
+    background:
+        linear-gradient(180deg, var(--action-surface-start) 0%, var(--action-surface-end) 100%) !important;
+    color: var(--action-text) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    isolation: isolate;
+    text-align: center !important;
+    cursor: pointer !important;
+    /* GPU hint so the compositor layer is ready before the first hover */
+    will-change: transform, box-shadow;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.62),
+        inset 0 -1px 0 rgba(148, 163, 184, 0.08),
+        0 0 0 1px var(--action-outline),
+        0 12px 24px rgba(15, 23, 42, 0.08) !important;
+    transition:
+        transform          var(--pos-dur-transform) var(--pos-t-spring),
+        box-shadow         var(--pos-dur-shadow)    var(--pos-t-shadow),
+        border-color       var(--pos-dur-border)    var(--pos-t-fade),
+        background         var(--pos-dur-bg)        var(--pos-t-smooth),
+        color              var(--pos-dur-color)      ease,
+        opacity            var(--pos-dur-opacity)    ease !important;
+    touch-action: manipulation;
+}
+
+/* Radial tint + accent diagonal */
+.pos-right-action-item .control-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.26) 0%, transparent 56%),
+        linear-gradient(135deg, var(--action-accent) 0%, transparent 58%);
+    opacity: 1;
+    z-index: 0;
+    transition: opacity var(--pos-dur-bg) var(--pos-t-smooth);
+}
+
+/* Shimmer sweep — slides left→right on hover */
+.pos-right-action-item .control-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    /* shimmer band */
+    background: linear-gradient(
+        105deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.38) 50%,
+        transparent 65%
+    );
+    background-size: 260% 100%;
+    background-position: 150% 0;          /* start off-screen right */
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    transition:
+        background-position var(--pos-dur-shimmer) var(--pos-t-smooth),
+        opacity              160ms            ease;
+}
+
+.pos-right-action-item .control-button i,
+.pos-right-action-item .control-button span {
+    position: relative;
+    z-index: 1;
+}
+
+.pos-right-action-item .control-button i {
+    width: 38px !important;
+    height: 38px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    border-radius: 14px !important;
+    font-size: 15px !important;
+    color: var(--action-icon-color) !important;
+    background: var(--action-icon-bg) !important;
+    border: 1px solid rgba(255, 255, 255, 0.44);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.48),
+        0 10px 18px rgba(15, 23, 42, 0.08);
+    /* icon gently scales on button hover */
+    transition:
+        transform var(--pos-dur-transform) var(--pos-t-spring),
+        box-shadow var(--pos-dur-shadow)   var(--pos-t-shadow);
+}
+
+.pos-right-action-item .control-button span {
+    color: inherit !important;
+    font-size: 13px !important;
+    font-weight: 850 !important;
+    line-height: 1.3 !important;
+    text-shadow: none;
+    transition: transform var(--pos-dur-transform) var(--pos-t-spring);
+}
+
+/* ─── Hover ──────────────────────────────────────────────────────────────── */
+.pos-right-action-item .control-button:hover,
+.pos-right-action-item .control-button:focus-visible {
+    transform: translateY(-2px) scale(1.012) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.74),
+        inset 0 -1px 0 rgba(148, 163, 184, 0.10),
+        0 0 0 1px rgba(255, 255, 255, 0.22),
+        0 28px 52px rgba(15, 23, 42, 0.14),
+        0 10px 24px rgba(15, 23, 42, 0.09),
+        0 0 0 6px var(--action-glow) !important;
+}
+
+/* Trigger shimmer sweep */
+.pos-right-action-item .control-button:hover::after,
+.pos-right-action-item .control-button:focus-visible::after {
+    opacity: 1;
+    background-position: -60% 0;   /* sweeps through to off-screen left */
+}
+
+/* Icon lifts subtly independent of the card */
+.pos-right-action-item .control-button:hover i,
+.pos-right-action-item .control-button:focus-visible i {
+    transform: translateY(-2px) scale(1.06) !important;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.56),
+        0 14px 22px rgba(15, 23, 42, 0.12) !important;
+}
+
+/* Label floats up a tiny amount */
+.pos-right-action-item .control-button:hover span,
+.pos-right-action-item .control-button:focus-visible span {
+    transform: translateY(-1px);
+}
+
+/* ─── Active / press ─────────────────────────────────────────────────────── */
+.pos-right-action-item .control-button:active {
+    transform: translateY(1px) scale(0.975) !important;
+    /* snap back fast — use a snappier easing for press */
+    transition:
+        transform          120ms cubic-bezier(0.36, 0, 0.66, -0.56),
+        box-shadow         150ms var(--pos-t-fade),
+        border-color       120ms ease,
+        background         120ms ease,
+        color              80ms  ease,
+        opacity            80ms  ease !important;
+    box-shadow:
+        inset 0 2px 4px rgba(15, 23, 42, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.46),
+        0 0 0 1px rgba(255, 255, 255, 0.10),
+        var(--pos-sidebar-shadow-pressed) !important;
+}
+
+.pos-right-action-item .control-button:active i {
+    transform: scale(0.94) !important;
+}
+
+/* ─── Highlight state ────────────────────────────────────────────────────── */
+.pos-right-action-item .control-button.highlight {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.68),
+        inset 0 -1px 0 rgba(148, 163, 184, 0.08),
+        0 0 0 1px rgba(59, 130, 246, 0.18),
+        0 16px 30px rgba(37, 99, 235, 0.14) !important;
+}
+
+/* ─── Per-button color variants ─────────────────────────────────────────── */
+.pos-right-action-item--NewOrderButton .control-button {
+    --action-surface-start: rgba(59, 130, 246, 0.98);
+    --action-surface-end:   rgba(37, 99, 235, 0.92);
+    --action-border:        rgba(96, 165, 250, 0.46);
+    --action-outline:       rgba(37, 99, 235, 0.12);
+    --action-accent:        rgba(255, 255, 255, 0.18);
+    --action-text:          #ffffff;
+    --action-icon-bg:       rgba(255, 255, 255, 0.18);
+    --action-icon-color:    #ffffff;
+    --action-glow:          rgba(59, 130, 246, 0.22);
+}
+/* New Order hover fix */
+.pos-right-action-item--NewOrderButton .control-button:hover,
+.pos-right-action-item--NewOrderButton .control-button:focus-visible {
+    background:
+        linear-gradient(180deg, rgba(59, 130, 246, 0.98) 0%, rgba(37, 99, 235, 0.92) 100%) !important;
+    color: #000000 !important;
+}
+
+/* Text */
+.pos-right-action-item--NewOrderButton .control-button:hover span,
+.pos-right-action-item--NewOrderButton .control-button:focus-visible span {
+    color: #000000 !important;
+}
+
+/* Icon */
+.pos-right-action-item--NewOrderButton .control-button:hover i,
+.pos-right-action-item--NewOrderButton .control-button:focus-visible i {
+    color: #000000 !important;
+}
+
+.pos-right-action-item--LaundryReceiptButton .control-button {
+    --action-surface-start: rgba(248, 113, 113, 0.94);
+    --action-surface-end:   rgba(239, 68, 68, 0.90);
+    --action-border:        rgba(252, 165, 165, 0.42);
+    --action-outline:       rgba(239, 68, 68, 0.14);
+    --action-accent:        rgba(255, 255, 255, 0.12);
+    --action-text:          #ffffff;
+    --action-icon-bg:       rgba(255, 255, 255, 0.16);
+    --action-icon-color:    #ffffff;
+    --action-glow:          rgba(248, 113, 113, 0.22);
+}
+
+.pos-right-action-item--LaundryReceiptButton .control-button:hover,
+.pos-right-action-item--LaundryReceiptButton .control-button:focus-visible {
+    background:
+        linear-gradient(180deg, rgba(248, 113, 113, 0.94) 0%, rgba(239, 68, 68, 0.90) 100%) !important;
+    color: #ffffff !important;
+}
+
+.pos-right-action-item--LaundryReceiptButton .control-button:hover i,
+.pos-right-action-item--LaundryReceiptButton .control-button:focus-visible i,
+.pos-right-action-item--LaundryReceiptButton .control-button:hover span,
+.pos-right-action-item--LaundryReceiptButton .control-button:focus-visible span {
+    color: #ffffff !important;
+}
+/* Pending Orders */
+.pos-right-action-item--PendingOrdersButton .control-button {
+    --action-surface-start: rgba(16, 185, 129, 0.95);
+    --action-surface-end:   rgba(5, 150, 105, 0.92);
+
+    --action-border:        rgba(52, 211, 153, 0.45);
+    --action-outline:       rgba(5, 150, 105, 0.16);
+
+    --action-accent:        rgba(255, 255, 255, 0.12);
+
+    --action-text:          #ffffff;
+
+    --action-icon-bg:       rgba(255, 255, 255, 0.14);
+    --action-icon-color:    #ffffff;
+
+    --action-glow:          rgba(16, 185, 129, 0.22);
+}
+
+/* Payment Button */
+.pos-right-action-item--PaymentButton .control-button {
+    --action-surface-start: rgba(16, 185, 129, 0.95);
+    --action-surface-end:   rgba(5, 150, 105, 0.92);
+
+    --action-border:        rgba(52, 211, 153, 0.45);
+    --action-outline:       rgba(5, 150, 105, 0.16);
+
+    --action-accent:        transparent;
+
+    --action-text:          #ffffff;
+
+    --action-icon-bg:       rgba(255, 255, 255, 0.14);
+    --action-icon-color:    #ffffff;
+
+    --action-glow:          rgba(16, 185, 129, 0.22);
+}
+
+/* Kill all hover overlays */
+.pos-right-action-item--PaymentButton .control-button::before,
+.pos-right-action-item--PaymentButton .control-button::after {
+    display: none !important;
+}
+
+/* Keep exact same green */
+.pos-right-action-item--PaymentButton .control-button:hover,
+.pos-right-action-item--PaymentButton .control-button:focus-visible {
+    background: linear-gradient(
+        180deg,
+        rgba(16, 185, 129, 0.95) 0%,
+        rgba(5, 150, 105, 0.92) 100%
+    ) !important;
+
+    color: #000 !important;
+}
+
+/* Payment Button hover fix */
+.pos-right-action-item--PaymentButton .control-button:hover,
+.pos-right-action-item--PaymentButton .control-button:focus-visible {
+    background:
+        linear-gradient(180deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.92) 100%) !important;
+    color: #000000 !important;
+}
+
+/* Text */
+.pos-right-action-item--PaymentButton .control-button:hover span,
+.pos-right-action-item--PaymentButton .control-button:focus-visible span {
+    color: #000000 !important;
+}
+
+/* Icon */
+.pos-right-action-item--PaymentButton .control-button:hover i,
+.pos-right-action-item--PaymentButton .control-button:focus-visible i {
+    color: #000000 !important;
+}
+.pos-right-action-item--LaundryOrderTrackingButton .control-button {
+    --action-surface-start: rgba(248, 251, 255, 0.84);
+    --action-surface-end:   rgba(237, 243, 250, 0.62);
+    --action-border:        rgba(226, 232, 240, 0.96);
+    --action-outline:       rgba(148, 163, 184, 0.10);
+    --action-accent:        rgba(59, 130, 246, 0.09);
+    --action-glow:          rgba(59, 130, 246, 0.11);
+}
+
+.pos-right-action-item--OrderlineCustomerNoteButton .control-button {
+    --action-surface-start: rgba(251, 252, 253, 0.82);
+    --action-surface-end:   rgba(240, 244, 248, 0.62);
+    --action-border:        rgba(226, 232, 240, 0.96);
+    --action-outline:       rgba(148, 163, 184, 0.10);
+    --action-accent:        rgba(148, 163, 184, 0.12);
+    --action-glow:          rgba(148, 163, 184, 0.12);
+}
+
+.pos-right-action-item--RefundButton .control-button {
+    --action-surface-start: rgba(245, 158, 11, 0.94);
+    --action-surface-end:   rgba(217, 119, 6, 0.90);
+    --action-border:        rgba(251, 191, 36, 0.42);
+    --action-outline:       rgba(245, 158, 11, 0.14);
+    --action-accent:        rgba(255, 255, 255, 0.12);
+    --action-text:          #ffffff;
+    --action-icon-bg:       rgba(255, 255, 255, 0.16);
+    --action-icon-color:    #ffffff;
+    --action-glow:          rgba(245, 158, 11, 0.20);
+}
+
+.pos-right-action-item--RefundButton .control-button:hover,
+.pos-right-action-item--RefundButton .control-button:focus-visible {
+    background:
+        linear-gradient(180deg, rgba(245, 158, 11, 0.94) 0%, rgba(217, 119, 6, 0.90) 100%) !important;
+    color: #ffffff !important;
+}
+
+.pos-right-action-item--RefundButton .control-button:hover i,
+.pos-right-action-item--RefundButton .control-button:focus-visible i,
+.pos-right-action-item--RefundButton .control-button:hover span,
+.pos-right-action-item--RefundButton .control-button:focus-visible span {
+    color: #ffffff !important;
+}
+
+/* ─── Clear-order button ─────────────────────────────────────────────────── */
+.pos-right-clear-order-btn {
+    width: 100%;
+    min-height: 56px;
+    height: 56px;
+    margin-top: 12px;
+    border: 1px solid rgba(100, 116, 139, 0.36);
+    border-radius: var(--pos-sidebar-radius-md);
+    background:
+        linear-gradient(180deg, rgba(71, 85, 105, 0.96) 0%, rgba(30, 41, 59, 0.94) 100%);
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-size: 13px;
+    font-weight: 850;
+    letter-spacing: 0.3px;
+    will-change: transform, box-shadow;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.28),
+        0 18px 32px rgba(30, 41, 59, 0.22);
+    transition:
+        transform   var(--pos-dur-transform) var(--pos-t-spring),
+        box-shadow  var(--pos-dur-shadow)    var(--pos-t-shadow),
+        border-color var(--pos-dur-border)   var(--pos-t-fade),
+        opacity     var(--pos-dur-opacity)    ease;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+}
+
+/* Shimmer sweep on clear button */
+.pos-right-clear-order-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.28) 50%,
+        transparent 65%
+    );
+    background-size: 260% 100%;
+    background-position: 150% 0;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        background-position var(--pos-dur-shimmer) var(--pos-t-smooth),
+        opacity              160ms            ease;
+    z-index: 0;
+}
+
+.pos-right-clear-order-btn i,
+.pos-right-clear-order-btn span {
+    position: relative;
+    z-index: 1;
+    transition: transform var(--pos-dur-transform) var(--pos-t-spring);
+}
+
+.pos-right-clear-order-btn i {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.10);
+    font-size: 17px;
+    line-height: 1;
+}
+
+.pos-right-clear-order-btn:hover,
+.pos-right-clear-order-btn:focus-visible {
+    transform: translateY(-3px) scale(1.015);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.34),
+        0 26px 38px rgba(30, 41, 59, 0.26),
+        0 10px 18px rgba(30, 41, 59, 0.16),
+        0 0 0 5px rgba(100, 116, 139, 0.12);
+    border-color: rgba(255, 255, 255, 0.30);
+}
+
+.pos-right-clear-order-btn:hover::before,
+.pos-right-clear-order-btn:focus-visible::before {
+    opacity: 1;
+    background-position: -60% 0;
+}
+
+.pos-right-clear-order-btn:hover i,
+.pos-right-clear-order-btn:focus-visible i {
+    transform: scale(1.15) rotate(-4deg);
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.pos-right-clear-order-btn:active {
+    transform: scale(0.975);
+    transition:
+        transform  120ms cubic-bezier(0.36, 0, 0.66, -0.56),
+        box-shadow 150ms var(--pos-t-fade),
+        border-color 120ms ease,
+        opacity 80ms ease;
+    box-shadow:
+        inset 0 3px 6px rgba(15, 23, 42, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20),
+        0 8px 14px rgba(30, 41, 59, 0.20);
+}
+
+.pos-right-clear-order-btn:active i {
+    transform: scale(0.88);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Clear-order popup ─────────────────────────────────────────────────── */
+.pos-right-dialog-shell {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.24);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.pos-right-dialog {
+    width: calc(100vw - 32px);
+    max-width: 520px;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 30px;
+    background:
+        radial-gradient(circle at top right, rgba(248, 113, 113, 0.16), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.96) 100%);
+    box-shadow:
+        0 28px 80px rgba(15, 23, 42, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    overflow: hidden;
+    color: var(--pos-sidebar-text, #0f172a);
+    direction: inherit;
+    text-align: start;
+}
+
+.pos-right-dialog__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 24px 18px;
+}
+
+.pos-right-dialog__icon {
+    width: 62px;
+    height: 62px;
+    flex: 0 0 62px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(248, 113, 113, 0.96), rgba(220, 38, 38, 0.94));
+    color: #ffffff;
+    box-shadow: 0 18px 32px rgba(220, 38, 38, 0.22);
+    font-size: 24px;
+}
+
+.pos-right-dialog__headings {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pos-right-dialog__title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #132238;
+}
+
+.pos-right-dialog__subtitle {
+    margin: 0;
+    color: #5b6b81;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+.pos-right-dialog__body {
+    padding: 0 24px 24px;
+}
+
+.pos-right-dialog__metrics {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+}
+
+.pos-right-dialog__metric {
+    padding: 16px 18px;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.72),
+        0 10px 20px rgba(15, 23, 42, 0.05);
+}
+
+.pos-right-dialog__metric-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.pos-right-dialog__metric-value {
+    display: block;
+    color: #0f172a;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 1.5;
+}
+
+.pos-right-dialog__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 18px 24px 24px;
+    border-top: 1px solid rgba(226, 232, 240, 0.86);
+    background: rgba(248, 250, 252, 0.78);
+}
+
+.pos-right-dialog__button {
+    min-width: 138px;
+    min-height: 52px;
+    padding: 0 20px;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    transition:
+        transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease,
+        color 180ms ease;
+}
+
+.pos-right-dialog__button:hover,
+.pos-right-dialog__button:focus-visible {
+    transform: translateY(-1px);
+}
+
+.pos-right-dialog__button--ghost {
+    border-color: rgba(203, 213, 225, 0.92);
+    background: rgba(255, 255, 255, 0.94);
+    color: #1e293b;
+    box-shadow: 0 10px 18px rgba(15, 23, 42, 0.05);
+}
+
+.pos-right-dialog__button--danger {
+    border-color: rgba(248, 113, 113, 0.4);
+    background: linear-gradient(135deg, rgba(248, 113, 113, 0.98), rgba(220, 38, 38, 0.94));
+    color: #ffffff;
+    box-shadow: 0 16px 28px rgba(220, 38, 38, 0.22);
+}
+
+.pos-right-dialog__button:active {
+    transform: scale(0.98);
+}
+
+/* ─── Category buttons ───────────────────────────────────────────────────── */
+.categories-center-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    align-content: start;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+.categories-center-wrap::-webkit-scrollbar { width: 6px; }
+.categories-center-wrap::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.24);
+    border-radius: 999px;
+}
+
+.pos-right-category-btn {
+    min-height: 54px;
+    padding: 10px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.74) 0%, rgba(247, 250, 252, 0.54) 100%);
+    color: var(--pos-sidebar-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12.5px;
+    font-weight: 800;
+    line-height: 1.35;
+    cursor: pointer;
+    will-change: transform, box-shadow;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.62),
+        0 0 0 1px rgba(148, 163, 184, 0.10),
+        0 12px 22px rgba(15, 23, 42, 0.06);
+    transition:
+        transform     var(--pos-dur-transform) var(--pos-t-spring),
+        box-shadow    var(--pos-dur-shadow)    var(--pos-t-shadow),
+        border-color  var(--pos-dur-border)    var(--pos-t-fade),
+        background    var(--pos-dur-bg)        var(--pos-t-smooth),
+        color         var(--pos-dur-color)      ease;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Subtle top-edge gloss that brightens on hover */
+.pos-right-category-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, transparent 48%);
+    opacity: 0;
+    transition: opacity var(--pos-dur-bg) var(--pos-t-smooth);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.pos-right-category-btn span,
+.pos-right-category-btn i {
+    position: relative;
+    z-index: 1;
+    transition: transform var(--pos-dur-transform) var(--pos-t-spring);
+}
+
+.pos-right-category-btn:hover,
+.pos-right-category-btn:focus-visible {
+    transform: translateY(-2px) scale(1.02);
+    border-color: rgba(191, 219, 254, 0.92);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.76),
+        0 0 0 1px rgba(59, 130, 246, 0.12),
+        0 18px 30px rgba(15, 23, 42, 0.10),
+        0 6px 12px rgba(15, 23, 42, 0.06);
+}
+
+.pos-right-category-btn:hover::before,
+.pos-right-category-btn:focus-visible::before {
+    opacity: 1;
+}
+
+.pos-right-category-btn:hover span,
+.pos-right-category-btn:focus-visible span {
+    transform: translateY(-1px);
+}
+
+.pos-right-category-btn:active {
+    transform: scale(0.97);
+    transition:
+        transform    120ms cubic-bezier(0.36, 0, 0.66, -0.56),
+        box-shadow   150ms var(--pos-t-fade),
+        border-color 120ms ease,
+        background   120ms ease,
+        color        80ms  ease;
+    box-shadow:
+        inset 0 2px 3px rgba(15, 23, 42, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.52),
+        0 0 0 1px rgba(148, 163, 184, 0.10);
+}
+
+.pos-right-category-btn.active,
+.pos-right-category-btn.all-btn.active {
+    background:
+        linear-gradient(180deg, rgba(59, 130, 246, 0.96) 0%, rgba(37, 99, 235, 0.90) 100%);
+    border-color: rgba(96, 165, 250, 0.42);
+    color: #ffffff;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        0 16px 30px rgba(37, 99, 235, 0.22);
+}
+
+.pos-right-category-btn.all-btn {
+    background:
+        linear-gradient(180deg, rgba(241, 247, 255, 0.86) 0%, rgba(230, 239, 252, 0.62) 100%);
+    border-color: rgba(191, 219, 254, 0.88);
+}
+
+/* ─── Responsive overrides ───────────────────────────────────────────────── */
+@media (max-width: 1480px) {
+    .pos-right-panel {
+        width: 372px;
+        min-width: 372px;
+        max-width: 372px;
+    }
+}
+
+@media (max-width: 1320px) {
+    .pos-right-panel {
+        width: 336px;
+        min-width: 336px;
+        max-width: 336px;
+        gap: 12px;
+        padding: 12px;
+    }
+    .pos-right-panel-section { padding: 16px; }
+    .pos-right-actions-grid,
+    .categories-center-wrap  { gap: 10px; }
+    .pos-right-action-item .control-button {
+        min-height: 80px !important;
+        height: 80px !important;
+    }
+}
+
+@media (max-height: 940px) {
+    .pos-right-panel { gap: 12px; padding: 12px; }
+    .pos-right-panel-section { padding: 16px; }
+    .pos-right-panel-title { margin-bottom: 14px; padding-bottom: 10px; }
+    .pos-right-action-item .control-button {
+        min-height: 78px !important;
+        height: 78px !important;
+        gap: 8px !important;
+    }
+    .pos-right-action-item .control-button i { width: 36px !important; height: 36px !important; }
+    .pos-right-clear-order-btn,
+    .pos-right-category-btn   { min-height: 52px; height: 52px; }
+    .pos-right-clear-order-btn i { font-size: 17px; }
+}
+
+@media (max-height: 820px) {
+    .pos-right-panel { gap: 10px; padding: 10px; }
+    .pos-right-panel-section { padding: 14px; border-radius: 22px; }
+    .pos-right-actions-grid,
+    .categories-center-wrap  { gap: 8px; }
+    .pos-right-action-item .control-button {
+        min-height: 72px !important;
+        height: 72px !important;
+        padding: 12px 10px !important;
+    }
+    .pos-right-action-item .control-button i {
+        width: 34px !important;
+        height: 34px !important;
+        font-size: 14px !important;
+    }
+    .pos-right-action-item .control-button span { font-size: 12.5px !important; }
+    .pos-right-clear-order-btn,
+    .pos-right-category-btn   { min-height: 48px; height: 48px; }
+    .pos-right-clear-order-btn i { font-size: 16px; }
+}
+
+@media (max-width: 760px) {
+    .pos-right-panel {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+    .pos-right-actions-grid,
+    .categories-center-wrap { grid-template-columns: 1fr; }
+
+    .pos-right-dialog-shell {
+        padding: 14px;
+    }
+
+    .pos-right-dialog {
+        width: calc(100vw - 12px);
+        max-width: 100%;
+        border-radius: 24px;
+    }
+
+    .pos-right-dialog__header,
+    .pos-right-dialog__body,
+    .pos-right-dialog__footer {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .pos-right-dialog__header {
+        align-items: flex-start;
+    }
+
+    .pos-right-dialog__metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .pos-right-dialog__footer {
+        flex-direction: column-reverse;
+    }
+
+    .pos-right-dialog__button {
+        width: 100%;
+    }
+}
+
+/* ─── Respect motion preferences ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .pos-right-action-item .control-button,
+    .pos-right-action-item .control-button::after,
+    .pos-right-clear-order-btn,
+    .pos-right-clear-order-btn::before,
+    .pos-right-category-btn,
+    .pos-right-category-btn::before {
+        transition: none !important;
+        will-change: auto !important;
+    }
+}
+
+
+/* =========================
+   Global RTL Support
+========================= */
+
+html[dir="rtl"] .pos,
+html[dir="rtl"] .pos * {
+    direction: rtl;
+}
+
+/* Product screen layout */
+html[dir="rtl"] .pos .product-screen {
+    direction: rtl;
+}
+
+/* Right panel */
+html[dir="rtl"] .pos-right-panel {
+    border-left: none;
+    border-right: 1px solid rgba(255,255,255,.52);
+    box-shadow: 18px 0 40px rgba(15,23,42,.08);
+}
+
+/* Titles */
+html[dir="rtl"] .pos-right-panel-title {
+    text-align: right;
+}
+
+/* Search / inputs */
+html[dir="rtl"] .pos input,
+html[dir="rtl"] .pos textarea,
+html[dir="rtl"] .pos select {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Buttons */
+html[dir="rtl"] .pos-right-action-item .control-button,
+html[dir="rtl"] .pos-right-clear-order-btn,
+html[dir="rtl"] .pos-right-category-btn {
+    direction: rtl;
+}
+
+/* Popup forms */
+html[dir="rtl"] .laundry-pos-field,
+html[dir="rtl"] .laundry-pos-field__header,
+html[dir="rtl"] .laundry-pos-field__control {
+    text-align: right;
+}
+
+/* Input icons */
+html[dir="rtl"] .laundry-pos-field__icon {
+    left: auto !important;
+    right: 16px !important;
+}
+
+/* Inputs padding */
+html[dir="rtl"] .laundry-pos-input {
+    padding-left: 18px !important;
+    padding-right: 48px !important;
+    text-align: right;
+}
+
+/* Search clear button */
+html[dir="rtl"] .laundry-pos-field__clear,
+html[dir="rtl"] .laundry-receipt-popup__search-clear {
+    right: auto !important;
+    left: 14px !important;
+}
+
+/* Receipt popup sections */
+html[dir="rtl"] .laundry-receipt-popup,
+html[dir="rtl"] .laundry-receipt-popup * {
+    direction: rtl;
+}
+
+/* Tables */
+html[dir="rtl"] table {
+    direction: rtl;
+}
+
+html[dir="rtl"] th,
+html[dir="rtl"] td {
+    text-align: right;
+}
+
+/* Customer search results */
+html[dir="rtl"] .laundry-receipt-popup__search-results {
+    right: 0;
+    left: auto;
+}
+
+/* Category buttons */
+html[dir="rtl"] .categories-center-wrap {
+    direction: rtl;
+}
+
+/* Scrollbars */
+html[dir="rtl"] *::-webkit-scrollbar {
+    direction: rtl;
+}
+/* Remove white hover tint from payment button */
+.pos-right-action-item--PaymentButton .control-button::before {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.06) 0%,
+            transparent 60%
+        ) !important;
+}
+
+.pos-right-action-item--PaymentButton .control-button:hover::before,
+.pos-right-action-item--PaymentButton .control-button:focus-visible::before {
+    opacity: 0 !important;
+}
+/* kill payment hover effects */
+.pos-right-action-item--PaymentButton .control-button:hover,
+.pos-right-action-item--PaymentButton .control-button:focus-visible {
+    transform: none !important;
+    box-shadow: 0 12px 26px rgba(22, 163, 74, 0.24) !important;
+}
+
+.pos-right-action-item--PaymentButton .control-button:hover::before,
+.pos-right-action-item--PaymentButton .control-button:hover::after {
+    display: none !important;
+}
+/* force remove payment overlay */
+.pos-right-action-item--PaymentButton .control-button::before {
+    opacity: 0 !important;
+    background: transparent !important;
+}
+/* FINAL FINAL FIX */
+.pos-right-action-item--PaymentButton .control-button:hover::before,
+.pos-right-action-item--PaymentButton .control-button:hover::after,
+.pos-right-action-item--PaymentButton .control-button:focus-visible::before,
+.pos-right-action-item--PaymentButton .control-button:focus-visible::after {
+    content: none !important;
+    opacity: 0 !important;
+    background: none !important;
+    animation: none !important;
+}

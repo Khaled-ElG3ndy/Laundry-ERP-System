@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_st_line_reconcile_user,account.bank.statement.line.reconcile.user,model_account_bank_statement_line_reconcile,account.group_account_user,1,1,1,1
+access_st_line_reconcile_line_user,account.bank.statement.line.reconcile.line.user,model_account_bank_statement_line_reconcile_line,account.group_account_user,1,1,1,1

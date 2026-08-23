@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_laundry_service_group_user,laundry.service.group user,model_laundry_service_group,point_of_sale.group_pos_user,1,0,0,0
+access_laundry_service_group_manager,laundry.service.group manager,model_laundry_service_group,point_of_sale.group_pos_manager,1,1,1,1
+access_laundry_service_group_internal,laundry.service.group internal,model_laundry_service_group,base.group_user,1,0,0,0

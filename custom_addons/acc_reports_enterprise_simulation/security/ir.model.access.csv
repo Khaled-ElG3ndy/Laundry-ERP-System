@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_report_preview_helper_user,access.acc.report.preview.helper.user,acc_reports_enterprise_simulation.model_acc_report_preview_helper,base.group_user,1,1,1,1
+access_account_cash_flow_report_user,access.account.cash.flow.report.user,acc_reports_enterprise_simulation.model_account_cash_flow_report,base.group_user,1,1,1,1
+access_account_executive_summary_report_user,access.account.executive.summary.report.user,acc_reports_enterprise_simulation.model_account_executive_summary_report,base.group_user,1,1,1,1

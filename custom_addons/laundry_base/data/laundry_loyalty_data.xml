@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="loyalty_program_default" model="laundry.loyalty.program">
+        <field name="name">برنامج ولاء مغسلة فرحة</field>
+        <field name="points_per_sar">1.0</field>
+        <field name="sar_per_point">0.1</field>
+        <field name="min_redeem">100</field>
+        <field name="max_redeem_pct">30.0</field>
+        <field name="expiry_months">12</field>
+        <field name="welcome_points">50</field>
+        <field name="active">True</field>
+    </record>
+
+</odoo>

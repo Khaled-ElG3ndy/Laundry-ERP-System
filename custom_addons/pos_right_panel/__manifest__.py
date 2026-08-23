@@ -1,0 +1,24 @@
+{
+    "name": "POS Right Panel",
+    "version": "17.0.1.1.2",
+    "summary": "Combine right categories and right shortcuts in one POS sidebar",
+    "category": "Point of Sale",
+    "author": "Custom",
+    "license": "LGPL-3",
+    "depends": ["point_of_sale"],
+    "assets": {
+        "point_of_sale._assets_pos": [
+            "pos_right_panel/static/src/js/core_translation_terms.js",
+            'pos_right_panel/static/src/js/cash_drawer_popup.js',
+            "pos_right_panel/static/src/js/product_screen.js",
+            'pos_right_panel/static/src/xml/customer_popup.xml',
+            "pos_right_panel/static/src/xml/product_screen.xml",
+            "pos_right_panel/static/src/scss/product_screen.scss",
+            'pos_right_panel/static/src/xml/cash_drawer_popup.xml',
+            'pos_right_panel/static/src/css/cash_drawer_popup.css',
+            'pos_right_panel/static/src/css/customer_popup.css',
+        ],
+    },
+    "installable": True,
+    "application": False,
+}

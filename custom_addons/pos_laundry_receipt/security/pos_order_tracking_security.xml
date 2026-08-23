@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="access_pos_order_laundry_status_history_user" model="ir.model.access">
+        <field name="name">pos.order.laundry.status.history user</field>
+        <field name="model_id" search="[('model', '=', 'pos.order.laundry.status.history')]"/>
+        <field name="group_id" ref="point_of_sale.group_pos_user"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_pos_order_laundry_status_history_company" model="ir.rule">
+        <field name="name">Laundry status history by company</field>
+        <field name="model_id" search="[('model', '=', 'pos.order.laundry.status.history')]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+    </record>
+
+    <record id="rule_pos_laundry_intake_company" model="ir.rule">
+        <field name="name">Laundry intakes by company</field>
+        <field name="model_id" search="[('model', '=', 'pos.laundry.intake')]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+    </record>
+
+    <record id="rule_pos_laundry_intake_line_company" model="ir.rule">
+        <field name="name">Laundry intake lines by company</field>
+        <field name="model_id" search="[('model', '=', 'pos.laundry.intake.line')]"/>
+        <field name="domain_force">[('intake_id.company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+    </record>
+
+    <record id="rule_pos_laundry_label_company" model="ir.rule">
+        <field name="name">Laundry labels by company</field>
+        <field name="model_id" search="[('model', '=', 'pos.laundry.label')]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+    </record>
+
+    <record id="rule_pos_laundry_label_print_history_company" model="ir.rule">
+        <field name="name">Laundry label print history by company</field>
+        <field name="model_id" search="[('model', '=', 'pos.laundry.label.print.history')]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('point_of_sale.group_pos_user'))]"/>
+    </record>
+</odoo>

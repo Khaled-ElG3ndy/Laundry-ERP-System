@@ -1,0 +1,1 @@
+# Fair Price POS Shortcuts

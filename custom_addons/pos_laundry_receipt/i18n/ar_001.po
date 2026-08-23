@@ -1,0 +1,3668 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_laundry_receipt
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-27 00:00+0000\n"
+"PO-Revision-Date: 2026-07-27 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3 && n%100<=10?3:n%100>=11 && n%100<=99?4:5);\n"
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.report,print_report_name:pos_laundry_receipt.action_report_pos_laundry_receipt
+msgid ""
+"\n"
+"            'Laundry Receipt - %s' % (object.x_display_reference or object.name or '')\n"
+"        "
+msgstr ""
+"\n"
+"            'إيصال استلام - %s' % (object.x_display_reference or object.name or '')\n"
+"        "
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_intake.py:0
+#, python-format
+msgid " REFUND"
+msgstr " مرتجع"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+msgid "Active Orders"
+msgstr "الطلبات النشطة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Add at least one product before creating a quotation."
+msgstr "أضف منتجًا واحدًا على الأقل قبل إنشاء عرض السعر."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Added Services"
+msgstr "الخدمات المضافة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Amount Summary"
+msgstr "ملخص المبالغ"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_payment_status__cancelled
+#, python-format
+msgid "Cancelled"
+msgstr "ملغى"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__changed_by_id
+msgid "Changed By"
+msgstr "تم التغيير بواسطة"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__changed_on
+msgid "Changed On"
+msgstr "تاريخ التغيير"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__company_id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__company_id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__company_id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__company_id
+#, python-format
+msgid "Company"
+msgstr "شركة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Company Logo"
+msgstr "شعار الشركة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Completed orders ready for customer delivery"
+msgstr "طلبات مكتملة وجاهزة للتسليم للعميل"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات الضبط"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+#, python-format
+msgid "Confirm Delivery"
+msgstr "تأكيد التسليم"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__create_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__create_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__create_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__create_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__create_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__create_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__create_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__create_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__create_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__create_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__create_date
+msgid "Created on"
+msgstr "تاريخ الإنشاء"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__partner_id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__partner_id
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_tree
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#, python-format
+msgid "Customer"
+msgstr "العميل"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Customer Details"
+msgstr "تفاصيل العميل"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+msgid "Customer Information"
+msgstr "معلومات العميل"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__partner_name
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_tree
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_tree
+#, python-format
+msgid "Customer Name"
+msgstr "اسم العميل"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_intake__state__delivered
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_status__delivered
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order_laundry_status_history__new_status__delivered
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order_laundry_status_history__old_status__delivered
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#, python-format
+msgid "Delivered"
+msgstr "تم التسليم"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Delivered Today"
+msgstr "تم التسليم اليوم"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__delivery_date
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_tree
+#, python-format
+msgid "Delivery Date"
+msgstr "تاريخ التسليم"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Delivery cannot be confirmed until the payment status is Paid."
+msgstr "لا يمكن تأكيد التسليم قبل أن تكون حالة الدفع مدفوع."
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__product_name
+msgid "Description"
+msgstr "الوصف"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__display_name
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__display_name
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__display_name
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__display_name
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__display_name
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_res_config_settings__laundry_require_ten_digit_phone
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_res_config_settings_form_pos_laundry_receipt
+msgid "Enable 10-Digit Phone Validation"
+msgstr "تفعيل التحقق من رقم الهاتف المكوّن من 10 أرقام"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__old_status
+msgid "From Status"
+msgstr "الحالة السابقة"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+msgid "Grand Total"
+msgstr "الإجمالي النهائي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__intake_id
+msgid "Intake"
+msgstr "الاستلام"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__pickup_date
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_tree
+#, python-format
+msgid "Intake Date"
+msgstr "تاريخ الاستلام"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_tree
+msgid "Intake Number"
+msgstr "رقم الاستلام"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_inherit_laundry_receipt_button
+#, python-format
+msgid "Intake Receipt"
+msgstr "إيصال الاستلام"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__name
+#, python-format
+msgid "Intake Reference"
+msgstr "مرجع الاستلام"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_intake.py:0
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Invalid laundry status."
+msgstr "حالة الغسيل غير صالحة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__product_id
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+#, python-format
+msgid "Item"
+msgstr "الصنف"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Item Details"
+msgstr "تفاصيل الأصناف"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+msgid "Item Name"
+msgstr "اسم القطعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__line_ids
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+#, python-format
+msgid "Items"
+msgstr "القطع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_account_move
+msgid "Journal Entry"
+msgstr "قيد اليومية"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__write_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__write_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__write_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__write_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__write_uid
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__write_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__write_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__write_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__write_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__write_date
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_intake_id
+#, python-format
+msgid "Laundry Intake"
+msgstr "استلام الغسيل"
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.act_window,name:pos_laundry_receipt.action_pos_laundry_intake
+#: model:ir.ui.menu,name:pos_laundry_receipt.menu_pos_laundry_intake_root
+msgid "Laundry Intakes"
+msgstr "استلامات الغسيل"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.actions.client,name:pos_laundry_receipt.action_pos_laundry_order_tracking_dashboard
+#: model:ir.ui.menu,name:pos_laundry_receipt.menu_pos_laundry_order_tracking
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_tree
+#, python-format
+msgid "Laundry Order Tracking"
+msgstr "تتبع طلبات الغسيل"
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.act_window,name:pos_laundry_receipt.action_pos_laundry_order_tracking
+msgid "Laundry Orders"
+msgstr "طلبات الغسيل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Laundry Receipt"
+msgstr "إيصال الاستلام"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__laundry_status
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__laundry_status
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_status
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_tree
+msgid "Laundry Status"
+msgstr "حالة الغسيل"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_status_history_ids
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+msgid "Laundry Status History"
+msgstr "سجل حالة الغسيل"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+msgid "Laundry Tracking"
+msgstr "تتبع الغسيل"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.actions.act_window,help:pos_laundry_receipt.action_pos_laundry_order_tracking
+msgid ""
+"Laundry orders will appear here as soon as they are created from the Point "
+"of Sale."
+msgstr "ستظهر طلبات الغسيل هنا فور إنشائها من نقطة البيع."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+#, python-format
+msgid "Mark Ready"
+msgstr "وضع جاهز"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_res_partner__mobile_unique_normalized
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_res_users__mobile_unique_normalized
+msgid "Mobile Unique Normalized"
+msgstr "رقم الجوال الموحّد للتحقق من عدم التكرار"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "No laundry order matches this QR code."
+msgstr "لا يوجد طلب غسيل يطابق رمز QR هذا."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "No laundry order matches this code."
+msgstr "لم يتم العثور على طلب غسيل مطابق لهذا الرمز."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__note
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+#, python-format
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_tree
+msgid "Order Date"
+msgstr "تاريخ الطلب"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+msgid "Order Information"
+msgstr "معلومات الطلب"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_tree
+#, python-format
+msgid "Order Number"
+msgstr "رقم الطلب"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_display_reference
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_tree
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_tree
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_tree_inherit_laundry_ref
+msgid "Order Reference"
+msgstr "مرجع الطلب"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_sla_performance_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_search_inherit_laundry_invoice
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_filter_inherit_laundry_invoice
+msgid "Order / Paid Invoice"
+msgstr "رقم الطلب / رقم الفاتورة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Order status updated from %(old_status)s to %(new_status)s"
+msgstr "تم تحديث حالة الطلب من %(old_status)s إلى %(new_status)s"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Orders delivered to the customer"
+msgstr "طلبات تم تسليمها للعميل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Orders received and waiting for service"
+msgstr "طلبات تم استلامها وتنتظر بدء الخدمة"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_pos_laundry_intake
+msgid "POS Laundry Intake"
+msgstr "استلام غسيل نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_pos_laundry_intake_line
+msgid "POS Laundry Intake Line"
+msgstr "سطر استلام غسيل نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_pos_order_laundry_status_history
+msgid "POS Laundry Order Status History"
+msgstr "سجل حالة طلب غسيل نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.report,name:pos_laundry_receipt.action_report_pos_laundry_receipt
+msgid "POS Laundry Receipt"
+msgstr "إيصال استلام غسيل نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_report_pos_laundry_receipt_report_pos_laundry_receipt
+msgid "POS Laundry Receipt Report"
+msgstr "تقرير إيصال استلام غسيل نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__order_id
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_account_move_form_inherit_pos_order_button
+msgid "POS Order"
+msgstr "طلب نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_account_bank_statement_line__pos_order_count
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_account_bank_statement_line__pos_order_ids
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_account_move__pos_order_count
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_account_move__pos_order_ids
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_account_payment__pos_order_count
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_account_payment__pos_order_ids
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_account_move_form_inherit_pos_order_button
+msgid "POS Orders"
+msgstr "طلبات نقطة البيع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_payment_status__paid
+#, python-format
+msgid "Paid"
+msgstr "مدفوع"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_invoice_number
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_tree
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_tree
+#, python-format
+msgid "Paid Invoice Number"
+msgstr "رقم الفاتورة المدفوعة"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_sla_performance_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+msgid "Paid Invoices"
+msgstr "فواتير مدفوعة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_payment_status__partial
+#, python-format
+msgid "Partially Paid"
+msgstr "مدفوع جزئياً"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__payment_status
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_payment_status
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_tree
+msgid "Payment Status"
+msgstr "حالة الدفع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__phone
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_tree
+#, python-format
+msgid "Phone"
+msgstr "الهاتف"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_res_partner__phone_unique_normalized
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_res_users__phone_unique_normalized
+msgid "Phone Unique Normalized"
+msgstr "رقم الهاتف الموحّد للتحقق من عدم التكرار"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_config__name
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__pos_config_id
+msgid "Point of Sale"
+msgstr "نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_pos_config
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_tree
+msgid "Point of Sale Configuration"
+msgstr "إعداد نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_pos_session
+msgid "Point of Sale Session"
+msgstr "جلسة نقطة البيع"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Price"
+msgstr "السعر"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "QR Code"
+msgstr "رمز الاستجابة السريعة"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_qr_token
+msgid "QR Token"
+msgstr "رمز أمان QR"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__qty
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+#, python-format
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_intake__state__ready
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_status__ready
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order_laundry_status_history__new_status__ready
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order_laundry_status_history__old_status__ready
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_search
+#, python-format
+msgid "Ready"
+msgstr "جاهز"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_intake__state__received
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_status__received
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order_laundry_status_history__new_status__received
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order_laundry_status_history__old_status__received
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+#, python-format
+msgid "Received"
+msgstr "تم الاستلام"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_payment_status__refunded
+#, python-format
+msgid "Refunded"
+msgstr "مسترجع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_ir_actions_report
+msgid "Report Action"
+msgstr "إجراء التقرير"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_config__laundry_require_ten_digit_phone
+msgid "Require 10-Digit Phone Number"
+msgstr "اشتراط رقم هاتف مكوّن من 10 أرقام"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Scan the code to track the order status."
+msgstr "امسح الرمز لمتابعة حالة الطلب."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Select a customer before creating a quotation."
+msgstr "اختر عميلًا قبل إنشاء عرض السعر."
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__selection_details
+msgid "Service Details"
+msgstr "تفاصيل الخدمة"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+msgid "Service intake and customer summary"
+msgstr "استلام الخدمة وملخص العميل"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__state
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_tree
+msgid "Status"
+msgstr "الحالة"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__price_subtotal
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+msgid "Subtotal"
+msgstr "المجموع الفرعي"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Subtotal Before Tax"
+msgstr "الإجمالي قبل الضريبة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Tax"
+msgstr "الضريبة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+#, python-format
+msgid "Thank you for choosing Foam Plus"
+msgstr "شكرًا لاختيارك فوم بلس"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "The QR code data does not match the expected order."
+msgstr "بيانات رمز QR لا تطابق الطلب المتوقع."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "The QR code does not match this order's POS reference."
+msgstr "رمز QR لا يطابق مرجع نقطة البيع لهذا الطلب."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "The QR code is invalid or empty."
+msgstr "رمز QR غير صالح أو فارغ."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "The QR security token does not match this order."
+msgstr "رمز الأمان في QR غير مطابق لهذا الطلب."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/res_partner.py:0
+#, python-format
+msgid ""
+"The customer or company cannot be saved because the same phone number "
+"appears more than once in this operation. Please enter a different number."
+msgstr ""
+"لا يمكن حفظ العميل أو الشركة لأن رقم الهاتف مكرر أكثر من مرة في نفس العملية."
+" يرجى إدخال رقم مختلف."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/res_partner.py:0
+#, python-format
+msgid ""
+"The customer or company cannot be saved because this phone number is already"
+" used by: %s. Please enter a different number."
+msgstr ""
+"لا يمكن حفظ العميل أو الشركة لأن رقم الهاتف مستخدم مسبقًا لدى: %s. يرجى "
+"إدخال رقم مختلف."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/res_partner.py:0
+#, python-format
+msgid ""
+"The phone number must contain exactly 10 digits when customer phone "
+"validation is enabled."
+msgstr ""
+"يجب أن يتكون رقم الهاتف من 10 أرقام فقط عند تفعيل التحقق الخاص بالعملاء."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "The selected customer could not be found."
+msgstr "تعذر العثور على العميل المحدد."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "The selected order could not be found."
+msgstr "تعذر العثور على الطلب المحدد."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "There are no valid order lines to create a quotation."
+msgstr "لا توجد بنود طلب صالحة لإنشاء عرض السعر."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid ""
+"This POS order is not linked to a laundry receipt, so the intake invoice "
+"cannot be printed."
+msgstr ""
+"طلب نقطة البيع هذا غير مرتبط بإيصال غسيل، لذلك لا يمكن طباعة فاتورة "
+"الاستلام."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "This order cannot be moved to the next stage by QR."
+msgstr "لا يمكن تحديث هذا الطلب إلى المرحلة التالية عبر QR."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "This order has already been delivered."
+msgstr "تم تسليم هذا الطلب مسبقًا."
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__new_status
+msgid "To Status"
+msgstr "الحالة الجديدة"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__amount_total
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_tree
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_tree
+#, python-format
+msgid "Total Amount"
+msgstr "إجمالي المبلغ"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake_line__price_unit
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_intake_form
+msgid "Unit Price"
+msgstr "سعر الوحدة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_payment_status__unpaid
+#, python-format
+msgid "Unpaid"
+msgstr "غير مدفوع"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.actions.act_window,help:pos_laundry_receipt.action_pos_laundry_order_tracking
+msgid "Use this board to track the received, ready, and delivered stages."
+msgstr "استخدم هذه اللوحة لمتابعة مراحل الاستلام والجاهزية والتسليم."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#: code:addons/pos_laundry_receipt/models/laundry_intake.py:0
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_tracking_kanban
+#, python-format
+msgid "Walk-in Customer"
+msgstr "عميل طافي"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.report_pos_laundry_receipt
+msgid "We care for your clothes"
+msgstr "نحن نهتم بملابسك"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_res_config_settings_form_pos_laundry_receipt
+msgid ""
+"When enabled, customer phone and mobile numbers must contain exactly 10 "
+"digits, and the POS phone input is limited to 10 digits."
+msgstr ""
+"عند التفعيل يجب أن تتكون أرقام هاتف وجوال العميل من 10 أرقام فقط، ويقتصر حقل"
+" الهاتف في نقطة البيع على 10 أرقام."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "You are not allowed to create quotations from POS."
+msgstr "غير مسموح لك بإنشاء عروض أسعار من نقطة البيع."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%(count)s min"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%(days)s d %(hours)s h"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%(hours)s h %(minutes)s min"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.report,print_report_name:pos_laundry_receipt.action_report_laundry_label_thermal
+msgid "'Laundry Label - %s' % (object.name or '')"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.report,print_report_name:pos_laundry_receipt.action_report_laundry_label_a4
+msgid "'Laundry Labels - A4'"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+msgid "<span aria-hidden=\"true\"> → </span>"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+msgid "<span class=\"laundry-scan-fact__label\">Current Status</span>"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+msgid "<span class=\"laundry-scan-fact__label\">Expected Delivery</span>"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+msgid "<span class=\"laundry-scan-fact__label\">Payment Status</span>"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+msgid "<span class=\"laundry-scan-fact__label\">Received Date</span>"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.constraint,message:pos_laundry_receipt.constraint_pos_laundry_label_order_unique
+msgid "A laundry order can only have one tracking label."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__access_token
+msgid "Access Token"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "Add"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Add Customer"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "Add Customer Note"
+msgstr "إضافة ملاحظة العميل"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/xml/laundry_receipt_templates.xml:0
+#, python-format
+msgid "Add a short, clear note for this item."
+msgstr "أضف ملاحظة مختصرة وواضحة مرتبطة بهذه القطعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "Add an item note here..."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Add at least one item before printing the intake receipt."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "All"
+msgstr "الكل"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "All Orders"
+msgstr "كل الطلبات"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "An Error Occurred While Saving"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,help:pos_laundry_receipt.field_pos_config__name
+msgid "An internal identification of the point of sale."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__is_pending
+msgid "Awaiting Successful Print"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__batch_reference
+msgid "Batch"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_wizard_form
+msgid "Batch Summary"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Camera access requires a secure HTTPS connection."
+msgstr "يتطلب الوصول إلى الكاميرا اتصال HTTPS آمن."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Camera permission was denied. Enable camera access and try again."
+msgstr "تم رفض إذن الكاميرا. فعّل الوصول إلى الكاميرا وحاول مرة أخرى."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_wizard_form
+#, python-format
+msgid "Cancel"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Checking"
+msgstr "جارٍ الفحص"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Checking the order and updating its status..."
+msgstr "جارٍ فحص الطلب وتحديث حالته..."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Close Form"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/sidebar_collapse.js:0
+#, python-format
+msgid "Collapse Sidebar"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Company Name"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__copy_number
+msgid "Copy Number"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Create Customer"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Creating..."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Customer Type"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Customer created successfully."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Customer name is required."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_search
+msgid "Date"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__printed_on
+msgid "Date & Time"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Delayed"
+msgstr "متأخر"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Details"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/wizard/laundry_label_print_wizard.py:0
+#, python-format
+msgid "Download Laundry Labels"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_wizard_form
+msgid "Download PDF"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Drag to Move"
+msgstr "اسحب للنقل"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__duration_seconds
+msgid "Duration (Seconds)"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__duration_display
+msgid "Duration in Stage"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Enter Phone Number"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Enter a 10-digit phone number"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Enter the phone number in 10 boxes."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label__last_format__a4
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label_print_history__label_format__a4
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label_print_wizard__label_format__a4
+msgid "Epson A4 Sticker Sheet (2 × 5)"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__error_message
+#, python-format
+msgid "Error"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.actions.act_window,help:pos_laundry_receipt.action_pos_laundry_label_queue
+msgid "Every laundry order receives a durable label automatically."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Existing Customer"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Existing Phone Number"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order_laundry_status_history__exited_on
+msgid "Exited On"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/sidebar_collapse.js:0
+#, python-format
+msgid "Expand Sidebar"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__expected_delivery_date
+msgid "Expected Delivery Date"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__failed_count
+msgid "Failed Attempts"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Failed to create the customer."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_order_tracking_button.js:0
+#, python-format
+msgid "Failed to open laundry order tracking."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Failed to save the laundry intake."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Failed to save the order on the server. Please try again."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Final Total"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Foam Plus"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__label_format
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_search
+msgid "Format"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Got It"
+msgstr "فهمت"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Important Warning"
+msgstr "تنبيه مهم"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Individual"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Information"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid ""
+"Invalid laundry workflow transition: %(current)s → %(target)s. Orders can "
+"only move from Received to Ready to Delivered."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+msgid "Items ("
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__label_id
+msgid "Label"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__label_count
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_label_count
+msgid "Label Count"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.ui.menu,name:pos_laundry_receipt.menu_pos_laundry_label_print_history
+msgid "Label Print History"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.ui.menu,name:pos_laundry_receipt.menu_pos_laundry_label_queue
+#, python-format
+msgid "Label Print Queue"
+msgstr "قائمة انتظار طباعة الملصقات"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__name
+msgid "Label Reference"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__label_ids
+msgid "Labels"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__last_format
+msgid "Last Format"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__last_error
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+msgid "Last Print Error"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__last_printed_by_id
+msgid "Last Printed By"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__last_printed_on
+msgid "Last Printed On"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Laundry Already Received"
+msgstr "تم استلام الغسيل مسبقًا"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Laundry Intake Receipt"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "Laundry Intake Required"
+msgstr "استلام الغسيل مطلوب"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_label.py:0
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Laundry Label"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.act_window,name:pos_laundry_receipt.action_pos_laundry_label_print_history
+#: model:ir.model,name:pos_laundry_receipt.model_pos_laundry_label_print_history
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_tree
+msgid "Laundry Label Print History"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.act_window,name:pos_laundry_receipt.action_pos_laundry_label_queue
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_tree
+msgid "Laundry Label Print Queue"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_pos_laundry_label_print_wizard
+msgid "Laundry Label Print Wizard"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.report,name:pos_laundry_receipt.action_report_laundry_label_thermal
+msgid "Laundry Label — Thermal"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid "Laundry Labels A4.pdf"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid "Laundry Labels Thermal.pdf"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.report,name:pos_laundry_receipt.action_report_laundry_label_a4
+msgid "Laundry Labels — Epson A4"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__order_id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__order_id
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+#, python-format
+msgid "Laundry Order"
+msgstr "طلب الغسيل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid "Laundry Order %(reference)s"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_pos_laundry_label
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+msgid "Laundry Tracking Label"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_report_pos_laundry_receipt_report_laundry_label_a4
+msgid "Laundry Tracking Label A4 Report"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model,name:pos_laundry_receipt.model_report_pos_laundry_receipt_report_laundry_label_thermal
+msgid "Laundry Tracking Label Thermal Report"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid ""
+"Laundry intake cannot be completed more than once for the same order lines."
+msgstr "لا يمكن تنفيذ استلام الغسيل أكثر من مرة لنفس سطور الطلب."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Laundry intake saved successfully."
+msgstr "تم حفظ استلام الغسيل بنجاح."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "The intake was saved, but no linked POS order was found for automatic label printing."
+msgstr "تم حفظ الاستلام، لكن لم يتم العثور على طلب نقطة البيع المرتبط لطباعة الملصق تلقائيًا."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "The intake was saved, but the tracking label could not be prepared for printing."
+msgstr "تم حفظ الاستلام، لكن تعذر تجهيز ملصق التتبع للطباعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Automatic label printing is not ready. Print the label from the queue."
+msgstr "الطباعة التلقائية للملصق غير جاهزة. اطبع الملصق من قائمة الانتظار."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "The intake was saved, but the tracking label could not be printed automatically."
+msgstr "تم حفظ الاستلام، لكن تعذر طباعة ملصق التتبع تلقائيًا."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_intake.py:0
+#, python-format
+msgid "Laundry intakes can only move from Received to Ready to Delivered."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid "Laundry label printing failed"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_tracking_label_card
+msgid "Laundry logo"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Less than a minute"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Less than an hour"
+msgstr "أقل من ساعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Live Scanner"
+msgstr "الماسح المباشر"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Loading laundry orders..."
+msgstr "جاري تحميل طلبات الغسيل..."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Needs Attention"
+msgstr "يحتاج متابعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "New Order"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_intake.py:0
+#, python-format
+msgid "New laundry intakes must start in the Received stage."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "New laundry orders must start in the Received stage."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "No Matching Customers"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "No active order was found."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.actions.act_window,help:pos_laundry_receipt.action_pos_laundry_label_queue
+msgid "No labels match this queue view."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "No orders match the current view"
+msgstr "لا توجد طلبات مطابقة للعرض الحالي"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "No suitable camera was found for scanning."
+msgstr "لم يتم العثور على كاميرا مناسبة للمسح."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "OK"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "One day"
+msgstr "يوم واحد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Open Order"
+msgstr "فتح الطلب"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+msgid "Order"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Order Age"
+msgstr "مدة الطلب"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_tracking_label_card
+msgid "Order QR code"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid "Order moved from %(previous)s to %(current)s."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Orders Created Today"
+msgstr "طلبات اليوم"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Orders Table"
+msgstr "جدول الطلبات"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Orders can only move from Received to Ready to Delivered."
+msgstr "يمكن نقل الطلبات فقط من تم الاستلام إلى جاهز ثم إلى تم التسليم."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Orders in Progress"
+msgstr "طلبات قيد التنفيذ"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "POS Reference"
+msgstr "مرجع نقطة البيع"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__pending_count
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label__state__pending
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+msgid "Pending"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Pending Labels"
+msgstr "الملصقات المعلقة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Phone Number Already in Use"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Phone number %(phone)s is already in use."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Phone number %(phone)s is already used by customer %(customer)s."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Phone number is required."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Place the receipt code inside the frame for automatic scanning."
+msgstr "ضع رمز الإيصال داخل الإطار للمسح التلقائي."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Please select a valid customer."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Point the camera at the QR code inside the scan frame"
+msgstr "وجّه الكاميرا إلى رمز QR داخل إطار المسح"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid ""
+"Point the camera at the receipt code and the order status will update "
+"immediately"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_wizard_form
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_tree
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+msgid "Preview"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+#, python-format
+msgid "Preview Label"
+msgstr "معاينة الملصق"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/wizard/laundry_label_print_wizard.py:0
+#, python-format
+msgid "Preview Laundry Labels"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_wizard_form
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_tree
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+msgid "Print"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+msgid "Print & Reprint History"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_tree
+msgid "Print All Pending"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label__state__failed
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label_print_history__result__failed
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+msgid "Print Failed"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__history_ids
+msgid "Print History"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+#, python-format
+msgid "Print Label"
+msgstr "طباعة الملصق"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/wizard/laundry_label_print_wizard.py:0
+#: model:ir.actions.act_window,name:pos_laundry_receipt.action_pos_laundry_label_print_wizard
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_wizard_form
+#, python-format
+msgid "Print Laundry Labels"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_tree
+msgid "Print Selected"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__state
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_tree
+msgid "Print Status"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_label.py:0
+#, python-format
+msgid "Print history can only be created by the label service."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_label.py:0
+#: code:addons/pos_laundry_receipt/models/laundry_label.py:0
+#, python-format
+msgid "Print history is immutable."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label__state__printed
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label_print_history__result__printed
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+msgid "Printed"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__label_format
+msgid "Printer Layout"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+msgid "Queue"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Quick Create"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Ready for Delivery"
+msgstr "جاهز للتسليم"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Ready to Scan"
+msgstr "جاهز للمسح"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__received_date
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+msgid "Received Date"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+msgid "Received Today"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Refresh"
+msgstr "تحديث"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_tree
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+msgid "Reprint"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+#, python-format
+msgid "Reprint Label"
+msgstr "إعادة طباعة الملصق"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label__state__reprinted
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label_print_history__result__reprinted
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_search
+msgid "Reprinted"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__reprint_count
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_search
+msgid "Reprints"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__result
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_search
+msgid "Result"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Review the order before trying again."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Save and Print"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Scan QR"
+msgstr "مسح الرمز"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Search by Order No., Paid Invoice No., Customer Name, or Mobile Number"
+msgstr "ابحث برقم الطلب أو رقم الفاتورة المدفوعة أو اسم العميل أو رقم الجوال"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Search for a customer"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Search for a customer or create a new one for this order."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Select This Customer"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Select a Customer"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Select a customer to continue."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Select a delivery date."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_label.py:0
+#: code:addons/pos_laundry_receipt/wizard/laundry_label_print_wizard.py:0
+#, python-format
+msgid "Select at least one label to continue."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Since Delivery"
+msgstr "منذ التسليم"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Since Intake"
+msgstr "منذ الاستلام"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Since Ready"
+msgstr "منذ الجاهزية"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Special Notes"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Starting camera..."
+msgstr "جارٍ تشغيل الكاميرا..."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Status history can only be created by the workflow service."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Status history is immutable."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Success"
+msgstr "تم بنجاح"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__print_count
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_form
+msgid "Successful Prints"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "The Current Order Is Empty"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid ""
+"The camera is being used by another application. Close it and try again."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "The existing customer with the same phone number was selected."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid ""
+"The labels remain in the print queue. Correct the printer or report issue "
+"and try again."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "The laundry intake was not created."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "The order was saved as a draft and a new order was opened"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid "The order was saved locally as a draft and a new order was opened"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid ""
+"The order was saved locally as a draft. The update will be sent when the "
+"connection is restored."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "The phone number must contain 10 digits."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "The pop-up was blocked. Please allow pop-ups to print."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_order_tracking_button.js:0
+#, python-format
+msgid "The pop-up was blocked. Please allow pop-ups to track the order."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "The status was updated successfully. You can continue scanning."
+msgstr "تم تحديث الحالة بنجاح. يمكنك متابعة المسح."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "There are no orders at this stage"
+msgstr "لا توجد طلبات في هذه المرحلة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_label.py:0
+#, python-format
+msgid "There are no pending labels to print."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label__last_format__thermal
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label_print_history__label_format__thermal
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label_print_wizard__label_format__thermal
+msgid "Thermal 80 × 60 mm"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "These items were already received and cannot be received again."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "This device or browser does not support QR scanning on this screen."
+msgstr "هذا الجهاز أو المتصفح لا يدعم مسح QR من هذه الشاشة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid ""
+"This number is already registered to a customer. Select that customer "
+"instead of creating a new one."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid "This order has no remaining workflow stage."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/wizard/laundry_label_print_wizard.py:0
+#, python-format
+msgid "This print batch belongs to another user."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Today"
+msgstr "اليوم"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Today's Orders"
+msgstr "طلبات اليوم"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label__total_items
+#, python-format
+msgid "Total Items"
+msgstr "إجمالي القطع"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_order_tracking_button.js:0
+#, python-format
+msgid "Track Order"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_label_ids
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_form_laundry_tracking
+msgid "Tracking Label"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Try another filter or clear the search to see more orders."
+msgstr "جرّب فلتر آخر أو امسح البحث لعرض مزيد من الطلبات."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Unable to Create Customer"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Unable to load laundry order tracking."
+msgstr "تعذر تحميل متابعة طلبات المغسلة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Unable to open the laundry label."
+msgstr "تعذر فتح ملصق المغسلة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Unable to process the QR code. Try again."
+msgstr "تعذر معالجة رمز QR. حاول مرة أخرى."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Unable to read this code or find the requested order."
+msgstr "تعذر قراءة هذا الرمز أو العثور على الطلب المطلوب."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/sidebar_collapse.js:0
+#, python-format
+msgid "Unable to save the sidebar preference."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Unable to start the QR scanner. Try again."
+msgstr "تعذر تشغيل ماسح QR. حاول مرة أخرى."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Unable to update the order stage."
+msgstr "تعذر تحديث مرحلة الطلب."
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_label.py:0
+#, python-format
+msgid "Unknown print error"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Updated"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_history__user_id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_label_print_wizard__user_id
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_laundry_label_print_history_search
+msgid "User"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#, python-format
+msgid "Waiting for Service"
+msgstr "بانتظار الخدمة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: code:addons/pos_laundry_receipt/static/src/xml/laundry_receipt_templates.xml:0
+#, python-format
+msgid "Warning"
+msgstr "تحذير"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "We Care for Your Clothes"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+msgid "Workflow complete — Delivered"
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/laundry_label.py:0
+#, python-format
+msgid "You are not allowed to print laundry labels."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid "You are not allowed to scan laundry labels."
+msgstr ""
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/new_order_button.js:0
+#, python-format
+msgid ""
+"You cannot proceed to payment before saving the laundry intake for this "
+"order."
+msgstr ""
+"لا يمكن الانتقال إلى الدفع قبل الضغط على زر استلام الغسيل وحفظ الاستلام لهذا"
+" الطلب."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.laundry_label_scan_page
+#, python-format
+msgid "more item lines"
+msgstr "سطور قطع إضافية"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#, python-format
+msgid "Expected"
+msgstr "المتوقع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#, python-format
+msgid "Laundry Service"
+msgstr "خدمة الغسيل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#, python-format
+msgid "Scan to update the next stage"
+msgstr "امسح الرمز للانتقال إلى المرحلة التالية"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#, python-format
+msgid "Foam Plus Laundry"
+msgstr "مغسلة رغوة بلس"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#, python-format
+msgid "SR"
+msgstr "SR"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#, python-format
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_laundry_intake__priority
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_priority
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_tree
+#, python-format
+msgid "Priority"
+msgstr "الأولوية"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_intake__priority__normal
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_priority__normal
+#, python-format
+msgid "Normal"
+msgstr "عادي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/report/report_laundry_tracking_label.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_intake__priority__urgent
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_priority__urgent
+#, python-format
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_sla_status__due_soon
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Due Soon"
+msgstr "قريب من الموعد"
+
+#. module: pos_laundry_receipt
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Deadline"
+msgstr "الموعد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_sla_deadline
+msgid "SLA Deadline"
+msgstr "موعد الالتزام النهائي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_sla_status
+msgid "SLA Status"
+msgstr "حالة الالتزام"
+
+#. module: pos_laundry_receipt
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Remaining"
+msgstr "المتبقي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_sla_remaining_display
+msgid "Remaining Time"
+msgstr "الوقت المتبقي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_sla_status__overdue
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Overdue"
+msgstr "متأخر"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_sla_status__on_track
+msgid "On Track"
+msgstr "يسير في الموعد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_delivered_on_time
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_sla_status__delivered_on_time
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Delivered On Time"
+msgstr "تم التسليم في الموعد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_order__x_laundry_sla_status__delivered_late
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Delivered Late"
+msgstr "تم التسليم متأخرًا"
+
+#. module: pos_laundry_receipt
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_worker_id
+msgid "Worker"
+msgstr "العامل"
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.act_window,name:pos_laundry_receipt.action_pos_laundry_worker_performance
+#: model:ir.ui.menu,name:pos_laundry_receipt.menu_pos_laundry_worker_performance
+msgid "Laundry Worker Performance"
+msgstr "أداء عمال المغسلة"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_config__laundry_sla_calendar_id
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_res_config_settings__pos_laundry_sla_calendar_id
+msgid "Laundry SLA Calendar"
+msgstr "تقويم التزام المغسلة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid ""
+"Point the camera at the receipt code and the order status will update "
+"immediately"
+msgstr "وجّه الكاميرا إلى رمز الإيصال وسيتم تحديث حالة الطلب فورًا"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid ""
+"The camera is being used by another application. Close it and try again."
+msgstr "الكاميرا مستخدمة بواسطة تطبيق آخر. أغلقه وحاول مرة أخرى."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "hour"
+msgstr "ساعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "hours"
+msgstr "ساعات"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "days"
+msgstr "أيام"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model:ir.actions.act_window,name:pos_laundry_receipt.action_pos_laundry_worker_performance
+#: model:ir.ui.menu,name:pos_laundry_receipt.menu_pos_laundry_worker_performance
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_graph
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_pivot
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_tree
+msgid "SLA & Performance"
+msgstr "متابعة المواعيد والأداء"
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.actions.act_window,help:pos_laundry_receipt.action_pos_laundry_worker_performance
+msgid "Laundry orders will appear here for SLA and performance analysis."
+msgstr "ستظهر طلبات المغسلة هنا لتحليل المواعيد والأداء."
+
+#. module: pos_laundry_receipt
+#: model_terms:ir.actions.act_window,help:pos_laundry_receipt.action_pos_laundry_worker_performance
+msgid ""
+"Use this page to monitor priority, due soon, overdue, delivered on time, and"
+" delivered late orders."
+msgstr ""
+"استخدم هذه الصفحة لمتابعة الأولوية، والطلبات القريبة من الموعد، والمتأخرة، "
+"والمسلمة في الوقت، والمسلمة متأخرًا."
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_on_time_percentage
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_tree
+msgid "On-Time %"
+msgstr "نسبة الالتزام بالوقت %"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_on_time_order_count
+msgid "On-Time Orders"
+msgstr "طلبات في الوقت"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_late_order_count
+msgid "Late Orders"
+msgstr "طلبات متأخرة"
+
+#. module: pos_laundry_receipt
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Priority orders"
+msgstr "طلبات ذات أولوية"
+
+#. module: pos_laundry_receipt
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "Deadline is close"
+msgstr "الموعد النهائي قريب"
+
+#. module: pos_laundry_receipt
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_tracking_dashboard.js:0
+msgid "SLA exceeded"
+msgstr "تم تجاوز الالتزام"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Delivered on time"
+msgstr "تم التسليم في الموعد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%s late"
+msgstr "متأخر %s"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%s overdue"
+msgstr "متأخر %s"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%s remaining"
+msgstr "متبقي %s"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%s d"
+msgstr "%s يوم"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%s h"
+msgstr "%s ساعة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%s m"
+msgstr "%s دقيقة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%(days)s d %(hours)s h"
+msgstr "%(days)s يوم %(hours)s ساعة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "%(hours)s h %(minutes)s m"
+msgstr "%(hours)s ساعة %(minutes)s دقيقة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/controllers/receipt_controller.py:0
+#, python-format
+msgid "Laundry Labels Epson POS.pdf"
+msgstr "ملصقات الغسيل Epson POS.pdf"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label__last_format__epson_pos
+#: model:ir.model.fields.selection,name:pos_laundry_receipt.selection__pos_laundry_label_print_history__label_format__epson_pos
+msgid "Epson POS Printer — 80 mm Roll"
+msgstr "طابعة Epson POS — رول 80 مم"
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.report,name:pos_laundry_receipt.action_report_laundry_label_thermal
+msgid "Laundry Label — Epson POS 80 mm"
+msgstr "ملصق الغسيل — Epson POS 80 مم"
+
+#. module: pos_laundry_receipt
+#: model:ir.actions.report,name:pos_laundry_receipt.action_report_laundry_label_a4
+msgid "Laundry Label — Epson POS 80 mm (Legacy Redirect)"
+msgstr "ملصق الغسيل — Epson POS 80 مم (تحويل قديم)"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Detailed Reports"
+msgstr "تقارير تفصيلية"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Appointments & Performance"
+msgstr "متابعة المواعيد والأداء"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Search by order number, customer, branch, or worker"
+msgstr "ابحث برقم الطلب أو العميل أو الفرع أو العامل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Active Urgent"
+msgstr "مستعجل نشط"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#: model_terms:ir.ui.view,arch_db:pos_laundry_receipt.view_pos_order_laundry_performance_tree
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Current Stage"
+msgstr "المرحلة الحالية"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "All Branches"
+msgstr "كل الفروع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "All Workers"
+msgstr "كل العمال"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "All Stages"
+msgstr "كل المراحل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "No Grouping"
+msgstr "بدون تجميع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Received Time"
+msgstr "وقت الاستلام"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Time in Current Stage"
+msgstr "الوقت في المرحلة الحالية"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Item Count"
+msgstr "عدد القطع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "View History"
+msgstr "عرض السجل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "More Filters"
+msgstr "فلاتر إضافية"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Show All"
+msgstr "عرض الكل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "View All"
+msgstr "عرض الكل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Back to Overview"
+msgstr "العودة للملخص"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "No orders in this category"
+msgstr "لا توجد طلبات في هذه الفئة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Previous"
+msgstr "السابق"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Next"
+msgstr "التالي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+#, python-format
+msgid "Showing %(start)s-%(end)s of %(total)s orders"
+msgstr "عرض %(start)s-%(end)s من %(total)s طلب"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Performance Analytics"
+msgstr "تحليل الأداء"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "This Week"
+msgstr "هذا الأسبوع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "This Month"
+msgstr "هذا الشهر"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Custom Range"
+msgstr "فترة مخصصة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Date From"
+msgstr "من تاريخ"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Date To"
+msgstr "إلى تاريخ"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "On-Time Delivery Rate"
+msgstr "نسبة التسليم في الموعد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Average Processing Time"
+msgstr "متوسط وقت التجهيز"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Average Delay"
+msgstr "متوسط مدة التأخير"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_delivered_on
+msgid "Delivered On"
+msgstr "تاريخ التسليم"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_duration_minutes
+msgid "Average Duration (Minutes)"
+msgstr "متوسط وقت التجهيز (بالدقائق)"
+
+#. module: pos_laundry_receipt
+#: model:ir.model.fields,field_description:pos_laundry_receipt.field_pos_order__x_laundry_delay_minutes
+msgid "Average Delay (Minutes)"
+msgstr "متوسط مدة التأخير (بالدقائق)"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Urgent SLA Compliance"
+msgstr "نسبة التزام المستعجل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Normal SLA Compliance"
+msgstr "نسبة التزام العادي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "On-Time vs Late"
+msgstr "في الموعد مقابل المتأخر"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Weekly On-Time Percentage"
+msgstr "نسبة التسليم في الموعد أسبوعيًا"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Performance by Worker"
+msgstr "الأداء حسب العامل"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Performance by Branch"
+msgstr "الأداء حسب الفرع"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Performance by Priority"
+msgstr "الأداء حسب الأولوية"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Delivered Orders"
+msgstr "الطلبات المسلمة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "On-Time Percentage"
+msgstr "نسبة التسليم في الموعد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Overdue Orders"
+msgstr "طلبات متأخرة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "No sufficient delivery data for the selected period"
+msgstr "لا توجد بيانات تسليم كافية للفترة المحددة"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "On Time"
+msgstr "في الموعد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Late"
+msgstr "متأخر"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Unassigned"
+msgstr "غير محدد"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "No deadline"
+msgstr "لا يوجد موعد نهائي"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Not available"
+msgstr "غير متاح"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "No orders currently require attention"
+msgstr "لا توجد طلبات تحتاج متابعة حاليًا"
+
+#. module: pos_laundry_receipt
+#. odoo-python
+#: code:addons/pos_laundry_receipt/models/pos_order.py:0
+msgid "Orders"
+msgstr "الطلبات"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Hotel or company account. Needs a contract pricelist before selling."
+msgstr "حساب فندق أو شركة. يحتاج قائمة أسعار عقد قبل البيع."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_receipt_button.js:0
+#, python-format
+msgid "Individual customer for the retail counter."
+msgstr "عميل أفراد لنقطة بيع التجزئة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Check needed"
+msgstr "مراجعة مطلوبة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Checking images and QR before printing."
+msgstr "يتم فحص الصور ورمز QR قبل الطباعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Converting the label for the thermal printer."
+msgstr "يتم تحويل الملصق لصيغة مناسبة للطابعة الحرارية."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Could not load the laundry label template."
+msgstr "تعذر تحميل قالب ملصق الغسيل."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Could not prepare printing"
+msgstr "تعذر تجهيز الطباعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Could not reach the Epson printer."
+msgstr "تعذر الوصول إلى طابعة Epson."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Could not send labels to the printer: %s"
+msgstr "تعذر إرسال الملصقات للطابعة: %s"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Details: %s"
+msgstr "التفاصيل: %s"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Done"
+msgstr "تم التنفيذ"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Epson error code"
+msgstr "كود خطأ Epson"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Just a moment..."
+msgstr "لحظات بسيطة..."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Labels sent"
+msgstr "تم إرسال الملصقات"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Labels were printed, but Odoo could not update the print history: %s"
+msgstr "تمت طباعة الملصقات، لكن تعذر على Odoo تحديث سجل الطباعة: %s"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Labels were sent to print successfully."
+msgstr "تم إرسال الملصقات للطباعة بنجاح."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Labels were sent to print."
+msgstr "تم إرسال الملصقات للطباعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Labels were sent, but the history update needs review."
+msgstr "تم إرسال الملصقات، لكن تحديث السجل يحتاج مراجعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Laundry label printing failed: %s"
+msgstr "تعذر تجهيز طباعة ملصقات الغسيل: %s"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Loading label template"
+msgstr "تحميل قالب الملصق"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "No laundry labels were found in the print template."
+msgstr "لم يتم العثور على ملصقات غسيل في قالب الطباعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "No paper was detected by the printer."
+msgstr "لم تكتشف الطابعة وجود ورق."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Notice"
+msgstr "تنبيه"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Open this printer address once in the same browser and accept its certificate"
+msgstr "افتح عنوان الطابعة هذا مرة واحدة في نفس المتصفح واقبل الشهادة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Preparing files before sending to the printer."
+msgstr "يتم تحضير الملفات قبل إرسالها للطابعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Preparing images and QR"
+msgstr "تجهيز الصور ورمز QR"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Preparing label"
+msgstr "تجهيز الملصق"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Preparing labels"
+msgstr "جاري تجهيز الملصقات"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Preparing the print layout."
+msgstr "يتم تجهيز شكل الطباعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Print failed"
+msgstr "تعذر الطباعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Printed with notice"
+msgstr "تمت الطباعة مع تنبيه"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Printing"
+msgstr "جاري الطباعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Printing stopped"
+msgstr "تم إيقاف الطباعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Printing stopped."
+msgstr "تم إيقاف الطباعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Printing was stopped."
+msgstr "تم إيقاف عملية الطباعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Saving the print result in Odoo."
+msgstr "يتم حفظ نتيجة الطباعة في Odoo."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Sending the label now."
+msgstr "جار إرسال الملصق الآن."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Sending to printer"
+msgstr "إرسال للطابعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Stop"
+msgstr "إيقاف"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Stopped"
+msgstr "تم الإيقاف"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Stopping now; remaining labels will not be sent."
+msgstr "يتم إيقاف العملية الحالية ولن يتم إرسال باقي الملصقات."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Stopping print"
+msgstr "إيقاف الطباعة"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Stopping..."
+msgstr "جاري الإيقاف..."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "The Epson printer was reached, but Device ID local_printer was not found."
+msgstr "تم الوصول إلى طابعة Epson، لكن لم يتم العثور على Device ID local_printer."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "The job was stopped; remaining labels were not sent."
+msgstr "تم إيقاف العملية، ولن يتم إرسال باقي الملصقات."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "The printer rejected the print job."
+msgstr "رفضت الطابعة أمر الطباعة."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "The process printer does not have an IP address."
+msgstr "طابعة process لا تحتوي على عنوان IP."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Unknown print error"
+msgstr "خطأ طباعة غير معروف"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_pos_assets_watchdog.js:0
+msgid "A new version of the Point of Sale is ready."
+msgstr "تتوفر نسخة جديدة من نقطة البيع."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_pos_assets_watchdog.js:0
+msgid "Update available"
+msgstr "تحديث متاح"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_pos_assets_watchdog.js:0
+msgid "Refresh now"
+msgstr "تحديث الآن"
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_pos_assets_watchdog.js:0
+msgid "Updating the Point of Sale to the latest version..."
+msgstr "يتم تحديث نقطة البيع لآخر نسخة..."
+
+#. module: pos_laundry_receipt
+#. odoo-javascript
+#: code:addons/pos_laundry_receipt/static/src/js/laundry_label_direct_print.js:0
+#, python-format
+msgid "Updating print history"
+msgstr "تحديث سجل الطباعة"
+
+#~ msgid "<span>Customer: </span>"
+#~ msgstr ""
+
+#~ msgid "<span>Items</span>"
+#~ msgstr ""
+
+#~ msgid "<span>Scan to update the next stage</span>"
+#~ msgstr ""
+
+#, python-format
+#~ msgid "This order is cancelled and cannot be updated by QR."
+#~ msgstr "تم إلغاء هذا الطلب ولا يمكن تحديثه عبر QR."
+
+#~ msgid "<span class=\"laundry-label-meta-label\">Expected: </span>"
+#~ msgstr ""
+
+#~ msgid "<span class=\"laundry-label-meta-label\">Received: </span>"
+#~ msgstr ""
+
+#~ msgid "<span>Total items: </span>"
+#~ msgstr ""
+
+#~ msgid "Accounting"
+#~ msgstr "المحاسبة"
+
+#~ msgid "Cancel Order"
+#~ msgstr "إلغاء الطلب"
+
+#, python-format
+#~ msgid "Orders cancelled before completion"
+#~ msgstr "طلبات ألغيت قبل الإتمام"

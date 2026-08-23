@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="seq_laundry_order" model="ir.sequence">
+        <field name="name">Laundry Order</field>
+        <field name="code">laundry.order</field>
+        <field name="prefix">LO/%(year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_laundry_issue" model="ir.sequence">
+        <field name="name">Laundry Issue</field>
+        <field name="code">laundry.issue</field>
+        <field name="prefix">ISS/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_loyalty_card" model="ir.sequence">
+        <field name="name">Laundry Loyalty Card</field>
+        <field name="code">laundry.loyalty.card</field>
+        <field name="prefix">LC/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_hotel_session" model="ir.sequence">
+        <field name="name">Laundry Hotel Session</field>
+        <field name="code">laundry.hotel.session</field>
+        <field name="prefix">HS/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+</odoo>

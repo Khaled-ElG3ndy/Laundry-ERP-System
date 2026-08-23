@@ -1,0 +1,123 @@
+/* ═══════════════════════════════════════════════════════════════════
+   FAIR PRICE POS - CASHIER SHORTCUT BUTTONS
+   ═══════════════════════════════════════════════════════════════════ */
+
+.fps-shortcuts-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 2px solid #dee2e6;
+    justify-content: center;
+}
+
+.fps-shortcut-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+    height: 70px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.fps-shortcut-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.fps-shortcut-btn:active {
+    transform: translateY(0);
+}
+
+.fps-shortcut-btn .fps-icon {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.fps-shortcut-btn .fps-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Button Colors */
+.fps-shortcut-btn.cash-drawer {
+    background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.manual-item {
+    background: linear-gradient(135deg, #1976D2 0%, #2196F3 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.reprint {
+    background: linear-gradient(135deg, #7B1FA2 0%, #9C27B0 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.daily-report {
+    background: linear-gradient(135deg, #E65100 0%, #FF9800 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.attendance {
+    background: linear-gradient(135deg, #C62828 0%, #EF5350 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.price-check {
+    background: linear-gradient(135deg, #00838F 0%, #00BCD4 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.hold-order {
+    background: linear-gradient(135deg, #4527A0 0%, #7C4DFF 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.recall-order {
+    background: linear-gradient(135deg, #AD1457 0%, #F06292 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.void-item {
+    background: linear-gradient(135deg, #B71C1C 0%, #F44336 100%);
+    color: white;
+}
+
+.fps-shortcut-btn.discount {
+    background: linear-gradient(135deg, #F9A825 0%, #FFEB3B 100%);
+    color: #333;
+}
+
+/* Control buttons area enhancement */
+.control-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px;
+}
+
+.control-buttons .control-button {
+    flex: 1 1 calc(50% - 6px);
+    min-height: 50px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}

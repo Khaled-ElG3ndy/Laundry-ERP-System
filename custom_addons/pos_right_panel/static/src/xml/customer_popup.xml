@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_right_panel.CustomerPopup" owl="1">
+        <div class="laundry-pos-popup-shell laundry-pos-popup-shell--customer">
+            <section class="laundry-pos-popup-card customer-popup" role="dialog" aria-modal="true">
+                <header class="laundry-pos-popup-header laundry-pos-section laundry-delay-1">
+                    <div class="laundry-pos-popup-header__icon">
+                        <i class="fa fa-user"/>
+                    </div>
+                    <div class="laundry-pos-popup-header__content">
+                        <h3 class="laundry-pos-popup-title" t-esc="props.title"/>
+                        <p class="laundry-pos-popup-subtitle" t-esc="props.subtitle"/>
+                    </div>
+                </header>
+
+                <div class="laundry-pos-popup-body customer-popup__body">
+                    <section class="laundry-pos-section laundry-delay-2">
+                        <span class="laundry-pos-kicker" t-esc="props.customerSection"/>
+                        <div class="customer-popup__search-row">
+                            <div class="laundry-pos-field laundry-pos-field--stacked customer-popup__search-field">
+                                <div class="laundry-pos-field__header">
+                                    <label class="laundry-pos-field__caption" for="customer-popup-search" t-esc="props.searchLabel"/>
+                                </div>
+                                <div class="laundry-pos-field__control">
+                                    <i class="laundry-pos-field__icon fa fa-search"/>
+                                    <input id="customer-popup-search"
+                                           class="laundry-pos-input customer-popup__search-input"
+                                           type="text"
+                                           t-ref="customer-popup-search"
+                                           t-att-value="state.query"
+                                           t-att-placeholder="props.searchPlaceholder"
+                                           t-on-input="onSearchInput"/>
+                                    <button t-if="state.query"
+                                            type="button"
+                                            class="customer-popup__search-clear"
+                                            t-on-click="clearSearch"
+                                            aria-label="Clear search">
+                                        <i class="fa fa-times"/>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button type="button"
+                                    class="laundry-pos-button laundry-pos-button--ghost customer-popup__create-toggle"
+                                    t-att-disabled="state.creatingCustomer"
+                                    t-on-click="toggleCreateCustomer">
+                                <i t-att-class="state.showCreateCustomer ? 'fa fa-times' : 'fa fa-plus'"/>
+                                <t t-esc="createToggleText"/>
+                            </button>
+                        </div>
+                    </section>
+
+                    <section t-if="state.showCreateCustomer" class="laundry-pos-section laundry-delay-3">
+                        <div class="customer-popup__create-card laundry-pos-card">
+                            <div class="customer-popup__type-switch" role="group" t-att-aria-label="props.customerTypeLabel">
+                                <div class="customer-popup__type-button is-active">
+                                    <i t-att-class="'fa ' + (isHotelPos ? 'fa-building-o' : 'fa-user')"/>
+                                    <span t-esc="isHotelPos ? props.customerTypeCompany : props.customerTypeCustomer"/>
+                                </div>
+                            </div>
+
+                            <div class="customer-popup__create-grid">
+                                <div class="laundry-pos-field laundry-pos-field--stacked customer-popup__form-field">
+                                    <div class="laundry-pos-field__header">
+                                        <label class="laundry-pos-field__caption"
+                                               for="customer-popup-new-name"
+                                               t-esc="state.newCustomerType === 'company' ? props.companyName : props.customerName"/>
+                                    </div>
+                                    <div class="laundry-pos-field__control">
+                                        <i t-att-class="'laundry-pos-field__icon fa ' + (state.newCustomerType === 'company' ? 'fa-building-o' : 'fa-id-card-o')"/>
+                                        <input id="customer-popup-new-name"
+                                               class="laundry-pos-input"
+                                               type="text"
+                                               t-att-value="state.newCustomerName"
+                                               t-on-input="onNewCustomerNameInput"/>
+                                    </div>
+                                    <p t-if="state.errors.newCustomerName" class="laundry-pos-error" role="alert" t-esc="state.errors.newCustomerName"/>
+                                </div>
+
+                                <div class="laundry-pos-field laundry-pos-field--stacked customer-popup__form-field">
+                                    <div class="laundry-pos-field__header">
+                                        <label class="laundry-pos-field__caption" for="customer-popup-new-phone" t-esc="props.phone"/>
+                                    </div>
+                                    <div class="laundry-pos-field__control">
+                                        <i class="laundry-pos-field__icon fa fa-phone"/>
+                                        <div t-if="isTenDigitPhoneModeEnabled"
+                                             class="laundry-pos-field__control laundry-pos-field__control--phone-digits">
+                                            <div class="laundry-phone-digit-grid" dir="ltr" role="group" t-att-aria-label="props.phone">
+                                                <t t-foreach="phoneDigitIndexes" t-as="digitIndex" t-key="digitIndex">
+                                                    <input t-att-id="'customer-popup-new-phone-digit-' + digitIndex"
+                                                           class="laundry-phone-digit-box"
+                                                           type="text"
+                                                           dir="ltr"
+                                                           inputmode="numeric"
+                                                           autocomplete="one-time-code"
+                                                           maxlength="1"
+                                                           t-att-value="getPhoneDigitValue(digitIndex)"
+                                                           t-att-aria-label="phoneBoxAriaLabel(digitIndex)"
+                                                           t-on-input="(ev) => this.onPhoneBoxInput(digitIndex, ev)"
+                                                           t-on-keydown="(ev) => this.onPhoneBoxKeyDown(digitIndex, ev)"
+                                                           t-on-paste="(ev) => this.onPhoneBoxPaste(digitIndex, ev)"
+                                                           t-on-focus="this.onPhoneBoxFocus"/>
+                                                </t>
+                                            </div>
+                                        </div>
+                                        <input t-if="!isTenDigitPhoneModeEnabled"
+                                               id="customer-popup-new-phone"
+                                               class="laundry-pos-input"
+                                               type="text"
+                                               inputmode="numeric"
+                                               maxlength="11"
+                                               t-att-placeholder="phonePlaceholder"
+                                               t-att-value="state.newCustomerPhone"
+                                               t-on-input="onNewCustomerPhoneInput"/>
+                                    </div>
+                                    <p t-if="isTenDigitPhoneModeEnabled &amp;&amp; !state.errors.newCustomerPhone" class="laundry-pos-helper" t-esc="phoneDigitsHelper"/>
+                                    <p t-if="state.errors.newCustomerPhone" class="laundry-pos-error" role="alert" t-esc="state.errors.newCustomerPhone"/>
+                                </div>
+                            </div>
+
+                            <div t-if="state.duplicatePhoneInfo"
+                                 class="customer-popup__duplicate-alert"
+                                 role="alert">
+                                <div class="customer-popup__duplicate-icon">
+                                    <i class="fa fa-exclamation-triangle"/>
+                                </div>
+                                <div class="customer-popup__duplicate-content">
+                                    <div class="customer-popup__duplicate-title-row">
+                                        <div class="customer-popup__duplicate-title" t-esc="props.duplicatePhoneTitle"/>
+                                        <span class="customer-popup__duplicate-phone-pill" t-esc="getDuplicatePhonePartnerLabel()"/>
+                                    </div>
+                                    <p class="customer-popup__duplicate-subtitle" t-esc="props.duplicatePhoneSubtitle"/>
+                                    <div class="customer-popup__duplicate-grid">
+                                        <div t-if="state.duplicatePhoneInfo.partnerName"
+                                             class="customer-popup__duplicate-partner">
+                                            <span class="customer-popup__duplicate-label" t-esc="props.existingCustomerLabel"/>
+                                            <div class="customer-popup__duplicate-partner-card">
+                                                <div class="customer-popup__duplicate-partner-name"
+                                                     t-att-dir="'auto'"
+                                                     t-esc="state.duplicatePhoneInfo.partnerName"/>
+                                                <div t-if="state.duplicatePhoneInfo.partner?.email"
+                                                     class="customer-popup__duplicate-partner-email">
+                                                    <i class="fa fa-envelope-o"/>
+                                                    <span t-esc="state.duplicatePhoneInfo.partner.email"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="customer-popup__duplicate-partner">
+                                            <span class="customer-popup__duplicate-label" t-esc="props.duplicatePhoneLabel"/>
+                                            <div class="customer-popup__duplicate-partner-card">
+                                                <div class="customer-popup__duplicate-partner-phone">
+                                                    <i class="fa fa-phone"/>
+                                                    <span t-esc="getDuplicatePhonePartnerLabel()"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p t-if="state.duplicatePhoneInfo.message"
+                                       class="customer-popup__duplicate-message"
+                                       t-esc="state.duplicatePhoneInfo.message"/>
+                                </div>
+                                <button t-if="state.duplicatePhoneInfo.partner"
+                                        type="button"
+                                        class="laundry-pos-button laundry-pos-button--primary customer-popup__duplicate-action"
+                                        t-on-click="useDuplicatePhonePartner">
+                                    <i class="fa fa-check-circle"/>
+                                    <t t-esc="props.useExistingCustomer"/>
+                                </button>
+                            </div>
+
+                            <div t-if="state.createCustomerError"
+                                 class="customer-popup__create-error"
+                                 role="alert">
+                                <i class="fa fa-info-circle"/>
+                                <span t-esc="state.createCustomerError"/>
+                            </div>
+
+                            <div class="customer-popup__create-actions">
+                                <button type="button"
+                                        class="laundry-pos-button laundry-pos-button--primary"
+                                        t-att-disabled="state.creatingCustomer"
+                                        t-on-click="createCustomer">
+                                    <span t-if="state.creatingCustomer" class="laundry-pos-button__spinner"/>
+                                    <i t-if="!state.creatingCustomer" class="fa fa-user-plus"/>
+                                    <t t-esc="createCustomerButtonText"/>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="laundry-pos-section laundry-delay-4">
+                        <div class="customer-popup__list">
+                            <button t-foreach="partners"
+                                    t-as="partner"
+                                    t-key="partner.id"
+                                    type="button"
+                                    class="customer-popup__item laundry-pos-card"
+                                    t-att-class="isSelected(partner) ? 'is-selected' : ''"
+                                    t-att-data-partner-id="partner.id"
+                                    t-on-click="onPartnerClick">
+                                <div class="customer-popup__item-main">
+                                    <div class="customer-popup__item-name" t-att-dir="'auto'" t-esc="partner.name"/>
+                                    <div class="customer-popup__item-meta" t-if="partner.phone or partner.mobile">
+                                        <i class="fa fa-phone"/>
+                                        <span t-esc="partner.mobile or partner.phone"/>
+                                    </div>
+                                    <div class="customer-popup__item-meta" t-if="partner.email">
+                                        <i class="fa fa-envelope-o"/>
+                                        <span t-esc="partner.email"/>
+                                    </div>
+                                </div>
+                                <div class="customer-popup__item-side">
+                                    <span t-if="isSelected(partner)" class="customer-popup__badge" t-esc="props.selectedBadge"/>
+                                </div>
+                            </button>
+
+                            <div t-if="!partners.length" class="customer-popup__empty" t-esc="props.emptyText"/>
+                        </div>
+                    </section>
+                </div>
+
+                <footer class="laundry-pos-popup-footer laundry-pos-section laundry-delay-5">
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--outline"
+                            t-on-click="cancel">
+                        <t t-esc="props.cancelText"/>
+                    </button>
+                    <button t-if="canRemoveCustomer"
+                            type="button"
+                            class="laundry-pos-button customer-popup__footer-clear"
+                            t-on-click="clearCustomer">
+                        <t t-esc="props.removeText"/>
+                    </button>
+                    <button type="button"
+                            class="laundry-pos-button laundry-pos-button--primary"
+                            t-att-disabled="!canConfirm"
+                            t-on-click="confirmSelection">
+                        <t t-esc="props.confirmText"/>
+                    </button>
+                </footer>
+            </section>
+        </div>
+    </t>
+
+</templates>

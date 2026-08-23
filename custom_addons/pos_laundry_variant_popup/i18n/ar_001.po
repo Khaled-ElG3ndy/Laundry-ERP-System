@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_laundry_variant_popup
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-20 00:00+0000\n"
+"PO-Revision-Date: 2026-07-20 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3 && n%100<=10?3:n%100>=11 && n%100<=99?4:5);\n"
+
+#. module: pos_laundry_variant_popup
+msgid "Laundry Service"
+msgstr "خدمة الغسيل"
+
+#. module: pos_laundry_variant_popup
+msgid "Confirm"
+msgstr "تأكيد"
+
+#. module: pos_laundry_variant_popup
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: pos_laundry_variant_popup
+msgid "Edit Service"
+msgstr "تعديل الخدمة"
+
+#. module: pos_laundry_variant_popup
+msgid "Save"
+msgstr "حفظ"
+
+#. module: pos_laundry_variant_popup
+msgid "No services are available for this product."
+msgstr "لا توجد خدمات متاحة لهذا المنتج."
+
+#. module: pos_laundry_variant_popup
+msgid "Select a service before confirming."
+msgstr "اختر خدمة قبل التأكيد."

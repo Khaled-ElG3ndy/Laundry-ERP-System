@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_executive_summary" model="ir.actions.report">
+        <field name="name">Executive Summary</field>
+        <field name="model">account.executive.summary.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">acc_reports_enterprise_simulation.executive_summary</field>
+        <field name="report_file">acc_reports_enterprise_simulation.executive_summary</field>
+    </record>
+
+    <template id="executive_summary">
+        <t t-call="web.html_container">
+            <div class="page o_executive_summary_page" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                <style>
+                    .o_executive_summary_page {
+                        direction: inherit;
+                        color: #07172d;
+                        font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+                        padding: 0;
+                        max-width: 900px;
+                        margin: 0 auto;
+                    }
+                    .o_executive_summary_card {
+                        border-radius: 4px;
+                        background: #fff;
+                        padding: 14px 16px 14px;
+                    }
+                    .o_executive_summary_inner {
+                        width: min(100%, 720px);
+                        margin: 0 auto;
+                    }
+                    .o_executive_summary_period {
+                        width: 156px;
+                        border: 1px solid #d2d7de;
+                        padding: 5px 10px;
+                        text-align: center;
+                        font-weight: 700;
+                        line-height: 1.2;
+                        margin: 0 auto 6px 0;
+                    }
+                    .o_executive_summary_balance_label {
+                        margin: 0 10px 14px 0;
+                        font-size: 12px;
+                        font-weight: 700;
+                        text-align: left;
+                    }
+                    .o_executive_summary_table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        table-layout: fixed;
+                        direction: inherit;
+                    }
+                    .o_executive_summary_table td {
+                        border: 0;
+                        border-bottom: 1px solid #dfe3e8;
+                        padding: 3px 10px;
+                        font-size: 12px;
+                        line-height: 1.28;
+                        vertical-align: middle;
+                    }
+                    .o_executive_summary_label {
+                        width: 78%;
+                        text-align: start;
+                        color: #07172d;
+                    }
+                    .o_executive_summary_value {
+                        width: 22%;
+                        direction: ltr;
+                        text-align: left;
+                        color: #07172d;
+                        white-space: nowrap;
+                    }
+                    .o_executive_summary_table tbody tr:not(.o_executive_summary_row_section) td {
+                        font-weight: 400;
+                    }
+                    .o_executive_summary_row_section td {
+                        background: #d8dadd;
+                        border-bottom-color: #d8dadd;
+                        font-weight: 700;
+                        color: #008c95;
+                    }
+                    .o_executive_summary_row_section .o_executive_summary_value {
+                        color: #008c95;
+                    }
+                    .o_executive_summary_row_section:not(:first-child) td {
+                        border-top: 12px solid #fff;
+                    }
+                    .o_executive_summary_value.o_executive_summary_negative {
+                        color: #d71920 !important;
+                    }
+                    .o_executive_summary_value.o_executive_summary_zero {
+                        color: #b9c0c9;
+                    }
+                </style>
+                <div class="o_executive_summary_card">
+                    <div class="o_executive_summary_inner">
+                        <div class="o_executive_summary_period" t-esc="period_label"/>
+                        <div class="o_executive_summary_balance_label">Balance</div>
+                        <table class="o_executive_summary_table">
+                            <tbody>
+                                <t t-foreach="lines" t-as="line">
+                                    <tr t-att-class="'o_executive_summary_row_%s o_executive_summary_row_%s' % (line['row_type'], line['key'])">
+                                        <td class="o_executive_summary_label" t-esc="line['label']"/>
+                                        <td t-att-class="'o_executive_summary_value%s%s' % (' o_executive_summary_negative' if line.get('negative') else '', ' o_executive_summary_zero' if line.get('zero') else '')">
+                                            <span t-esc="line['text']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_pos_order_laundry_tracking_search" model="ir.ui.view">
+        <field name="name">pos.order.laundry.tracking.search</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <search string="Laundry Order Tracking">
+                <field
+                    name="x_display_reference"
+                    string="Order / Paid Invoice"
+                    filter_domain="['|', '|', '|', ('x_display_reference', 'ilike', self), ('name', 'ilike', self), ('pos_reference', 'ilike', self), ('x_laundry_invoice_number', 'ilike', self)]"
+                />
+                <field name="x_laundry_invoice_number" string="Paid Invoice Number" filter_domain="[('x_laundry_invoice_number', 'ilike', self)]"/>
+                <field name="partner_id"/>
+                <field name="pos_reference"/>
+                <field name="date_order"/>
+                <field name="x_laundry_priority"/>
+                <field name="x_laundry_sla_deadline"/>
+                <field name="x_laundry_worker_id"/>
+                <filter string="Received" name="received_orders" domain="[('x_laundry_status', '=', 'received')]"/>
+                <filter string="Ready" name="ready_orders" domain="[('x_laundry_status', '=', 'ready')]"/>
+                <filter string="Delivered" name="delivered_orders" domain="[('x_laundry_status', '=', 'delivered')]"/>
+                <filter string="Paid Invoices" name="paid_invoices" domain="[('x_payment_status', '=', 'paid'), ('x_laundry_invoice_number', '!=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Laundry Status" name="group_by_laundry_status" context="{'group_by': 'x_laundry_status'}"/>
+                    <filter string="Priority" name="group_by_laundry_priority" context="{'group_by': 'x_laundry_priority'}"/>
+                    <filter string="Worker" name="group_by_laundry_worker" context="{'group_by': 'x_laundry_worker_id'}"/>
+                    <filter string="Branch" name="group_by_branch" context="{'group_by': 'config_id'}"/>
+                    <filter string="Payment Status" name="group_by_payment_status" context="{'group_by': 'x_payment_status'}"/>
+                    <filter string="Customer" name="group_by_customer" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Order Date" name="group_by_date_order" context="{'group_by': 'date_order:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pos_order_laundry_sla_performance_search" model="ir.ui.view">
+        <field name="name">pos.order.laundry.sla.performance.search</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <search string="SLA &amp; Performance">
+                <field
+                    name="x_display_reference"
+                    string="Order / Paid Invoice"
+                    filter_domain="['|', '|', '|', ('x_display_reference', 'ilike', self), ('name', 'ilike', self), ('pos_reference', 'ilike', self), ('x_laundry_invoice_number', 'ilike', self)]"
+                />
+                <field name="x_laundry_invoice_number" string="Paid Invoice Number" filter_domain="[('x_laundry_invoice_number', 'ilike', self)]"/>
+                <field name="partner_id"/>
+                <field name="pos_reference"/>
+                <field name="date_order"/>
+                <field name="x_laundry_priority"/>
+                <field name="x_laundry_sla_deadline"/>
+                <field name="x_laundry_sla_status"/>
+                <field name="x_laundry_worker_id"/>
+                <filter string="Active Orders" name="active_orders" domain="[('state', '!=', 'cancel'), ('x_laundry_status', '!=', 'delivered')]"/>
+                <filter string="Urgent" name="urgent_orders" domain="[('x_laundry_priority', '=', 'urgent')]"/>
+                <filter string="Due Soon" name="due_soon_orders" domain="[('x_laundry_sla_status', '=', 'due_soon')]"/>
+                <filter string="Overdue" name="overdue_orders" domain="[('x_laundry_sla_status', '=', 'overdue')]"/>
+                <filter string="Delivered On Time" name="delivered_on_time_orders" domain="[('x_laundry_sla_status', '=', 'delivered_on_time')]"/>
+                <filter string="Delivered Late" name="delivered_late_orders" domain="[('x_laundry_sla_status', '=', 'delivered_late')]"/>
+                <separator/>
+                <filter string="Received" name="received_orders" domain="[('x_laundry_status', '=', 'received')]"/>
+                <filter string="Ready" name="ready_orders" domain="[('x_laundry_status', '=', 'ready')]"/>
+                <filter string="Delivered" name="delivered_orders" domain="[('x_laundry_status', '=', 'delivered')]"/>
+                <filter string="Paid Invoices" name="paid_invoices" domain="[('x_payment_status', '=', 'paid'), ('x_laundry_invoice_number', '!=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Laundry Status" name="group_by_laundry_status" context="{'group_by': 'x_laundry_status'}"/>
+                    <filter string="Priority" name="group_by_laundry_priority" context="{'group_by': 'x_laundry_priority'}"/>
+                    <filter string="Worker" name="group_by_laundry_worker" context="{'group_by': 'x_laundry_worker_id'}"/>
+                    <filter string="Branch" name="group_by_branch" context="{'group_by': 'config_id'}"/>
+                    <filter string="Payment Status" name="group_by_payment_status" context="{'group_by': 'x_payment_status'}"/>
+                    <filter string="Customer" name="group_by_customer" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Order Date" name="group_by_date_order" context="{'group_by': 'date_order:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_pos_order_laundry_tracking_tree" model="ir.ui.view">
+        <field name="name">pos.order.laundry.tracking.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <tree string="Laundry Order Tracking" class="o_laundry_tracking_tree" create="0" delete="0" default_order="date_order desc">
+                <field name="currency_id" column_invisible="True"/>
+                <field name="x_display_reference" string="Order Reference" decoration-bf="1" class="o_laundry_tracking_ref_col"/>
+                <field name="x_laundry_invoice_number" string="Paid Invoice Number" optional="show"/>
+                <field name="partner_id" string="Customer Name" class="o_laundry_tracking_customer_col"/>
+                <field name="amount_total" string="Total Amount" widget="monetary" class="o_laundry_tracking_amount_col"/>
+                <field name="date_order" string="Order Date" class="o_laundry_tracking_date_col"/>
+                <field
+                    name="x_laundry_priority"
+                    string="Priority"
+                    widget="label_selection"
+                    options="{'classes': {'normal': 'info', 'urgent': 'danger'}}"
+                />
+                <field name="x_laundry_sla_deadline" string="SLA Deadline"/>
+                <field
+                    name="x_laundry_sla_status"
+                    string="SLA Status"
+                    widget="label_selection"
+                    options="{'classes': {'on_track': 'success', 'due_soon': 'warning', 'overdue': 'danger', 'delivered_on_time': 'success', 'delivered_late': 'danger'}}"
+                />
+                <field name="x_laundry_worker_id" string="Worker"/>
+                <field
+                    name="x_laundry_status"
+                    string="Laundry Status"
+                    widget="label_selection"
+                    options="{'classes': {'received': 'default', 'ready': 'success', 'delivered': 'primary'}}"
+                />
+                <field
+                    name="x_payment_status"
+                    string="Payment Status"
+                    widget="label_selection"
+                    options="{'classes': {'unpaid': 'default', 'partial': 'warning', 'paid': 'success', 'refunded': 'info', 'cancelled': 'danger'}}"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pos_order_laundry_tracking_kanban" model="ir.ui.view">
+        <field name="name">pos.order.laundry.tracking.kanban</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile o_laundry_tracking_kanban" default_group_by="x_laundry_status" default_order="date_order desc" create="0" group_create="0">
+                <field name="x_display_reference"/>
+                <field name="x_laundry_invoice_number"/>
+                <field name="partner_id"/>
+                <field name="amount_total"/>
+                <field name="currency_id"/>
+                <field name="date_order"/>
+                <field name="x_laundry_status"/>
+                <field name="x_laundry_priority"/>
+                <field name="x_laundry_sla_deadline"/>
+                <field name="x_laundry_sla_status"/>
+                <field name="x_laundry_worker_id"/>
+                <field name="x_payment_status"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click oe_kanban_card o_laundry_tracking_card">
+                            <div class="o_laundry_tracking_card_header">
+                                <div>
+                                    <div class="o_laundry_tracking_ref">
+                                        <t t-esc="record.x_display_reference.value"/>
+                                    </div>
+                                    <div class="o_laundry_tracking_customer text-muted">
+                                        <t t-if="record.partner_id.value" t-esc="record.partner_id.value"/>
+                                        <t t-else="">Walk-in Customer</t>
+                                    </div>
+                                </div>
+                                <div class="o_laundry_tracking_amount">
+                                    <field name="amount_total" widget="monetary"/>
+                                </div>
+                            </div>
+                            <div class="o_laundry_tracking_meta">
+                                <span class="o_laundry_tracking_date">
+                                    <t t-esc="record.date_order.value"/>
+                                </span>
+                            </div>
+                            <div class="o_laundry_tracking_badges">
+                                <span t-attf-class="o_laundry_status_badge o_laundry_status_badge--#{record.x_laundry_priority.raw_value}">
+                                    <t t-esc="record.x_laundry_priority.value"/>
+                                </span>
+                                <span t-if="record.x_laundry_sla_status.raw_value"
+                                      t-attf-class="o_laundry_status_badge o_laundry_status_badge--#{record.x_laundry_sla_status.raw_value}">
+                                    <t t-esc="record.x_laundry_sla_status.value"/>
+                                </span>
+                                <span t-attf-class="o_laundry_status_badge o_laundry_status_badge--#{record.x_laundry_status.raw_value}">
+                                    <t t-esc="record.x_laundry_status.value"/>
+                                </span>
+                                <span t-attf-class="o_laundry_payment_badge o_laundry_payment_badge--#{record.x_payment_status.raw_value}">
+                                    <t t-esc="record.x_payment_status.value"/>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_pos_order_form_laundry_tracking" model="ir.ui.view">
+        <field name="name">pos.order.form.laundry.tracking</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_preview_laundry_label" string="Preview Label" type="object" class="btn-secondary"/>
+                <button name="action_print_laundry_label" string="Print Label" type="object" class="btn-secondary"/>
+                <button name="action_mark_ready" string="Mark Ready" type="object" class="btn-primary" invisible="x_laundry_status != 'received'"/>
+                <button name="action_mark_delivered" string="Confirm Delivery" type="object" class="btn-primary" invisible="x_laundry_status != 'ready' or x_payment_status != 'paid'"/>
+            </xpath>
+
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="x_laundry_status" widget="statusbar" statusbar_visible="received,ready,delivered"/>
+            </xpath>
+
+            <xpath expr="//group[@name='order_fields']" position="inside">
+                <field
+                    name="x_payment_status"
+                    widget="label_selection"
+                    options="{'classes': {'unpaid': 'default', 'partial': 'warning', 'paid': 'success', 'refunded': 'info', 'cancelled': 'danger'}}"
+                    readonly="1"
+                />
+            </xpath>
+
+            <xpath expr="//group[@name='order_fields']/field[@name='partner_id']" position="attributes">
+                <attribute name="string">Customer</attribute>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Laundry Tracking" name="laundry_tracking">
+                    <group col="4">
+                        <group string="Customer Information">
+                            <field name="partner_id" readonly="1"/>
+                            <field name="amount_total" widget="monetary" readonly="1"/>
+                            <field
+                                name="x_laundry_priority"
+                                widget="label_selection"
+                                options="{'classes': {'normal': 'info', 'urgent': 'danger'}}"
+                                readonly="1"
+                            />
+                            <field
+                                name="x_laundry_status"
+                                widget="label_selection"
+                                options="{'classes': {'received': 'default', 'ready': 'success', 'delivered': 'primary'}}"
+                                readonly="1"
+                            />
+                            <field
+                                name="x_payment_status"
+                                string="Payment Status"
+                                widget="label_selection"
+                                options="{'classes': {'unpaid': 'default', 'partial': 'warning', 'paid': 'success', 'refunded': 'info', 'cancelled': 'danger'}}"
+                                readonly="1"
+                            />
+                        </group>
+                        <group string="Order Information">
+                            <field name="x_display_reference" readonly="1"/>
+                            <field name="x_laundry_invoice_number" readonly="1"/>
+                            <field name="pos_reference" readonly="1"/>
+                            <field name="date_order" readonly="1"/>
+                            <field name="config_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="SLA &amp; Worker" col="4">
+                        <field name="x_laundry_sla_deadline" readonly="1"/>
+                        <field
+                            name="x_laundry_sla_status"
+                            widget="label_selection"
+                            options="{'classes': {'on_track': 'success', 'due_soon': 'warning', 'overdue': 'danger', 'delivered_on_time': 'success', 'delivered_late': 'danger'}}"
+                            readonly="1"
+                        />
+                        <field name="x_laundry_sla_remaining_display" readonly="1"/>
+                        <field name="x_laundry_worker_id" readonly="1"/>
+                        <field name="x_laundry_delivered_on" readonly="1"/>
+                        <field name="x_laundry_delivered_on_time" readonly="1"/>
+                        <field name="x_laundry_duration_minutes" readonly="1"/>
+                        <field name="x_laundry_delay_minutes" readonly="1"/>
+                    </group>
+                    <group string="Laundry Status History">
+                        <field name="x_laundry_status_history_ids" nolabel="1" readonly="1">
+                            <tree create="0" delete="0">
+                                <field name="changed_on"/>
+                                <field name="exited_on" optional="show"/>
+                                <field name="changed_by_id"/>
+                                <field name="old_status" optional="show"/>
+                                <field
+                                    name="new_status"
+                                    widget="label_selection"
+                                    options="{'classes': {'received': 'default', 'ready': 'success', 'delivered': 'primary'}}"
+                                />
+                                <field name="duration_display"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Tracking Label">
+                        <field name="x_laundry_label_ids" nolabel="1" readonly="1">
+                            <tree create="0" edit="0" delete="0">
+                                <field name="name"/>
+                                <field name="state" widget="badge"/>
+                                <field name="print_count"/>
+                                <field name="last_printed_on"/>
+                                <field name="last_printed_by_id"/>
+                                <button name="action_preview" type="object" string="Preview" icon="fa-eye"/>
+                                <button name="action_print" type="object" string="Print" icon="fa-print"
+                                        invisible="state in ('printed', 'reprinted')"/>
+                                <button name="action_reprint" type="object" string="Reprint" icon="fa-repeat"
+                                        invisible="state not in ('printed', 'reprinted')"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_pos_laundry_order_tracking" model="ir.actions.act_window">
+        <field name="name">Laundry Orders</field>
+        <field name="res_model">pos.order</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('state', '!=', 'cancel'), ('x_laundry_status', 'in', ['received', 'ready', 'delivered'])]</field>
+        <field name="search_view_id" ref="view_pos_order_laundry_tracking_search"/>
+        <field name="context">{'search_default_group_by_laundry_status': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Laundry orders will appear here as soon as they are created from the Point of Sale.
+            </p>
+            <p>
+                Use this board to track the received, ready, and delivered stages.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_pos_laundry_order_tracking_dashboard" model="ir.actions.client">
+        <field name="name">Laundry Order Tracking</field>
+        <field name="tag">pos_laundry_receipt.laundry_tracking_dashboard</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="action_pos_laundry_order_tracking_kanban_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_pos_order_laundry_tracking_kanban"/>
+        <field name="act_window_id" ref="action_pos_laundry_order_tracking"/>
+    </record>
+
+    <record id="action_pos_laundry_order_tracking_tree_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_pos_order_laundry_tracking_tree"/>
+        <field name="act_window_id" ref="action_pos_laundry_order_tracking"/>
+    </record>
+
+    <record id="view_pos_order_laundry_performance_pivot" model="ir.ui.view">
+        <field name="name">pos.order.laundry.performance.pivot</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <pivot string="SLA &amp; Performance">
+                <field name="x_laundry_worker_id" type="row"/>
+                <field name="config_id" type="row"/>
+                <field name="x_laundry_priority" type="col"/>
+                <field name="x_laundry_on_time_order_count" type="measure"/>
+                <field name="x_laundry_late_order_count" type="measure"/>
+                <field name="x_laundry_on_time_percentage" type="measure"/>
+                <field name="x_laundry_duration_minutes" type="measure"/>
+                <field name="x_laundry_delay_minutes" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_pos_order_laundry_performance_graph" model="ir.ui.view">
+        <field name="name">pos.order.laundry.performance.graph</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <graph string="SLA &amp; Performance" type="bar">
+                <field name="x_laundry_worker_id"/>
+                <field name="x_laundry_on_time_percentage" type="measure"/>
+                <field name="x_laundry_delay_minutes" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_pos_order_laundry_performance_tree" model="ir.ui.view">
+        <field name="name">pos.order.laundry.performance.tree</field>
+        <field name="model">pos.order</field>
+        <field name="arch" type="xml">
+            <tree string="SLA &amp; Performance" create="0" delete="0" default_order="x_laundry_delivered_on desc">
+                <field name="x_display_reference" string="Order Reference"/>
+                <field name="x_laundry_invoice_number" string="Paid Invoice Number" optional="show"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="config_id" string="Branch"/>
+                <field name="x_laundry_priority" widget="label_selection" options="{'classes': {'normal': 'info', 'urgent': 'danger'}}"/>
+                <field name="x_laundry_worker_id"/>
+                <field name="x_laundry_sla_deadline"/>
+                <field name="x_laundry_delivered_on"/>
+                <field name="x_laundry_delivered_on_time"/>
+                <field name="x_laundry_on_time_order_count"/>
+                <field name="x_laundry_late_order_count"/>
+                <field name="x_laundry_on_time_percentage" string="On-Time %"/>
+                <field name="x_laundry_duration_minutes"/>
+                <field name="x_laundry_delay_minutes"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_pos_laundry_worker_performance" model="ir.actions.act_window">
+        <field name="name">SLA &amp; Performance</field>
+        <field name="res_model">pos.order</field>
+        <field name="view_mode">tree,pivot,graph,form</field>
+        <field name="domain">[('state', '!=', 'cancel'), ('x_laundry_status', 'in', ['received', 'ready', 'delivered'])]</field>
+        <field name="search_view_id" ref="view_pos_order_laundry_sla_performance_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Laundry orders will appear here for SLA and performance analysis.
+            </p>
+            <p>
+                Use this page to monitor priority, due soon, overdue, delivered on time, and delivered late orders.
+            </p>
+        </field>
+    </record>
+
+    <record id="action_pos_laundry_sla_performance_dashboard" model="ir.actions.client">
+        <field name="name">SLA &amp; Performance</field>
+        <field name="tag">pos_laundry_receipt.laundry_sla_performance_dashboard</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="action_pos_laundry_worker_performance_pivot_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_pos_order_laundry_performance_pivot"/>
+        <field name="act_window_id" ref="action_pos_laundry_worker_performance"/>
+    </record>
+
+    <record id="action_pos_laundry_worker_performance_graph_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="view_pos_order_laundry_performance_graph"/>
+        <field name="act_window_id" ref="action_pos_laundry_worker_performance"/>
+    </record>
+
+    <record id="action_pos_laundry_worker_performance_tree_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_pos_order_laundry_performance_tree"/>
+        <field name="act_window_id" ref="action_pos_laundry_worker_performance"/>
+    </record>
+
+    <menuitem
+        id="menu_pos_laundry_order_tracking"
+        name="Laundry Order Tracking"
+        parent="point_of_sale.menu_point_root"
+        action="action_pos_laundry_order_tracking_dashboard"
+        sequence="96"
+        groups="point_of_sale.group_pos_user"
+    />
+
+    <menuitem
+        id="menu_pos_laundry_worker_performance"
+        name="SLA &amp; Performance"
+        parent="point_of_sale.menu_point_root"
+        action="action_pos_laundry_sla_performance_dashboard"
+        sequence="97"
+        groups="point_of_sale.group_pos_user"
+    />
+</odoo>

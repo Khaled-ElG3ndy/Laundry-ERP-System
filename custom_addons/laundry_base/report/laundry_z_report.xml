@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_laundry_z" model="ir.actions.report">
+        <field name="name">Z Report / تقرير Z</field>
+        <field name="model">laundry.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">laundry_base.report_laundry_z</field>
+        <field name="report_file">laundry_base.report_laundry_z</field>
+        <field name="binding_model_id" ref="model_laundry_order"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_laundry_z">
+        <t t-call="web.html_container">
+            <style>
+                * { font-family: "Noto Naskh Arabic", Arial, sans-serif; }
+                body { direction: rtl; margin: 0; padding: 16px; font-size: 10pt; color: #1F2937; }
+                .z-header { text-align: center; border-bottom: 3px solid #1B4FD8; padding-bottom: 12px; margin-bottom: 16px; }
+                .z-title { font-size: 18pt; font-weight: bold; color: #1B4FD8; }
+                .z-sub { font-size: 9pt; color: #6B7280; margin-top: 4px; }
+                .z-section { margin-bottom: 14px; }
+                .z-section-title { font-weight: bold; font-size: 11pt; color: #1B4FD8; border-bottom: 1px solid #E5E7EB; padding-bottom: 4px; margin-bottom: 8px; }
+                table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+                td, th { padding: 5px 8px; }
+                th { background: #F3F4F6; font-weight: bold; text-align: right; }
+                .td-num { text-align: left; font-weight: bold; }
+                tr:nth-child(even) { background: #F9FAFB; }
+                .z-total { background: #1B4FD8 !important; color: #fff; font-weight: bold; font-size: 11pt; }
+                .z-total td { color: #fff; }
+                .z-footer { text-align: center; margin-top: 20px; font-size: 8pt; color: #9CA3AF; border-top: 1px dashed #D1D5DB; padding-top: 10px; }
+            </style>
+
+            <t t-set="today" t-value="datetime.datetime.now()"/>
+            <t t-set="today_str" t-value="today.strftime('%Y-%m-%d')"/>
+
+            <!-- Compute today's orders -->
+            <t t-set="all_orders" t-value="request.env['laundry.order'].search([
+                ('date_order', '>=', today_str + ' 00:00:00'),
+                ('date_order', '&lt;=', today_str + ' 23:59:59'),
+            ])"/>
+
+            <t t-set="cash_orders"   t-value="all_orders.filtered(lambda o: o.payment_method == 'cash' and o.payment_state == 'paid')"/>
+            <t t-set="card_orders"   t-value="all_orders.filtered(lambda o: o.payment_method == 'card' and o.payment_state == 'paid')"/>
+            <t t-set="acc_orders"    t-value="all_orders.filtered(lambda o: o.payment_state in ('on_account', 'invoiced'))"/>
+            <t t-set="unpaid_orders" t-value="all_orders.filtered(lambda o: o.payment_state == 'unpaid')"/>
+            <t t-set="urgent_orders" t-value="all_orders.filtered(lambda o: o.priority == 'urgent')"/>
+            <t t-set="issue_orders"  t-value="all_orders.filtered(lambda o: o.state == 'issue')"/>
+
+            <t t-set="cash_total"    t-value="sum(cash_orders.mapped('amount_total'))"/>
+            <t t-set="card_total"    t-value="sum(card_orders.mapped('amount_total'))"/>
+            <t t-set="acc_total"     t-value="sum(acc_orders.mapped('amount_total'))"/>
+            <t t-set="unpaid_total"  t-value="sum(unpaid_orders.mapped('amount_total'))"/>
+            <t t-set="grand_total"   t-value="cash_total + card_total + acc_total"/>
+
+            <div class="z-header">
+                <div class="z-title">تقرير Z — Z Report</div>
+                <div class="z-sub">مغسلة فرحة / Farha Laundry</div>
+                <div class="z-sub">
+                    التاريخ: <t t-esc="today_str"/> |
+                    وقت الطباعة: <t t-esc="today.strftime('%H:%M')"/>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="z-section">
+                <div class="z-section-title">ملخص اليوم / Daily Summary</div>
+                <table>
+                    <tr><th>البيان</th><th>العدد</th><th>المبلغ (SAR)</th></tr>
+                    <tr>
+                        <td>💵 نقداً / Cash</td>
+                        <td class="td-num"><t t-esc="len(cash_orders)"/></td>
+                        <td class="td-num"><t t-esc="'%.2f' % cash_total"/></td>
+                    </tr>
+                    <tr>
+                        <td>💳 بطاقة / Card</td>
+                        <td class="td-num"><t t-esc="len(card_orders)"/></td>
+                        <td class="td-num"><t t-esc="'%.2f' % card_total"/></td>
+                    </tr>
+                    <tr>
+                        <td>🏢 على الحساب / On Account (آجل)</td>
+                        <td class="td-num"><t t-esc="len(acc_orders)"/></td>
+                        <td class="td-num"><t t-esc="'%.2f' % acc_total"/></td>
+                    </tr>
+                    <tr>
+                        <td>⚠ غير مدفوع / Unpaid</td>
+                        <td class="td-num"><t t-esc="len(unpaid_orders)"/></td>
+                        <td class="td-num" style="color:#DC2626;"><t t-esc="'%.2f' % unpaid_total"/></td>
+                    </tr>
+                    <tr class="z-total">
+                        <td>إجمالي المحصل / Total Collected</td>
+                        <td class="td-num"><t t-esc="len(cash_orders) + len(card_orders)"/></td>
+                        <td class="td-num"><t t-esc="'%.2f' % (cash_total + card_total)"/></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Order stats -->
+            <div class="z-section">
+                <div class="z-section-title">إحصائيات الطلبات / Order Statistics</div>
+                <table>
+                    <tr><th>البيان</th><th>القيمة</th></tr>
+                    <tr><td>إجمالي الطلبات / Total Orders</td><td class="td-num"><t t-esc="len(all_orders)"/></td></tr>
+                    <tr><td>⚡ طلبات عاجلة / Urgent</td><td class="td-num"><t t-esc="len(urgent_orders)"/></td></tr>
+                    <tr><td>🔴 إشكاليات / Issues</td><td class="td-num"><t t-esc="len(issue_orders)"/></td></tr>
+                    <tr><td>متوسط قيمة الطلب / Avg Order Value</td>
+                        <td class="td-num">
+                            <t t-esc="'%.2f' % (grand_total / len(all_orders) if all_orders else 0)"/> SAR
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Deferred / On Account Detail -->
+            <div class="z-section" t-if="acc_orders">
+                <div class="z-section-title">التسديد الآجل / Deferred Payments (على الحساب)</div>
+                <table>
+                    <tr><th>الطلب</th><th>العميل</th><th>المبلغ</th><th>الحساب التجاري</th></tr>
+                    <t t-foreach="acc_orders" t-as="order">
+                        <tr>
+                            <td><t t-esc="order.name"/></td>
+                            <td><t t-esc="order.partner_id.name"/></td>
+                            <td class="td-num"><t t-esc="'%.2f' % order.amount_total"/> SAR</td>
+                            <td><t t-esc="order.commercial_account_id.name if order.commercial_account_id else '—'"/></td>
+                        </tr>
+                    </t>
+                    <tr style="font-weight:bold; border-top:2px solid #1B4FD8;">
+                        <td colspan="2">الإجمالي</td>
+                        <td class="td-num"><t t-esc="'%.2f' % acc_total"/> SAR</td>
+                        <td/>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Unpaid orders -->
+            <div class="z-section" t-if="unpaid_orders">
+                <div class="z-section-title" style="color:#DC2626;">غير مدفوع / Unpaid Orders</div>
+                <table>
+                    <tr><th>الطلب</th><th>العميل</th><th>الجوال</th><th>المبلغ</th></tr>
+                    <t t-foreach="unpaid_orders" t-as="order">
+                        <tr>
+                            <td><t t-esc="order.name"/></td>
+                            <td><t t-esc="order.partner_id.name"/></td>
+                            <td><t t-esc="order.partner_id.mobile or order.partner_id.phone or '—'"/></td>
+                            <td class="td-num" style="color:#DC2626;"><t t-esc="'%.2f' % order.amount_total"/> SAR</td>
+                        </tr>
+                    </t>
+                </table>
+            </div>
+
+            <div class="z-footer">
+                مغسلة فرحة — Farha Laundry | تقرير Z اليومي
+                <br/>تم الطباعة بواسطة: Administrator
+            </div>
+        </t>
+    </template>
+
+</odoo>

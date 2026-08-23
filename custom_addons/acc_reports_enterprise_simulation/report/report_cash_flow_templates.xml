@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_cash_flow_statement" model="ir.actions.report">
+        <field name="name">Cash Flow Statement</field>
+        <field name="model">account.cash.flow.report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">acc_reports_enterprise_simulation.cash_flow</field>
+        <field name="report_file">acc_reports_enterprise_simulation.cash_flow</field>
+    </record>
+
+    <template id="cash_flow">
+        <t t-call="web.html_container">
+            <div class="page o_cash_flow_statement_page" t-att-dir="env['res.lang']._lang_get(lang or env.user.lang).direction or 'ltr'" t-att-lang="lang or env.user.lang or 'en_US'">
+                <style>
+                    .o_cash_flow_statement_page {
+                        direction: inherit;
+                        color: #07172d;
+                        font-family: "Tahoma", "Arial", "DejaVu Sans", sans-serif;
+                        padding: 0;
+                        max-width: 760px;
+                        margin: 0 auto;
+                    }
+                    .o_cash_flow_statement_card {
+                        border-radius: 4px;
+                        background: #fff;
+                        padding: 22px 22px 20px;
+                    }
+                    .o_cash_flow_period {
+                        width: 138px;
+                        border: 1px solid #d2d7de;
+                        padding: 5px 10px;
+                        text-align: center;
+                        font-weight: 700;
+                        line-height: 1.2;
+                        margin: 0 auto 6px 0;
+                    }
+                    .o_cash_flow_balance_label {
+                        margin: 0 10px 18px 0;
+                        font-size: 12px;
+                        font-weight: 700;
+                        text-align: left;
+                    }
+                    .o_cash_flow_table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        table-layout: fixed;
+                        direction: inherit;
+                    }
+                    .o_cash_flow_table td {
+                        border: 0;
+                        border-bottom: 1px solid #dfe3e8;
+                        padding: 4px 12px;
+                        font-size: 12px;
+                        line-height: 1.25;
+                        vertical-align: middle;
+                    }
+                    .o_cash_flow_label {
+                        width: 76%;
+                        text-align: start;
+                    }
+                    .o_cash_flow_amount {
+                        width: 24%;
+                        direction: ltr;
+                        text-align: left;
+                        color: #b1b8c1;
+                        font-weight: 400;
+                        white-space: nowrap;
+                    }
+                    .o_cash_flow_row_total td {
+                        background: #ebeced;
+                        border-bottom-color: #ebeced;
+                        font-weight: 700;
+                    }
+                    .o_cash_flow_row_opening td {
+                        border-bottom: 5px solid #fff;
+                    }
+                    .o_cash_flow_row_section td {
+                        color: #07172d;
+                        font-weight: 700;
+                    }
+                    .o_cash_flow_row_line .o_cash_flow_label {
+                        padding-right: 42px;
+                    }
+                    .o_cash_flow_row_closing td {
+                        border-bottom: 0;
+                    }
+                    .o_cash_flow_amount_negative {
+                        color: #c0392b !important;
+                    }
+                </style>
+                <div class="o_cash_flow_statement_card">
+                    <div class="o_cash_flow_period" t-esc="period_label"/>
+                    <div class="o_cash_flow_balance_label">Balance</div>
+                    <table class="o_cash_flow_table">
+                        <tbody>
+                            <t t-foreach="lines" t-as="line">
+                                <tr t-att-class="'o_cash_flow_row_%s o_cash_flow_row_%s' % (line['row_type'].replace(' ', ' o_cash_flow_row_'), line['key'])">
+                                    <td class="o_cash_flow_label" t-esc="line['label']"/>
+                                    <td t-att-class="'o_cash_flow_amount%s' % (' o_cash_flow_amount_negative' if line.get('amount_is_negative') else '')">
+                                        <span t-esc="line['amount_text']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
