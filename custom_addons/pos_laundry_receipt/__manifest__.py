@@ -1,6 +1,6 @@
 {
     "name": "POS Laundry Receipt",
-    "version": "17.0.1.6.5",
+    "version": "17.0.1.7.2",
     "summary": "Laundry intake, order tracking, and durable label print queue",
     "category": "Point of Sale",
     "author": "Custom",

@@ -1,7 +1,7 @@
 {
     "name": "POS Laundry Variant Popup",
-    "version": "17.0.2.0.1",
-    "summary": "Laundry variant popup with multi-language support",
+    "version": "17.0.3.14.0",
+    "summary": "Laundry service popup with stain removal, mirzam and starch add-ons",
     "category": "Point of Sale",
     "author": "Custom",
     "license": "LGPL-3",
@@ -12,15 +12,14 @@
             "pos_laundry_variant_popup/static/src/xml/pos_laundry_variant_popup.xml",
             "pos_laundry_variant_popup/static/src/scss/pos_laundry_variant_popup.scss",
         ],
+        "point_of_sale.assets_qunit_tests": [
+            "pos_laundry_variant_popup/static/tests/laundry_variant_utils_tests.js",
+        ],
     },
     "data": [
         "security/ir.model.access.csv",
+        "data/laundry_addon_data.xml",
         "views/product_template_views.xml",
-    ],
-    "i18n": [
-        "i18n/pos_laundry_variant_popup.pot",
-        "i18n/ar.po",
-        "i18n/ar_001.po",
     ],
     "installable": True,
     "application": False,

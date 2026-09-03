@@ -3,9 +3,11 @@
 import { patch } from "@web/core/utils/patch";
 import { _t } from "@web/core/l10n/translation";
 import { localization } from "@web/core/l10n/localization";
-import { onMounted, onWillUnmount, useState } from "@odoo/owl";
+import { onMounted, onWillUnmount, useRef, useState } from "@odoo/owl";
 import { PosStore } from "@point_of_sale/app/store/pos_store";
 import { Orderline } from "@point_of_sale/app/store/models";
+import { Orderline as OrderlineComponent } from "@point_of_sale/app/generic_components/orderline/orderline";
+import { ProductScreen } from "@point_of_sale/app/screens/product_screen/product_screen";
 import { ProductsWidget } from "@point_of_sale/app/screens/product_screen/product_list/product_list";
 import { AbstractAwaitablePopup } from "@point_of_sale/app/popup/abstract_awaitable_popup";
 
@@ -176,7 +178,7 @@ function getSelectionPriceAmount(entry) {
         return 0;
     }
 
-    if (entry.item.is_optional_attribute) {
+    if (entry.isOptional || entry.item.is_optional_attribute) {
         return Number(entry.item.price_extra || 0);
     }
 
@@ -191,12 +193,13 @@ function getSelectionPriceText(entry) {
     }
 
     const rawPrice = String(entry.price || "").replace(/\u00a0/g, " ").trim();
-    const matchedNumber = rawPrice.match(/-?\d+(?:[.,]\d+)?/);
-    const readableAmount = matchedNumber
-        ? matchedNumber[0].replace(",", ".")
-        : amount.toFixed(2);
+    if (rawPrice) {
+        // The POS formatter already applies the active language, currency and
+        // bidi markers. Only remove the leading add-on plus sign in summaries.
+        return rawPrice.replace(/^\+\s*/, "");
+    }
 
-    return `${readableAmount} SR`;
+    return amount.toFixed(2);
 }
 
 function getSelectionDisplayText(entry) {
@@ -213,10 +216,12 @@ const GROUP_ICON_CLASSES = {
     sparkles: "fa fa-magic",
     clock: "fa fa-clock-o",
     zap: "fa fa-bolt",
+    droplet: "fa fa-tint",
+    sliders: "fa fa-sliders",
     tag: "fa fa-tag",
 };
 
-const GROUP_THEMES = new Set(["blue", "orange", "primary"]);
+const GROUP_THEMES = new Set(["blue", "orange", "teal", "primary"]);
 
 function getGroupIconClass(iconKey) {
     return GROUP_ICON_CLASSES[iconKey] || GROUP_ICON_CLASSES.tag;
@@ -234,6 +239,18 @@ function cloneProductKeepingPrototype(product, overrides = {}) {
     return clone;
 }
 
+function formatExtraPrice(pos, amount) {
+    const numericAmount = Number(amount || 0);
+    if (!numericAmount) {
+        return "";
+    }
+
+    const formatted = pos.env?.utils?.formatCurrency
+        ? pos.env.utils.formatCurrency(Math.abs(numericAmount))
+        : `${Math.abs(numericAmount).toFixed(2)} ${pos.currency?.symbol || ""}`;
+    return `${numericAmount > 0 ? "+" : "-"}${formatted}`;
+}
+
 function normalizeMatchText(value) {
     return String(value || "").trim().toLowerCase();
 }
@@ -246,7 +263,7 @@ function makeDisplayProduct(product, templateName) {
     });
 }
 
-function normalizeLaundryVariantSelections(selections) {
+export function normalizeLaundryVariantSelections(selections) {
     if (!Array.isArray(selections)) {
         return [];
     }
@@ -266,8 +283,11 @@ function normalizeLaundryVariantSelections(selections) {
             }
 
             const group = String(selection?.group || "").trim();
+            const groupCode = String(selection?.groupCode || "").trim();
             const productId = Number(selection?.productId || 0);
             const valueId = Number(selection?.valueId || 0);
+            const groupId = Number(selection?.groupId || 0);
+            const ptavId = Number(selection?.ptavId || 0);
             const originalValue = String(selection?.originalValue || "").trim();
             const isPrimary =
                 selection?.isPrimary !== undefined
@@ -279,9 +299,12 @@ function normalizeLaundryVariantSelections(selections) {
 
             return {
                 group,
+                groupCode,
                 value,
                 productId,
                 valueId,
+                groupId,
+                ptavId,
                 originalValue,
                 isPrimary,
                 priceExtra,
@@ -295,7 +318,7 @@ function normalizeLaundryVariantSelections(selections) {
         .filter(Boolean);
 }
 
-function areLaundryVariantSelectionsEqual(left, right) {
+export function areLaundryVariantSelectionsEqual(left, right) {
     return (
         JSON.stringify(normalizeLaundryVariantSelections(left)) ===
         JSON.stringify(normalizeLaundryVariantSelections(right))
@@ -315,6 +338,8 @@ function createTemplateBucket(templateId, product) {
         optionById: {},
         valueIdToOptionId: {},
         matchKeyToOptionId: {},
+        optionalGroups: [],
+        optionalGroupByCode: {},
         hasLaundryOptions: false,
     };
 }
@@ -336,6 +361,7 @@ function getOrCreateGroup(bucket, product) {
             theme,
             themeClass: `laundry-service-group--${theme}`,
             iconClass,
+            selectionKind: "primary",
             items: [],
         });
     }
@@ -358,6 +384,9 @@ function addOptionToBucket(pos, bucket, product, metrics) {
     const themeClass = group.themeClass;
     const baseClasses = `laundry-variant-card laundry-pos-card ${themeClass}`;
     const valueId = Number(product.laundry_service_value_id || 0);
+    if (valueId && bucket.valueIdToOptionId[valueId] !== undefined) {
+        return;
+    }
     const serviceName =
         String(product.laundry_service_display_name || "").trim() ||
         String(product.laundry_service_value_name || "").trim() ||
@@ -385,6 +414,8 @@ function addOptionToBucket(pos, bucket, product, metrics) {
         priceAmount: getProductPrice(product),
         item: product,
         sequence: Number(product.laundry_service_sequence || product.id || 0),
+        key: `service-${product.id}`,
+        isOptional: false,
     };
 
     group.items.push(option);
@@ -405,6 +436,123 @@ function addOptionToBucket(pos, bucket, product, metrics) {
             bucket.matchKeyToOptionId[normalized] = option.id;
         }
     }
+}
+
+function addOptionalGroupsToBucket(pos, bucket, product, metrics) {
+    if (bucket.optionalGroups.length || !Array.isArray(product.laundry_optional_groups)) {
+        return;
+    }
+
+    bucket.optionalGroups = product.laundry_optional_groups
+        .map((rawGroup) => {
+            const numericGroupId = Number(rawGroup.id || 0);
+            const code = String(rawGroup.code || "").trim();
+            const theme = getGroupTheme(rawGroup.theme);
+            const themeClass = `laundry-service-group--${theme}`;
+            const group = {
+                id: `addon-${numericGroupId || code}`,
+                numericGroupId,
+                key: `addon-${numericGroupId || code}`,
+                group: String(rawGroup.name || "").trim() || _t("Additional Service"),
+                code,
+                sequence: Number(rawGroup.sequence || numericGroupId || 0),
+                required: Boolean(rawGroup.required),
+                showDefault: Boolean(rawGroup.show_default),
+                theme,
+                themeClass,
+                iconClass: getGroupIconClass(rawGroup.icon_key),
+                selectionKind: "optional",
+                optionById: {},
+                optionByPtavId: {},
+                optionByValueId: {},
+                matchKeyToOptionId: {},
+                items: [],
+            };
+
+            for (const rawItem of rawGroup.items || []) {
+                const ptavId = Number(rawItem.ptav_id || rawItem.id || 0);
+                const valueId = Number(rawItem.value_id || 0);
+                const name = String(rawItem.name || rawItem.original_name || "").trim();
+                if (!ptavId || !name) {
+                    continue;
+                }
+
+                const priceStart = perfNow();
+                const price = formatExtraPrice(pos, rawItem.price_extra);
+                metrics.priceMs += perfNow() - priceStart;
+                const baseClasses = `laundry-variant-card laundry-pos-card ${themeClass}`;
+                const option = {
+                    id: `addon-value-${ptavId}`,
+                    key: `addon-value-${ptavId}`,
+                    ptavId,
+                    valueId,
+                    groupId: numericGroupId,
+                    groupCode: code,
+                    originalName: String(rawItem.original_name || name).trim(),
+                    name,
+                    displayName: name,
+                    groupName: group.group,
+                    iconClass: group.iconClass,
+                    theme,
+                    themeClass,
+                    classes: baseClasses,
+                    selectedClasses: `${baseClasses} is-selected`,
+                    price,
+                    priceAmount: Number(rawItem.price_extra || 0),
+                    sequence: Number(rawItem.sequence || ptavId),
+                    isDefault: Boolean(rawItem.is_default),
+                    isOptional: true,
+                    item: {
+                        id: ptavId,
+                        is_optional_attribute: true,
+                        price_extra: Number(rawItem.price_extra || 0),
+                    },
+                };
+                group.items.push(option);
+                group.optionById[option.id] = option;
+                group.optionByPtavId[ptavId] = option.id;
+                if (valueId) {
+                    group.optionByValueId[valueId] = option.id;
+                }
+                for (const matchValue of [
+                    name,
+                    option.originalName,
+                    `${group.group}:${name}`,
+                    `${group.group}:${option.originalName}`,
+                ]) {
+                    const normalized = normalizeMatchText(matchValue);
+                    if (normalized && group.matchKeyToOptionId[normalized] === undefined) {
+                        group.matchKeyToOptionId[normalized] = option.id;
+                    }
+                }
+            }
+
+            group.items.sort(
+                (left, right) =>
+                    left.sequence - right.sequence ||
+                    String(left.name).localeCompare(String(right.name))
+            );
+            group.defaultOptionId =
+                group.items.find((item) => item.isDefault)?.id || null;
+            return group;
+        })
+        .filter((group) => group.items.length)
+        .sort(
+            (left, right) =>
+                left.sequence - right.sequence ||
+                String(left.group).localeCompare(String(right.group))
+        );
+
+    if (bucket.optionalGroups.length) {
+        // Products without a service axis (no "Service Type") still have to
+        // open the laundry popup, otherwise the core product configurator
+        // would take over and show a different, untranslated dialog.
+        bucket.hasLaundryOptions = true;
+    }
+
+    bucket.optionalGroupByCode = Object.fromEntries(
+        bucket.optionalGroups.map((group) => [group.code, group])
+    );
 }
 
 function finalizeTemplateBucket(bucket) {
@@ -455,6 +603,7 @@ function buildLaundryVariantIndex(pos) {
         const bucket = index.byTemplateId.get(templateId);
         index.byProductId.set(product.id, bucket);
         addOptionToBucket(pos, bucket, product, metrics);
+        addOptionalGroupsToBucket(pos, bucket, product, metrics);
     }
 
     const groupStart = perfNow();
@@ -497,6 +646,20 @@ function getTemplateBucketForProduct(pos, product) {
         index.byTemplateId.get(templateId) ||
         index.byProductId.get(realProduct?.id) ||
         null
+    );
+}
+
+export function filterPrintableSelections(selections) {
+    // A group whose default means "nothing extra" (No Stain Removal, No Mirzam)
+    // is left off the ticket; groups without a default, such as starch, are
+    // always printed because the choice is an instruction to the laundry floor.
+    return (selections || []).filter((selection) => !selection?.isHiddenDefault);
+}
+
+export function bucketOffersLaundryPopup(bucket) {
+    return Boolean(
+        bucket?.hasLaundryOptions &&
+        (bucket.groups?.length || bucket.optionalGroups?.length)
     );
 }
 
@@ -544,6 +707,147 @@ function buildSelectedIdFromSelections(defaultSelectedId, bucket, selections) {
         : bucket.groups?.[0]?.items?.[0]?.id || null;
 }
 
+export function buildSelectedByGroup(bucket, selections) {
+    const normalizedSelections = normalizeLaundryVariantSelections(selections);
+    const selectedByGroup = {};
+
+    for (const group of bucket.optionalGroups || []) {
+        const selection = normalizedSelections.find((candidate) =>
+            !candidate.isPrimary && (
+                (candidate.groupCode && candidate.groupCode === group.code) ||
+                (candidate.groupId && candidate.groupId === group.numericGroupId) ||
+                normalizeMatchText(candidate.group) === normalizeMatchText(group.group)
+            )
+        );
+        let optionId = null;
+        if (selection) {
+            optionId =
+                group.optionByPtavId[selection.ptavId] ||
+                group.optionByValueId[selection.valueId] ||
+                null;
+            if (!optionId) {
+                for (const candidate of [
+                    selection.displayText,
+                    selection.value,
+                    selection.originalValue,
+                    selection.group && selection.value
+                        ? `${selection.group}:${selection.value}`
+                        : "",
+                ]) {
+                    optionId = group.matchKeyToOptionId[normalizeMatchText(candidate)];
+                    if (optionId) {
+                        break;
+                    }
+                }
+            }
+        }
+        selectedByGroup[group.key] = optionId || group.defaultOptionId;
+    }
+
+    return selectedByGroup;
+}
+
+export function calculateLaundryAddonPrice(entries) {
+    return (entries || [])
+        .filter((entry) => entry?.isOptional)
+        .reduce(
+            (total, entry) => total + Number(entry.item?.price_extra || 0),
+            0
+        );
+}
+
+export function getLaundryAddonPtavIds(entries) {
+    return (entries || [])
+        .filter((entry) => entry?.isOptional && entry.ptavId)
+        .map((entry) => entry.ptavId);
+}
+
+export function buildLaundryBarcodeOptions(product, code) {
+    const options = {};
+    const packagingQuantity = product?._getPackagingQty?.(code);
+    if (packagingQuantity !== undefined) {
+        options.quantity = packagingQuantity;
+    }
+    if (code?.type === "price") {
+        Object.assign(options, {
+            price: code.value,
+            extras: { price_type: "manual" },
+        });
+    } else if (code?.type === "weight" || code?.type === "quantity") {
+        Object.assign(options, { quantity: code.value, merge: false });
+    } else if (code?.type === "discount") {
+        Object.assign(options, { discount: code.value, merge: false });
+    }
+    return options;
+}
+
+function localizeLaundryVariantSelections(pos, product, selections) {
+    const normalizedSelections = normalizeLaundryVariantSelections(selections);
+    const bucket = getTemplateBucketForProduct(pos, product);
+    if (!bucket) {
+        return normalizedSelections;
+    }
+
+    return normalizedSelections.map((selection) => {
+        let option = null;
+        let groupName = selection.group;
+        let groupCode = selection.groupCode;
+        let groupId = selection.groupId;
+        let isHiddenDefault = false;
+
+        if (selection.isPrimary) {
+            const optionId = buildSelectedIdFromSelections(
+                selection.productId,
+                bucket,
+                [selection]
+            );
+            option = bucket.optionById[optionId];
+        } else {
+            const group = (bucket.optionalGroups || []).find(
+                (candidate) =>
+                    (selection.groupCode && candidate.code === selection.groupCode) ||
+                    (selection.groupId && candidate.numericGroupId === selection.groupId) ||
+                    normalizeMatchText(candidate.group) === normalizeMatchText(selection.group)
+            );
+            if (group) {
+                const optionId =
+                    group.optionByPtavId[selection.ptavId] ||
+                    group.optionByValueId[selection.valueId] ||
+                    group.matchKeyToOptionId[normalizeMatchText(selection.value)] ||
+                    null;
+                option = group.optionById[optionId];
+                groupName = group.group;
+                groupCode = group.code;
+                groupId = group.numericGroupId;
+                isHiddenDefault = Boolean(
+                    option && !group.showDefault && option.isDefault
+                );
+            }
+        }
+
+        if (!option) {
+            return selection;
+        }
+
+        return {
+            ...selection,
+            isHiddenDefault,
+            group: option.groupName || groupName || "",
+            groupCode: option.groupCode || groupCode || "",
+            groupId: option.groupId || groupId || 0,
+            value: option.name,
+            originalValue: option.originalName || option.name,
+            productId: option.isOptional ? 0 : option.item.id,
+            valueId: option.valueId || selection.valueId || 0,
+            ptavId: option.ptavId || selection.ptavId || 0,
+            priceExtra: Number(option.item?.price_extra || 0),
+            priceAmount: getSelectionPriceAmount(option),
+            priceText: getSelectionPriceText(option),
+            displayText: getSelectionDisplayText(option),
+        };
+    });
+}
+
 function dedupeProductsByTemplate(pos, products, renameToTemplate = false) {
     const index = ensureLaundryVariantIndex(pos);
     const seenTemplates = new Set();
@@ -585,8 +889,10 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
         confirmText: { type: String, optional: true },
         cancelText: { type: String, optional: true },
         list: { type: Array, optional: true },
+        optionalList: { type: Array, optional: true },
         optionById: { type: Object, optional: true },
-        selectedId: { type: Number, optional: true },
+        fallbackProduct: { type: Object, optional: true },
+        selectedId: { type: [Number, { value: null }], optional: true },
         selectedByGroup: { type: Object, optional: true },
         perfTrace: { type: Object, optional: true },
 
@@ -604,6 +910,7 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
         confirmText: _t("Confirm"),
         cancelText: _t("Cancel"),
         list: [],
+        optionalList: [],
         optionById: {},
     };
 
@@ -611,13 +918,13 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
         super.setup();
 
         this.state = useState({
-            selectedId:
-                this.props.selectedId ||
-                Object.values(this.props.selectedByGroup || {})[0] ||
-                null,
+            selectedId: this.props.selectedId || null,
+            selectedByGroup: { ...(this.props.selectedByGroup || {}) },
             invalidSubmit: false,
+            blockedGroupKey: null,
             confirming: false,
         });
+        this.bodyRef = useRef("body");
         this.invalidSubmitTimer = null;
         this.isUnmounted = false;
 
@@ -650,13 +957,41 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
     }
 
     get selectedItems() {
-        return this.selectedItem ? [this.selectedItem] : [];
+        const optionalItems = (this.props.optionalList || [])
+            .map((group) => group.optionById?.[this.state.selectedByGroup[group.key]])
+            .filter(Boolean);
+        return this.selectedItem
+            ? [this.selectedItem, ...optionalItems]
+            : optionalItems;
+    }
+
+    get unansweredGroup() {
+        if (this.hasServiceGroups && !this.selectedItem) {
+            return this.props.list[0] || null;
+        }
+        return (
+            (this.props.optionalList || []).find(
+                (group) =>
+                    group.required &&
+                    !group.optionById?.[this.state.selectedByGroup[group.key]]
+            ) || null
+        );
+    }
+
+    get hasServiceGroups() {
+        return Boolean((this.props.list || []).length);
     }
 
     get canConfirm() {
         return Boolean(
-            this.selectedItem &&
-            !this.selectedItem.item?.is_optional_attribute &&
+            (this.hasServiceGroups
+                ? this.selectedItem && !this.selectedItem.item?.is_optional_attribute
+                : true) &&
+            (this.props.optionalList || []).every(
+                (group) =>
+                    !group.required ||
+                    Boolean(group.optionById?.[this.state.selectedByGroup[group.key]])
+            ) &&
             !this.state.confirming
         );
     }
@@ -672,12 +1007,37 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
     get uiText() {
         return {
             empty: _t("No services are available for this product."),
-            selectBeforeConfirm: _t("Select a service before confirming."),
+            selectBeforeConfirm: _t(
+                "Select an option in every required group before confirming."
+            ),
+            additionalServices: _t("Additional Services"),
         };
     }
 
-    cardClasses(item) {
-        return this.state.selectedId === item.id
+    get blockedMessage() {
+        const group = this.unansweredGroup;
+        return group
+            ? _t("Choose %s to continue.", group.group)
+            : this.uiText.selectBeforeConfirm;
+    }
+
+    isGroupBlocked(group) {
+        return this.state.blockedGroupKey === group.key;
+    }
+
+    groupClasses(group) {
+        const base = "laundry-service-group " + group.themeClass;
+        return this.isGroupBlocked(group) ? base + " is-unanswered" : base;
+    }
+
+    isItemSelected(group, item) {
+        return group.selectionKind === "optional"
+            ? this.state.selectedByGroup[group.key] === item.id
+            : this.state.selectedId === item.id;
+    }
+
+    cardClasses(group, item) {
+        return this.isItemSelected(group, item)
             ? item.selectedClasses
             : item.classes;
     }
@@ -688,14 +1048,24 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
             : "laundry-pos-popup-card laundry-variant-popup";
     }
 
-    selectItem(item) {
+    selectItem(group, item) {
         const start = perfNow();
 
-        if (this.state.selectedId !== item.id) {
+        if (group.selectionKind === "optional") {
+            if (this.state.selectedByGroup[group.key] !== item.id) {
+                this.state.selectedByGroup[group.key] = item.id;
+            } else if (!group.required) {
+                // An optional group starts unanswered, so tapping the chosen
+                // card again has to be able to take it back to unanswered.
+                // Without this the cashier could never undo a mis-tap.
+                this.state.selectedByGroup[group.key] = null;
+            }
+        } else if (this.state.selectedId !== item.id) {
             this.state.selectedId = item.id;
         }
 
         this.state.invalidSubmit = false;
+        this.state.blockedGroupKey = null;
         logPerf("Service selection state update", perfNow() - start);
 
         if (isPerfDebugEnabled()) {
@@ -709,6 +1079,12 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
         const start = perfNow();
 
         if (!this.canConfirm) {
+            // The groups can run past the bottom of the popup, so simply
+            // refusing the click looked to the cashier like the product would
+            // not add at all. Say which group is missing, and bring it into
+            // view rather than leaving them to hunt for it.
+            const blocked = this.unansweredGroup;
+            this.state.blockedGroupKey = blocked?.key || null;
             this.state.invalidSubmit = true;
             if (this.invalidSubmitTimer) {
                 clearTimeout(this.invalidSubmitTimer);
@@ -718,6 +1094,10 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
                     this.state.invalidSubmit = false;
                 }
             }, 240);
+
+            if (blocked) {
+                this.scrollGroupIntoView(blocked.key);
+            }
 
             return;
         }
@@ -733,20 +1113,40 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
         return super.confirm();
     }
 
+    scrollGroupIntoView(groupKey) {
+        const body = this.bodyRef?.el;
+        if (!body || !groupKey) {
+            return;
+        }
+        const target = body.querySelector(
+            `[data-group-key="${CSS.escape(String(groupKey))}"]`
+        );
+        target?.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+
     getPayload() {
         const primarySelection = this.selectedItem;
+        const hasPrimary = Boolean(
+            primarySelection?.item && !primarySelection.item.is_optional_attribute
+        );
+        const product = hasPrimary
+            ? primarySelection.item
+            : this.props.fallbackProduct;
 
-        if (!primarySelection?.item || primarySelection.item.is_optional_attribute) {
+        if (!product || (this.hasServiceGroups && !hasPrimary)) {
             return null;
         }
 
-        const selections = this.selectedItems.map((entry, index) => ({
+        const selections = this.selectedItems.map((entry) => ({
             group: entry.groupName || "",
+            groupCode: entry.groupCode || "",
+            groupId: Number(entry.groupId || 0),
             value: entry.name,
-            productId: entry.item?.is_optional_attribute ? 0 : entry.item.id,
+            productId: entry.isOptional ? 0 : entry.item.id,
             valueId: entry.valueId || 0,
+            ptavId: entry.ptavId || 0,
             originalValue: entry.originalName || entry.name,
-            isPrimary: index === 0,
+            isPrimary: !entry.isOptional,
             priceExtra: Number(entry.item?.price_extra || 0),
             priceAmount: getSelectionPriceAmount(entry),
             priceText: getSelectionPriceText(entry),
@@ -754,8 +1154,9 @@ export class LaundryVariantPopup extends AbstractAwaitablePopup {
         }));
 
         return {
-            product: primarySelection.item,
-            priceExtra: 0,
+            product,
+            priceExtra: calculateLaundryAddonPrice(this.selectedItems),
+            attributeValueIds: getLaundryAddonPtavIds(this.selectedItems),
             selections,
         };
     }
@@ -781,12 +1182,16 @@ patch(PosStore.prototype, {
             this.db.product_by_id?.[product?.id] || product;
         const bucket = getTemplateBucketForProduct(this, realProduct);
 
-        if (!bucket?.hasLaundryOptions || !bucket.groups.length) {
+        if (!bucketOffersLaundryPopup(bucket)) {
             return null;
         }
 
         const selectedId = buildSelectedIdFromSelections(
             buildSelectedIdFromVariant(realProduct),
+            bucket,
+            popupOptions.selectedSelections || []
+        );
+        const selectedByGroup = buildSelectedByGroup(
             bucket,
             popupOptions.selectedSelections || []
         );
@@ -804,8 +1209,11 @@ patch(PosStore.prototype, {
                     confirmText: popupOptions.confirmText || _t("Confirm"),
                     cancelText: popupOptions.cancelText || _t("Cancel"),
                     list: bucket.groups,
+                    optionalList: bucket.optionalGroups,
                     optionById: bucket.optionById,
+                    fallbackProduct: realProduct,
                     selectedId,
+                    selectedByGroup,
                     perfTrace: trace,
                 }
             );
@@ -839,7 +1247,8 @@ patch(PosStore.prototype, {
         orderline.product = payload.product;
         orderline.set_product_lot(payload.product);
         orderline.set_quantity(quantity);
-        orderline.price_extra = payload.priceExtra;
+        orderline.set_price_extra(payload.priceExtra);
+        orderline.attribute_value_ids = payload.attributeValueIds || [];
         orderline.set_unit_price(
             payload.product.get_price(
                 orderline.order.pricelist,
@@ -880,7 +1289,7 @@ patch(PosStore.prototype, {
 
         const trace = createPerfTrace("add");
         const bucket = getTemplateBucketForProduct(this, product);
-        if (!bucket?.hasLaundryOptions || !bucket.groups.length) {
+        if (!bucketOffersLaundryPopup(bucket)) {
             return await super.addProductToCurrentOrder(product, options);
         }
 
@@ -896,11 +1305,28 @@ patch(PosStore.prototype, {
             ...options,
             __variant_popup_selected: true,
             price_extra: payload.priceExtra,
+            attribute_value_ids: payload.attributeValueIds || [],
             extras: {
                 ...(options.extras || {}),
                 laundry_variant_selections: payload.selections,
             },
         });
+    },
+});
+
+// Core barcode handling adds directly to the order and therefore bypasses
+// PosStore.addProductToCurrentOrder. Route laundry products through the same
+// configurator while preserving quantity/weight/price/discount barcode data.
+patch(ProductScreen.prototype, {
+    async _barcodeProductAction(code) {
+        const product = await this._getProductByBarcode(code);
+        const bucket = product && getTemplateBucketForProduct(this.pos, product);
+        if (!product || !bucketOffersLaundryPopup(bucket)) {
+            return await super._barcodeProductAction(...arguments);
+        }
+
+        const options = buildLaundryBarcodeOptions(product, code);
+        return await this.pos.addProductToCurrentOrder(product, options);
     },
 });
 
@@ -939,6 +1365,9 @@ patch(Orderline.prototype, {
             normalizeLaundryVariantSelections(
                 this.laundry_variant_selections
             );
+        clonedLine.attribute_value_ids = [...(this.attribute_value_ids || [])];
+        clonedLine.set_price_extra(this.get_price_extra());
+        clonedLine.set_full_product_name();
 
         return clonedLine;
     },
@@ -955,10 +1384,11 @@ patch(Orderline.prototype, {
 
     getDisplayData() {
         const data = super.getDisplayData(...arguments);
-        const selections =
-            normalizeLaundryVariantSelections(
-                this.laundry_variant_selections
-            );
+        const selections = localizeLaundryVariantSelections(
+            this.pos,
+            this.product,
+            this.laundry_variant_selections
+        );
 
         if (selections.length) {
             data.productName =
@@ -967,18 +1397,57 @@ patch(Orderline.prototype, {
             data.unit = "";
         }
 
+        const printedSelections = filterPrintableSelections(selections);
+
         data.laundryVariantSelections = selections;
-        data.laundryVariantSummaryItems = selections.map((selection) => ({
+        data.laundryVariantSummaryItems = printedSelections.map((selection) => ({
             group: selection.group || "",
             value: selection.value || selection.displayText || "",
             priceText: selection.priceText || "",
             displayText: selection.displayText || "",
         }));
-        data.laundryVariantSummaryLines = selections.map(
-            (selection) => selection.displayText
+        // What the printed receipt, the tracking label and the intake record
+        // show. It is composed here rather than reusing `displayText`, which
+        // stays in the canonical "group : value" form because reopening a line
+        // matches saved selections against it.
+        data.laundryVariantSummaryLines = printedSelections.map(
+            (selection) => {
+                const value = selection.value || selection.displayText || "";
+                const group = selection.group || "";
+                // The chosen value leads on every row, matching the cart and
+                // the review dialog: the emphasised half is always the one the
+                // reader meets first.
+                const pair = group ? `${value} · ${group}` : value;
+
+                // The receipt splits a trailing amount back off this string, so
+                // the " - " before the price has to stay.
+                return selection.priceText
+                    ? `${pair} - ${selection.priceText}`
+                    : pair;
+            }
         );
 
         return data;
+    },
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Cart line direction
+//
+// point_of_sale.index hardcodes a bare <html> with no dir attribute, and
+// pos_app.scss pins `.pos { direction: ltr }`, so the till lays out
+// left-to-right whatever language the cashier is in. rtlcss is not installed
+// here either, so the "rtl" bundle never mirrors anything back. An Arabic
+// cashier therefore got a cart that starts on the left.
+//
+// Each line states the direction its language asks for, so the name, the
+// amount, the quantity row and the service summary all begin on the reading
+// edge without depending on what the shell decides.
+// ─────────────────────────────────────────────────────────────────────────────
+
+patch(OrderlineComponent.prototype, {
+    get lineDirection() {
+        return localization.direction === "rtl" ? "rtl" : "ltr";
     },
 });
 

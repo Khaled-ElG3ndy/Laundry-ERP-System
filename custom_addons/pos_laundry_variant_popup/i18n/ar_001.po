@@ -43,3 +43,311 @@ msgstr "لا توجد خدمات متاحة لهذا المنتج."
 #. module: pos_laundry_variant_popup
 msgid "Select a service before confirming."
 msgstr "اختر خدمة قبل التأكيد."
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "Select an option in every required group before confirming."
+msgstr "اختر قيمة في كل مجموعة مطلوبة قبل التأكيد."
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "Additional Service"
+msgstr "خدمة إضافية"
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "Additional Services"
+msgstr "الخدمات الإضافية"
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute,name:pos_laundry_variant_popup.attribute_stain_removal
+msgid "Stain Removal"
+msgstr "إزالة البقع"
+
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute,name:pos_laundry_variant_popup.attribute_mirzam_type
+msgid "Mirzam Type"
+msgstr "نوع المرزام"
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute.value,name:pos_laundry_variant_popup.addon_mirzam_none
+msgid "No Mirzam"
+msgstr "بدون مرزام"
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute.value,name:pos_laundry_variant_popup.addon_mirzam_regular
+msgid "Mirzam"
+msgstr "مرزام"
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute.value,name:pos_laundry_variant_popup.addon_mirzam_inverted
+msgid "Inverted Mirzam"
+msgstr "مرزام مقلوب"
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute,name:pos_laundry_variant_popup.attribute_starch_type
+msgid "Starch Type"
+msgstr "نوع النشاء"
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute.value,name:pos_laundry_variant_popup.addon_starch_light
+msgid "Light"
+msgstr "خفيف"
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute.value,name:pos_laundry_variant_popup.addon_starch_medium
+msgid "Medium"
+msgstr "وسط"
+
+#. module: pos_laundry_variant_popup
+#: model:product.attribute.value,name:pos_laundry_variant_popup.addon_starch_heavy
+msgid "Heavy"
+msgstr "ثقيل"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute__laundry_addon_code
+msgid "Laundry Add-on Code"
+msgstr "رمز إضافة الغسيل"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute__laundry_addon_required
+msgid "Required in Laundry POS"
+msgstr "مطلوب في نقطة بيع المغسلة"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute__laundry_addon_theme
+msgid "Laundry POS Theme"
+msgstr "مظهر إضافة نقطة البيع"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute__laundry_addon_icon_key
+msgid "Laundry POS Icon"
+msgstr "أيقونة إضافة نقطة البيع"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute_value__laundry_is_default
+msgid "Default Laundry Add-on Value"
+msgstr "القيمة الافتراضية لإضافة الغسيل"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_pos_order_line__laundry_variant_selections
+msgid "Laundry Service Selections"
+msgstr "اختيارات خدمات الغسيل"
+
+#. module: pos_laundry_variant_popup
+#. odoo-python
+#: code:addons/pos_laundry_variant_popup/models/product_attribute_value.py:0
+msgid "A laundry add-on group can only have one default value."
+msgstr "يمكن أن تحتوي مجموعة إضافة الغسيل على قيمة افتراضية واحدة فقط."
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.constraint,message:pos_laundry_variant_popup.constraint_product_attribute_laundry_addon_code_uniq
+msgid "The laundry add-on code must be unique."
+msgstr "يجب أن يكون رمز إضافة الغسيل فريدًا."
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_icon_key__droplet
+msgid "Droplet"
+msgstr "قطرة"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_icon_key__sliders
+msgid "Sliders"
+msgstr "أشرطة ضبط"
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_theme__blue
+msgid "Blue"
+msgstr "أزرق"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_theme__orange
+msgid "Orange"
+msgstr "برتقالي"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_theme__primary
+msgid "Primary"
+msgstr "أساسي"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_icon_key__sparkles
+msgid "Sparkles"
+msgstr "بريق"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_icon_key__tag
+msgid "Tag"
+msgstr "وسم"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,help:pos_laundry_variant_popup.field_product_attribute__laundry_addon_code
+msgid "Stable technical code used to expose this optional attribute in the laundry POS."
+msgstr "رمز تقني ثابت لعرض هذه الخاصية الإضافية في نقطة بيع المغسلة."
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,help:pos_laundry_variant_popup.field_product_attribute__laundry_addon_required
+msgid "Require one value from this add-on group before the laundry service can be confirmed."
+msgstr "يتطلب اختيار قيمة واحدة من مجموعة الإضافات قبل تأكيد خدمة الغسيل."
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,help:pos_laundry_variant_popup.field_product_attribute_value__laundry_is_default
+msgid "Preselect this value when its laundry add-on group is displayed."
+msgstr "اختيار هذه القيمة تلقائيًا عند عرض مجموعة إضافات الغسيل."
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,help:pos_laundry_variant_popup.field_pos_order_line__laundry_variant_selections
+msgid "Service and add-on choices captured by the laundry POS configurator."
+msgstr "اختيارات الخدمة والإضافات المحفوظة من شاشة إعداد خدمة الغسيل."
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute__laundry_addon_scope
+msgid "Laundry Add-on Scope"
+msgstr "نطاق إضافة الغسيل"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_scope__template
+msgid "Selected products only"
+msgstr "منتجات محددة فقط"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_scope__all
+msgid "Every Point of Sale product"
+msgstr "كل منتجات نقطة البيع"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute__laundry_addon_show_default
+msgid "Print Default Choice"
+msgstr "طباعة الاختيار الافتراضي"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_template__laundry_addon_attribute_ids
+msgid "Laundry Add-ons"
+msgstr "إضافات الغسيل"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_template__laundry_addon_seeded
+msgid "Laundry Add-ons Seeded"
+msgstr "تم تهيئة إضافات الغسيل"
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "%s options"
+msgstr "%s خيارات"
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "Choose a service to continue."
+msgstr "اختر خدمة للاستمرار."
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "Choose the most suitable service for the item."
+msgstr "اختر نوع الخدمة الأنسب للقطعة."
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "Select Service"
+msgstr "اختر الخدمة"
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "Selected:"
+msgstr "المحدد:"
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model,name:pos_laundry_variant_popup.model_laundry_service_group
+msgid "Laundry Service Group"
+msgstr "مجموعة خدمات الغسيل"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__color_theme
+msgid "Color Theme"
+msgstr "لون المجموعة"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_laundry_service_group__icon_key
+msgid "Icon Key"
+msgstr "أيقونة المجموعة"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__icon_key__leaf
+msgid "Leaf"
+msgstr "ورقة"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__icon_key__zap
+msgid "Zap"
+msgstr "برق"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__laundry_service_group__icon_key__clock
+msgid "Clock"
+msgstr "ساعة"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_attribute_value__laundry_pos_display_name
+msgid "Laundry POS Display Name"
+msgstr "الاسم المعروض في نقطة البيع"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,help:pos_laundry_variant_popup.field_product_attribute_value__laundry_pos_display_name
+msgid "Short label shown inside the POS service card."
+msgstr "نص مختصر يظهر داخل بطاقة الخدمة في نقطة البيع."
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.constraint,message:pos_laundry_variant_popup.constraint_laundry_service_group_laundry_service_group_code_uniq
+msgid "The laundry service group code must be unique."
+msgstr "يجب أن يكون رمز مجموعة خدمات الغسيل فريدًا."
+
+#. module: pos_laundry_variant_popup
+#: model_terms:ir.ui.view,arch_db:pos_laundry_variant_popup.product_template_form_view_laundry_pos_normalize
+msgid "Normalize Laundry POS"
+msgstr "ضبط نقطة بيع المغسلة"
+
+#. module: pos_laundry_variant_popup
+#. odoo-python
+#: code:addons/pos_laundry_variant_popup/models/product_template.py:0
+#, python-format
+msgid "Laundry POS attributes updated"
+msgstr "تم تحديث خصائص نقطة بيع المغسلة"
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields,field_description:pos_laundry_variant_popup.field_product_template__has_legacy_laundry_service_attributes
+msgid "Has Legacy Laundry Service Attributes"
+msgstr "يحتوي على خصائص خدمة قديمة"
+
+#. module: pos_laundry_variant_popup
+#. odoo-python
+#: code:addons/pos_laundry_variant_popup/models/product_template.py:0
+#, python-format
+msgid ""
+"Service pricing was normalized and optional laundry add-ons were moved to "
+"POS configurator fields."
+msgstr "تم ضبط أسعار الخدمات ونقل إضافات الغسيل الاختيارية إلى حقول مُهيّئ نقطة البيع."
+
+#. module: pos_laundry_variant_popup
+#: model:ir.model.fields.selection,name:pos_laundry_variant_popup.selection__product_attribute__laundry_addon_theme__teal
+msgid "Teal"
+msgstr "تركوازي"
+
+#. module: pos_laundry_variant_popup
+#. odoo-javascript
+#: code:addons/pos_laundry_variant_popup/static/src/js/pos_laundry_variant_popup.js:0
+#, javascript-format
+msgid "Choose %s to continue."
+msgstr "اختر %s للمتابعة."

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="product_template_form_view_laundry_pos_normalize" model="ir.ui.view">
         <field name="name">product.template.form.laundry.pos.normalize</field>
         <field name="model">product.template</field>
@@ -15,4 +16,51 @@
             </xpath>
         </field>
     </record>
+
+    <!-- The Point of Sale group only exists once point_of_sale has extended the
+         product form, so this view inherits that one rather than the base. -->
+    <record id="product_template_form_view_laundry_addons" model="ir.ui.view">
+        <field name="name">product.template.form.laundry.addons</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="point_of_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pos']" position="inside">
+                <field name="laundry_addon_attribute_ids"
+                       widget="many2many_tags"
+                       string="Laundry Add-ons"
+                       options="{'no_create': True, 'no_open': True}"
+                       invisible="not available_in_pos"
+                       groups="point_of_sale.group_pos_manager"/>
+                <field name="laundry_addon_seeded" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_attribute_view_form_laundry_addon" model="ir.ui.view">
+        <field name="name">product.attribute.form.laundry.addon</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='main_fields']" position="inside">
+                <group string="Laundry Point of Sale" name="laundry_addon">
+                    <field name="laundry_addon_code"/>
+                    <field name="laundry_addon_scope"
+                           invisible="not laundry_addon_code"/>
+                    <field name="laundry_addon_required"
+                           invisible="not laundry_addon_code"/>
+                    <field name="laundry_addon_show_default"
+                           invisible="not laundry_addon_code"/>
+                    <field name="laundry_addon_theme"
+                           invisible="not laundry_addon_code"/>
+                    <field name="laundry_addon_icon_key"
+                           invisible="not laundry_addon_code"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='value_ids']/tree/field[@name='name']" position="after">
+                <field name="laundry_pos_display_name" optional="hide"/>
+                <field name="laundry_is_default" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

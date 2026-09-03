@@ -39,12 +39,13 @@ $laundry-transition-base: 110ms cubic-bezier(0.2, 0, 0.2, 1);
     align-items: center;
     justify-content: center;
     padding: 24px;
-    background: rgba(15, 23, 42, 0.18);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    /* No backdrop-filter here on purpose. Blurring a full screen backdrop
+       forces the compositor to re-sample and re-blur everything behind the
+       popup on every frame, which is what made scrolling inside a popup
+       stutter on the till hardware. A flat wash reads the same. */
+    background: rgba(15, 23, 42, 0.28);
     animation: laundryOverlayFade 80ms ease-out both;
     direction: inherit;
-    will-change: opacity;
 }
 
 .laundry-pos-popup-card {
@@ -64,7 +65,6 @@ $laundry-transition-base: 110ms cubic-bezier(0.2, 0, 0.2, 1);
     color: var(--laundry-text);
     animation: laundryPopupEnter 105ms cubic-bezier(0.2, 0, 0.2, 1) both;
     transform-origin: center center;
-    will-change: transform, opacity;
     contain: layout paint style;
 }
 
@@ -87,9 +87,9 @@ $laundry-transition-base: 110ms cubic-bezier(0.2, 0, 0.2, 1);
 /* Unified modern shell for the native Odoo POS popups used from the
    laundry workflow (Error/Confirm/Number/Selection/Input popups). */
 .pos .modal-dialog.bg-dark {
-    background-color: rgba(15, 23, 42, 0.38) !important;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    /* Flat wash rather than a blur, for the same reason as the popup shell:
+       the native Odoo popups scroll their own content too. */
+    background-color: rgba(15, 23, 42, 0.42) !important;
 }
 
 .pos .modal-dialog .popup {
@@ -103,7 +103,6 @@ $laundry-transition-base: 110ms cubic-bezier(0.2, 0, 0.2, 1);
     color: var(--laundry-text);
     text-align: center;
     animation: laundryPopupEnter 105ms cubic-bezier(0.2, 0, 0.2, 1) both;
-    will-change: transform, opacity;
     contain: layout paint style;
 }
 
@@ -359,19 +358,24 @@ $laundry-transition-base: 110ms cubic-bezier(0.2, 0, 0.2, 1);
 
 .laundry-pos-popup-footer {
     justify-content: flex-end;
-    border-top: 1px solid rgba(148, 163, 184, 0.14);
-    background: rgba(248, 250, 252, 0.82);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    border-top: 1px solid rgba(148, 163, 184, 0.22);
+    /* Opaque, and no backdrop-filter: the body scrolls right underneath this
+       bar, so a translucent blur here meant re-blurring on every frame. */
+    background: #f8fafc;
 }
 
 .laundry-pos-popup-body {
     position: relative;
     z-index: 1;
     flex: 1 1 auto;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 0 28px;
     scrollbar-gutter: stable;
+    /* Momentum scrolling on the touch tills, and no scroll chaining: reaching
+       the end of the list must not start dragging the screen behind it. */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 .laundry-pos-popup-header__icon {
@@ -1454,4 +1458,49 @@ $laundry-transition-base: 110ms cubic-bezier(0.2, 0, 0.2, 1);
     .pos .modal-dialog .popup:not(.product-configurator-popup):not(.close-pos-popup):not(.product-info-popup):not(.opening-cash-control):not(.cash-move-popup) > .footer.modal-footer .button {
         width: 100%;
     }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SCROLLING
+   The till is a touch screen, and these are the surfaces a cashier drags:
+   the product grid, the order lines, the right pane and the category strip.
+   Odoo marks them with Bootstrap overflow utilities and leaves the rest to
+   the browser defaults, which on a touch device means no momentum and a
+   rubber-band that drags the whole screen once a list hits its end.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.pos .product-list-container,
+.pos .products-widget,
+.pos .order-container,
+.pos .rightpane,
+.pos .leftpane,
+.laundry-pos-popup-body {
+    /* Momentum, so a flick keeps gliding instead of stopping dead. */
+    -webkit-overflow-scrolling: touch;
+    /* Reaching the end of a list must not start scrolling whatever is behind
+       it, and must not trigger the browser's pull-to-refresh gesture. */
+    overscroll-behavior: contain;
+}
+
+/* The category strip scrolls sideways; chaining there would drag the product
+   grid underneath it. */
+.pos .category-selector,
+.pos .products-widget-control .d-flex.overflow-auto {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+}
+
+/* Each product card is an independent box: its size and styling cannot affect
+   its neighbours, so the browser is told not to look outside the card when one
+   of them changes. Paint is deliberately left out of the containment, because
+   the card draws a soft shadow beyond its own edge. */
+.pos .product {
+    contain: layout style;
+}
+
+/* A cashier dragging a long list should not be fighting text selection. */
+.pos .product-list,
+.pos .order-container {
+    -webkit-user-select: none;
+    user-select: none;
 }

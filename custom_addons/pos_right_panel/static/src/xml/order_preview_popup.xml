@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_right_panel.OrderPreviewPopup" owl="1">
+
+        <div class="pos-order-preview__shell" t-att-dir="textDirection">
+            <section class="pos-order-preview"
+                     t-att-dir="textDirection"
+                     role="dialog"
+                     aria-modal="true">
+
+                <!-- ── Header ───────────────────────────────────────────── -->
+                <header class="pos-order-preview__header">
+                    <div class="pos-order-preview__heading">
+                        <div class="pos-order-preview__icon" aria-hidden="true">
+                            <i class="fa fa-list-ul"/>
+                        </div>
+                        <div class="pos-order-preview__titles">
+                            <h2 class="pos-order-preview__title" t-esc="uiText.title"/>
+                            <p class="pos-order-preview__subtitle">
+                                <bdi dir="auto" t-esc="customerName"/>
+                                <t t-if="orderReference">
+                                    <span class="pos-order-preview__dot" aria-hidden="true">·</span>
+                                    <bdi dir="auto" t-esc="orderReference"/>
+                                </t>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pos-order-preview__headline">
+                        <span class="pos-order-preview__headline-label" t-esc="uiText.total"/>
+                        <bdi class="pos-order-preview__headline-value" dir="auto" t-esc="totalText"/>
+                    </div>
+
+                    <button type="button"
+                            class="pos-order-preview__close"
+                            t-att-aria-label="uiText.close"
+                            t-att-title="uiText.close"
+                            t-on-click="cancel">
+                        <i class="fa fa-times" aria-hidden="true"/>
+                    </button>
+                </header>
+
+                <!-- ── Lines ────────────────────────────────────────────── -->
+                <div class="pos-order-preview__body">
+
+                    <div t-if="!hasLines" class="pos-order-preview__empty">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"/>
+                        <p t-esc="uiText.empty"/>
+                    </div>
+
+                    <div t-else="" class="pos-order-preview__list">
+                        <t t-foreach="lines" t-as="entry" t-key="entry.key">
+
+                            <article class="pos-order-preview__item"
+                                     t-att-class="{ 'pos-order-preview__item--selected': entry.isSelected }"
+                                     t-on-click="() => this.selectLine(entry.line)">
+
+                                <div class="pos-order-preview__item-head">
+                                    <span class="pos-order-preview__index"
+                                          aria-hidden="true"
+                                          t-esc="entry.index + 1"/>
+                                    <bdi class="pos-order-preview__name"
+                                         dir="auto"
+                                         t-esc="entry.data.productName"/>
+                                    <bdi class="pos-order-preview__amount"
+                                         dir="auto"
+                                         t-esc="entry.data.price"/>
+                                </div>
+
+                                <!-- Quantity times unit price is one arithmetic
+                                     expression: pinned ltr so the figures stay in
+                                     reading order in an Arabic till. -->
+                                <bdi class="pos-order-preview__meta" dir="ltr">
+                                    <span class="pos-order-preview__qty" t-esc="entry.data.qty"/>
+                                    <span class="pos-order-preview__times" aria-hidden="true">×</span>
+                                    <span t-esc="entry.data.unitPrice"/>
+                                </bdi>
+
+                                <div t-if="entry.data.laundryVariantSummaryItems and entry.data.laundryVariantSummaryItems.length"
+                                     class="pos-order-preview__services">
+                                    <t t-foreach="entry.data.laundryVariantSummaryItems"
+                                       t-as="selection"
+                                       t-key="selection_index">
+                                        <div class="pos-order-preview__service">
+                                            <span class="pos-order-preview__service-text">
+                                                <!-- Same rule as the cart: the
+                                                     chosen value leads on every
+                                                     row, so the bold half starts
+                                                     on the reading edge in both
+                                                     directions. -->
+                                                <bdi class="pos-order-preview__service-value"
+                                                     dir="auto"
+                                                     t-esc="selection.value"/>
+                                                <span t-if="selection.group"
+                                                      class="pos-order-preview__service-sep"
+                                                      aria-hidden="true">·</span>
+                                                <bdi t-if="selection.group"
+                                                     class="pos-order-preview__service-label"
+                                                     dir="auto"
+                                                     t-esc="selection.group"/>
+                                            </span>
+                                            <bdi t-if="selection.priceText"
+                                                 class="pos-order-preview__service-price"
+                                                 dir="auto"
+                                                 t-esc="selection.priceText"/>
+                                        </div>
+                                    </t>
+                                </div>
+
+                                <div class="pos-order-preview__item-actions">
+                                    <div class="pos-order-preview__stepper" role="group">
+                                        <button type="button"
+                                                class="pos-order-preview__step"
+                                                t-att-aria-label="uiText.decrease"
+                                                t-att-title="uiText.decrease"
+                                                t-on-click.stop="() => this.changeQuantity(entry.line, -1)">
+                                            <i class="fa fa-minus" aria-hidden="true"/>
+                                        </button>
+                                        <bdi class="pos-order-preview__step-value"
+                                             dir="ltr"
+                                             t-esc="entry.data.qty"/>
+                                        <button type="button"
+                                                class="pos-order-preview__step"
+                                                t-att-aria-label="uiText.increase"
+                                                t-att-title="uiText.increase"
+                                                t-on-click.stop="() => this.changeQuantity(entry.line, 1)">
+                                            <i class="fa fa-plus" aria-hidden="true"/>
+                                        </button>
+                                    </div>
+
+                                    <button type="button"
+                                            class="pos-order-preview__action pos-order-preview__action--edit"
+                                            t-att-aria-label="uiText.edit"
+                                            t-att-title="uiText.edit"
+                                            t-on-click.stop="() => this.editLine(entry.line)">
+                                        <i class="fa fa-pencil" aria-hidden="true"/>
+                                    </button>
+
+                                    <button type="button"
+                                            class="pos-order-preview__action pos-order-preview__action--delete"
+                                            t-att-aria-label="uiText.remove"
+                                            t-att-title="uiText.remove"
+                                            t-on-click.stop="() => this.removeLine(entry.line)">
+                                        <i class="fa fa-trash" aria-hidden="true"/>
+                                    </button>
+                                </div>
+
+                            </article>
+
+                        </t>
+                    </div>
+                </div>
+
+                <!-- ── Footer ───────────────────────────────────────────── -->
+                <footer class="pos-order-preview__footer">
+                    <dl class="pos-order-preview__totals">
+                        <div class="pos-order-preview__total-row">
+                            <dt t-esc="uiText.items"/>
+                            <dd><bdi dir="ltr" t-esc="itemCount"/></dd>
+                        </div>
+                        <div class="pos-order-preview__total-row">
+                            <dt t-esc="uiText.subtotal"/>
+                            <dd><bdi dir="auto" t-esc="subtotalText"/></dd>
+                        </div>
+                        <div class="pos-order-preview__total-row">
+                            <dt t-esc="uiText.taxes"/>
+                            <dd><bdi dir="auto" t-esc="taxText"/></dd>
+                        </div>
+                        <div class="pos-order-preview__total-row pos-order-preview__total-row--grand">
+                            <dt t-esc="uiText.total"/>
+                            <dd><bdi dir="auto" t-esc="totalText"/></dd>
+                        </div>
+                    </dl>
+
+                    <button type="button"
+                            class="pos-order-preview__done"
+                            t-on-click="cancel">
+                        <i class="fa fa-check" aria-hidden="true"/>
+                        <span t-esc="uiText.close"/>
+                    </button>
+                </footer>
+
+            </section>
+        </div>
+
+    </t>
+
+</templates>

@@ -1,6 +1,6 @@
 {
     "name": "POS Foam Modern UI",
-    "version": "17.0.1.0.0",
+    "version": "17.0.1.0.1",
     "summary": "Modern POS UI for laundry business",
     "description": """
 Modern POS theme for laundry / foam business.

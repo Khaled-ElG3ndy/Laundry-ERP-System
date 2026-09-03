@@ -1,3 +1,7 @@
+/* `transition: all` makes the browser watch every animatable property on
+   every one of these elements, and several of them repeat once per product,
+   order line or category inside a scrolling list. The properties below are
+   the ones these rules actually animate, so the motion is unchanged. */
 :root {
     --foam-primary: #69b7e6;
     --foam-primary-dark: #3f94c8;
@@ -76,7 +80,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     margin: 7px 8px;
     padding: 12px 12px;
     box-shadow: var(--foam-shadow-soft);
-    transition: all 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease, filter 0.2s ease, border-radius 0.2s ease, width 0.2s ease;
 }
 
 .pos .orderlines .orderline.selected,
@@ -137,7 +141,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     color: var(--foam-text);
     border-radius: 14px;
     box-shadow: var(--foam-shadow-soft);
-    transition: all 0.18s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease, filter 0.18s ease, border-radius 0.18s ease, width 0.18s ease;
 }
 
 .pos .control-button:hover,
@@ -173,7 +177,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     border: 1px solid var(--foam-border);
     border-radius: 0;
     font-weight: 700;
-    transition: all 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, opacity 0.15s ease, filter 0.15s ease, border-radius 0.15s ease, width 0.15s ease;
 }
 
 .pos .numpad button:hover,
@@ -234,7 +238,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     border-radius: 18px;
     box-shadow: var(--foam-shadow-soft);
     overflow: hidden;
-    transition: all 0.18s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
 .pos .product:hover {
@@ -300,7 +304,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     border-radius: 999px;
     padding: 8px 16px;
     box-shadow: var(--foam-shadow-soft);
-    transition: all 0.18s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease, filter 0.18s ease, border-radius 0.18s ease, width 0.18s ease;
     font-weight: 700;
 }
 
@@ -338,7 +342,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     border-radius: 14px;
     min-height: 42px;
     box-shadow: var(--foam-shadow-soft);
-    transition: all 0.18s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease, filter 0.18s ease, border-radius 0.18s ease, width 0.18s ease;
 }
 
 .pos .search-bar input:focus,
@@ -386,8 +390,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
 .pos .pos-topheader,
 .pos .header,
 .pos .topheader {
-    background: rgba(255,255,255,0.72);
-    backdrop-filter: blur(8px);
+    background: #fbfdfe;
     border-bottom: 1px solid var(--foam-border);
 }
 
@@ -410,9 +413,6 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
         rgba(255,255,255,0.10) 100%
     ) !important;
 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
     color: #ffffff !important;
     font-size: 15px !important;
     font-weight: 700 !important;
@@ -422,7 +422,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
         0 8px 24px rgba(0, 0, 0, 0.18),
         inset 0 1px 0 rgba(255,255,255,0.18);
 
-    transition: all 0.25s ease !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, opacity 0.25s ease, filter 0.25s ease, border-radius 0.25s ease, width 0.25s ease !important;
 
     position: relative;
     overflow: hidden;
@@ -594,7 +594,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     box-shadow:
         0 30px 80px rgba(63, 148, 200, 0.18),
         0 10px 30px rgba(83, 159, 207, 0.10) !important;
-    backdrop-filter: blur(10px);
+
 }
 
 /* Header */
@@ -702,7 +702,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     background: rgba(255, 255, 255, 0.45) !important;
     color: #3f94c8 !important;
     font-size: 18px !important;
-    transition: all 0.18s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease, filter 0.18s ease, border-radius 0.18s ease, width 0.18s ease;
 }
 
 .pos .popup.popup-selection .selection-item:hover .oi {
@@ -796,7 +796,7 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     background: rgba(105, 183, 230, 0.12) !important;
     color: var(--foam-primary-dark) !important;
     font-size: 18px !important;
-    transition: all 0.18s ease;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease, filter 0.18s ease, border-radius 0.18s ease, width 0.18s ease;
 }
 
 .pos .popup.popup-selection .selection-item:hover .oi {
@@ -923,12 +923,10 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     0% {
         opacity: 0;
         transform: translateY(24px) scale(0.95);
-        filter: blur(4px);
     }
     60% {
         opacity: 1;
         transform: translateY(-4px) scale(1.01);
-        filter: blur(0);
     }
     100% {
         opacity: 1;
@@ -944,7 +942,6 @@ html[dir="rtl"] .pos .payment-screen .payment-methods {
     100% {
         opacity: 0;
         transform: translateY(18px) scale(0.95);
-        filter: blur(3px);
     }
 }
 
@@ -1026,7 +1023,7 @@ html[dir="rtl"] .pos .order-container {
     margin: 0 0 10px 0 !important;
     padding: 12px 14px !important;
     box-shadow: 0 6px 16px rgba(83, 159, 207, 0.08) !important;
-    transition: all 0.18s ease !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease, filter 0.18s ease, border-radius 0.18s ease, width 0.18s ease !important;
 }
 
 .pos .orderlines .orderline:hover {
@@ -1116,7 +1113,7 @@ html[dir="rtl"] .pos .order-container {
     box-shadow: none !important;
     font-weight: 800 !important;
     font-size: 16px !important;
-    transition: all 0.18s ease !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease, filter 0.18s ease, border-radius 0.18s ease, width 0.18s ease !important;
 }
 
 .pos .control-button:hover,
@@ -1144,7 +1141,7 @@ html[dir="rtl"] .pos .order-container {
     border-radius: 0 !important;
     font-size: 24px !important;
     font-weight: 800 !important;
-    transition: all 0.16s ease !important;
+    transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, opacity 0.16s ease, filter 0.16s ease, border-radius 0.16s ease, width 0.16s ease !important;
 }
 
 .pos .numpad button:hover,
@@ -1516,8 +1513,7 @@ html[dir="rtl"] .pos .order-container {
 .pos .pos-topheader,
 .pos .header,
 .pos .topheader {
-    background: rgba(255, 255, 255, 0.88) !important;
-    backdrop-filter: blur(10px);
+    background: #fdfefe !important;
     border-bottom: 1px solid var(--foam-border-strong) !important;
     box-shadow: 0 6px 20px rgba(24, 59, 86, 0.06) !important;
     min-height: 64px;
@@ -1648,7 +1644,7 @@ html[dir="rtl"] .pos .order-container {
     border: 1px solid #d8e8f2 !important;
     color: #183b56 !important;
     font-weight: 800 !important;
-    transition: all 0.18s ease !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, opacity 0.18s ease, filter 0.18s ease, border-radius 0.18s ease, width 0.18s ease !important;
 }
 
 .pos .control-button:hover,
@@ -1767,7 +1763,7 @@ html[dir="rtl"] .pos .order-container {
     border: 1px solid #d9e8f3 !important;
     border-radius: 22px !important;
     box-shadow: 0 8px 22px rgba(24, 59, 86, 0.07) !important;
-    transition: all 0.2s ease !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
 }
 
 .pos .product:hover {
@@ -1987,8 +1983,6 @@ html[dir="rtl"] .pos .order-container {
     font-weight: 800;
     color: #0f172a;
 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 
     box-shadow:
         0 4px 18px rgba(15, 23, 42, 0.06),
@@ -2015,7 +2009,7 @@ html[dir="rtl"] .pos .order-container {
 
     padding: 0 22px !important;
 
-    transition: all 0.28s ease !important;
+    transition: transform 0.28s ease, box-shadow 0.28s ease, background-color 0.28s ease, border-color 0.28s ease, color 0.28s ease, opacity 0.28s ease, filter 0.28s ease, border-radius 0.28s ease, width 0.28s ease !important;
 
     box-shadow:
         0 10px 24px rgba(15, 23, 42, 0.06),
@@ -2092,7 +2086,7 @@ html[dir="rtl"] .pos .order-container {
     font-weight: 700;
     color: #0f3b66;
 
-    transition: all 0.25s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, opacity 0.25s ease, filter 0.25s ease, border-radius 0.25s ease, width 0.25s ease;
 }
 
 /* الحركة */
@@ -2137,11 +2131,17 @@ html[dir="rtl"] .pos .order-container {
     left: 18%;
     right: 18%;
     bottom: 9px;
-    height: 20px;
+    height: 16px;
     border-radius: 999px;
-    background: radial-gradient(ellipse at center, rgba(18,52,76,0.18) 0%, rgba(18,52,76,0.08) 42%, transparent 74%);
-    filter: blur(8px);
-    transform: perspective(420px) rotateX(58deg);
+    /* The soft edge comes from the gradient itself. This used to add
+       filter: blur(8px) and a 3D transform, giving every card in the grid its
+       own filtered layer; the list could not scroll smoothly with a screenful
+       of them. The extra colour stops reproduce the falloff for free. */
+    background: radial-gradient(ellipse at center,
+        rgba(18,52,76,0.15) 0%,
+        rgba(18,52,76,0.09) 34%,
+        rgba(18,52,76,0.035) 60%,
+        transparent 78%);
     pointer-events: none;
 }
 

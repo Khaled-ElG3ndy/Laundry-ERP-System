@@ -43,7 +43,12 @@
     --fps-radius-md: 12px;
     --fps-radius-lg: 16px;
     --fps-radius-xl: 24px;
-    --fps-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --fps-transition:
+        transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -338,10 +343,6 @@
 /* ═══════════════════════════════════════════════════════════════════
    POPUPS
    ═══════════════════════════════════════════════════════════════════ */
-
-.pos .popup {
-    backdrop-filter: blur(8px) !important;
-}
 
 .pos .popup .modal-dialog {
     background: var(--fps-white) !important;

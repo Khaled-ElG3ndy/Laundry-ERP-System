@@ -671,3 +671,81 @@ msgstr "حساب فندق أو شركة. يحتاج قائمة أسعار عقد
 #, python-format
 msgid "Individual customer for the retail counter."
 msgstr "عميل أفراد لنقطة بيع التجزئة."
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Edit"
+msgstr "تعديل"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Delete"
+msgstr "حذف"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Review Order"
+msgstr "مراجعة الطلب"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/product_screen.js:0
+msgid "Select an item first"
+msgstr "اختر صنفًا أولًا"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "Subtotal"
+msgstr "الإجمالي الفرعي"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "Taxes"
+msgstr "الضرائب"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "Edit service"
+msgstr "تعديل الخدمة"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "Remove item"
+msgstr "حذف الصنف"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "Increase quantity"
+msgstr "زيادة الكمية"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "Decrease quantity"
+msgstr "تقليل الكمية"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "Walk-in customer"
+msgstr "عميل نقدي"
+
+#. module: pos_right_panel
+#. odoo-javascript
+#: code:addons/pos_right_panel/static/src/js/order_preview_popup.js:0
+msgid "This order has no items yet."
+msgstr "لا توجد أصناف في هذا الطلب بعد."

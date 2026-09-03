@@ -796,8 +796,12 @@
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    background: rgba(59, 130, 246, 0.08);
-    filter: blur(10px);
+    /* A radial gradient already has a soft edge, so the blur filter this used
+       to carry only added a filtered layer inside a popup that scrolls. */
+    background: radial-gradient(circle,
+        rgba(59, 130, 246, 0.09) 0%,
+        rgba(59, 130, 246, 0.05) 55%,
+        transparent 78%);
 }
 
 /* ===== Section Title ===== */

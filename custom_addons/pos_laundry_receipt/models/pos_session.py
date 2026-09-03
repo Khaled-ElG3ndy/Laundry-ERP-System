@@ -273,3 +273,14 @@ class PosSession(models.Model):
                 custom_search_params["domain"]
             )
         return super().get_pos_ui_res_partner_by_params(custom_search_params)
+
+    @api.model
+    def get_pos_assets_version(self):
+        """Public entry point for the POS asset watchdog.
+
+        A till that was offline while a deploy happened cannot rely on the bus
+        notification any more, because those are garbage collected after about
+        two minutes. On reconnect the tab asks for this token and compares it
+        with the one it booted with, so it notices the update on its own.
+        """
+        return self.env["ir.attachment"]._get_pos_bundle_version()

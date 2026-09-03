@@ -86,9 +86,9 @@ function isCashierBusy(env) {
 }
 
 export const laundryPosAssetsWatchdog = {
-    dependencies: ["bus_service", "notification"],
+    dependencies: ["bus_service", "notification", "orm"],
 
-    start(env, { bus_service, notification }) {
+    start(env, { bus_service, notification, orm }) {
         const startedAt = Date.now();
         let activeVersion = null;
         let idleCheckTimer = null;
@@ -180,8 +180,38 @@ export const laundryPosAssetsWatchdog = {
             }
         });
 
+        // A tab that was offline during a deploy never sees the notification
+        // above: bus messages are dropped after roughly two minutes, so there
+        // is nothing left to replay once it comes back. Asking the server for
+        // the current bundle token on reconnect closes that hole. The answer
+        // is fed through the same handler, so a busy till is still prompted
+        // rather than reloaded from under the cashier.
+        let bootVersion = null;
+        const checkServerVersion = async () => {
+            let version;
+            try {
+                version = await orm.call("pos.session", "get_pos_assets_version", []);
+            } catch {
+                // Offline again, or the server is restarting. The next
+                // reconnect tries again; never disturb the cashier over this.
+                return;
+            }
+            if (!version) {
+                return;
+            }
+            if (bootVersion === null) {
+                bootVersion = version;
+                return;
+            }
+            if (version !== bootVersion) {
+                handleAssetsChanged({ version });
+            }
+        };
+
         bus_service.subscribe(POS_ASSETS_CHANGED_EVENT, handleAssetsChanged);
+        bus_service.addEventListener("reconnect", checkServerVersion);
         bus_service.start();
+        checkServerVersion();
     },
 };
 

@@ -838,8 +838,13 @@ body {
 
                                                 <div t-attf-class="item-row__detail #{detail_index == 0 and 'item-row__detail--primary' or ''}"
                                                      >
+                                                    <!-- The receipt's own direction, not the
+                                                         label's: a service line reads
+                                                         "value · group", and dir="auto" would
+                                                         pick an ltr base off a Latin value such
+                                                         as "S" and swap the two round. -->
                                                     <span class="item-row__detail-label"
-                                                          dir="auto"
+                                                          t-att-dir="payload.get('direction', 'ltr')"
                                                           t-esc="detail.get('label')"/>
                                                     <bdi t-if="detail.get('price')"
                                                          class="item-row__detail-price"

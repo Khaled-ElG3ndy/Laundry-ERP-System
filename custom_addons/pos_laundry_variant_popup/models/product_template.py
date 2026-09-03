@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from collections import defaultdict
+
 from odoo import Command, api, fields, models, _
 
 
@@ -10,6 +12,26 @@ STAIN_ATTRIBUTE_NONE_LABELS = {
     'ازاله البقع': 'بدون',
     'إزالة البقع': 'بدون',
 }
+LAUNDRY_ADDON_CODES = (
+    'stain_removal',
+    'mirzam_type',
+    'starch_type',
+)
+# Add-ons seeded onto the headwear products the shop already sells. After the
+# one-time seeding the assignment lives in ``laundry_addon_attribute_ids``, so
+# renaming a product no longer silently drops its add-ons.
+HEADWEAR_ADDON_CODES = ('mirzam_type', 'starch_type')
+STAIN_REMOVAL_PRICES = {
+    'pos_laundry_variant_popup.addon_stain_s': 1.0,
+    'pos_laundry_variant_popup.addon_stain_m': 2.0,
+    'pos_laundry_variant_popup.addon_stain_l': 3.0,
+}
+HEADWEAR_NAMES = {
+    'ghutra',
+    'shemagh',
+    'شماغ',
+    'غترة',
+}
 
 
 class ProductTemplate(models.Model):
@@ -17,6 +39,22 @@ class ProductTemplate(models.Model):
 
     has_legacy_laundry_service_attributes = fields.Boolean(
         compute='_compute_has_legacy_laundry_service_attributes',
+    )
+    laundry_addon_attribute_ids = fields.Many2many(
+        'product.attribute',
+        'product_template_laundry_addon_rel',
+        'template_id',
+        'attribute_id',
+        string='Laundry Add-ons',
+        domain="[('laundry_addon_code', '!=', False), ('laundry_addon_scope', '=', 'template')]",
+        help='Optional laundry add-on groups offered for this product in the POS.',
+    )
+    laundry_addon_seeded = fields.Boolean(
+        string='Laundry Add-ons Seeded',
+        default=False,
+        copy=False,
+        help='Technical flag: the product already went through the one-time '
+             'headwear add-on seeding, so manual changes are never overwritten.',
     )
 
     @api.depends('attribute_line_ids.attribute_id.name')
@@ -258,6 +296,261 @@ class ProductTemplate(models.Model):
             })
 
             template._create_variant_ids()
+
+    def _is_laundry_headwear_template(self):
+        self.ensure_one()
+        names = set()
+        for language_code in ('en_US', 'ar_001', 'ar'):
+            name = self.with_context(lang=language_code).name
+            if name:
+                names.add(str(name).strip().casefold())
+        return bool(names & HEADWEAR_NAMES)
+
+    def _get_variant_usage_by_id(self, variants):
+        usage_by_id = defaultdict(int)
+        if not variants or 'pos.order.line' not in self.env:
+            return usage_by_id
+
+        usage_rows = self.env['pos.order.line']._read_group(
+            [
+                ('product_id', 'in', variants.ids),
+                ('order_id.state', '=', 'draft'),
+            ],
+            ['product_id'],
+            ['__count'],
+        )
+        for product, count in usage_rows:
+            usage_by_id[product.id] = count
+        return usage_by_id
+
+    def _collapse_variant_line_without_losing_draft_orders(self, line):
+        """Collapse a legacy variant-generating line before making it optional.
+
+        The active product with the most draft POS usage is retained for each
+        remaining service combination. Draft backend lines using a duplicate
+        are moved to the retained product so an already-open order keeps a
+        resolvable product after the POS reloads.
+        """
+        self.ensure_one()
+        legacy_ptavs = line.product_template_value_ids
+        if not legacy_ptavs:
+            return
+
+        variants = self.with_context(active_test=False).product_variant_ids
+        grouped_variants = defaultdict(lambda: self.env['product.product'])
+        signature_by_key = {}
+        for variant in variants:
+            signature = variant.product_template_attribute_value_ids - legacy_ptavs
+            signature_key = tuple(sorted(signature.ids))
+            grouped_variants[signature_key] |= variant
+            signature_by_key[signature_key] = signature
+
+        usage_by_id = self._get_variant_usage_by_id(variants)
+        for signature_key, duplicate_variants in grouped_variants.items():
+            canonical = duplicate_variants.sorted(
+                key=lambda product: (
+                    not product.active,
+                    -usage_by_id[product.id],
+                    product.id,
+                )
+            )[:1]
+            duplicates = duplicate_variants - canonical
+            active_duplicates = duplicates.filtered('active')
+            if active_duplicates:
+                active_duplicates.write({'active': False})
+
+            signature = signature_by_key[signature_key]
+            if canonical.product_template_attribute_value_ids != signature:
+                canonical.write({
+                    'product_template_attribute_value_ids': [
+                        Command.set(signature.ids)
+                    ],
+                })
+            if not canonical.active:
+                canonical.active = True
+
+            draft_lines = self.env['pos.order.line'].search([
+                ('product_id', 'in', duplicates.ids),
+                ('order_id.state', '=', 'draft'),
+            ])
+            if draft_lines:
+                draft_lines.write({'product_id': canonical.id})
+
+    def _remove_legacy_starch_variant_lines(self, target_attribute):
+        """Collapse a variant-creating attribute that duplicates an add-on.
+
+        The shop used to model starch as a real variant axis, which doubled the
+        number of Shemagh products. A line is treated as the legacy twin of
+        ``target_attribute`` when it asks the same question - same English
+        attribute name, or the known legacy starch value pair.
+        """
+        self.ensure_one()
+        target_name = str(
+            target_attribute.with_context(lang='en_US').name or ''
+        ).strip().casefold()
+
+        def _is_legacy_twin(line):
+            if line.attribute_id == target_attribute:
+                return False
+            if line.attribute_id.create_variant == 'no_variant':
+                return False
+            if line.attribute_id.laundry_addon_code:
+                return False
+            attribute_name = str(
+                line.attribute_id.with_context(lang='en_US').name or ''
+            ).strip().casefold()
+            if target_name and attribute_name == target_name:
+                return True
+            value_names = {
+                str(value.with_context(lang='en_US').name or '').strip().casefold()
+                for value in line.value_ids
+            }
+            return (
+                target_attribute.laundry_addon_code == 'starch_type'
+                and {'starch', 'no starch'}.issubset(value_names)
+            )
+
+        legacy_lines = self.attribute_line_ids.filtered(_is_legacy_twin)
+        for legacy_line in legacy_lines:
+            self._collapse_variant_line_without_losing_draft_orders(legacy_line)
+            legacy_line.unlink()
+        return legacy_lines
+
+    def _ensure_laundry_addon_line(self, attribute):
+        self.ensure_one()
+        values = attribute.value_ids.sorted(key=lambda value: (value.sequence, value.id))
+        if not values:
+            return self.env['product.template.attribute.line']
+
+        line = self.attribute_line_ids.filtered(
+            lambda candidate: candidate.attribute_id == attribute
+        )[:1]
+        if line:
+            if line.value_ids != values:
+                line.write({'value_ids': [Command.set(values.ids)]})
+        else:
+            line = self.env['product.template.attribute.line'].create({
+                'product_tmpl_id': self.id,
+                'attribute_id': attribute.id,
+                'value_ids': [Command.set(values.ids)],
+            })
+
+        price_by_value_id = {value.id: 0.0 for value in values}
+        if attribute.laundry_addon_code == 'stain_removal':
+            for xml_id, price in STAIN_REMOVAL_PRICES.items():
+                value = self.env.ref(xml_id, raise_if_not_found=False)
+                if value:
+                    price_by_value_id[value.id] = price
+
+        for ptav in line.product_template_value_ids:
+            target_price = price_by_value_id.get(
+                ptav.product_attribute_value_id.id,
+                0.0,
+            )
+            if abs(ptav.price_extra - target_price) >= 1e-9:
+                ptav.price_extra = target_price
+        return line
+
+    def _seed_laundry_headwear_addons(self, headwear_addons):
+        """One-time assignment of the headwear add-ons to Shemagh / Ghutra.
+
+        Product names are only ever consulted here. Once a template is seeded
+        the assignment lives in ``laundry_addon_attribute_ids``, so renaming a
+        product, or adding/removing an add-on by hand, is respected from then
+        on and never silently reverted by a later module upgrade.
+        """
+        if not headwear_addons:
+            return self.browse()
+
+        pending = self.filtered(lambda template: not template.laundry_addon_seeded)
+        if not pending:
+            return self.browse()
+
+        seeded = self.browse()
+        for template in pending:
+            if template._is_laundry_headwear_template():
+                missing = headwear_addons - template.laundry_addon_attribute_ids
+                if missing:
+                    template.laundry_addon_attribute_ids = [
+                        Command.link(attribute_id) for attribute_id in missing.ids
+                    ]
+                seeded |= template
+        pending.laundry_addon_seeded = True
+        return seeded
+
+    def _get_wanted_laundry_addons(self, global_addons, managed_addons):
+        """Add-on groups that should be offered for this product."""
+        self.ensure_one()
+        wanted = global_addons | (self.laundry_addon_attribute_ids & managed_addons)
+        return wanted.sorted(key=lambda attribute: (attribute.sequence, attribute.id))
+
+    def _remove_obsolete_laundry_addon_lines(self, wanted, managed_addons):
+        """Drop managed add-on lines that no longer apply to this product."""
+        self.ensure_one()
+        obsolete = self.attribute_line_ids.filtered(
+            lambda line: line.attribute_id in managed_addons
+            and line.attribute_id not in wanted
+        )
+        if obsolete:
+            obsolete.unlink()
+        return obsolete
+
+    @api.model
+    def _setup_laundry_pos_addons(self):
+        """Idempotently apply the managed add-ons to the POS catalogue.
+
+        Runs on every install and upgrade of this module, which is what keeps a
+        freshly upgraded database and the POS clients in agreement.
+        """
+        managed_addons = self.env['product.attribute']._get_laundry_addon_attributes()
+        missing_codes = set(LAUNDRY_ADDON_CODES) - set(
+            managed_addons.mapped('laundry_addon_code')
+        )
+        if missing_codes:
+            raise ValueError(
+                'Missing laundry add-on attributes: %s'
+                % ', '.join(sorted(missing_codes))
+            )
+
+        templates = self.with_context(
+            active_test=False,
+            tracking_disable=True,
+            mail_create_nolog=True,
+            mail_notrack=True,
+        ).search([
+            ('available_in_pos', '=', True),
+            ('active', '=', True),
+        ])
+        if not templates:
+            return {'template_count': 0, 'headwear_count': 0, 'addon_line_count': 0}
+
+        global_addons = managed_addons.filtered(
+            lambda attribute: attribute.laundry_addon_scope == 'all'
+        )
+        headwear_addons = managed_addons.filtered(
+            lambda attribute: attribute.laundry_addon_code in HEADWEAR_ADDON_CODES
+        )
+        seeded = templates._seed_laundry_headwear_addons(headwear_addons)
+
+        addon_line_count = 0
+        for template in templates:
+            wanted = template._get_wanted_laundry_addons(global_addons, managed_addons)
+            template._remove_obsolete_laundry_addon_lines(wanted, managed_addons)
+            for attribute in wanted:
+                # A legacy variant-creating attribute covering the same choice
+                # is collapsed first, so the product does not end up offering
+                # the same question twice.
+                template._remove_legacy_starch_variant_lines(attribute)
+                if template._ensure_laundry_addon_line(attribute):
+                    addon_line_count += 1
+
+        self.env['pos.session']._notify_laundry_addons_changed()
+
+        return {
+            'template_count': len(templates),
+            'headwear_count': len(seeded),
+            'addon_line_count': addon_line_count,
+        }
 
     def action_normalize_laundry_pos_attributes(self):
         self._normalize_laundry_attributes()

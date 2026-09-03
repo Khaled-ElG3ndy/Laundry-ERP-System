@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- ============================================================= -->
+        <!-- Stain removal: offered on every Point of Sale product, and    -->
+        <!-- entirely optional - there is no "none" choice and nothing is   -->
+        <!-- preselected, so a line carries a size only when the cashier    -->
+        <!-- deliberately picks one.                                        -->
+        <!-- S / M / L add exactly 1 / 2 / 3 to the line price. Laundry     -->
+        <!-- prices carry a 15% "price included" tax, so those amounts are  -->
+        <!-- exactly what the customer pays on top.                         -->
+        <!-- ============================================================= -->
+        <record id="attribute_stain_removal" model="product.attribute">
+            <field name="name">Stain Removal</field>
+            <field name="sequence">80</field>
+            <field name="display_type">radio</field>
+            <field name="create_variant">no_variant</field>
+            <field name="laundry_addon_code">stain_removal</field>
+            <field name="laundry_addon_scope">all</field>
+            <field name="laundry_addon_required" eval="False"/>
+            <field name="laundry_addon_show_default" eval="False"/>
+            <field name="laundry_addon_theme">teal</field>
+            <field name="laundry_addon_icon_key">droplet</field>
+        </record>
+
+        <record id="addon_stain_s" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_stain_removal"/>
+            <field name="name">S</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="addon_stain_m" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_stain_removal"/>
+            <field name="name">M</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="addon_stain_l" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_stain_removal"/>
+            <field name="name">L</field>
+            <field name="sequence">40</field>
+        </record>
+
+        <!-- ============================================================= -->
+        <!-- Mirzam: headwear only (Shemagh / Ghutra). No price change,     -->
+        <!-- nothing preselected and never required - the cashier records it -->
+        <!-- when the customer asks for it and otherwise moves on.           -->
+        <!-- ============================================================= -->
+        <record id="attribute_mirzam_type" model="product.attribute">
+            <field name="name">Mirzam Type</field>
+            <field name="sequence">90</field>
+            <field name="display_type">radio</field>
+            <field name="create_variant">no_variant</field>
+            <field name="laundry_addon_code">mirzam_type</field>
+            <field name="laundry_addon_scope">template</field>
+            <field name="laundry_addon_required" eval="False"/>
+            <field name="laundry_addon_show_default" eval="True"/>
+            <field name="laundry_addon_theme">teal</field>
+            <field name="laundry_addon_icon_key">sliders</field>
+        </record>
+
+        <record id="addon_mirzam_none" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_mirzam_type"/>
+            <field name="name">No Mirzam</field>
+            <field name="sequence">10</field>
+            <field name="laundry_is_default" eval="False"/>
+        </record>
+        <record id="addon_mirzam_regular" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_mirzam_type"/>
+            <field name="name">Mirzam</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="addon_mirzam_inverted" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_mirzam_type"/>
+            <field name="name">Inverted Mirzam</field>
+            <field name="sequence">30</field>
+        </record>
+
+        <!-- ============================================================= -->
+        <!-- Starch: headwear only. No price change, nothing preselected     -->
+        <!-- and never required, same as the mirzam above.                   -->
+        <!-- ============================================================= -->
+        <record id="attribute_starch_type" model="product.attribute">
+            <field name="name">Starch Type</field>
+            <field name="sequence">100</field>
+            <field name="display_type">radio</field>
+            <field name="create_variant">no_variant</field>
+            <field name="laundry_addon_code">starch_type</field>
+            <field name="laundry_addon_scope">template</field>
+            <field name="laundry_addon_required" eval="False"/>
+            <field name="laundry_addon_show_default" eval="True"/>
+            <field name="laundry_addon_theme">teal</field>
+            <field name="laundry_addon_icon_key">sparkles</field>
+        </record>
+
+        <record id="addon_starch_light" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_starch_type"/>
+            <field name="name">Light</field>
+            <field name="sequence">10</field>
+            <field name="laundry_is_default" eval="False"/>
+        </record>
+        <record id="addon_starch_medium" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_starch_type"/>
+            <field name="name">Medium</field>
+            <field name="sequence">20</field>
+            <field name="laundry_is_default" eval="False"/>
+        </record>
+        <record id="addon_starch_heavy" model="product.attribute.value">
+            <field name="attribute_id" ref="attribute_starch_type"/>
+            <field name="name">Heavy</field>
+            <field name="sequence">30</field>
+            <field name="laundry_is_default" eval="False"/>
+        </record>
+
+        <function model="product.template" name="_setup_laundry_pos_addons"/>
+
+    </data>
+</odoo>

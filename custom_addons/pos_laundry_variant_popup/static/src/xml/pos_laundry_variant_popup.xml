@@ -24,10 +24,10 @@
 
     <t t-name="pos_laundry_variant_popup.ServiceCard" owl="1">
         <button type="button"
-                t-att-class="cardClasses(item)"
-                t-att-aria-checked="state.selectedId === item.id ? 'true' : 'false'"
+                t-att-class="cardClasses(group, item)"
+                t-att-aria-checked="isItemSelected(group, item) ? 'true' : 'false'"
                 role="radio"
-                t-on-click="() => this.selectItem(item)">
+                t-on-click="() => this.selectItem(group, item)">
 
             <span class="laundry-variant-card__name"
                   dir="auto"
@@ -43,7 +43,8 @@
     </t>
 
     <t t-name="pos_laundry_variant_popup.ServiceGroup" owl="1">
-        <section t-att-class="'laundry-service-group ' + group.themeClass"
+        <section t-att-class="groupClasses(group)"
+                 t-att-data-group-key="group.key"
                  role="radiogroup"
                  t-att-aria-label="group.group">
             <t t-call="pos_laundry_variant_popup.ServiceGroupHeader"/>
@@ -51,7 +52,7 @@
             <div class="laundry-variant-popup__grid">
                 <t t-foreach="group.items"
                    t-as="item"
-                   t-key="item.productProductId">
+                   t-key="item.key">
                     <t t-call="pos_laundry_variant_popup.ServiceCard"/>
                 </t>
             </div>
@@ -84,7 +85,8 @@
                     </div>
                 </header>
 
-                <div class="laundry-pos-popup-body laundry-variant-popup__body">
+                <div class="laundry-pos-popup-body laundry-variant-popup__body"
+                     t-ref="body">
                     <div t-if="props.list.length"
                          class="laundry-variant-popup__groups">
                         <t t-foreach="props.list"
@@ -94,17 +96,31 @@
                         </t>
                     </div>
 
-                    <div t-else=""
+                    <section t-if="props.optionalList.length"
+                             class="laundry-variant-popup__addons"
+                             t-att-aria-label="uiText.additionalServices">
+                        <div class="laundry-variant-popup__groups">
+                            <t t-foreach="props.optionalList"
+                               t-as="group"
+                               t-key="group.key">
+                                <t t-call="pos_laundry_variant_popup.ServiceGroup"/>
+                            </t>
+                        </div>
+                    </section>
+
+                    <div t-if="!props.list.length and !props.optionalList.length"
                          class="laundry-variant-popup__empty"
                          t-esc="uiText.empty"/>
 
-                    <p t-if="state.invalidSubmit"
-                       class="laundry-pos-error laundry-variant-popup__error"
-                       role="alert"
-                       t-esc="uiText.selectBeforeConfirm"/>
                 </div>
 
                 <footer class="laundry-pos-popup-footer">
+                    <p t-if="state.invalidSubmit"
+                       class="laundry-pos-error laundry-variant-popup__error"
+                       role="alert"
+                       dir="auto"
+                       t-esc="blockedMessage"/>
+
                     <button type="button"
                             class="laundry-pos-button laundry-pos-button--outline"
                             t-on-click="cancel">
@@ -113,7 +129,8 @@
 
                     <button type="button"
                             class="laundry-pos-button laundry-pos-button--primary"
-                            t-att-disabled="!canConfirm || state.confirming"
+                            t-att-disabled="state.confirming"
+                            t-att-aria-disabled="!canConfirm ? 'true' : 'false'"
                             t-on-click="confirm">
                         <t t-esc="props.confirmText"/>
                     </button>
@@ -129,30 +146,106 @@
        t-inherit="point_of_sale.Orderline"
        t-inherit-mode="extension">
 
+        <!-- The shell is pinned to ltr and nothing stamps a dir on the POS
+             document, so the line has to declare its own reading direction. -->
+        <xpath expr="//li[hasclass('orderline')]" position="attributes">
+            <attribute name="t-att-dir">lineDirection</attribute>
+        </xpath>
+
+        <!-- Isolate the name and the amount, but on the inner run rather than
+             on the cell: `dir="auto"` on the cell itself would make its own
+             `text-align: start` resolve against the *content's* language, so an
+             Arabic name inside an English till hugged the amount instead of the
+             cell's leading edge. The cell keeps the line's direction; only the
+             text inside it is isolated. -->
+        <xpath expr="//div[hasclass('product-name')]/span[hasclass('text-wrap')]"
+               position="attributes">
+            <attribute name="dir">auto</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('product-price')]/t" position="replace">
+            <bdi dir="auto" t-esc="line.price"/>
+        </xpath>
+
+        <!-- Quantity and unit price are one arithmetic expression, but the core
+             markup leaves it to the paragraph. In an rtl line the leading
+             number resolves into its own bidi run and gets reordered to the far
+             end, which is what printed "x 4.45 SR 1.00". Pinning the expression
+             to ltr keeps the figures in reading order and keeps every amount
+             glued to its currency, whichever way round the currency is written. -->
+        <xpath expr="//li[hasclass('price-per-unit')]" position="replace">
+            <li class="price-per-unit">
+                <bdi class="laundry-orderline-qty" dir="ltr">
+                    <em t-esc="line.qty" class="qty fst-normal fw-bolder"/>
+                    <t t-if="line.unit">
+                        <span class="laundry-orderline-qty__unit" t-esc="line.unit"/>
+                    </t>
+                    <t t-if="line.price !== 0">
+                        <span class="laundry-orderline-qty__times" aria-hidden="true">×</span>
+                        <s t-if="line.oldUnitPrice" t-esc="line.oldUnitPrice"/>
+                        <span class="laundry-orderline-qty__price" t-esc="line.unitPrice"/>
+                        <t t-if="line.unit">
+                            <span class="laundry-orderline-qty__per">
+                                / <t t-esc="line.unit"/>
+                            </span>
+                        </t>
+                    </t>
+                </bdi>
+            </li>
+        </xpath>
+
+        <!-- The discount row mixes two figures with a sentence. It is tagged
+             rather than rewritten so the core wording keeps its translations;
+             the CSS orders it by its own language. `dir` is deliberately not
+             used here: it would also decide the row's text-align, which would
+             left-align an English sentence inside an Arabic card. -->
+        <xpath expr="//li[contains(@t-if, 'line.discount')]" position="attributes">
+            <attribute name="class">laundry-orderline-discount</attribute>
+        </xpath>
+
+        <!-- Notes are free text a cashier types, in either language. -->
+        <xpath expr="//li[hasclass('customer-note')]" position="attributes">
+            <attribute name="dir">auto</attribute>
+        </xpath>
+
+        <xpath expr="//li[hasclass('internal-note')]" position="attributes">
+            <attribute name="dir">auto</attribute>
+        </xpath>
+
+        <!-- The laundry summary below already spells out every configured
+             attribute, so the core attribute list would print each one twice. -->
+        <xpath expr="//li[@t-if='line.attributes']" position="attributes">
+            <attribute name="t-if">line.attributes and !(line.laundryVariantSelections and line.laundryVariantSelections.length)</attribute>
+        </xpath>
+
         <xpath expr="//ul[hasclass('info-list')]" position="inside">
             <li t-if="line.laundryVariantSummaryItems and line.laundryVariantSummaryItems.length"
                 class="laundry-orderline-selections">
                 <t t-foreach="line.laundryVariantSummaryItems"
                    t-as="selection"
                    t-key="selection_index">
-                    <div class="laundry-orderline-selections__item"
-                         t-att-title="selection.displayText"
-                         t-att-class="{ 'laundry-orderline-selections__item--primary': selection_index === 0 }">
-                        <span class="laundry-orderline-selections__service" dir="auto">
-                            <t t-if="selection.group">
-                                <span class="laundry-orderline-selections__group"
-                                      t-esc="selection.group"/>
-                                <span class="laundry-orderline-selections__colon">:</span>
-                            </t>
-                            <span class="laundry-orderline-selections__value"
-                                  t-esc="selection.value"/>
+                    <div class="laundry-orderline-selections__row"
+                         t-att-title="selection.displayText">
+                        <span class="laundry-orderline-selections__text">
+                            <!-- The chosen value always leads, on every row, so
+                                 the bold half of the line starts on the reading
+                                 edge: right under Arabic, left under English.
+                                 DOM order carries it, so one markup order gives
+                                 both directions. -->
+                            <bdi class="laundry-orderline-selections__value"
+                                 dir="auto"
+                                 t-esc="selection.value"/>
+                            <span t-if="selection.group"
+                                  class="laundry-orderline-selections__sep"
+                                  aria-hidden="true">·</span>
+                            <bdi t-if="selection.group"
+                                 class="laundry-orderline-selections__label"
+                                 dir="auto"
+                                 t-esc="selection.group"/>
                         </span>
-                        <span t-if="selection.priceText"
-                              class="laundry-orderline-selections__dash"
-                              aria-hidden="true">-</span>
                         <bdi t-if="selection.priceText"
                              class="laundry-orderline-selections__price"
-                             dir="ltr"
+                             dir="auto"
                              t-esc="selection.priceText"/>
                     </div>
                 </t>

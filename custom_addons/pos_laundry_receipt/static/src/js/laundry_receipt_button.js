@@ -1833,7 +1833,7 @@ export class LaundryReceiptButton extends Component {
                                 const parsedDetail = this.splitReceiptDetail(detail, currencySymbol);
                                 return `
                                         <div class="item-row__detail ${detailIndex === 0 ? "item-row__detail--primary" : ""}">
-                                            <span class="item-row__detail-label" dir="auto">${this.escapeHtml(parsedDetail.label)}</span>
+                                            <span class="item-row__detail-label" dir="${this.escapeHtml(direction)}">${this.escapeHtml(parsedDetail.label)}</span>
                                             ${parsedDetail.price
                                         ? `<bdi class="item-row__detail-price">${this.escapeHtml(parsedDetail.price)}</bdi>`
                                         : ""

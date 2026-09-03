@@ -59,7 +59,7 @@
 
                 <!-- ── ACTIONS SECTION ───────────────────────────── -->
                 <div class="pos-right-panel-section pos-right-actions-section">
-                    <div class="pos-right-panel-title">Order Actions</div>
+                    <div class="pos-right-panel-title" t-esc="rightPanelText.orderActions"/>
 
                     <!--
                         Single unified 2-column grid.
@@ -98,13 +98,13 @@
                         t-on-click="onClickClearOrder"
                     >
                         <i class="fa fa-trash"/>
-                        <span>Clear Order</span>
+                        <span t-esc="rightPanelText.clearOrder"/>
                     </button>
                 </div>
 
                 <!-- ── CATEGORIES SECTION ────────────────────────── -->
                 <div class="pos-right-panel-section pos-right-categories-section">
-                    <div class="pos-right-panel-title">Categories</div>
+                    <div class="pos-right-panel-title" t-esc="rightPanelText.categories"/>
 
                     <div class="categories-center-wrap">
                         <t t-set="sidebarCategories" t-value="rootCategories || []"/>
@@ -113,9 +113,8 @@
                         <button
                             t-att-class="'pos-right-category-btn all-btn ' + (selectedCategoryIdForSidebar === 0 ? 'active' : '')"
                             t-on-click="() => this.selectSidebarCategory(0)"
-                        >
-                            All
-                        </button>
+                            t-esc="rightPanelText.all"
+                        />
 
                         <!-- Dynamic category buttons -->
                         <t t-foreach="sidebarCategories" t-as="category" t-key="category.id">
@@ -187,31 +186,60 @@
         </xpath>
     </t>
 
-    <t t-name="pos_right_panel.OrderlineActions"
+    <!--
+        One action bar for the whole cart, under the totals, instead of a pair
+        of buttons repeated on every line: the cashier highlights a line and
+        acts on it. Edit and Delete are disabled until something is selected,
+        and the review icon sits alongside them carrying the item count.
+    -->
+    <t t-name="pos_right_panel.CartActionBar"
        t-inherit="point_of_sale.ProductScreen"
        t-inherit-mode="extension"
        owl="1">
-        <xpath expr="//Orderline" position="inside">
-            <li class="pos-orderline-actions" t-if="!line.comboParent">
-                <button
-                    type="button"
-                    class="pos-orderline-action pos-orderline-action--edit"
-                    title="Edit Service"
-                    aria-label="Edit Service"
-                    t-on-click.stop="() => this.onClickEditOrderline(line)"
-                >
-                    <i class="fa fa-pencil"/>
-                </button>
-                <button
-                    type="button"
-                    class="pos-orderline-action pos-orderline-action--delete"
-                    title="Delete Item"
-                    aria-label="Delete Item"
-                    t-on-click.stop="() => this.onClickDeleteOrderline(line)"
-                >
-                    <i class="fa fa-trash"/>
-                </button>
-            </li>
+        <xpath expr="//t[@t-set-slot='details']" position="replace">
+            <t t-set-slot="details">
+                <div t-if="hasOrderLinesToReview"
+                     class="pos-cart-actions"
+                     t-att-dir="orderReviewDirection">
+
+                    <!-- The two line actions sit together at the reading edge;
+                         the review control is pushed to the far end so a stray
+                         thumb does not land on Delete on its way there. Labels
+                         live in title/aria-label, which keeps the buttons to
+                         icons without costing a screen reader anything. -->
+                    <div class="pos-cart-actions__group">
+                        <button type="button"
+                                class="pos-cart-action pos-cart-action--edit"
+                                t-att-disabled="!hasSelectedOrderline"
+                                t-att-aria-label="cartActionText.edit"
+                                t-att-title="hasSelectedOrderline ? cartActionText.edit : cartActionText.selectFirst"
+                                t-on-click="() => this.onClickEditOrderline()">
+                            <i class="fa fa-pencil" aria-hidden="true"/>
+                        </button>
+
+                        <button type="button"
+                                class="pos-cart-action pos-cart-action--delete"
+                                t-att-disabled="!hasSelectedOrderline"
+                                t-att-aria-label="cartActionText.delete"
+                                t-att-title="hasSelectedOrderline ? cartActionText.delete : cartActionText.selectFirst"
+                                t-on-click="() => this.onClickDeleteOrderline()">
+                            <i class="fa fa-trash" aria-hidden="true"/>
+                        </button>
+                    </div>
+
+                    <button type="button"
+                            class="pos-cart-action pos-cart-action--review"
+                            t-att-title="cartActionText.review"
+                            t-att-aria-label="cartActionText.review"
+                            t-on-click="onClickReviewOrder">
+                        <i class="fa fa-list-ul" aria-hidden="true"/>
+                        <bdi class="pos-cart-action__count"
+                             dir="ltr"
+                             t-esc="reviewOrderLineCount"/>
+                    </button>
+
+                </div>
+            </t>
         </xpath>
     </t>
 

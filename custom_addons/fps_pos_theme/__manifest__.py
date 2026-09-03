@@ -1,6 +1,6 @@
 {
     'name': 'Fair Price POS Theme',
-    'version': '17.0.1.0.1',
+    'version': '17.0.1.0.2',
     'category': 'Point of Sale',
     'summary': 'Modern colorful POS theme inspired by Clover/Square',
     'description': 'Beautiful next-gen POS interface for Fair Price Supermarket',

@@ -14,6 +14,7 @@ import { unaccent } from "@web/core/utils/strings";
 import { useService } from "@web/core/utils/hooks";
 import { ErrorPopup } from "@point_of_sale/app/errors/popups/error_popup";
 import { AbstractAwaitablePopup } from "@point_of_sale/app/popup/abstract_awaitable_popup";
+import { OrderPreviewPopup, PREVIEW_ACTION } from "@pos_right_panel/js/order_preview_popup";
 import { onMounted, useExternalListener, useRef, useState } from "@odoo/owl";
 
 const REQUIRED_PHONE_DIGITS = 10;
@@ -1072,7 +1073,10 @@ patch(ProductScreen.prototype, {
     },
 
     _getOrderlineActionTarget(orderline) {
-        return orderline?.comboParent || orderline;
+        // The action bar acts on the selection, so an omitted line is not a
+        // mistake: it means "the one the cashier highlighted".
+        const line = orderline || this.pos?.get_order()?.get_selected_orderline();
+        return line?.comboParent || line || null;
     },
 
     _selectOrderlineForAction(orderline) {
@@ -1114,6 +1118,69 @@ patch(ProductScreen.prototype, {
         this.pos.numpadMode = "quantity";
         this._setValue("remove");
         this.numberBuffer?.reset?.();
+        this.render(true);
+    },
+
+    get orderReviewDirection() {
+        return localization.direction === "rtl" ? "rtl" : "ltr";
+    },
+
+    get reviewOrderLineCount() {
+        return this.pos?.get_order?.()?.get_orderlines?.().length || 0;
+    },
+
+    get hasOrderLinesToReview() {
+        return Boolean(this.reviewOrderLineCount);
+    },
+
+    // Edit and Delete work on the highlighted line, so they are dead controls
+    // until there is one. Saying so with `disabled` beats a button that looks
+    // live and silently does nothing.
+    get hasSelectedOrderline() {
+        return Boolean(this.pos?.get_order?.()?.get_selected_orderline?.());
+    },
+
+    // Every label the cart chrome shows. Plain text in a template is never
+    // translated in this bundle, so all copy is routed through _t() and bound
+    // with t-esc -- the same reason core_translation_terms.js exists.
+    get cartActionText() {
+        return {
+            edit: _t("Edit"),
+            delete: _t("Delete"),
+            review: _t("Review Order"),
+            selectFirst: _t("Select an item first"),
+        };
+    },
+
+    get rightPanelText() {
+        return {
+            orderActions: _t("Order Actions"),
+            categories: _t("Categories"),
+            all: _t("All"),
+            clearOrder: _t("Clear Order"),
+        };
+    },
+
+    async onClickReviewOrder() {
+        // Editing a service needs the laundry configurator, which is a popup in
+        // its own right. Rather than stack two dialogs, the review closes and
+        // asks for the edit, then reopens itself so the cashier keeps their
+        // place in the list. Quantity changes and removals happen inside the
+        // review and never come through here.
+        for (;;) {
+            const { confirmed, payload } = await this.popup.add(OrderPreviewPopup, {});
+
+            if (!confirmed || payload?.action !== PREVIEW_ACTION.EDIT || !payload.line) {
+                break;
+            }
+
+            await this.onClickEditOrderline(payload.line);
+
+            if (!this.hasOrderLinesToReview) {
+                break;
+            }
+        }
+
         this.render(true);
     },
 

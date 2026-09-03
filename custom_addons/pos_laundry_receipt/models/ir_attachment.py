@@ -26,6 +26,23 @@ class IrAttachment(models.Model):
         return url.startswith(ASSET_URL_PREFIX) and POS_BUNDLE_MARKER in url
 
     @api.model
+    def _get_pos_bundle_version(self):
+        """Opaque token identifying the POS bundles currently on the server.
+
+        A Point of Sale that reconnects after being offline may have missed the
+        broadcast below, because bus notifications are garbage collected after
+        about two minutes. Comparing this token against the one the tab booted
+        with closes that hole: the tab notices the update by itself instead of
+        waiting for a notification that is already gone.
+        """
+        attachment = self.sudo().search(
+            [("url", "=like", ASSET_URL_PREFIX + "%" + POS_BUNDLE_MARKER + "%")],
+            order="id desc",
+            limit=1,
+        )
+        return str(attachment.id or 0)
+
+    @api.model
     def _notify_pos_assets_changed(self, attachments=None):
         """Tell every open Point of Sale tab that its bundle is out of date.
 
