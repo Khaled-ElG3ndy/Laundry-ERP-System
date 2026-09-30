@@ -1,0 +1,9 @@
+backup_dir=/opt/odoo17/backups/farha_laundry_20260930_231924
+created_utc=20260930_231924
+database=farha_laundry
+odoo_service=odoo17-farha.service
+data_dir=/opt/odoo17/farha-data/.local/share/Odoo
+filestore_dir=/opt/odoo17/farha-data/.local/share/Odoo/filestore/farha_laundry
+split_size=90M
+postgres_version=16.13 (Ubuntu 16.13-1.pgdg24.04+1)
+odoo_version=Odoo Server 17.0
