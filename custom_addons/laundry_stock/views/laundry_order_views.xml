@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_order_form_stock" model="ir.ui.view">
+        <field name="name">laundry.order.form.stock</field>
+        <field name="model">laundry.order</field>
+        <field name="inherit_id" ref="laundry_base.view_laundry_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='issue_count']" position="after">
+                <field name="issue_material_count" invisible="1"/>
+                <field name="materials_issued" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button name="action_issue_materials" type="object"
+                        string="Issue Materials"
+                        class="btn-secondary"
+                        groups="laundry_stock.group_laundry_storekeeper"
+                        invisible="materials_issued or state in ('cancelled', 'draft')"/>
+            </xpath>
+
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_material_issues" type="object"
+                            class="oe_stat_button" icon="fa-flask"
+                            invisible="issue_material_count == 0">
+                        <field name="issue_material_count" widget="statinfo"
+                               string="Material Issues"/>
+                    </button>
+                </div>
+            </xpath>
+
+            <xpath expr="//page[@name='notes']" position="before">
+                <page string="Materials" name="laundry_materials"
+                      groups="laundry_stock.group_laundry_storekeeper">
+                    <group>
+                        <group string="Cost of Materials">
+                            <field name="estimated_material_cost"
+                                   widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                            <field name="material_cost" widget="monetary"
+                                   options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>
+                    <field name="stock_issue_ids" readonly="1">
+                        <tree>
+                            <field name="name"/>
+                            <field name="date"/>
+                            <field name="operation_type"/>
+                            <field name="purpose"/>
+                            <field name="total_cost"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="state" widget="badge"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

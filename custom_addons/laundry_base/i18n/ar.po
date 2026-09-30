@@ -1,0 +1,2808 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* laundry_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-24 17:00+0000\n"
+"PO-Revision-Date: 2026-09-24 17:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3 && n%100<=10?3:n%100>=11 && n%100<=99?4:5);\n"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_hotel_session.py:0
+#, python-format
+msgid "%s ready order(s) loaded"
+msgstr "تم تحميل %s طلب جاهز"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid ""
+"<span invisible=\"not is_urgent\" class=\"badge text-bg-danger fs-6\">⚡ "
+"URGENT</span>"
+msgstr "<span invisible=\"not is_urgent\" class=\"badge text-bg-danger fs-6\">⚡ عاجل</span>"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "<strong>⏰ OVERDUE</strong> — this order has passed its promise date!"
+msgstr "<strong>⏰ متأخر</strong> — هذا الطلب تجاوز موعد التسليم!"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid ""
+"<strong>🔴 Issue</strong> — the order is on hold until the issue is settled."
+msgstr "<strong>🔴 إشكالية</strong> — الطلب معلّق، يلزم معالجة الإشكالية أولاً."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "A discount of 10% or more needs supervisor approval."
+msgstr "خصم 10% وما فوق يتطلب موافقة المشرف."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid ""
+"A mobile number is required before handing the clothes over!\n"
+"Customer: %s — please fill the contact details first."
+msgstr ""
+"رقم الجوال مطلوب لاستلام الملابس!
+"
+"العميل: %s — يرجى تحديث بيانات التواصل أولاً."
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_abaya
+msgid "Abaya"
+msgstr "عباءة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "Account Code"
+msgstr "كود الحساب"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "Account Info"
+msgstr "معلومات الحساب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__account_manager_id
+msgid "Account Manager"
+msgstr "مدير الحساب"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "Account Name"
+msgstr "اسم الحساب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__product_id
+msgid "Accounting Product"
+msgstr "المنتج المحاسبي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__action
+msgid "Action"
+msgstr "الإجراء"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_needaction
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_needaction
+msgid "Action Needed"
+msgstr "يتطلب إجراء"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__active
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__active
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__active
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__active
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__active
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__active
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__active
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_commercial_account__state__active
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Active"
+msgstr "نشط"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_ids
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_exception_decoration
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "تنسيق استثناء النشاط"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_state
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_type_icon
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__actual_ready_date
+msgid "Actual Ready Date"
+msgstr "تاريخ الجهوزية الفعلي"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_hotel_session.py:0
+#, python-format
+msgid "Add orders before dispatching."
+msgstr "أضف طلبات قبل الإرسال"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__addon_ids
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Add-ons"
+msgstr "الإضافات"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__addon_amount
+msgid "Add-ons Total"
+msgstr "إجمالي الإضافات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Addons +"
+msgstr "إضافات +"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_loyalty_log__type__adjust
+msgid "Adjusted"
+msgstr "معدّل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__order_line_id
+msgid "Affected Line"
+msgstr "البند المتأثر"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__amount_total
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Amount"
+msgstr "المبلغ"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__applicable_category_ids
+msgid "Applicable Item Categories"
+msgstr "فئات القطع المتاحة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__applicable_service_ids
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__applicable_service_ids
+msgid "Applicable Services"
+msgstr "الخدمات المتاحة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__name_ar
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__name_ar
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__name_ar
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__name_ar
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__name_ar
+msgid "Arabic Name"
+msgstr "الاسم بالعربي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_attachment_count
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_audit_log
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_audit_log
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_audit_log_list
+msgid "Audit Log"
+msgstr "سجل التدقيق"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_audit_log.py:0
+#, python-format
+msgid "Audit log entries are immutable."
+msgstr "سجل التدقيق غير قابل للتعديل."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_audit_log.py:0
+#, python-format
+msgid "Audit log entries cannot be deleted."
+msgstr "لا يمكن حذف سجل التدقيق."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__addon_ids
+msgid "Available Add-ons"
+msgstr "الإضافات المتاحة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Bag"
+msgstr "الحقيبة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__bag_reference
+msgid "Bag / Batch Ref"
+msgstr "رقم الحقيبة / الدفعة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__balance
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Balance After"
+msgstr "الرصيد بعد"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__barcode
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Barcode"
+msgstr "الباركود"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_barcode_scanner
+msgid "Barcode Scanner"
+msgstr "مسح الباركود"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__base_price
+msgid "Base Price (SAR)"
+msgstr "السعر الأساسي (ريال)"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_commercial_account__billing_cycle__biweekly
+msgid "Bi-weekly"
+msgstr "كل أسبوعين"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "Billing"
+msgstr "الفوترة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__partner_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "Billing Contact"
+msgstr "جهة الفوترة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__billing_cycle
+msgid "Billing Cycle"
+msgstr "دورة الفوترة"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_billing_wizard_line
+msgid "Billing Wizard Preview Line"
+msgstr "بند معاينة الفوترة"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/wizard/laundry_billing_wizard.py:0
+#, python-format
+msgid "Billing requires Manager or Finance permission."
+msgstr "الفوترة تتطلب صلاحية المدير أو المالية."
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_blanket
+msgid "Blanket"
+msgstr "بطانية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__branch_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__branch_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__branch_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__branch_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_branch_form
+msgid "Branch Info"
+msgstr "بيانات الفرع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__manager_id
+msgid "Branch Manager"
+msgstr "مدير الفرع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__name
+msgid "Branch Name"
+msgstr "اسم الفرع"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_branch.py:0
+#, python-format
+msgid "Branch code must be unique: %s"
+msgstr "كود الفرع يجب أن يكون فريداً: %s"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_branch
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_branches
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_branch_list
+msgid "Branches"
+msgstr "الفروع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "By"
+msgstr "بواسطة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Cancel this order?"
+msgstr "هل تريد إلغاء هذا الطلب؟"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__cancelled
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__cancelled
+#: model:laundry.stage,name:laundry_base.stage_cancelled
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "Cancelling an order needs supervisor rights."
+msgstr "إلغاء الطلب يتطلب صلاحية المشرف."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__card_id
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_method__card
+msgid "Card"
+msgstr "بطاقة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Card Details"
+msgstr "بيانات البطاقة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__card_number
+msgid "Card Number"
+msgstr "رقم البطاقة"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_carpet
+msgid "Carpet / Rug"
+msgstr "سجادة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_method__cash
+msgid "Cash"
+msgstr "نقداً"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__cash_tendered
+msgid "Cash Tendered"
+msgstr "المبلغ المقدم"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__user_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_list
+msgid "Cashier"
+msgstr "الكاشير"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__change_amount
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Change"
+msgstr "التغيير"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__user_id
+msgid "Changed By"
+msgstr "غُيّر بواسطة"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "Changing a price needs supervisor rights."
+msgstr "تعديل السعر يتطلب صلاحية المشرف."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__city
+msgid "City"
+msgstr "المدينة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Close"
+msgstr "إغلاق"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_commercial_account__state__closed
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__state__closed
+msgid "Closed"
+msgstr "مغلق"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__code
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__code
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__code
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__color
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__color
+msgid "Color"
+msgstr "اللون"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_commercial
+msgid "Commercial"
+msgstr "الحسابات التجارية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__account_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__commercial_account_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "Commercial Account"
+msgstr "الحساب التجاري"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_commercial_account
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_commercial_accounts
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_list
+msgid "Commercial Accounts"
+msgstr "الحسابات التجارية"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_billing_wizard
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Commercial Billing"
+msgstr "فوترة تجارية"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Commercial Billing Run"
+msgstr "تشغيل الفوترة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__state__compensated
+msgid "Compensated"
+msgstr "تعويض"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__compensation_amount
+msgid "Compensation Amount"
+msgstr "مبلغ التعويض"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_audit_log__action__compensation
+msgid "Compensation Approved"
+msgstr "التعويض معتمد"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__compensation_approved_by
+msgid "Compensation Approved By"
+msgstr "اعتمد التعويض"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__issue_type__complaint
+msgid "Complaint"
+msgstr "شكوى"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_config
+msgid "Configuration"
+msgstr "الإعدادات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Confirm and Create Invoice"
+msgstr "تأكيد وإنشاء الفاتورة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Confirm the delivery to the hotel?"
+msgstr "تأكيد التسليم للفندق؟"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__contract_notes
+msgid "Contract Notes"
+msgstr "ملاحظات العقد"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "Contract notes"
+msgstr "ملاحظات العقد..."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__counter_visible
+msgid "Counter Visible"
+msgstr "يظهر للكاشير"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Create invoice? This cannot be undone."
+msgstr "إنشاء الفاتورة؟ لا يمكن التراجع عن ذلك."
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_list
+msgid "Created"
+msgstr "تاريخ الإنشاء"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__create_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__create_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__credit_limit
+msgid "Credit Limit"
+msgstr "حد الائتمان"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__currency_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__currency_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__currency_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__currency_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__currency_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__currency_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__currency_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__currency_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_list
+msgid "Current Balance"
+msgstr "الرصيد الحالي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__points
+msgid "Current Points"
+msgstr "النقاط الحالية"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_curtain
+msgid "Curtain"
+msgstr "ستارة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_commercial_account__billing_cycle__custom
+msgid "Custom"
+msgstr "مخصص"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__partner_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__partner_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__partner_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__partner_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Customer"
+msgstr "العميل"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_loyalty_card
+msgid "Customer Loyalty Card"
+msgstr "بطاقة ولاء العميل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__customer_notes
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Customer Notes"
+msgstr "ملاحظات العميل (على الإيصال)"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__issue_type__damage
+msgid "Damage"
+msgstr "تلف"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__damage_note
+msgid "Damage / Stain Note"
+msgstr "ملاحظة تلف / بقع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Damage Note"
+msgstr "ملاحظة التلف"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__date_order
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__date
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_pos_config__laundry_default_promise_hours
+msgid "Default Promise Hours"
+msgstr "ساعات التسليم الافتراضية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__default_service_id
+msgid "Default Service"
+msgstr "الخدمة الافتراضية"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__issue_type__delay
+msgid "Delay"
+msgstr "تأخير"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_hotel_session__state__delivered
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__delivered
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__delivered
+#: model:laundry.stage,name:laundry_base.stage_delivered
+msgid "Delivered"
+msgstr "تم التوصيل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__delivery_time
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Delivered At"
+msgstr "وقت التسليم"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__delivery_requested
+msgid "Delivery Requested"
+msgstr "مطلوب توصيل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__description
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__description
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Description"
+msgstr "الوصف"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__details
+msgid "Details"
+msgstr "التفاصيل"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Disc%"
+msgstr "خصم%"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__discount_pct
+msgid "Discount %"
+msgstr "الخصم %"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_audit_log__action__discount
+msgid "Discount Applied"
+msgstr "تم تطبيق الخصم"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "Discount must be between 0 and 100."
+msgstr "الخصم يجب أن يكون بين 0 و 100."
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Dispatch the driver now?"
+msgstr "إرسال السائق الآن؟"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_hotel_session__state__dispatched
+msgid "Dispatched"
+msgstr "أُرسل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__pickup_time
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Dispatched At"
+msgstr "وقت الإرسال"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__display_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Document any existing damage"
+msgstr "بقع أو أضرار موجودة مسبقاً..."
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_billing_wizard__state__done
+msgid "Done"
+msgstr "منتهي"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_billing_wizard__state__draft
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_hotel_session__state__draft
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__draft
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__draft
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__driver_name
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Driver"
+msgstr "السائق"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Driver Name"
+msgstr "اسم السائق"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__drying
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__drying
+#: model:laundry.stage,name:laundry_base.stage_drying
+msgid "Drying"
+msgstr "في التجفيف"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__amount_due
+msgid "Due"
+msgstr "المتبقي"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_loyalty_log__type__earn
+msgid "Earned"
+msgstr "المكتسب"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_pos_config__laundry_mode
+msgid "Enable Laundry POS screens for this terminal."
+msgstr "تشغيل شاشات مغسلة على هذا الجهاز."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_hotel_session.py:0
+#, python-format
+msgid "Enter driver name."
+msgstr "أدخل اسم السائق"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Expiry (months)"
+msgstr "انتهاء الصلاحية (شهر)"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_service_type__urgent_surcharge_type__fixed
+msgid "Fixed SAR"
+msgstr "مبلغ ثابت (ريال)"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__fold
+msgid "Fold"
+msgstr "مطوي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_follower_ids
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_partner_ids
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (جهات الاتصال)"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__activity_type_icon
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "For wholesale/B2B orders"
+msgstr "لطلبات الجملة والشركات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Found"
+msgstr "موجود"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "From"
+msgstr "من"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__date_from
+msgid "From Date"
+msgstr "من تاريخ"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__from_state
+msgid "From State"
+msgstr "من حالة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__handover_date
+msgid "Handover Date"
+msgstr "تاريخ التسليم"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__has_message
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__log_ids
+msgid "History"
+msgstr "السجل"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Hotel"
+msgstr "الحساب التجاري"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__commercial_id
+msgid "Hotel Account"
+msgstr "حساب الفندق"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_hotel_session
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Hotel Pickup Session"
+msgstr "جلسة استلام الفندق"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_list
+msgid "Hotel Pickup Sessions"
+msgstr "جلسات استلام الفنادق"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_hotel_sessions
+msgid "Hotel Sessions"
+msgstr "جلسات الفنادق"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_exception_icon
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__image
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__activity_exception_icon
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة تشير إلى نشاط استثنائي."
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__message_needaction
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "عند التحديد، الرسائل الجديدة تتطلب انتباهك."
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__message_has_error
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__message_has_sms_error
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__message_has_error
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "عند التحديد، بعض الرسائل بها خطأ في التسليم."
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order_line__line_state__in_progress
+msgid "In Progress"
+msgstr "قيد التنفيذ"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__state__in_review
+msgid "In Review"
+msgstr "قيد المراجعة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__intake_notes
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Intake Notes"
+msgstr "ملاحظات الاستلام"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__internal_notes
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Internal Notes"
+msgstr "ملاحظات داخلية"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Internal only, not visible to customer..."
+msgstr "داخلي فقط، لا يظهر للعميل..."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "Invalid order line."
+msgstr "بند طلب غير صالح."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/wizard/laundry_billing_wizard.py:0
+#, python-format
+msgid "Invoice Created"
+msgstr "تم إنشاء الفاتورة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_state__invoiced
+msgid "Invoiced"
+msgstr "مُفوتر"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__invoice_ids
+msgid "Invoices"
+msgstr "الفواتير"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__ironing
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__ironing
+#: model:laundry.stage,name:laundry_base.stage_ironing
+msgid "Ironing"
+msgstr "في الكوي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__is_blocking
+msgid "Is Blocking"
+msgstr "يوقف الطلب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__is_commercial
+msgid "Is Commercial"
+msgstr "حساب تجاري"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__is_dry_clean
+msgid "Is Dry Clean"
+msgstr "تنظيف جاف"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__is_express
+msgid "Is Express"
+msgstr "خدمة سريعة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_is_follower
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__is_overdue
+msgid "Is Overdue"
+msgstr "متأخر"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__is_piece_tracked
+msgid "Is Piece Tracked"
+msgstr "تتبع القطع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__is_terminal
+msgid "Is Terminal"
+msgstr "مرحلة نهائية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__is_urgent
+msgid "Is Urgent"
+msgstr "عاجل"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__issue
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order_line__line_state__issue
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__issue
+#: model:laundry.stage,name:laundry_base.stage_issue
+msgid "Issue"
+msgstr "إشكالية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__issue_count
+msgid "Issue Count"
+msgstr "عدد الإشكاليات"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__issue_type
+msgid "Issue Type"
+msgstr "نوع الإشكالية"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_issue
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__issue_ids
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_issues
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_issue_list
+msgid "Issues"
+msgstr "الإشكاليات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Item"
+msgstr "الصنف"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_item_category
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_item_categories
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_item_cat_list
+msgid "Item Categories"
+msgstr "فئات الملابس"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__item_category_id
+msgid "Item Category"
+msgstr "فئة القطعة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__line_notes
+msgid "Item Notes"
+msgstr "ملاحظات القطعة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__line_state
+msgid "Item State"
+msgstr "حالة القطعة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__line_count
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__line_count
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Items"
+msgstr "القطع"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_kids
+msgid "Kids Items"
+msgstr "ملابس أطفال"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__write_uid
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__write_date
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_root
+msgid "Laundry"
+msgstr "المغسلة"
+
+#. module: laundry_base
+#: model:res.groups,name:laundry_base.group_laundry_manager
+msgid "Laundry / Branch Manager"
+msgstr "المغسلة / مدير الفرع"
+
+#. module: laundry_base
+#: model:res.groups,name:laundry_base.group_laundry_cashier
+msgid "Laundry / Cashier"
+msgstr "المغسلة / الكاشير"
+
+#. module: laundry_base
+#: model:res.groups,name:laundry_base.group_laundry_delivery
+msgid "Laundry / Delivery Staff"
+msgstr "المغسلة / موظفو التوصيل"
+
+#. module: laundry_base
+#: model:res.groups,name:laundry_base.group_laundry_finance
+msgid "Laundry / Finance"
+msgstr "المغسلة / المالية"
+
+#. module: laundry_base
+#: model:res.groups,name:laundry_base.group_laundry_production
+msgid "Laundry / Production Staff"
+msgstr "المغسلة / موظفو الإنتاج"
+
+#. module: laundry_base
+#: model:res.groups,name:laundry_base.group_laundry_supervisor
+msgid "Laundry / Supervisor"
+msgstr "المغسلة / المشرف"
+
+#. module: laundry_base
+#: model:res.groups,name:laundry_base.group_laundry_admin
+msgid "Laundry / System Admin"
+msgstr "المغسلة / مدير النظام"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_audit_log
+msgid "Laundry Audit Log"
+msgstr "سجل تدقيق المغسلة"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_branch
+#: model:ir.model.fields,field_description:laundry_base.field_pos_config__laundry_branch_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_branch_form
+msgid "Laundry Branch"
+msgstr "فرع المغسلة"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_commercial_account
+msgid "Laundry Commercial Account"
+msgstr "الحساب التجاري للمغسلة"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_billing_wizard
+msgid "Laundry Commercial Billing Run"
+msgstr "تشغيل فوترة الحسابات التجارية"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_issue
+msgid "Laundry Issue / Claim"
+msgstr "إشكالية / مطالبة"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_item_category
+msgid "Laundry Item Category"
+msgstr "فئة قطع الغسيل"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_loyalty_program
+msgid "Laundry Loyalty Program"
+msgstr "برنامج ولاء المغسلة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_pos_config__laundry_mode
+msgid "Laundry Mode"
+msgstr "وضع المغسلة"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_order
+#: model:ir.model.fields,field_description:laundry_base.field_pos_order__laundry_order_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Laundry Order"
+msgstr "طلب غسيل"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_order_line
+msgid "Laundry Order Line"
+msgstr "بند طلب الغسيل"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_stage
+msgid "Laundry Order Stage"
+msgstr "مرحلة طلب الغسيل"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_status_log
+msgid "Laundry Order Status Log"
+msgstr "سجل حالة الطلب"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_order
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_list
+msgid "Laundry Orders"
+msgstr "طلبات الغسيل"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_service_addon
+msgid "Laundry Service Add-on"
+msgstr "خدمة إضافية"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_service_type
+msgid "Laundry Service Type"
+msgstr "نوع الخدمة"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_linen
+msgid "Linen / Bedsheet"
+msgstr "بياضات"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "Logging an issue needs production rights."
+msgstr "تسجيل إشكالية يتطلب صلاحية الإنتاج."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__loyalty_card_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Loyalty Card"
+msgstr "بطاقة ولاء"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_loyalty_cards
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_list
+msgid "Loyalty Cards"
+msgstr "بطاقات الولاء"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__loyalty_discount
+msgid "Loyalty Discount"
+msgstr "خصم الولاء"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_laundry_loyalty_log
+msgid "Loyalty Points Log"
+msgstr "سجل نقاط الولاء"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_loyalty_program_config
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Loyalty Program"
+msgstr "برنامج الولاء"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_loyalty_program
+msgid "Loyalty Program Setup"
+msgstr "إعداد برنامج الولاء"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_issue_form
+msgid "Mark Resolved"
+msgstr "تحديد كمحلولة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__max_redeem_pct
+msgid "Max Redeem % of Order"
+msgstr "أقصى نسبة استبدال من الطلب %"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Maximum Discount %"
+msgstr "أقصى نسبة خصم %"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_has_error
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_ids
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__min_redeem
+msgid "Min Points to Redeem"
+msgstr "أدنى نقاط للاستبدال"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Minimum to Redeem"
+msgstr "الحد الأدنى للاستبدال"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_loyalty.py:0
+#, python-format
+msgid "Minimum to redeem: %d point(s)"
+msgstr "الحد الأدنى للاستبدال: %d نقطة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__issue_type__missing
+msgid "Missing Item"
+msgstr "قطعة مفقودة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_commercial_account__billing_cycle__monthly
+msgid "Monthly"
+msgstr "شهري"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__my_activity_date_deadline
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__hotel_name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__name
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_issue.py:0
+#: code:addons/laundry_base/models/laundry_issue.py:0
+#: code:addons/laundry_base/models/laundry_issue.py:0
+#: code:addons/laundry_base/models/laundry_issue.py:0
+#: code:addons/laundry_base/models/laundry_order.py:0
+#: code:addons/laundry_base/models/laundry_order.py:0
+#: code:addons/laundry_base/models/laundry_order.py:0
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "New"
+msgstr "جديد"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_date_deadline
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_summary
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_type_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_loyalty.py:0
+#, python-format
+msgid "No active loyalty program."
+msgstr "لا يوجد برنامج ولاء نشط."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/wizard/laundry_billing_wizard.py:0
+#, python-format
+msgid "No invoiceable lines. Ensure order lines have linked products."
+msgstr "لا توجد بنود قابلة للفوترة. تأكد من ربط بنود الطلب بمنتجات."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/wizard/laundry_billing_wizard.py:0
+#, python-format
+msgid "No unbilled orders found."
+msgstr "لا توجد طلبات غير مفوترة."
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__priority__normal
+msgid "Normal"
+msgstr "عادي"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_loyalty.py:0
+#, python-format
+msgid "Not enough points. Current balance: %.0f point(s)"
+msgstr "رصيد النقاط غير كافٍ. الرصيد الحالي: %.0f نقطة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__note
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Note"
+msgstr "ملاحظة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__notes
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Notes for production staff"
+msgstr "ملاحظات الإنتاج..."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_needaction_counter
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_has_error_counter
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__message_needaction_counter
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__message_has_error_counter
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل ذات خطأ التسليم"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_order_line__product_id
+#: model:ir.model.fields,help:laundry_base.field_laundry_service_type__product_id
+msgid "Odoo service product for accounting. Must be type=service."
+msgstr "منتج الخدمة في أودو للمحاسبة، ويجب أن يكون من نوع خدمة."
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_method__on_account
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_state__on_account
+msgid "On Account"
+msgstr "على الحساب"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "Only Ready orders can be handed over."
+msgstr "لا يمكن تسليم إلا الطلبات الجاهزة."
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__state__open
+msgid "Open"
+msgstr "مفتوح"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__open_order_count
+msgid "Open Orders"
+msgstr "الطلبات المفتوحة"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_operations
+msgid "Operations"
+msgstr "العمليات"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__order_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__order_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__order_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__order_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__order_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__order_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Order"
+msgstr "الطلب"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_audit_log__action__cancel
+msgid "Order Cancelled"
+msgstr "تم إلغاء الطلب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__date_order
+msgid "Order Date"
+msgstr "تاريخ الطلب"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_audit_log__action__handover
+msgid "Order Handed Over"
+msgstr "تم تسليم الطلب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__order_line_ids
+msgid "Order Lines"
+msgstr "بنود الطلب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__name
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Order Ref"
+msgstr "رقم الطلب"
+
+#. module: laundry_base
+#: model:ir.model.constraint,message:laundry_base.constraint_laundry_order_barcode_company_unique
+msgid "Order barcode must be unique per company."
+msgstr "باركود الطلب يجب أن يكون فريداً في الشركة."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__order_ids
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__order_count
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_orders
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_list
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_list
+msgid "Orders"
+msgstr "الطلبات"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__preview_line_ids
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Orders to Invoice"
+msgstr "طلبات للفوترة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__order_ids
+msgid "Orders to Pickup"
+msgstr "طلبات للاستلام"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_audit_log__action__other
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__issue_type__other
+#: model:laundry.item.category,name:laundry_base.item_cat_other
+msgid "Other"
+msgstr "أخرى"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__out_for_delivery
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__out_for_delivery
+#: model:laundry.stage,name:laundry_base.stage_out_delivery
+msgid "Out for Delivery"
+msgstr "في الطريق"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_overdue
+msgid "Overdue"
+msgstr "متأخر"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_order_overdue
+msgid "Overdue Orders"
+msgstr "الطلبات المتأخرة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__pos_config_id
+msgid "POS Configuration"
+msgstr "إعداد نقطة البيع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__pos_order_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "POS Order"
+msgstr "طلب نقطة البيع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__pos_order_line_id
+msgid "POS Order Line"
+msgstr "بند طلب نقطة البيع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_branch_form
+msgid "POS and Location"
+msgstr "نقطة البيع والموقع"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__packing
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__packing
+#: model:laundry.stage,name:laundry_base.stage_packing
+msgid "Packing"
+msgstr "في التعبئة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__amount_paid
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_state__paid
+msgid "Paid"
+msgstr "مدفوع"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_state__partial
+msgid "Partial"
+msgstr "جزئي"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Payment"
+msgstr "الدفع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__payment_method
+msgid "Payment Method"
+msgstr "طريقة الدفع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__payment_state
+msgid "Payment State"
+msgstr "حالة الدفع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__payment_terms_id
+msgid "Payment Terms"
+msgstr "شروط الدفع"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order_line__line_state__pending
+msgid "Pending"
+msgstr "معلّق"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_service_type__urgent_surcharge_type__percent
+msgid "Percentage %"
+msgstr "نسبة %"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__phone
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__partner_phone
+msgid "Phone"
+msgstr "الهاتف"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__photo_required
+msgid "Photo Required"
+msgstr "الصورة مطلوبة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__picked_up
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__picked_up
+#: model:laundry.stage,name:laundry_base.stage_picked_up
+msgid "Picked Up"
+msgstr "تم الاستلام"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__session_date
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Pickup Date"
+msgstr "تاريخ الاستلام"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__piece_barcode
+msgid "Piece Barcode"
+msgstr "باركود القطعة"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/wizard/laundry_billing_wizard.py:0
+#, python-format
+msgid "Please preview before confirming."
+msgstr "اعرض المعاينة قبل التأكيد."
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Point Value (SAR)"
+msgstr "قيمة النقطة SAR"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "إعداد نقطة البيع"
+
+#. module: laundry_base
+#: model:ir.model,name:laundry_base.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "طلبات نقطة البيع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Points"
+msgstr "النقاط"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__points
+msgid "Points Change"
+msgstr "تغير النقاط"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__loyalty_points_earned
+msgid "Points Earned"
+msgstr "النقاط المكتسبة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Points Earning"
+msgstr "كسب النقاط"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__expiry_months
+msgid "Points Expiry (months)"
+msgstr "انتهاء النقاط (شهور)"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Points History"
+msgstr "سجل النقاط"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__loyalty_points_used
+msgid "Points Redeemed"
+msgstr "النقاط المستبدلة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__points_per_sar
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Points per SAR"
+msgstr "نقطة لكل ريال"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Pre-existing Damage"
+msgstr "أضرار مسبقة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__pre_damage_notes
+msgid "Pre-existing Damage / Stains"
+msgstr "أضرار أو بقع مسبقة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Preview"
+msgstr "معاينة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_billing_wizard__state__previewed
+msgid "Previewed"
+msgstr "تمت المعاينة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__price
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Price"
+msgstr "السعر"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__price_overridden
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_audit_log__action__price_override
+msgid "Price Overridden"
+msgstr "تم تعديل السعر"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Printed on receipt"
+msgstr "تظهر على الإيصال..."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__priority
+msgid "Priority"
+msgstr "الأولوية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_service_type.py:0
+#, python-format
+msgid "Product \"%s\" must be of type Service."
+msgstr "المنتج \"%s\" يجب أن يكون من نوع خدمة."
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Production"
+msgstr "الإنتاج"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_order_kanban
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_production_board
+msgid "Production Board"
+msgstr "لوحة الإنتاج"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__assigned_production_id
+msgid "Production Staff"
+msgstr "موظفو الإنتاج"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__production_visible
+msgid "Production Visible"
+msgstr "يظهر للإنتاج"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_list
+msgid "Promise"
+msgstr "التسليم"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__promise_date
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Promise Date"
+msgstr "موعد التسليم"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_order.py:0
+#, python-format
+msgid "Purchase of order %s"
+msgstr "شراء طلب %s"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__qty
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Qty"
+msgstr "الكمية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__rack_location
+msgid "Rack / Shelf"
+msgstr "الرف"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__rating_ids
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__rating_ids
+msgid "Ratings"
+msgstr "التقييمات"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__ready
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order_line__line_state__ready
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__ready
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_ready
+#: model:laundry.stage,name:laundry_base.stage_ready
+msgid "Ready"
+msgstr "جاهز للاستلام"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_order_ready
+msgid "Ready for Pickup"
+msgstr "جاهز للاستلام"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__reason
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Reason"
+msgstr "السبب"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__received
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__received
+#: model:laundry.stage,name:laundry_base.stage_received
+msgid "Received"
+msgstr "مستلم"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_loyalty_log__type__redeem
+msgid "Redeemed"
+msgstr "المستبدل"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Redemption"
+msgstr "الاستبدال"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_audit_log__action__refund
+msgid "Refund Issued"
+msgstr "تم رد المبلغ"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__reported_by
+msgid "Reported By"
+msgstr "أبلغ عنها"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__reported_date
+msgid "Reported Date"
+msgstr "تاريخ الإبلاغ"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_pos_config__laundry_require_customer
+msgid "Require Customer"
+msgstr "العميل مطلوب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__resolution_notes
+msgid "Resolution Notes"
+msgstr "ملاحظات الحل"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__state__resolved
+msgid "Resolved"
+msgstr "تم الحل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__resolved_by
+msgid "Resolved By"
+msgstr "حلها"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__resolved_date
+msgid "Resolved Date"
+msgstr "تاريخ الحل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__activity_user_id
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_hotel_session__state__returned
+msgid "Returned"
+msgstr "رُجع"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_issue__issue_type__rewash
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__rewash
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__rewash
+#: model:laundry.stage,name:laundry_base.stage_rewash
+msgid "Rewash"
+msgstr "إعادة غسيل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__rewash_order_id
+msgid "Rewash Order"
+msgstr "طلب إعادة غسيل"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_issue.py:0
+#, python-format
+msgid "Rewash order already exists."
+msgstr "طلب إعادة الغسيل موجود بالفعل."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__root_cause
+msgid "Root Cause"
+msgstr "السبب الجذري"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "Run Billing"
+msgstr "تشغيل الفوترة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.report_hotel_manifest
+#: model_terms:ir.ui.view,arch_db:laundry_base.report_laundry_label
+#: model_terms:ir.ui.view,arch_db:laundry_base.report_laundry_z
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_kanban
+msgid "SAR"
+msgstr "ريال"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__sar_per_point
+msgid "SAR per Point"
+msgstr "ريال لكل نقطة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__message_has_sms_error
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في إرسال الرسالة النصية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__pickup_date
+msgid "Scheduled Pickup"
+msgstr "موعد الاستلام المجدول"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Search Orders"
+msgstr "البحث في الطلبات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Search customer"
+msgstr "ابحث عن العميل..."
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Selected Options"
+msgstr "الخيارات المختارة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__sequence
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__sequence
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__sequence
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_addon__sequence
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__sequence
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__service_type_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_service_type
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_service_types
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_service_type_list
+msgid "Service Types"
+msgstr "الخدمات"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__addon_display
+msgid "Services & Options"
+msgstr "الخدمات والخيارات"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_audit_log__action__session_close
+msgid "Session Closed"
+msgstr "تم إغلاق الجلسة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Session Info"
+msgstr "معلومات الجلسة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__name
+msgid "Session Ref"
+msgstr "رقم الجلسة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Session notes..."
+msgstr "ملاحظات الجلسة..."
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_shirt
+msgid "Shirt"
+msgstr "قميص"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__sorted
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__sorted
+#: model:laundry.stage,name:laundry_base.stage_sorted
+msgid "Sorted"
+msgstr "مُرتَّب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_item_category__special_handling_notes
+msgid "Special Handling Notes"
+msgstr "ملاحظات التعامل الخاص"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_method__split
+msgid "Split"
+msgstr "مقسّم"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__stage_id
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "Stage"
+msgstr "المرحلة"
+
+#. module: laundry_base
+#: model:ir.actions.act_window,name:laundry_base.action_laundry_stage
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_stages
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_stage_list
+msgid "Stages"
+msgstr "المراحل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__standard_duration_hours
+msgid "Standard Duration (hrs)"
+msgstr "المدة القياسية (ساعة)"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__state
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_commercial_account__state
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__state
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__state
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__state
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "State"
+msgstr "الحالة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_stage__state_key
+msgid "State Key"
+msgstr "مفتاح الحالة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__status_log_ids
+msgid "Status History"
+msgstr "سجل الحالة"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__activity_state
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة
+"
+"متأخر: تجاوز تاريخ الاستحقاق
+"
+"اليوم: تاريخ النشاط هو اليوم
+"
+"مخطط: أنشطة مستقبلية."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_status_log.py:0
+#, python-format
+msgid "Status log entries are immutable."
+msgstr "سجل الحالة غير قابل للتعديل."
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_status_log.py:0
+#, python-format
+msgid "Status log entries cannot be deleted."
+msgstr "لا يمكن حذف سجل الحالة."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__street
+msgid "Street"
+msgstr "الشارع"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__price_subtotal
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Subtotal"
+msgstr "الإجمالي الفرعي"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_suit
+msgid "Suit"
+msgstr "بدلة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid "Summary"
+msgstr "الملخص"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_issue.py:0
+#, python-format
+msgid "Supervisor permission required."
+msgstr "مطلوب صلاحية المشرف."
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_commercial_account__state__suspended
+msgid "Suspended"
+msgstr "موقوف"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__tagged
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__tagged
+#: model:laundry.stage,name:laundry_base.stage_tagged
+msgid "Tagged"
+msgstr "مُصنّف"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_thobe
+msgid "Thobe"
+msgstr "ثوب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__tier
+msgid "Tier"
+msgstr "المستوى"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Tiers"
+msgstr "المستويات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Time"
+msgstr "الوقت"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__timestamp
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__timestamp
+msgid "Timestamp"
+msgstr "الوقت والتاريخ"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "To"
+msgstr "إلى"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__date_to
+msgid "To Date"
+msgstr "إلى تاريخ"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_status_log__to_state
+msgid "To State"
+msgstr "إلى حالة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__total_amount
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__amount_total
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_list
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_list
+msgid "Total (SAR)"
+msgstr "الإجمالي (ريال)"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__total_amount
+msgid "Total Amount"
+msgstr "المبلغ الإجمالي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__total_earned
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_list
+msgid "Total Earned"
+msgstr "إجمالي المكتسب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_branch__order_count
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__order_count
+msgid "Total Orders"
+msgstr "إجمالي الطلبات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "Total Qty"
+msgstr "إجمالي الكمية"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_card__total_redeemed
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_list
+msgid "Total Redeemed"
+msgstr "إجمالي المستبدل"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_trouser
+msgid "Trouser / Pants"
+msgstr "بنطال"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_log__type
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "Type"
+msgstr "النوع"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__activity_exception_decoration
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard__order_count
+msgid "Unbilled Orders"
+msgstr "طلبات غير مفوترة"
+
+#. module: laundry_base
+#: model:laundry.item.category,name:laundry_base.item_cat_uniform
+msgid "Uniform"
+msgstr "يونيفورم"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__unit_price
+msgid "Unit Price"
+msgstr "سعر الوحدة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__payment_state__unpaid
+msgid "Unpaid"
+msgstr "غير مدفوع"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__priority__urgent
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__urgent_duration_hours
+msgid "Urgent Duration (hrs)"
+msgstr "مدة العاجل (ساعة)"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__urgent_surcharge_fixed
+msgid "Urgent Fixed Surcharge"
+msgstr "رسوم العاجل الثابتة"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order_line__urgent_surcharge
+msgid "Urgent Surcharge"
+msgstr "رسوم العاجل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__urgent_surcharge_pct
+msgid "Urgent Surcharge %"
+msgstr "رسوم العاجل %"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_service_type__urgent_surcharge_type
+msgid "Urgent Surcharge Type"
+msgstr "نوع رسوم العاجل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_audit_log__user_id
+msgid "User"
+msgstr "المستخدم"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_hotel_session__vehicle_plate
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "Vehicle Plate"
+msgstr "لوحة السيارة"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_order__state__washing
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_stage__state_key__washing
+#: model:laundry.stage,name:laundry_base.stage_washing
+msgid "Washing"
+msgstr "في الغسيل"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_issue__website_message_ids
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_order__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع الإلكتروني"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_issue__website_message_ids
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__website_message_ids
+msgid "Website communication history"
+msgstr "سجل التواصل عبر الموقع"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_commercial_account__billing_cycle__weekly
+msgid "Weekly"
+msgstr "أسبوعي"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_loyalty_program__welcome_points
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid "Welcome Points"
+msgstr "نقاط الترحيب"
+
+#. module: laundry_base
+#: model:ir.model.fields,field_description:laundry_base.field_laundry_billing_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "معالج"
+
+#. module: laundry_base
+#: model:ir.model.fields,help:laundry_base.field_laundry_order__pickup_date
+msgid "[Phase 2] Driver pickup time."
+msgstr "[المرحلة 2] وقت استلام السائق."
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "e.g. A-12"
+msgstr "مثال: A-12"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "e.g. BAG-001"
+msgstr "مثال: BAG-001"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "e.g. HTL-HLT-001"
+msgstr "مثال: HTL-HLT-001"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_commercial_account_form
+msgid "e.g. Hilton Hotel"
+msgstr "فندق هيلتون"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_billing_wizard_form
+msgid ""
+"orders\n"
+"                        — Total:"
+msgstr ""
+"طلب
+"
+"                        — الإجمالي:"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "→ Ironing"
+msgstr "→ كوي"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "→ Packing"
+msgstr "→ تعبئة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "→ Tagged"
+msgstr "→ مُصنّف"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "→ Washing"
+msgstr "→ غسيل"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_kanban
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "⏰ Overdue"
+msgstr "⏰ متأخر"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "⏰ Promise Date"
+msgstr "⏰ موعد التسليم"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "⚠ Due"
+msgstr "⚠ المتبقي"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "⚠ Issues"
+msgstr "⚠ الإشكاليات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "⚡ Surcharge"
+msgstr "⚡ رسوم العاجل"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_kanban
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "⚡ Urgent"
+msgstr "⚡ عاجل"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "✅ Ready"
+msgstr "✅ جاهز"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_hotel_session.py:0
+#, python-format
+msgid "✓ %s order(s) dispatched with driver %s"
+msgstr "✓ تم إرسال %s طلب مع السائق %s"
+
+#. module: laundry_base
+#. odoo-python
+#: code:addons/laundry_base/models/laundry_hotel_session.py:0
+#, python-format
+msgid "✓ Delivered to the hotel. It will be billed on the account."
+msgstr "✓ تم التسليم للفندق. سيُفوتر على الحساب."
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "✓ Handover"
+msgstr "✓ تسليم"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "✓ Mark Delivered"
+msgstr "✓ تم التسليم"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "✓ Paid"
+msgstr "✓ مدفوع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "✓ Ready"
+msgstr "✓ جاهز"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "✕ Cancel"
+msgstr "✕ إلغاء"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_card_form
+msgid "🎯 Current Balance"
+msgstr "🎯 الرصيد الحالي"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_loyalty_cards
+msgid "🎯 Loyalty"
+msgstr "🎯 بطاقات الولاء"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🏢 Commercial Account"
+msgstr "🏢 حساب تجاري"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "🏢 On Account"
+msgstr "🏢 على الحساب"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_hotel_sessions
+msgid "🏨 Hotel Pickup"
+msgstr "🏨 جلسات الفنادق"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🏪 Branch"
+msgstr "🏪 الفرع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🏷 Bag Reference"
+msgstr "🏷 رقم الحقيبة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🏷 Label"
+msgstr "🏷 لاصقة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "👤 Customer"
+msgstr "👤 العميل"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "👤 Staff"
+msgstr "👤 الموظفون"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_loyalty_card__tier__vip
+msgid "💎 VIP"
+msgstr "💎 كبار العملاء"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "💰 Total"
+msgstr "💰 المجموع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "💰 Unpaid"
+msgstr "💰 غير مدفوع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "💳 Method"
+msgstr "💳 الطريقة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "💳 Payment"
+msgstr "💳 الدفع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "💵 Cash Tendered"
+msgstr "💵 المبلغ المقدم"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "📅 Scheduling"
+msgstr "📅 الجدولة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "📊 Status Log"
+msgstr "📊 سجل الحالة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "📌 Rack / Location"
+msgstr "📌 الرف / الموقع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "📝 Notes"
+msgstr "📝 ملاحظات"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "📦 Load Ready Orders"
+msgstr "📦 تحميل الطلبات الجاهزة"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "📦 Tracking"
+msgstr "📦 التتبع"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "📱 Phone"
+msgstr "📱 الجوال"
+
+#. module: laundry_base
+#: model:ir.ui.menu,name:laundry_base.menu_laundry_barcode_scan
+msgid "📱 Scan Barcode"
+msgstr "📱 مسح الباركود"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🔄 Change"
+msgstr "🔄 الباقي"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🔲 Barcode"
+msgstr "🔲 الباركود"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_search
+msgid "🔴 Issue"
+msgstr "🔴 إشكالية"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "🖨 Print Manifest"
+msgstr "🖨 طباعة البيان"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🚗 Delivery Requested"
+msgstr "🚗 طلب توصيل"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_hotel_session_form
+msgid "🚗 Dispatch"
+msgstr "🚗 إرسال السائق"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🚦 Priority"
+msgstr "🚦 الأولوية"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_loyalty_card__tier__gold
+msgid "🥇 Gold"
+msgstr "🥇 ذهبي"
+
+#. module: laundry_base
+#: model:ir.model.fields.selection,name:laundry_base.selection__laundry_loyalty_card__tier__silver
+msgid "🥈 Silver"
+msgstr "🥈 فضي"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_loyalty_program_form
+msgid ""
+"🥈 Silver: 0–1999 points |\n"
+"                            🥇 Gold: 2000–4999 |\n"
+"                            💎 VIP: 5000+"
+msgstr ""
+"🥈 فضي: 0–1999 نقطة |
+"
+"                            🥇 ذهبي: 2000–4999 |
+"
+"                            💎 كبار العملاء: 5000+"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🧺 Order Lines"
+msgstr "🧺 بنود الطلب"
+
+#. module: laundry_base
+#: model_terms:ir.ui.view,arch_db:laundry_base.view_laundry_order_form
+msgid "🧾 Receipt"
+msgstr "🧾 إيصال"

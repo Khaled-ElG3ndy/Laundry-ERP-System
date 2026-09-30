@@ -8,7 +8,7 @@
         </field>
     </record>
     <record id="action_laundry_audit_log" model="ir.actions.act_window">
-        <field name="name">Audit Log / سجل التدقيق</field>
+        <field name="name">Audit Log</field>
         <field name="res_model">laundry.audit.log</field>
         <field name="view_mode">list</field>
     </record>

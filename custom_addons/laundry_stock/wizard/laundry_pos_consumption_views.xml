@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_pos_consumption_form" model="ir.ui.view">
+        <field name="name">laundry.pos.consumption.form</field>
+        <field name="model">laundry.pos.consumption</field>
+        <field name="arch" type="xml">
+            <form string="Issue Materials from Sales">
+                <p class="text-muted">
+                    Reads what the counter sold over the period, applies the
+                    consumption norms, and prepares one material issue you can
+                    check before confirming.
+                </p>
+                <group>
+                    <group>
+                        <field name="branch_id" options="{'no_create': True}"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="pos_config_ids" widget="many2many_tags"
+                               options="{'no_create': True}"/>
+                        <field name="line_count"/>
+                        <field name="piece_count"/>
+                        <field name="ignore_overlap"/>
+                    </group>
+                </group>
+                <separator string="Materials"/>
+                <field name="preview" readonly="1" nolabel="1"/>
+                <footer>
+                    <button name="action_create_issue" type="object"
+                            string="Prepare Issue" class="btn-primary"
+                            invisible="line_count == 0"/>
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_laundry_pos_consumption" model="ir.actions.act_window">
+        <field name="name">Issue from Sales</field>
+        <field name="res_model">laundry.pos.consumption</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

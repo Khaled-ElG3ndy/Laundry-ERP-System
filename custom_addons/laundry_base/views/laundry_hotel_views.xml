@@ -25,24 +25,24 @@
         <field name="name">laundry.hotel.session.form</field>
         <field name="model">laundry.hotel.session</field>
         <field name="arch" type="xml">
-            <form string="Hotel Pickup Session / جلسة استلام الفندق">
+            <form string="Hotel Pickup Session">
                 <header>
                     <button name="action_load_ready_orders"
-                            string="📦 تحميل الطلبات الجاهزة"
+                            string="📦 Load Ready Orders"
                             type="object" class="btn-secondary"
                             invisible="state != 'draft'"/>
                     <button name="action_dispatch"
-                            string="🚗 إرسال السائق / Dispatch"
+                            string="🚗 Dispatch"
                             type="object" class="btn-primary"
                             invisible="state != 'draft'"
-                            confirm="إرسال السائق الآن؟"/>
+                            confirm="Dispatch the driver now?"/>
                     <button name="action_mark_delivered"
-                            string="✓ تم التسليم / Mark Delivered"
+                            string="✓ Mark Delivered"
                             type="object" class="btn-success"
                             invisible="state != 'dispatched'"
-                            confirm="تأكيد التسليم للفندق؟"/>
+                            confirm="Confirm the delivery to the hotel?"/>
                     <button name="action_print_manifest"
-                            string="🖨 طباعة البيان / Print Manifest"
+                            string="🖨 Print Manifest"
                             type="object"/>
                     <field name="state" widget="statusbar"
                            statusbar_visible="draft,dispatched,delivered"/>
@@ -52,37 +52,37 @@
                         <h1><field name="name" readonly="1"/></h1>
                     </div>
                     <group>
-                        <group string="معلومات الجلسة / Session Info">
-                            <field name="commercial_id" string="الحساب التجاري / Hotel"/>
-                            <field name="session_date" string="تاريخ الاستلام"/>
-                            <field name="branch_id" string="الفرع"/>
+                        <group string="Session Info">
+                            <field name="commercial_id" string="Hotel"/>
+                            <field name="session_date" string="Pickup Date"/>
+                            <field name="branch_id" string="Branch"/>
                         </group>
-                        <group string="السائق / Driver">
-                            <field name="driver_name" string="اسم السائق"/>
-                            <field name="vehicle_plate" string="لوحة السيارة"/>
-                            <field name="pickup_time" readonly="1" string="وقت الإرسال"/>
-                            <field name="delivery_time" readonly="1" string="وقت التسليم"/>
+                        <group string="Driver">
+                            <field name="driver_name" string="Driver Name"/>
+                            <field name="vehicle_plate" string="Vehicle Plate"/>
+                            <field name="pickup_time" readonly="1" string="Dispatched At"/>
+                            <field name="delivery_time" readonly="1" string="Delivered At"/>
                         </group>
                     </group>
                     <notebook>
-                        <page string="الطلبات / Orders">
+                        <page string="Orders">
                             <field name="order_ids" widget="many2many_list">
                                 <tree>
                                     <field name="name"/>
-                                    <field name="partner_id" string="العميل"/>
+                                    <field name="partner_id" string="Customer"/>
                                     <field name="state"/>
-                                    <field name="amount_total" string="المبلغ"/>
-                                    <field name="promise_date" string="موعد التسليم"/>
-                                    <field name="bag_reference" string="الحقيبة"/>
+                                    <field name="amount_total" string="Amount"/>
+                                    <field name="promise_date" string="Promise Date"/>
+                                    <field name="bag_reference" string="Bag"/>
                                 </tree>
                             </field>
                             <group class="oe_subtotal_footer">
                                 <field name="total_amount" readonly="1"
-                                       string="الإجمالي / Total" widget="monetary"/>
+                                       string="Total" widget="monetary"/>
                             </group>
                         </page>
-                        <page string="ملاحظات / Notes">
-                            <field name="notes" placeholder="ملاحظات الجلسة..."/>
+                        <page string="Notes">
+                            <field name="notes" placeholder="Session notes..."/>
                         </page>
                     </notebook>
                 </sheet>
@@ -91,13 +91,13 @@
     </record>
 
     <record id="action_hotel_sessions" model="ir.actions.act_window">
-        <field name="name">جلسات الفنادق / Hotel Sessions</field>
+        <field name="name">Hotel Sessions</field>
         <field name="res_model">laundry.hotel.session</field>
         <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_hotel_sessions"
-              name="🏨 جلسات الفنادق / Hotel Pickup"
+              name="🏨 Hotel Pickup"
               parent="menu_laundry_operations"
               action="laundry_base.action_hotel_sessions"
               sequence="65"

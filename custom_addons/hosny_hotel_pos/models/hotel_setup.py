@@ -484,19 +484,22 @@ class HotelPricingSetup(models.AbstractModel):
     # -- products ------------------------------------------------------------
 
     def _hotel_taxes(self):
-        """Reuse whatever sale tax the existing catalogue already uses.
+        """The sale VAT charged on top of a hotel contract price.
 
-        Every retail product on this database carries the same VAT-inclusive
-        sale tax; matching it keeps hotel receipts arithmetically consistent
-        with retail ones instead of introducing a second tax treatment.
+        The agreed price sheet quotes every price before VAT, so hotel products
+        need a tax that is added to the price rather than carved out of it --
+        unlike the retail catalogue, whose shelf prices include VAT. The
+        company's default sale tax is that tax on this database; any other
+        price-exclusive sale tax is the fallback. Never returns an inclusive
+        tax: that would silently bill VAT out of the agreed price again.
         """
-        reference = self.env['product.template'].search(
-            [('available_in_pos', '=', True), ('taxes_id', '!=', False)], limit=1)
-        if reference:
-            return reference.taxes_id
+        company = self.env.company
+        if company.account_sale_tax_id and not company.account_sale_tax_id.price_include:
+            return company.account_sale_tax_id
         return self.env['account.tax'].search([
             ('type_tax_use', '=', 'sale'),
-            ('company_id', '=', self.env.company.id),
+            ('price_include', '=', False),
+            ('company_id', '=', company.id),
         ], limit=1)
 
     def _sync_products(self, pos_categories, product_category):
@@ -842,6 +845,10 @@ class HotelPricingSetup(models.AbstractModel):
             # Deliberately *not* a contract tier: an order with no customer
             # must not quietly inherit real agreed prices.
             'pricelist_id': no_contract.id,
+            # Contract prices are quoted before VAT, so the till and the
+            # receipt lines show them that way; the receipt adds the VAT and
+            # the total underneath. Allowed while a session is open.
+            'iface_tax_included': 'subtotal',
             'active': True,
         }
 

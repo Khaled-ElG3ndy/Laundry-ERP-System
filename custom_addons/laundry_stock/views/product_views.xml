@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ── PRODUCT ─────────────────────────────────────────── -->
+
+    <record id="view_product_template_form_laundry_supply" model="ir.ui.view">
+        <field name="name">product.template.form.laundry.supply</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']//field[@name='categ_id']"
+                   position="after">
+                <field name="is_laundry_supply"/>
+                <field name="laundry_supply_type"
+                       invisible="not is_laundry_supply"
+                       required="is_laundry_supply"/>
+            </xpath>
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page string="Laundry Store" name="laundry_store"
+                      invisible="not is_laundry_supply">
+                    <group>
+                        <group string="Stock Levels per Branch">
+                            <field name="laundry_min_qty"/>
+                            <field name="laundry_max_qty"/>
+                            <button name="action_generate_orderpoints"
+                                    type="object"
+                                    string="Create Reordering Rules"
+                                    class="btn-link"
+                                    icon="fa-refresh"/>
+                        </group>
+                        <group string="Purchasing">
+                            <field name="uom_po_id"/>
+                        </group>
+                    </group>
+                    <p class="text-muted">
+                        The minimum is the quantity every branch store should
+                        always have. The maximum is what a replenishment brings
+                        it back up to.
+                    </p>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_template_list_laundry_supply" model="ir.ui.view">
+        <field name="name">product.template.list.laundry.supply</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <tree string="Laundry Supplies" multi_edit="1">
+                <field name="default_code" optional="show"/>
+                <field name="name"/>
+                <field name="laundry_supply_type"/>
+                <field name="categ_id"/>
+                <field name="uom_id" optional="show"/>
+                <field name="qty_available" string="On Hand"/>
+                <field name="virtual_available" optional="hide"/>
+                <field name="laundry_min_qty" optional="show"/>
+                <field name="laundry_max_qty" optional="hide"/>
+                <field name="standard_price" optional="show"/>
+                <field name="seller_ids" widget="many2many_tags" optional="hide"
+                       string="Vendors"/>
+                <field name="is_laundry_supply" column_invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_template_search_laundry_supply" model="ir.ui.view">
+        <field name="name">product.template.search.laundry.supply</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <search string="Laundry Supplies">
+                <field name="name"/>
+                <field name="default_code"/>
+                <field name="categ_id"/>
+                <field name="laundry_supply_type"/>
+                <filter name="filter_to_reorder" string="Below Minimum"
+                        domain="[('qty_available', '&lt;', 1)]"/>
+                <separator/>
+                <filter name="filter_negative" string="Out of Stock"
+                        domain="[('qty_available', '&lt;=', 0)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_categ" string="Category"
+                            context="{'group_by': 'categ_id'}"/>
+                    <filter name="group_by_type" string="Supply Type"
+                            context="{'group_by': 'laundry_supply_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_laundry_supply_product" model="ir.actions.act_window">
+        <field name="name">Laundry Supplies</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('is_laundry_supply', '=', True)]</field>
+        <field name="context">{'default_is_laundry_supply': True,
+                               'default_detailed_type': 'product',
+                               'default_purchase_ok': True,
+                               'default_sale_ok': False}</field>
+        <field name="search_view_id" ref="view_product_template_search_laundry_supply"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a supply</p>
+            <p>Chemicals, packaging, hangers and spare parts the laundry buys,
+               stores and consumes.</p>
+        </field>
+    </record>
+
+    <record id="action_laundry_supply_product_list_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_product_template_list_laundry_supply"/>
+        <field name="act_window_id" ref="action_laundry_supply_product"/>
+    </record>
+
+    <!-- ── PRODUCT CATEGORY ────────────────────────────────── -->
+
+    <record id="view_product_category_form_laundry" model="ir.ui.view">
+        <field name="name">product.category.form.laundry</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <field name="laundry_zone_code"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

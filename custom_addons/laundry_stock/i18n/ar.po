@@ -1,0 +1,2850 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* laundry_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-24 16:52+0000\n"
+"PO-Revision-Date: 2026-09-24 16:52+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0?0:n==1?1:n==2?2:n%100>=3 && n%100<=10?3:n%100>=11 && n%100<=99?4:5);\n"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_consumption_norm.py:0
+#, python-format
+msgid ""
+"%s norm(s) created. Review the quantities against what your branches really "
+"use."
+msgstr "تم إنشاء %s معدل. راجع الكميات مقارنة بما تستهلكه فروعكم فعلياً."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/product_template.py:0
+#, python-format
+msgid "%s reordering rule(s) created, the rest updated."
+msgstr "تم إنشاء %s قاعدة إعادة طلب، وتحديث الباقي."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid "%s request(s) for quotation created: %s"
+msgstr "تم إنشاء %s طلب عرض سعر: %s"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "<span class=\"mx-1\">→</span>"
+msgstr "<span class=\"mx-1\">←</span>"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid "<span class=\"o_stat_text\">Material Issues</span>"
+msgstr "<span class=\"o_stat_text\">صرف المواد</span>"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid "<span class=\"o_stat_text\">Purchase Requests</span>"
+msgstr "<span class=\"o_stat_text\">طلبات الشراء</span>"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "<span class=\"o_stat_text\">Transfer</span>"
+msgstr "<span class=\"o_stat_text\">التحويل</span>"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_purchase_request
+msgid ""
+"A branch writes what it wants to buy, a manager approves it, and\n"
+"               it becomes one request for quotation per vendor — delivered to\n"
+"               the branch that asked for it."
+msgstr "يكتب الفرع ما يريد شراءه، ويعتمده المدير، فيتحول إلى طلب عرض سعر لكل مورد — يُستلم في الفرع الذي طلبه."
+
+#. module: laundry_stock
+#: model:ir.model.constraint,message:laundry_stock.constraint_laundry_machine_code_branch_uniq
+msgid "A machine with this code already exists in this branch."
+msgstr "يوجد بالفعل معدة بهذا الرمز في هذا الفرع."
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_a4_paper
+msgid "A4 Paper Ream"
+msgstr "رزمة ورق A4"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_needaction
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_needaction
+msgid "Action Needed"
+msgstr "يتطلب إجراء"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__active
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__active
+msgid "Active"
+msgstr "نشط"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_ids
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_ids
+msgid "Activities"
+msgstr "الأنشطة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_exception_decoration
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "تنسيق استثناء النشاط"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_state
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_state
+msgid "Activity State"
+msgstr "حالة النشاط"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_type_icon
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "أيقونة نوع النشاط"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_supply_product
+msgid "Add a supply"
+msgstr "أضف مستلزماً"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "Add at least one material."
+msgstr "أضف مادة واحدة على الأقل."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid "Add at least one product to request."
+msgstr "أضف منتجاً واحداً على الأقل للطلب."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "All branches"
+msgstr "كل الفروع"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_consumption_norm.py:0
+#, python-format
+msgid "All services"
+msgstr "كل الخدمات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_opening_stock__include_all_supplies
+msgid ""
+"Also lay out supplies whose category has no storage zone. They are counted "
+"in the main store."
+msgstr "يجهّز أيضاً المستلزمات التي لا تنتمي لمنطقة تخزين، وتُجرد في المخزن الرئيسي."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_form
+msgid ""
+"An empty service, item category or branch means the norm\n"
+"                        applies to all of them. A norm that names one of them\n"
+"                        wins over a more general one for the same supply."
+msgstr "ترك الخدمة أو فئة القطعة أو الفرع فارغاً يعني أن المعدل ينطبق عليها جميعاً، والمعدل الذي يحدد أحدها يُقدَّم على المعدل الأعم لنفس المستلزم."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__operation_type
+msgid ""
+"An issue takes materials out of the store. A return puts back what was drawn"
+" and not used."
+msgstr "الصرف يخرج المواد من المخزن، والإرجاع يعيد ما صُرف ولم يُستخدم."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid ""
+"An issued document cannot be deleted. Cancel it instead, or register a "
+"return."
+msgstr "لا يمكن حذف مستند تم صرفه. ألغِه أو سجّل مرتجعاً بدلاً من ذلك."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "An issued document cannot go back to draft."
+msgstr "لا يمكن إعادة مستند تم صرفه إلى مسودة."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Anything the store keeper should know."
+msgstr "أي ملاحظة تهم أمين المخزن."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_form
+msgid "Applies To"
+msgstr "ينطبق على"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Approval"
+msgstr "الاعتماد"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Approve"
+msgstr "اعتماد"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_purchase_request__state__approved
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+msgid "Approved"
+msgstr "معتمد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__approver_id
+msgid "Approved By"
+msgstr "اعتمده"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__approval_date
+msgid "Approved On"
+msgstr "تاريخ الاعتماد"
+
+#. module: laundry_stock
+#: model:res.groups,comment:laundry_stock.group_laundry_purchaser
+msgid ""
+"Approves purchase requests and deals with the\n"
+"                vendors."
+msgstr "يعتمد طلبات الشراء ويتعامل مع الموردين."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Archived"
+msgstr "مؤرشف"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_purchase_request
+msgid "Ask for what the branch needs"
+msgstr "اطلب ما يحتاجه الفرع"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_attachment_count
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__auto_consume
+msgid "Auto-issue Materials"
+msgstr "صرف المواد تلقائياً"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_item_category__avg_weight_kg
+msgid "Average Weight (kg)"
+msgstr "متوسط الوزن (كجم)"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Awaiting Approval"
+msgstr "بانتظار الاعتماد"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Back to Draft"
+msgstr "إعادة لمسودة"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_form
+msgid "Back-office Orders"
+msgstr "طلبات الإدارة"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_barcode_tag_roll
+msgid "Barcode Tag Roll"
+msgstr "رول بطاقات الباركود"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__basis
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Basis"
+msgstr "أساس الاحتساب"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_search_laundry_supply
+msgid "Below Minimum"
+msgstr "أقل من الحد الأدنى"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__bleach
+msgid "Bleach & Disinfectant"
+msgstr "مبيض ومطهر"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_machine__machine_type__boiler
+msgid "Boiler"
+msgstr "بويلر"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_descaler
+msgid "Boiler Descaler"
+msgstr "مزيل ترسبات البويلر"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__branch_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__branch_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__branch_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__branch_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__branch_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__branch_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__branch_id
+#: model:ir.model.fields,field_description:laundry_stock.field_purchase_order__branch_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Branch"
+msgstr "الفرع"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid ""
+"Branch \"%s\" has no consumption location yet. Run \"Set Up Warehouse\" on "
+"the branch."
+msgstr "الفرع \"%s\" ليس له موقع استهلاك بعد. شغّل \"تجهيز المخزن\" على الفرع."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid ""
+"Branch \"%s\" has no material issue operation type. Run \"Set Up Warehouse\""
+" on the branch."
+msgstr "الفرع \"%s\" ليس له عملية صرف مواد. شغّل \"تجهيز المخزن\" على الفرع."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_branch.py:0
+#, python-format
+msgid ""
+"Branch \"%s\" has no warehouse yet. Use \"Set Up Warehouse\" on the branch "
+"first."
+msgstr "الفرع \"%s\" ليس له مخزن بعد. استخدم \"تجهيز المخزن\" على الفرع أولاً."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_purchase_order__branch_id
+msgid ""
+"Branch the goods are bought for. It drives the warehouse the receipt lands "
+"in."
+msgstr "الفرع الذي تُشترى له البضاعة، وهو الذي يحدد المخزن الذي يستلمها."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_stock_location__laundry_branch_id
+msgid "Branch this location belongs to."
+msgstr "الفرع الذي يتبعه هذا الموقع."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Buy before it runs out"
+msgstr "اشترِ قبل أن ينفد"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_opening_stock_form
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_pos_consumption_form
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid "Cancel the purchase orders of this request first."
+msgstr "ألغِ أوامر الشراء الخاصة بهذا الطلب أولاً."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_purchase_request__state__cancel
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__state__cancel
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__capacity_kg
+msgid "Capacity (kg)"
+msgstr "السعة (كجم)"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_shirt_board
+msgid "Cardboard Shirt Board"
+msgstr "كرتون تثبيت القمصان"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__categ_ids
+msgid "Categories"
+msgstr "الفئات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__product_uom_category_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__categ_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__product_uom_category_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__product_uom_category_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_search_laundry_supply
+msgid "Category"
+msgstr "الفئة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_consumption_norm__product_categ_id
+msgid ""
+"Category of the item sold — clothes, linen, hotel. It covers its sub-"
+"categories too. Leave empty to apply to all of them."
+msgstr "فئة الصنف المباع — ملابس، مفروشات، فنادق. تشمل الفئات الفرعية أيضاً. اتركه فارغاً ليطبق عليها كلها."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Charged To"
+msgstr "محمّل على"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid "Check Warehouse Layout"
+msgstr "مراجعة تقسيم المخزن"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_category__laundry_zone_code__chem
+#: model:ir.model.fields.selection,name:laundry_stock.selection__stock_location__laundry_zone_code__chem
+msgid "Chemicals & Detergents"
+msgstr "كيماويات ومنظفات"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_supply_product
+msgid ""
+"Chemicals, packaging, hangers and spare parts the laundry buys,\n"
+"               stores and consumes."
+msgstr "الكيماويات والتغليف والشماعات وقطع الغيار التي تشتريها المغسلة وتخزنها وتستهلكها."
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_bleach_chlorine
+msgid "Chlorine Bleach"
+msgstr "مبيض كلور"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__code
+msgid "Code"
+msgstr "الرمز"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__company_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__company_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__company_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_product_product__is_laundry_supply
+#: model:ir.model.fields,help:laundry_stock.field_product_template__is_laundry_supply
+msgid ""
+"Consumable bought and stocked by the laundry: chemicals, packaging, hangers,"
+" spare parts. It is not sold to customers."
+msgstr "مستهلك تشتريه المغسلة وتخزنه: كيماويات وتغليف وشماعات وقطع غيار، ولا يُباع للعملاء."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Consumed This Month"
+msgstr "استهلاك هذا الشهر"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_form
+msgid "Consumes"
+msgstr "يستهلك"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_consumption_report
+#, python-format
+msgid "Consumption Analysis"
+msgstr "تحليل الاستهلاك"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__consumption_location_id
+msgid "Consumption Location"
+msgstr "موقع الاستهلاك"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_form
+msgid "Consumption Norm"
+msgstr "معدل الاستهلاك"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_consumption_norm
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_consumption_norm
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_list
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Consumption Norms"
+msgstr "معدلات الاستهلاك"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Consumption over the last 7 months"
+msgstr "الاستهلاك خلال آخر ٧ شهور"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_consumption_norm__product_uom_category_id
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request_line__product_uom_category_id
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr "لا يمكن التحويل بين وحدات القياس إلا إذا كانت من نفس الفئة، ويتم التحويل بناءً على النسب بينها."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__cost
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__subtotal
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_list
+msgid "Cost"
+msgstr "التكلفة"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_order_form_stock
+msgid "Cost of Materials"
+msgstr "تكلفة المواد"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_stock_count
+#, python-format
+msgid "Count Stock"
+msgstr "جرد المخزن"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Create RFQ"
+msgstr "إنشاء طلب عرض سعر"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_form_laundry_supply
+msgid "Create Reordering Rules"
+msgstr "إنشاء قواعد إعادة الطلب"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__create_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__create_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__create_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__create_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__create_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__create_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__create_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__create_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__create_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__create_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__create_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__create_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__create_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__create_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__currency_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__currency_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__currency_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__currency_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__currency_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__currency_id
+msgid "Currency"
+msgstr "العملة"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_carry_bag
+msgid "Customer Carry Bag"
+msgstr "كيس حمل للعميل"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_customer_tag
+msgid "Customer Tag Sticker"
+msgstr "ملصق بطاقة العميل"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_report__purpose__damage
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__purpose__damage
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+msgid "Damage / Loss"
+msgstr "تلف / فقد"
+
+#. module: laundry_stock
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_stock_dashboard
+msgid "Dashboard"
+msgstr "لوحة المخزون"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__date
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_branch__auto_consume_state__delivered
+msgid "Delivered"
+msgstr "تم التسليم"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__description
+msgid "Description"
+msgstr "الوصف"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__detergent
+msgid "Detergent"
+msgstr "منظف"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__display_name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__display_name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__display_name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__display_name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__display_name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__display_name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__display_name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__display_name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__issue_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Document"
+msgstr "المستند"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_form
+msgid "Dosage note, e.g. 12 g per kg of dry load."
+msgstr "ملاحظة الجرعة، مثال: ١٢ جم لكل كجم من الحمولة الجافة."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_purchase_request__state__draft
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__state__draft
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_machine__machine_type__dry_clean
+msgid "Dry-clean Machine"
+msgstr "ماكينة تنظيف جاف"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__solvent
+#: model:product.template,name:laundry_stock.supply_dryclean_solvent
+msgid "Dry-clean Solvent"
+msgstr "مذيب التنظيف الجاف"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_machine__machine_type__dryer
+msgid "Dryer"
+msgstr "مجفف"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Enter the opening stock"
+msgstr "إدخال أرصدة أول المدة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__price_unit
+msgid "Estimated Price"
+msgstr "السعر التقديري"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__estimated_total
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_list
+msgid "Estimated Total"
+msgstr "الإجمالي التقديري"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_consumption_report
+msgid ""
+"Every confirmed material issue lands here: what each branch used,\n"
+"               on which order or machine, and what it cost."
+msgstr "كل صرف مواد مؤكد يظهر هنا: ما استهلكه كل فرع، على أي طلب أو معدة، وبكم."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_opening_stock.py:0
+#, python-format
+msgid ""
+"Every supply already has a line in this branch. Open \"Count Stock\" and "
+"type the quantities."
+msgstr "كل المستلزمات لها بنود بالفعل في هذا الفرع. افتح \"جرد المخزن\" وأدخل الكميات."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Every supply is above its minimum."
+msgstr "كل المستلزمات فوق حدها الأدنى."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Exclusions"
+msgstr "الاستثناءات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_order__estimated_material_cost
+msgid "Expected Material Cost"
+msgstr "التكلفة المتوقعة للمواد"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_softener
+msgid "Fabric Softener"
+msgstr "منعم أقمشة"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Fill from Norms"
+msgstr "تعبئة من المعدلات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__laundry_order_id
+msgid "Fill it in to charge the materials to one order."
+msgstr "حدده لتحميل تكلفة المواد على طلب بعينه."
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_floor_cleaner
+msgid "Floor Cleaner"
+msgstr "منظف أرضيات"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_machine__machine_type__folder
+msgid "Folding Machine"
+msgstr "ماكينة طي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_follower_ids
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_partner_ids
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (جهات الاتصال)"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__activity_type_icon
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "أيقونة Font Awesome مثل fa-tasks"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__date_from
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__location_id
+msgid "From"
+msgstr "من"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#, python-format
+msgid "From %s sold line(s), %s piece(s), between %s and %s."
+msgstr "من %s بند مبيعات، %s قطعة، بين %s و %s."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__source__pos
+msgid "From Counter Sales"
+msgstr "من مبيعات نقطة البيع"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__source__order
+msgid "From a Laundry Order"
+msgstr "من طلب غسيل"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_garbage_bag
+msgid "Garbage Bags"
+msgstr "أكياس نفايات"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_stock_reordering
+msgid ""
+"Give a supply a minimum and a maximum per branch store and Odoo\n"
+"               tells you what to buy before the branch runs out."
+msgstr "حدد حداً أدنى وأقصى للمستلزم في مخزن كل فرع، وسينبهك النظام بما يجب شراؤه قبل أن ينفد من الفرع."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_search_laundry_supply
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_hand_soap
+msgid "Hand Soap"
+msgstr "صابون أيدي"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__hanger
+msgid "Hangers & Clips"
+msgstr "شماعات ومشابك"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_category__laundry_zone_code__hang
+#: model:ir.model.fields.selection,name:laundry_stock.selection__stock_location__laundry_zone_code__hang
+msgid "Hangers & Tags"
+msgstr "شماعات وبطاقات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__has_message
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_report__purpose__housekeeping
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__purpose__housekeeping
+msgid "Housekeeping"
+msgstr "نظافة عامة"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_category__laundry_zone_code__hkpg
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__housekeeping
+#: model:ir.model.fields.selection,name:laundry_stock.selection__stock_location__laundry_zone_code__hkpg
+msgid "Housekeeping & Office"
+msgstr "نظافة ومستلزمات مكتبية"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_consumption_norm
+msgid ""
+"How much detergent, packaging or hangers a piece — or a whole\n"
+"               order — is expected to use. Norms cost an order before it is\n"
+"               washed and fill a material issue in one click."
+msgstr "كم يستهلك القطعة — أو الطلب كاملاً — من منظفات وتغليف وشماعات. المعدلات تُقدّر تكلفة الطلب قبل غسله وتملأ مستند الصرف بضغطة واحدة."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_exception_icon
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_exception_icon
+msgid "Icon"
+msgstr "أيقونة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__activity_exception_icon
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "أيقونة تشير إلى نشاط استثنائي."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__message_needaction
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "عند التحديد، الرسائل الجديدة تتطلب انتباهك."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__message_has_error
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__message_has_sms_error
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__message_has_error
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "عند التحديد، بعض الرسائل بها خطأ في التسليم."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__include_all_supplies
+msgid "Include Supplies with No Zone"
+msgstr "شمل المستلزمات بلا منطقة تخزين"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Incoming Receipts"
+msgstr "استلامات واردة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__install_date
+msgid "Installed On"
+msgstr "تاريخ التركيب"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model:ir.actions.client,name:laundry_stock.action_laundry_stock_dashboard
+#, python-format
+msgid "Inventory Dashboard"
+msgstr "لوحة المخزون"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_stock_location
+msgid "Inventory Locations"
+msgstr "مواقع المخزون"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_machine__machine_type__ironer
+msgid "Ironing / Flatwork"
+msgstr "كوي / مكواة مسطحة"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_board_cover
+msgid "Ironing Board Cover"
+msgstr "غطاء طاولة الكوي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_is_follower
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_is_follower
+msgid "Is Follower"
+msgstr "متابع"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__issue_id
+msgid "Issue"
+msgstr "صرف"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__ignore_overlap
+msgid "Issue Anyway"
+msgstr "اصرف على أي حال"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__issue_count
+msgid "Issue Count"
+msgstr "عدد عمليات الصرف"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_order__issue_material_count
+msgid "Issue Material Count"
+msgstr "عدد عمليات صرف المواد"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_order_form_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+#, python-format
+msgid "Issue Materials"
+msgstr "صرف مواد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__auto_consume_state
+msgid "Issue Materials At"
+msgstr "صرف المواد عند"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_pos_consumption
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_pos_consumption_form
+msgid "Issue Materials from Sales"
+msgstr "صرف مواد من المبيعات"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_pos_consumption
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_pos_consumption
+#, python-format
+msgid "Issue from Sales"
+msgstr "صرف من المبيعات"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_stock_issue
+msgid "Issue materials"
+msgstr "اصرف المواد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_branch__auto_consume
+msgid ""
+"Issue the materials of an order automatically, from the consumption norms, "
+"when the order reaches the stage below. Leave it off to issue materials by "
+"hand."
+msgstr "صرف مواد الطلب تلقائياً من معدلات الاستهلاك عند وصول الطلب للمرحلة المحددة أدناه. اتركه مغلقاً للصرف اليدوي."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_report__operation_type__issue
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__operation_type__issue
+msgid "Issue to Operations"
+msgstr "صرف للتشغيل"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__state__done
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Issued"
+msgstr "تم الصرف"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__user_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__user_id
+msgid "Issued By"
+msgstr "صرفها"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Issues"
+msgstr "عمليات الصرف"
+
+#. module: laundry_stock
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_item_category_config
+msgid "Item Categories"
+msgstr "فئات القطع"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__item_category_id
+msgid "Item Category"
+msgstr "فئة القطعة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__write_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__write_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__write_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__write_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__write_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__write_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__write_uid
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__write_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__write_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__write_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__write_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__write_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__write_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__write_date
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Latest movements"
+msgstr "آخر الحركات"
+
+#. module: laundry_stock
+#: model:res.groups,name:laundry_stock.group_laundry_purchaser
+msgid "Laundry / Purchasing Officer"
+msgstr "المغسلة / مسؤول المشتريات"
+
+#. module: laundry_stock
+#: model:res.groups,name:laundry_stock.group_laundry_storekeeper
+msgid "Laundry / Store Keeper"
+msgstr "المغسلة / أمين المخزن"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_branch
+#: model:ir.model.fields,field_description:laundry_stock.field_stock_location__laundry_branch_id
+#: model:ir.model.fields,field_description:laundry_stock.field_stock_warehouse__laundry_branch_ids
+msgid "Laundry Branch"
+msgstr "فرع المغسلة"
+
+#. module: laundry_stock
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_branch_config
+msgid "Laundry Branches"
+msgstr "فروع المغسلة"
+
+#. module: laundry_stock
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_consumption_report
+msgid "Laundry Consumption"
+msgstr "استهلاك المغسلة"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_detergent_powder
+msgid "Laundry Detergent Powder"
+msgstr "مسحوق غسيل"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_stock_dashboard
+msgid "Laundry Inventory Dashboard"
+msgstr "لوحة مخزون المغسلة"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_item_category
+msgid "Laundry Item Category"
+msgstr "فئة قطع الغسيل"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_machine
+msgid "Laundry Machine"
+msgstr "معدة المغسلة"
+
+#. module: laundry_stock
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_machine
+msgid "Laundry Machines"
+msgstr "معدات المغسلة"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_order
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__laundry_order_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__laundry_order_id
+msgid "Laundry Order"
+msgstr "طلب غسيل"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_product_attribute__is_laundry_service
+msgid "Laundry Service Attribute"
+msgstr "خاصية خدمة المغسلة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_product_category__laundry_zone_code
+#: model:ir.model.fields,field_description:laundry_stock.field_stock_location__laundry_zone_code
+msgid "Laundry Storage Zone"
+msgstr "منطقة التخزين"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_form_laundry_supply
+msgid "Laundry Store"
+msgstr "مخزن المغسلة"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_supply_product
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_supply_product
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_list_laundry_supply
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_search_laundry_supply
+msgid "Laundry Supplies"
+msgstr "مستلزمات المغسلة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_product_product__is_laundry_supply
+#: model:ir.model.fields,field_description:laundry_stock.field_product_template__is_laundry_supply
+msgid "Laundry Supply"
+msgstr "مستلزم مغسلة"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_opening_stock_form
+msgid "Lay Out the Count"
+msgstr "تجهيز ورقة الجرد"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_opening_stock_form
+msgid ""
+"Lays out a count line for every laundry supply, in the zone\n"
+"                    it belongs to. Type what is on the shelf in the\n"
+"                    <b>Counted Quantity</b> column, then press <b>Apply</b>."
+msgstr "يجهّز بند جرد لكل مستلزم في المنطقة التابع لها. أدخل ما هو موجود على الرف في عمود <b>الكمية المجرودة</b> ثم اضغط <b>تطبيق</b>."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_consumption_norm__branch_id
+msgid "Leave empty to apply to every branch."
+msgstr "اتركه فارغاً ليطبق على كل الفروع."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_consumption_norm__item_category_id
+msgid "Leave empty to apply to every item category."
+msgstr "اتركه فارغاً ليطبق على كل فئات القطع."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_consumption_norm__service_type_id
+msgid "Leave empty to apply to every service."
+msgstr "اتركه فارغاً ليطبق على كل الخدمات."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_opening_stock__categ_ids
+msgid "Leave empty to lay out every supply category."
+msgstr "اتركه فارغاً ليجهّز كل فئات المستلزمات."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_pos_consumption__pos_config_ids
+msgid "Leave empty to read every point of sale."
+msgstr "اتركه فارغاً ليقرأ كل نقاط البيع."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__linen
+msgid "Linen & Uniform"
+msgstr "بياضات ويونيفورم"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_category__laundry_zone_code__linen
+#: model:ir.model.fields.selection,name:laundry_stock.selection__stock_location__laundry_zone_code__linen
+msgid "Linen & Uniforms"
+msgstr "بياضات ويونيفورم"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_detergent_liquid
+msgid "Liquid Laundry Detergent"
+msgstr "منظف غسيل سائل"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_starch
+msgid "Liquid Starch"
+msgstr "نشا سائل"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_list
+msgid "Load Starter Norms"
+msgstr "تحميل معدلات مبدئية"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Loading…"
+msgstr "جارٍ التحميل…"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__machine_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__machine_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_form
+msgid "Machine"
+msgstr "المعدة"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_drive_belt
+msgid "Machine Drive Belt"
+msgstr "سير تشغيل الماكينة"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_machine_oil
+msgid "Machine Lubricant Oil"
+msgstr "زيت تشحيم المكائن"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_report__purpose__maintenance
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__purpose__maintenance
+msgid "Machine Maintenance"
+msgstr "صيانة المعدات"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_machine
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_list
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_search
+msgid "Machines"
+msgstr "المعدات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__store_location_id
+msgid "Main Store"
+msgstr "المخزن الرئيسي"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_form
+msgid "Maintenance"
+msgstr "صيانة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__product_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__product_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+msgid "Material"
+msgstr "المادة"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_graph
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_list
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_pivot
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+msgid "Material Consumption"
+msgstr "استهلاك المواد"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_consumption_report
+msgid "Material Consumption Analysis"
+msgstr "تحليل استهلاك المواد"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_consumption_norm
+msgid "Material Consumption Norm"
+msgstr "معدل استهلاك المواد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_order__material_cost
+msgid "Material Cost"
+msgstr "تكلفة المواد"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_order.py:0
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#: model:ir.model,name:laundry_stock.model_laundry_stock_issue
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+#, python-format
+msgid "Material Issue"
+msgstr "صرف مواد"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_stock_issue_line
+msgid "Material Issue Line"
+msgstr "بند صرف المواد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__issue_picking_type_id
+msgid "Material Issue Operation"
+msgstr "عملية صرف المواد"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_stock_issue
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__issue_ids
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_order__stock_issue_ids
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_stock_issue
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_order_form_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_list
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Material Issues"
+msgstr "صرف المواد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__preview
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__line_ids
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_order_form_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_pos_consumption_form
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Materials"
+msgstr "المواد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_order__materials_issued
+msgid "Materials Issued"
+msgstr "تم صرف المواد"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "Materials issued through transfer %s."
+msgstr "تم صرف المواد بالتحويل %s."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_product_product__laundry_max_qty
+#: model:ir.model.fields,field_description:laundry_stock.field_product_template__laundry_max_qty
+msgid "Max Qty per Branch"
+msgstr "الحد الأقصى لكل فرع"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_has_error
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_ids
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_product_product__laundry_min_qty
+#: model:ir.model.fields,field_description:laundry_stock.field_product_template__laundry_min_qty
+msgid "Min Qty per Branch"
+msgstr "الحد الأدنى لكل فرع"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Minimum"
+msgstr "الحد الأدنى"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+msgid "Month"
+msgstr "الشهر"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Most used materials"
+msgstr "أكثر المواد استهلاكاً"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__my_activity_date_deadline
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "الموعد النهائي لنشاطي"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+msgid "My Requests"
+msgstr "طلباتي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__date_required
+msgid "Needed By"
+msgstr "مطلوب بحلول"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "New"
+msgstr "جديد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_date_deadline
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "الموعد النهائي للنشاط التالي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_summary
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_summary
+msgid "Next Activity Summary"
+msgstr "ملخص النشاط التالي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_type_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_type_id
+msgid "Next Activity Type"
+msgstr "نوع النشاط التالي"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/product_template.py:0
+#, python-format
+msgid ""
+"No branch has a warehouse yet. Set the branch warehouses up first, from "
+"Laundry > Configuration > Branches."
+msgstr "لا يوجد فرع له مخزن بعد. جهّز مخازن الفروع أولاً من المغسلة > الإعدادات > الفروع."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid ""
+"No consumption norm matches this order. Define the norms under Laundry > "
+"Configuration > Consumption Norms."
+msgstr "لا يوجد معدل استهلاك مطابق لهذا الطلب. عرّف المعدلات من المغسلة > الإعدادات > معدلات الاستهلاك."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#, python-format
+msgid "No consumption norm matches what was sold in this period."
+msgstr "لا يوجد معدل استهلاك مطابق لما بيع في هذه الفترة."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#, python-format
+msgid ""
+"No consumption norm matches what was sold in this period. Set the norms "
+"first, under Laundry > Inventory > Configuration > Consumption Norms."
+msgstr "لا يوجد معدل استهلاك مطابق لما بيع في هذه الفترة. عرّف المعدلات أولاً من المغسلة > المخزون > الإعدادات > معدلات الاستهلاك."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "No material has been issued yet."
+msgstr "لم يُصرف أي مواد بعد."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "No material issue yet."
+msgstr "لا توجد عمليات صرف بعد."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_consumption_norm.py:0
+#, python-format
+msgid ""
+"No service attribute was found. Tick \"Laundry Service Attribute\" on the "
+"product attribute that carries the service."
+msgstr "لم يتم العثور على خاصية الخدمة. فعّل \"خاصية خدمة المغسلة\" على خاصية المنتج التي تحمل الخدمة."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "No transfer is attached to this document yet."
+msgstr "لا يوجد تحويل مرتبط بهذا المستند بعد."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#, python-format
+msgid "No weight on: %s — their per-kilogram norms were skipped."
+msgstr "لا يوجد وزن لـ: %s — تم تخطي معدلاتها المحسوبة بالكيلوجرام."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#, python-format
+msgid "No weight on: %s."
+msgstr "لا يوجد وزن لـ: %s."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_purchase_request__priority__0
+msgid "Normal"
+msgstr "عادي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__is_excluded
+msgid "Not Used"
+msgstr "غير مستخدم"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__note
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__note
+msgid "Note"
+msgstr "ملاحظة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__note
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__note
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__note
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_form
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Notes"
+msgstr "ملاحظات"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Nothing consumed in this period."
+msgstr "لا يوجد استهلاك في هذه الفترة."
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_consumption_report
+msgid "Nothing consumed yet"
+msgstr "لا يوجد استهلاك بعد"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_stock_quant
+msgid "Nothing in the store yet"
+msgstr "لا يوجد شيء في المخزن بعد"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#, python-format
+msgid "Nothing was sold in this period."
+msgstr "لا توجد مبيعات في هذه الفترة."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_needaction_counter
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_has_error_counter
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__message_needaction_counter
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلب إجراءً"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__message_has_error_counter
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل ذات خطأ التسليم"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__qty_available
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__available_qty
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_list_laundry_supply
+msgid "On Hand"
+msgstr "المتاح"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "On hand"
+msgstr "المتاح"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_consumption_norm__garment_product_id
+msgid ""
+"One specific item sold at the counter. Leave empty to apply to every item of"
+" the category."
+msgstr "صنف بعينه من أصناف الكاشير. اتركه فارغاً ليطبق على كل أصناف الفئة."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid "Only a branch manager or a purchasing officer can approve a request."
+msgstr "لا يعتمد الطلب إلا مدير الفرع أو مسؤول المشتريات."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "Only a draft document can be issued."
+msgstr "لا يُصرف إلا مستند في حالة مسودة."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid "Only a draft, cancelled or rejected request can be deleted."
+msgstr "لا يُحذف إلا الطلب المسودة أو الملغي أو المرفوض."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_opening_stock
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_opening_stock
+#, python-format
+msgid "Opening Stock"
+msgstr "أرصدة أول المدة"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_opening_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_opening_stock_form
+msgid "Opening Stock Count"
+msgstr "جرد أرصدة أول المدة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__operation_type
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__operation_type
+msgid "Operation"
+msgstr "نوع الحركة"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_report__purpose__other
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__purpose__other
+msgid "Other"
+msgstr "أخرى"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_machine__machine_type__other
+msgid "Other Equipment"
+msgstr "معدات أخرى"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__other
+msgid "Other Supply"
+msgstr "مستلزم آخر"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_search_laundry_supply
+#, python-format
+msgid "Out of Stock"
+msgstr "نفد من المخزن"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_bleach_oxygen
+msgid "Oxygen Bleach Powder"
+msgstr "مبيض أكسجيني بودرة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__service_value_id
+msgid "POS Service"
+msgstr "خدمة نقطة البيع"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_category__laundry_zone_code__pack
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__packaging
+#: model:ir.model.fields.selection,name:laundry_stock.selection__stock_location__laundry_zone_code__pack
+msgid "Packaging & Covers"
+msgstr "تغليف وأغطية"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_branch__auto_consume_state__packing
+msgid "Packing"
+msgstr "التعبئة"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_packing_tissue
+msgid "Packing Tissue Paper"
+msgstr "ورق تغليف"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_norm__basis__kg
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Per Kg"
+msgstr "لكل كجم"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_norm__basis__order
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Per Order"
+msgstr "لكل طلب"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_norm__basis__piece
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Per Piece"
+msgstr "لكل قطعة"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "Pick a laundry order first."
+msgstr "اختر طلب غسيل أولاً."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__piece_count
+msgid "Pieces"
+msgstr "عدد القطع"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_hanger_plastic
+msgid "Plastic Hanger"
+msgstr "شماعة بلاستيك"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__pos_config_ids
+msgid "Points of Sale"
+msgstr "نقاط البيع"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_poly_cover_roll
+msgid "Poly Garment Cover Roll"
+msgstr "رول أكياس تغليف الملابس"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_pos_consumption_form
+msgid "Prepare Issue"
+msgstr "تجهيز الصرف"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_machine__machine_type__press
+msgid "Press"
+msgstr "مكبس"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__priority
+msgid "Priority"
+msgstr "الأولوية"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_product_template
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__product_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_product_attribute
+msgid "Product Attribute"
+msgstr "خاصية المنتج"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_product_category
+msgid "Product Category"
+msgstr "فئة المنتج"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_product_product
+msgid "Product Variant"
+msgstr "متغير المنتج"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_report__purpose__production
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__purpose__production
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+msgid "Production"
+msgstr "الإنتاج"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__line_ids
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Products"
+msgstr "المنتجات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_product_category__laundry_zone_code
+msgid ""
+"Products of this category are stored in — and automatically put away to — "
+"this zone of every branch store."
+msgstr "منتجات هذه الفئة تُخزَّن — ويُوجَّه استلامها تلقائياً — إلى هذه المنطقة في مخزن كل فرع."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_form
+msgid "Purchase & Warranty"
+msgstr "الشراء والضمان"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__purchase_count
+msgid "Purchase Count"
+msgstr "عدد أوامر الشراء"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_purchase_order
+msgid "Purchase Order"
+msgstr "أمر شراء"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__purchase_order_ids
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Purchase Orders"
+msgstr "أوامر الشراء"
+
+#. module: laundry_stock
+#. odoo-javascript
+#. odoo-python
+#: code:addons/laundry_stock/models/purchase_order.py:0
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model:ir.model,name:laundry_stock.model_laundry_purchase_request
+#: model:ir.model.fields,field_description:laundry_stock.field_purchase_order__laundry_request_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+#, python-format
+msgid "Purchase Request"
+msgstr "طلب شراء"
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_laundry_purchase_request_line
+msgid "Purchase Request Line"
+msgstr "بند طلب الشراء"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_purchase_request
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_purchase_request
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_list
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+msgid "Purchase Requests"
+msgstr "طلبات الشراء"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_purchase_request__state__purchased
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+msgid "Purchased"
+msgstr "تم الشراء"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_form_laundry_supply
+msgid "Purchasing"
+msgstr "المشتريات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__purpose
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__purpose
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Purpose"
+msgstr "الغرض"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__qty
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__qty
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__product_qty
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__product_uom_qty
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_list
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_product_product__laundry_max_qty
+#: model:ir.model.fields,help:laundry_stock.field_product_template__laundry_max_qty
+msgid "Quantity a replenishment brings the branch store back up to."
+msgstr "الكمية التي يصل إليها مخزن الفرع بعد إعادة التوريد."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue_line__available_qty
+msgid "Quantity currently in the source location, in the unit of this line."
+msgstr "الكمية الموجودة حالياً في موقع الصرف، بوحدة هذا البند."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "Quantity must be above zero for \"%s\"."
+msgstr "الكمية يجب أن تكون أكبر من صفر في \"%s\"."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_product_product__laundry_min_qty
+#: model:ir.model.fields,help:laundry_stock.field_product_template__laundry_min_qty
+msgid ""
+"Quantity that should always be on hand in each branch store. Used to "
+"generate reordering rules."
+msgstr "الكمية التي يجب توفرها دائماً في مخزن كل فرع، وتُستخدم لإنشاء قواعد إعادة الطلب."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__rating_ids
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__rating_ids
+msgid "Ratings"
+msgstr "التقييمات"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_pos_consumption_form
+msgid ""
+"Reads what the counter sold over the period, applies the\n"
+"                    consumption norms, and prepares one material issue you can\n"
+"                    check before confirming."
+msgstr "يقرأ ما باعه الكاشير خلال الفترة، ويطبّق معدلات الاستهلاك، ويجهّز مستند صرف واحد تراجعه قبل التأكيد."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_branch__auto_consume_state__ready
+msgid "Ready"
+msgstr "جاهز"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__reason
+msgid "Reason"
+msgstr "السبب"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_stock_receipt
+msgid "Receipts"
+msgstr "الاستلام"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_stock_quant
+msgid ""
+"Receive a purchase order, or count the store, and the quantities\n"
+"               show up here."
+msgstr "استلم أمر شراء أو اجرد المخزن، وستظهر الكميات هنا."
+
+#. module: laundry_stock
+#: model:res.groups,comment:laundry_stock.group_laundry_storekeeper
+msgid ""
+"Receives goods, issues materials to the floor\n"
+"                and counts the branch store."
+msgstr "يستلم البضائع ويصرف المواد للتشغيل ويجرد مخزن الفرع."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__name
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__name
+msgid "Reference"
+msgstr "المرجع"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Refresh"
+msgstr "تحديث"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_machine
+msgid "Register a machine"
+msgstr "سجّل معدة"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Reject"
+msgstr "رفض"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_purchase_request__state__rejected
+msgid "Rejected"
+msgstr "مرفوض"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_stock_reordering
+msgid "Reordering Rules"
+msgstr "قواعد إعادة الطلب"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__request_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Request"
+msgstr "الطلب"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__date_request
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+msgid "Request Date"
+msgstr "تاريخ الطلب"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__user_id
+msgid "Requested By"
+msgstr "مقدم الطلب"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_purchase_request_to_approve
+#: model:ir.ui.menu,name:laundry_stock.menu_laundry_purchase_request_to_approve
+msgid "Requests to Approve"
+msgstr "طلبات بانتظار الاعتماد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__activity_user_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__activity_user_id
+msgid "Responsible User"
+msgstr "المستخدم المسؤول"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_consumption_report__operation_type__return
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__operation_type__return
+msgid "Return to Store"
+msgstr "إرجاع للمخزن"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Returns"
+msgstr "المرتجعات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__message_has_sms_error
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "خطأ في إرسال الرسالة النصية"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_safety_pin
+msgid "Safety Pins (Box)"
+msgstr "مشابك أمان (علبة)"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__product_categ_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Sales Category"
+msgstr "فئة المبيعات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__pos_date_from
+msgid "Sales From"
+msgstr "مبيعات من"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Sales Period"
+msgstr "فترة المبيعات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__pos_date_to
+msgid "Sales To"
+msgstr "مبيعات إلى"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "See all"
+msgstr "عرض الكل"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__sequence
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__sequence
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__sequence
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__serial_number
+msgid "Serial Number"
+msgstr "الرقم التسلسلي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__service_type_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Service"
+msgstr "الخدمة"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_service_towel
+msgid "Service Towel"
+msgstr "منشفة تشغيل"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_form
+msgid "Service history, settings, anything worth keeping."
+msgstr "سجل الصيانة والإعدادات وأي شيء يستحق التدوين."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_consumption_norm__service_value_id
+msgid ""
+"Service the garment was sold with at the counter. Leave empty to apply to "
+"every service."
+msgstr "الخدمة التي بيعت بها القطعة على الكاشير. اتركه فارغاً ليطبق على كل الخدمات."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid "Set Up Warehouse"
+msgstr "تجهيز المخزن"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_consumption_norm
+msgid "Set a norm"
+msgstr "عرّف معدلاً"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_stock_reordering
+msgid "Set a reordering rule"
+msgstr "عرّف قاعدة إعادة طلب"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_stock_location__laundry_zone_code
+msgid "Set on the sub-locations a branch store is split into."
+msgstr "تُحدَّد على المواقع الفرعية التي ينقسم إليها مخزن الفرع."
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_shirt_bag
+msgid "Shirt Packing Bag"
+msgstr "كيس تغليف قمصان"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__softener
+msgid "Softener & Starch"
+msgstr "منعم ونشا"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__garment_product_id
+msgid "Sold Item"
+msgstr "الصنف المُباع"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__line_count
+msgid "Sold Lines"
+msgstr "بنود مباعة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__source
+msgid "Source"
+msgstr "المصدر"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__spare
+msgid "Spare Part"
+msgstr "قطعة غيار"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_category__laundry_zone_code__spare
+#: model:ir.model.fields.selection,name:laundry_stock.selection__stock_location__laundry_zone_code__spare
+msgid "Spare Parts & Maintenance"
+msgstr "قطع غيار وصيانة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__maintenance_cost
+msgid "Spare Parts Cost"
+msgstr "تكلفة قطع الغيار"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__spotting
+#: model:product.template,name:laundry_stock.supply_spotting_chemical
+msgid "Spotting Chemical"
+msgstr "مزيل بقع"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_staff_uniform
+msgid "Staff Uniform"
+msgstr "يونيفورم العاملين"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_consumption_norm.py:0
+#, python-format
+msgid "Starter norms loaded"
+msgstr "تم تحميل المعدلات المبدئية"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_consumption_norm.py:0
+#: code:addons/laundry_stock/models/laundry_consumption_norm.py:0
+#, python-format
+msgid "Starting point — correct it from your own usage."
+msgstr "قيمة مبدئية — عدّلها حسب استهلاككم الفعلي."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__state
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__state
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__state
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__state
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Status"
+msgstr "الحالة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__activity_state
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"الحالة بناءً على الأنشطة
+"
+"متأخر: تجاوز تاريخ الاستحقاق
+"
+"اليوم: تاريخ النشاط هو اليوم
+"
+"مخطط: أنشطة مستقبلية."
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_steam_hose
+msgid "Steam Hose"
+msgstr "خرطوم بخار"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_form_laundry_supply
+msgid "Stock Levels per Branch"
+msgstr "مستويات المخزون لكل فرع"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Stock Movement"
+msgstr "الحركة المخزنية"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__supply_on_hand_value
+#, python-format
+msgid "Stock Value"
+msgstr "قيمة المخزون"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Stock by storage zone"
+msgstr "المخزون حسب منطقة التخزين"
+
+#. module: laundry_stock
+#: model:ir.actions.act_window,name:laundry_stock.action_laundry_stock_quant
+msgid "Stock on Hand"
+msgstr "الرصيد المتاح"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__zone_location_ids
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid "Storage Zones"
+msgstr "مناطق التخزين"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_branch.py:0
+#, python-format
+msgid ""
+"Storage zones, put-away rules and the material issue operation are in place."
+msgstr "تم تجهيز مناطق التخزين وقواعد التوزيع وعملية صرف المواد."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid "Store"
+msgstr "المخزن"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Submit for Approval"
+msgstr "إرسال للاعتماد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__price_subtotal
+msgid "Subtotal"
+msgstr "الإجمالي الفرعي"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Suggested"
+msgstr "المقترح"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__vendor_id
+msgid "Supplier"
+msgstr "المورد"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_opening_stock__product_count
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid "Supplies"
+msgstr "المستلزمات"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__supply_product_count
+msgid "Supplies in Stock"
+msgstr "مستلزمات في المخزن"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "Supplies, consumption and purchasing at a glance"
+msgstr "المستلزمات والاستهلاك والمشتريات في نظرة واحدة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__product_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_norm_search
+msgid "Supply"
+msgstr "المستلزم"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_product_product__laundry_supply_type
+#: model:ir.model.fields,field_description:laundry_stock.field_product_template__laundry_supply_type
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_search_laundry_supply
+msgid "Supply Type"
+msgstr "نوع المستلزم"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__product_template__laundry_supply_type__tag
+msgid "Tags & Labels"
+msgstr "بطاقات وملصقات"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_iron_cover
+msgid "Teflon Iron Cover"
+msgstr "غطاء مكواة تفلون"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#, python-format
+msgid "The end date comes before the start date."
+msgstr "تاريخ النهاية قبل تاريخ البداية."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_dashboard.py:0
+#, python-format
+msgid ""
+"The inventory dashboard is for the store keepers and the branch managers."
+msgstr "لوحة المخزون متاحة لأمناء المخزن ومديري الفروع."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_order.py:0
+#, python-format
+msgid "The materials of this order could not be issued automatically: %s"
+msgstr "تعذّر صرف مواد هذا الطلب تلقائياً: %s"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_form_laundry_supply
+msgid ""
+"The minimum is the quantity every branch store should\n"
+"                        always have. The maximum is what a replenishment brings\n"
+"                        it back up to."
+msgstr "الحد الأدنى هو الكمية التي يجب أن تتوفر دائماً في مخزن كل فرع، والحد الأقصى هو الكمية التي يصل إليها المخزن بعد إعادة التوريد."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_consumption_norm.py:0
+#, python-format
+msgid "The norm quantity must be above zero."
+msgstr "كمية المعدل يجب أن تكون أكبر من صفر."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid ""
+"The norms give a quantity too small to move for: %s.\n"
+"Issue those over several orders, or set the norm per order."
+msgstr ""
+"المعدلات تعطي كمية أصغر من أن تُصرف لـ: %s.
+"
+"اصرفها على عدة طلبات، أو اجعل المعدل لكل طلب."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_branch.py:0
+#, python-format
+msgid ""
+"The parent consumption location is missing. Upgrade the Laundry Inventory & "
+"Purchasing module and try again."
+msgstr "موقع الاستهلاك الرئيسي غير موجود. حدّث وحدة مخازن ومشتريات المغسلة ثم أعد المحاولة."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid "The request has to be approved before asking a vendor."
+msgstr "يجب اعتماد الطلب قبل مخاطبة المورد."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid ""
+"The store is set up but still counted as empty. Enter what is on the shelves"
+" to bring these figures to life."
+msgstr "المخزن مجهّز لكن رصيده ما زال صفراً. أدخل ما هو موجود على الرفوف لتصبح هذه الأرقام حقيقية."
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "The store is still empty — enter the opening stock."
+msgstr "المخزن ما زال فارغاً — أدخل أرصدة أول المدة."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_consumption_norm__is_excluded
+msgid ""
+"The supply is not used in this scope at all — a blanket takes no hanger. It "
+"cancels a more general norm for the same supply."
+msgstr "المستلزم لا يُستخدم في هذا النطاق إطلاقاً — البطانية لا تأخذ شماعة. وهو يلغي أي معدل أعم لنفس المستلزم."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid "The warehouse of branch \"%s\" has no receipt operation type."
+msgstr "مخزن الفرع \"%s\" ليس له عملية استلام."
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_receipt_roll
+msgid "Thermal Receipt Roll"
+msgstr "رول فواتير حراري"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid "These lines carry no quantity to move: %s"
+msgstr "هذه البنود بلا كمية قابلة للصرف: %s"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid ""
+"These lines have no vendor yet:\n"
+"%s\n"
+"\n"
+"Set a vendor on the line, or add one on the product, and try again."
+msgstr ""
+"هذه البنود بلا مورد:
+"
+"%s
+"
+"
+"
+"حدد مورداً في البند أو أضف مورداً للمنتج ثم أعد المحاولة."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "This Month"
+msgstr "هذا الشهر"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_consumption_report_search
+msgid "This Year"
+msgstr "هذه السنة"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid ""
+"This branch has no warehouse laid out yet. Open the branch and press “Set Up"
+" Warehouse”."
+msgstr "هذا الفرع ليس له مخزن مجهّز بعد. افتح الفرع واضغط «تجهيز المخزن»."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid ""
+"This branch has no warehouse laid out yet. Use\n"
+"                    <b>Set Up Warehouse</b> to create its store, its storage\n"
+"                    zones and its material issue operation."
+msgstr "هذا الفرع ليس له مخزن مجهّز بعد. استخدم <b>تجهيز المخزن</b> لإنشاء مخزنه ومناطق التخزين وعملية صرف المواد."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#, python-format
+msgid ""
+"This document is already issued. Register a return to put the materials back"
+" into the store."
+msgstr "تم صرف هذا المستند بالفعل. سجّل مرتجعاً لإعادة المواد إلى المخزن."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_order.py:0
+#, python-format
+msgid "This order has no branch."
+msgstr "هذا الطلب بلا فرع."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/wizard/laundry_pos_consumption.py:0
+#, python-format
+msgid ""
+"This period was already issued: %s.\n"
+"Tick \"Issue Anyway\" to do it again."
+msgstr ""
+"تم صرف هذه الفترة من قبل: %s.
+"
+"فعّل \"اصرف على أي حال\" لتكرارها."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid ""
+"This posts a stock transfer and takes the materials out of the store. "
+"Continue?"
+msgstr "سيتم ترحيل تحويل مخزني وإخراج المواد من المخزن. هل تريد المتابعة؟"
+
+#. module: laundry_stock
+#: model:ir.model.constraint,message:laundry_stock.constraint_laundry_branch_warehouse_uniq
+msgid "This warehouse is already used by another branch."
+msgstr "هذا المخزن مرتبط بفرع آخر بالفعل."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_pos_consumption__ignore_overlap
+msgid "Tick it to issue a period that was already issued once."
+msgstr "فعّله لصرف فترة سبق صرفها."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_product_attribute__is_laundry_service
+msgid ""
+"Tick the attribute that says which service a garment is sold with — ironing,"
+" wash & iron, deep clean. Consumption norms can then be set per service."
+msgstr "فعّل الخاصية التي تحدد الخدمة المباعة مع القطعة — كوي، غسيل وكوي، تنظيف عميق. عندها يمكن تعريف معدلات الاستهلاك لكل خدمة."
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_pos_consumption__date_to
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__location_dest_id
+msgid "To"
+msgstr "إلى"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_purchase_request__state__to_approve
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+msgid "To Approve"
+msgstr "بانتظار الاعتماد"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__low_stock_count
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+#, python-format
+msgid "To Reorder"
+msgstr "يحتاج إعادة طلب"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_search
+msgid "Today"
+msgstr "اليوم"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_form
+msgid "Total"
+msgstr "الإجمالي"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__total_cost
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_stock_issue_list
+msgid "Total Cost"
+msgstr "إجمالي التكلفة"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_issue.py:0
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__picking_id
+#, python-format
+msgid "Transfer"
+msgstr "التحويل"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_hanger_clip
+msgid "Trouser Clip Hanger"
+msgstr "شماعة بمشابك للبنطلون"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__machine_type
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_search
+msgid "Type"
+msgstr "النوع"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__activity_exception_decoration
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "نوع النشاط الاستثنائي في السجل."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_item_category__avg_weight_kg
+msgid ""
+"Typical weight of one piece. Chemical doses expressed per kilogram are "
+"converted with it."
+msgstr "الوزن المعتاد للقطعة الواحدة، وتُحوَّل به الجرعات المحسوبة بالكيلوجرام."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_search
+msgid "Under Warranty"
+msgstr "تحت الضمان"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_norm__product_uom_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_consumption_report__product_uom_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__product_uom_id
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__product_uom_id
+msgid "Unit"
+msgstr "الوحدة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue_line__unit_cost
+msgid "Unit Cost"
+msgstr "تكلفة الوحدة"
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_stock_dashboard.py:0
+#, python-format
+msgid "Unzoned"
+msgstr "بلا منطقة"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_purchase_request__priority__1
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_search
+msgid "Urgent"
+msgstr "عاجل"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request_line__partner_id
+msgid "Vendor"
+msgstr "المورد"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_product_template_list_laundry_supply
+msgid "Vendors"
+msgstr "الموردون"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_branch__consumption_location_id
+msgid ""
+"Virtual location the materials consumed by this branch are moved to. What "
+"lands here is what the branch has used up."
+msgstr "الموقع الافتراضي الذي تُنقل إليه المواد المستهلكة في هذا الفرع، وما يصل إليه هو ما استهلكه الفرع فعلياً."
+
+#. module: laundry_stock
+#: model:ir.model,name:laundry_stock.model_stock_warehouse
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__warehouse_id
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_branch_form_stock
+msgid "Warehouse"
+msgstr "المخزن"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_branch__is_warehouse_ready
+msgid "Warehouse Ready"
+msgstr "المخزن جاهز"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_branch__warehouse_id
+msgid "Warehouse holding the supplies of this branch."
+msgstr "المخزن الذي يحتفظ بمستلزمات هذا الفرع."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_branch.py:0
+#, python-format
+msgid "Warehouse ready"
+msgstr "المخزن جاهز"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_machine__warranty_end
+msgid "Warranty Ends"
+msgstr "انتهاء الضمان"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_machine_form
+msgid "Washer 1"
+msgstr "غسالة ١"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_drain_valve
+msgid "Washer Drain Valve"
+msgstr "صمام تصريف الغسالة"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_machine
+msgid ""
+"Washers, dryers, ironers and boilers. Spare parts issued for\n"
+"               maintenance are charged to the machine they went into."
+msgstr "الغسالات والمجففات والمكاوي والبويلرات. قطع الغيار المصروفة للصيانة تُحمَّل على المعدة التي رُكّبت فيها."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_branch__auto_consume_state__washing
+msgid "Washing"
+msgstr "الغسيل"
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_machine__machine_type__washer
+msgid "Washing Machine"
+msgstr "غسالة"
+
+#. module: laundry_stock
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_purchase_request__website_message_ids
+#: model:ir.model.fields,field_description:laundry_stock.field_laundry_stock_issue__website_message_ids
+msgid "Website Messages"
+msgstr "رسائل الموقع الإلكتروني"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__website_message_ids
+#: model:ir.model.fields,help:laundry_stock.field_laundry_stock_issue__website_message_ids
+msgid "Website communication history"
+msgstr "سجل التواصل عبر الموقع"
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_order__estimated_material_cost
+msgid "What the consumption norms say this order should use."
+msgstr "ما تتوقعه معدلات الاستهلاك أن يستهلكه هذا الطلب."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_order__material_cost
+msgid "What the materials actually issued for this order cost."
+msgstr "تكلفة المواد التي صُرفت فعلياً لهذا الطلب."
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Why it was rejected"
+msgstr "سبب الرفض"
+
+#. module: laundry_stock
+#: model_terms:ir.ui.view,arch_db:laundry_stock.view_laundry_purchase_request_form
+msgid "Why the branch needs this."
+msgstr "سبب احتياج الفرع لهذا الطلب."
+
+#. module: laundry_stock
+#: model:ir.model.fields,help:laundry_stock.field_laundry_purchase_request__reason
+msgid "Why the request was rejected."
+msgstr "سبب رفض الطلب."
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_hanger_wire
+msgid "Wire Hanger"
+msgstr "شماعة سلك"
+
+#. module: laundry_stock
+#: model:product.template,name:laundry_stock.supply_gloves
+msgid "Work Gloves (Pair)"
+msgstr "قفازات عمل (زوج)"
+
+#. module: laundry_stock
+#: model_terms:ir.actions.act_window,help:laundry_stock.action_laundry_stock_issue
+msgid ""
+"Write down what leaves the branch store — detergent, packaging,\n"
+"               spare parts. Confirming posts the stock transfer, so what the\n"
+"               system says is on hand is what is on the shelf."
+msgstr "سجّل ما يخرج من مخزن الفرع — منظفات وتغليف وقطع غيار. التأكيد يُرحّل التحويل المخزني، فيبقى رصيد النظام مطابقاً لما على الرف."
+
+#. module: laundry_stock
+#. odoo-python
+#: code:addons/laundry_stock/models/laundry_purchase_request.py:0
+#, python-format
+msgid "Write the reason of the rejection before rejecting the request."
+msgstr "اكتب سبب الرفض قبل رفض الطلب."
+
+#. module: laundry_stock
+#: model:ir.model.fields.selection,name:laundry_stock.selection__laundry_stock_issue__source__manual
+msgid "Written by Hand"
+msgstr "مُدخل يدوياً"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "below the minimum"
+msgstr "تحت الحد الأدنى"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "issue documents"
+msgstr "مستند صرف"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "items"
+msgstr "صنف"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "last three months"
+msgstr "آخر ثلاثة شهور"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "line(s)"
+msgstr "بند"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "nothing left on the shelf"
+msgstr "لا يوجد منه على الرف"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "purchase requests"
+msgstr "طلب شراء"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "receipts not validated"
+msgstr "استلام لم يُصدَّق"
+
+#. module: laundry_stock
+#. odoo-javascript
+#: code:addons/laundry_stock/static/src/js/laundry_stock_dashboard.js:0
+#, python-format
+msgid "supplies in stock"
+msgstr "مستلزم في المخزن"

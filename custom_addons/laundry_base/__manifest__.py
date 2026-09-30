@@ -2,7 +2,7 @@
 {
     'name': 'Laundry Base',
     'name_ar': 'نظام المغسلة - الأساس',
-    'version': '17.0.1.0.0',
+    'version': '17.0.1.1.0',
     'category': 'Point of Sale',
     'summary': 'Core models for Laundry POS Operations - Farha Laundry',
     'author': 'TelNova Solutions',

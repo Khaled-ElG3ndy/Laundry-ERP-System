@@ -9,7 +9,7 @@ class LaundryLoyaltyProgram(models.Model):
     _name = 'laundry.loyalty.program'
     _description = 'Laundry Loyalty Program'
 
-    name           = fields.Char(required=True, default='برنامج الولاء')
+    name           = fields.Char(required=True, default='Loyalty Program')
     active         = fields.Boolean(default=True)
     points_per_sar = fields.Float(string='Points per SAR', default=1.0)
     sar_per_point  = fields.Float(string='SAR per Point', default=0.1)
@@ -35,9 +35,9 @@ class LaundryLoyaltyCard(models.Model):
     total_earned   = fields.Float(string='Total Earned', default=0.0, readonly=True)
     total_redeemed = fields.Float(string='Total Redeemed', default=0.0, readonly=True)
     tier           = fields.Selection([
-        ('silver', '🥈 Silver / فضي'),
-        ('gold',   '🥇 Gold / ذهبي'),
-        ('vip',    '💎 VIP / كبار العملاء'),
+        ('silver', '🥈 Silver'),
+        ('gold',   '🥇 Gold'),
+        ('vip',    '💎 VIP'),
     ], string='Tier', compute='_compute_tier', store=True)
     active         = fields.Boolean(default=True)
     log_ids        = fields.One2many('laundry.loyalty.log', 'card_id', string='History')
@@ -71,7 +71,7 @@ class LaundryLoyaltyCard(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Orders / الطلبات',
+            'name': 'Orders',
             'res_model': 'laundry.order',
             'view_mode': 'list,form',
             'domain': [('partner_id', '=', self.partner_id.id)],
@@ -107,11 +107,11 @@ class LaundryLoyaltyCard(models.Model):
             raise UserError(_('No active loyalty program.'))
         if points_to_use > self.points:
             raise UserError(_(
-                'رصيد النقاط غير كافٍ. الرصيد الحالي: %.0f نقطة'
+                'Not enough points. Current balance: %.0f point(s)'
             ) % self.points)
         if points_to_use < program.min_redeem:
             raise UserError(_(
-                'الحد الأدنى للاستبدال: %d نقطة'
+                'Minimum to redeem: %d point(s)'
             ) % program.min_redeem)
         sar_discount = round(points_to_use * program.sar_per_point, 2)
         self.write({
@@ -147,7 +147,7 @@ class LaundryLoyaltyCard(models.Model):
                     'type':    'earn',
                     'points':  program.welcome_points,
                     'balance': program.welcome_points,
-                    'reason':  'نقاط الترحيب / Welcome points',
+                    'reason':  'Welcome points',
                 })
         return card
 

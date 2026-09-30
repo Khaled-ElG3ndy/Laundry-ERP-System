@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_purchase_order_form_laundry" model="ir.ui.view">
+        <field name="name">purchase.order.form.laundry</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_ref" position="after">
+                <field name="branch_id" options="{'no_create': True}"/>
+                <field name="laundry_request_id" readonly="1"
+                       invisible="not laundry_request_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_list_laundry" model="ir.ui.view">
+        <field name="name">purchase.order.list.laundry</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="branch_id" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_purchase_order_search_laundry" model="ir.ui.view">
+        <field name="name">purchase.order.search.laundry</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="branch_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="laundry_stock.Dashboard" owl="1">
+<div class="lfs-dash" t-att-dir="direction">
+
+    <!-- ── HEADER ─────────────────────────────────────── -->
+    <header class="lfs-head">
+        <div class="lfs-head-brand">
+            <div class="lfs-head-icon"><LfsIcon name="'grid'"/></div>
+            <div>
+                <h1 class="lfs-head-title" t-esc="text.title"/>
+                <p class="lfs-head-sub" t-esc="text.subtitle"/>
+            </div>
+        </div>
+        <div class="lfs-head-tools">
+            <select class="lfs-select" t-on-change="onBranchChange">
+                <option value="" t-esc="text.allBranches"/>
+                <t t-if="state.data">
+                    <option t-foreach="state.data.branches" t-as="branch"
+                            t-key="branch.id" t-att-value="branch.id"
+                            t-att-selected="state.branchId === branch.id"
+                            t-esc="branch.name"/>
+                </t>
+            </select>
+            <button class="lfs-icon-btn" t-on-click="onRefresh"
+                    t-att-title="text.refresh"><LfsIcon name="'refresh'"/></button>
+        </div>
+    </header>
+
+    <!-- ── STATES ─────────────────────────────────────── -->
+    <div t-if="state.loading" class="lfs-loading">
+        <div class="lfs-spinner"/>
+        <span t-esc="text.loading"/>
+    </div>
+
+    <div t-elif="state.error" class="lfs-error">
+        <span class="lfs-error-icon"><LfsIcon name="'alert-triangle'"/></span>
+        <span t-esc="state.error"/>
+    </div>
+
+    <t t-else="">
+        <div t-if="!state.data.ready" class="lfs-warn" t-esc="text.notReady"/>
+
+        <div t-elif="needsOpening" class="lfs-hint">
+            <span class="lfs-hint-icon"><LfsIcon name="'info'"/></span>
+            <span class="lfs-hint-text" t-esc="text.needsOpening"/>
+            <button class="lfs-hint-cta" t-on-click="onOpening">
+                <span t-esc="text.needsOpeningCta"/>
+                <LfsIcon name="'arrow-end'"/>
+            </button>
+        </div>
+
+        <!-- ── QUICK ACTIONS ──────────────────────────── -->
+        <div class="lfs-actions">
+            <button class="lfs-action primary" t-on-click="onIssueFromSales">
+                <span t-esc="text.actionIssueFromSales"/>
+                <span class="lfs-action-icon"><LfsIcon name="'file-text'"/></span>
+            </button>
+            <button class="lfs-action" t-on-click="onIssue">
+                <span t-esc="text.actionIssue"/>
+                <span class="lfs-action-icon"><LfsIcon name="'upload'"/></span>
+            </button>
+            <button class="lfs-action" t-on-click="onRequest">
+                <span t-esc="text.actionRequest"/>
+                <span class="lfs-action-icon"><LfsIcon name="'cart'"/></span>
+            </button>
+            <button class="lfs-action" t-on-click="onCount">
+                <span t-esc="text.actionCount"/>
+                <span class="lfs-action-icon"><LfsIcon name="'hash'"/></span>
+            </button>
+            <button class="lfs-action" t-on-click="onOpening">
+                <span t-esc="text.actionOpening"/>
+                <span class="lfs-action-icon"><LfsIcon name="'clipboard'"/></span>
+            </button>
+            <button class="lfs-action" t-on-click="onReport">
+                <span t-esc="text.actionReport"/>
+                <span class="lfs-action-icon"><LfsIcon name="'trending-up'"/></span>
+            </button>
+        </div>
+
+        <!-- ── KPI TILES ──────────────────────────────── -->
+        <div class="lfs-kpis">
+            <button class="lfs-kpi blue" t-on-click="onStock">
+                <span class="lfs-kpi-mark"><LfsIcon name="'layers'"/></span>
+                <span class="lfs-kpi-value" t-esc="money(state.data.kpis.stock_value)"/>
+                <span class="lfs-kpi-label" t-esc="text.stockValue"/>
+                <span class="lfs-kpi-hint">
+                    <t t-esc="state.data.kpis.supply_count"/>
+                    <t t-esc="' '"/>
+                    <t t-esc="text.stockValueHint"/>
+                </span>
+            <span class="lfs-kpi-go"><LfsIcon name="'chevron'"/></span>
+            </button>
+
+            <button class="lfs-kpi amber" t-on-click="onOpenReorder">
+                <span class="lfs-kpi-mark"><LfsIcon name="'alert-triangle'"/></span>
+                <span class="lfs-kpi-value" t-esc="state.data.kpis.to_reorder"/>
+                <span class="lfs-kpi-label" t-esc="text.toReorder"/>
+                <span class="lfs-kpi-hint" t-esc="text.toReorderHint"/>
+            <span class="lfs-kpi-go"><LfsIcon name="'chevron'"/></span>
+            </button>
+
+            <button class="lfs-kpi red" t-on-click="onStock">
+                <span class="lfs-kpi-mark"><LfsIcon name="'x-octagon'"/></span>
+                <span class="lfs-kpi-value" t-esc="state.data.kpis.out_of_stock"/>
+                <span class="lfs-kpi-label" t-esc="text.outOfStock"/>
+                <span class="lfs-kpi-hint" t-esc="text.outOfStockHint"/>
+            <span class="lfs-kpi-go"><LfsIcon name="'chevron'"/></span>
+            </button>
+
+            <button class="lfs-kpi cyan" t-on-click="onReport">
+                <span class="lfs-kpi-mark"><LfsIcon name="'activity'"/></span>
+                <span class="lfs-kpi-value" t-esc="money(state.data.kpis.month_cost)"/>
+                <span class="lfs-kpi-label" t-esc="text.monthCost"/>
+                <span class="lfs-kpi-hint">
+                    <t t-esc="state.data.kpis.month_documents"/>
+                    <t t-esc="' '"/>
+                    <t t-esc="text.monthCostHint"/>
+                </span>
+            <span class="lfs-kpi-go"><LfsIcon name="'chevron'"/></span>
+            </button>
+
+            <button class="lfs-kpi purple" t-on-click="onApprovals">
+                <span class="lfs-kpi-mark"><LfsIcon name="'check-square'"/></span>
+                <span class="lfs-kpi-value" t-esc="state.data.kpis.to_approve"/>
+                <span class="lfs-kpi-label" t-esc="text.toApprove"/>
+                <span class="lfs-kpi-hint" t-esc="text.toApproveHint"/>
+            <span class="lfs-kpi-go"><LfsIcon name="'chevron'"/></span>
+            </button>
+
+            <button class="lfs-kpi green" t-on-click="onIncoming">
+                <span class="lfs-kpi-mark"><LfsIcon name="'truck'"/></span>
+                <span class="lfs-kpi-value" t-esc="state.data.kpis.incoming"/>
+                <span class="lfs-kpi-label" t-esc="text.incoming"/>
+                <span class="lfs-kpi-hint" t-esc="text.incomingHint"/>
+                <span class="lfs-kpi-go"><LfsIcon name="'chevron'"/></span>
+            </button>
+        </div>
+
+        <!-- ── CHARTS ─────────────────────────────────── -->
+        <div class="lfs-grid">
+
+            <section class="lfs-card">
+                <div class="lfs-card-head">
+                    <h2 class="lfs-card-title"><span class="lfs-card-icon"><LfsIcon name="'bar-chart'"/></span><span t-esc="text.consumptionTitle"/></h2>
+                    <span class="lfs-card-figure" t-esc="money(monthlyTotal)"/>
+                </div>
+                <div t-if="monthlyHasData" class="lfs-columns">
+                    <div class="lfs-column" t-foreach="state.data.monthly" t-as="point"
+                         t-key="point_index">
+                        <div class="lfs-column-track">
+                            <div class="lfs-column-bar"
+                                 t-attf-style="height: {{ monthHeight(point) }}%">
+                                <span class="lfs-tip">
+                                    <t t-esc="point.full_label"/> · <t t-esc="money(point.cost)"/>
+                                </span>
+                            </div>
+                        </div>
+                        <span class="lfs-column-peak" t-if="isPeak(point)"
+                              t-esc="money(point.cost)"/>
+                        <span class="lfs-column-label" t-esc="point.label"/>
+                    </div>
+                </div>
+                <div t-else="" class="lfs-empty"><span class="lfs-empty-mark"/><span class="lfs-empty-icon"><LfsIcon name="'activity'"/></span><span t-esc="text.consumptionEmpty"/></div>
+            </section>
+
+            <section class="lfs-card">
+                <div class="lfs-card-head">
+                    <h2 class="lfs-card-title"><span class="lfs-card-icon"><LfsIcon name="'package'"/></span><span t-esc="text.zonesTitle"/></h2>
+                    <button class="lfs-ghost-btn" t-on-click="onStock"
+                            t-att-title="text.seeAll"><LfsIcon name="'list'"/></button>
+                </div>
+                <div t-if="state.data.zones.length" class="lfs-rows">
+                    <div class="lfs-row" t-foreach="state.data.zones" t-as="zone"
+                         t-key="zone.code"
+                         t-attf-class="lfs-row tint-{{ zone_index % 6 }} {{ zone.value ? '' : 'muted' }}">
+                        <div class="lfs-row-head">
+                            <span class="lfs-row-badge" t-esc="zone_index + 1"/>
+                            <div class="lfs-row-text">
+                                <span class="lfs-row-label" t-esc="zone.label"/>
+                                <span class="lfs-row-note">
+                                    <t t-esc="zone.items"/><t t-esc="' '"/><t t-esc="text.zoneItems"/>
+                                </span>
+                            </div>
+                            <span class="lfs-row-value"
+                                  t-esc="zone.value ? money(zone.value) : '—'"/>
+                        </div>
+                        <div class="lfs-row-track">
+                            <div class="lfs-row-bar"
+                                 t-attf-style="width: {{ zoneWidth(zone) }}%"/>
+                        </div>
+                    </div>
+                </div>
+                <div t-else="" class="lfs-empty"><span class="lfs-empty-mark"/><span class="lfs-empty-icon"><LfsIcon name="'package'"/></span><span t-esc="text.zonesEmpty"/></div>
+            </section>
+        </div>
+
+        <!-- ── LISTS ──────────────────────────────────── -->
+        <div class="lfs-grid">
+
+            <section class="lfs-card">
+                <div class="lfs-card-head">
+                    <h2 class="lfs-card-title"><span class="lfs-card-icon"><LfsIcon name="'cart'"/></span><span t-esc="text.reorderTitle"/></h2>
+                    <button class="lfs-link" t-on-click="onRequest" t-esc="text.actionRequest"/>
+                </div>
+                <div t-if="state.data.to_reorder.length" class="lfs-list">
+                    <div class="lfs-item" t-foreach="state.data.to_reorder" t-as="row"
+                         t-key="row.id" t-att-data-id="row.id" t-on-click="onOpenProduct">
+                        <div class="lfs-item-main">
+                            <span class="lfs-item-name" t-esc="row.name"/>
+                            <span class="lfs-item-meta">
+                                <t t-esc="text.reorderOnHand"/>:
+                                <bdi><b t-esc="quantity(row.on_hand)"/>
+                                <t t-esc="' '"/><t t-esc="row.uom"/></bdi>
+                                · <t t-esc="text.reorderMinimum"/>:
+                                <t t-esc="quantity(row.minimum)"/>
+                            </span>
+                            <div class="lfs-item-track">
+                                <div class="lfs-item-bar"
+                                     t-attf-style="width: {{ reorderWidth(row) }}%"/>
+                            </div>
+                        </div>
+                        <div class="lfs-item-side">
+                            <span class="lfs-item-figure" t-esc="quantity(row.suggested)"/>
+                            <span class="lfs-item-hint" t-esc="text.reorderSuggested"/>
+                        </div>
+                    </div>
+                </div>
+                <div t-else="" class="lfs-empty"><span class="lfs-empty-mark"/><span class="lfs-empty-icon"><LfsIcon name="'check-square'"/></span><span t-esc="text.reorderEmpty"/></div>
+            </section>
+
+            <section class="lfs-card">
+                <div class="lfs-card-head">
+                    <h2 class="lfs-card-title"><span class="lfs-card-icon"><LfsIcon name="'activity'"/></span><span t-esc="text.topTitle"/></h2>
+                    <span class="lfs-card-note" t-esc="text.topHint"/>
+                </div>
+                <div t-if="state.data.top_materials.length" class="lfs-rows">
+                    <div class="lfs-row" t-foreach="state.data.top_materials" t-as="row"
+                         t-key="row.id">
+                        <div class="lfs-row-head">
+                            <span class="lfs-row-label" t-esc="row.name"/>
+                            <span class="lfs-row-value" t-esc="money(row.cost)"/>
+                        </div>
+                        <div class="lfs-row-track">
+                            <div class="lfs-row-bar" t-attf-style="width: {{ topWidth(row) }}%"/>
+                        </div>
+                        <span class="lfs-row-note">
+                            <bdi><t t-esc="quantity(row.qty)"/><t t-esc="' '"/><t t-esc="row.uom"/></bdi>
+                        </span>
+                    </div>
+                </div>
+                <div t-else="" class="lfs-empty"><span class="lfs-empty-mark"/><span class="lfs-empty-icon"><LfsIcon name="'activity'"/></span><span t-esc="text.topEmpty"/></div>
+            </section>
+        </div>
+
+        <!-- ── RECENT ─────────────────────────────────── -->
+        <section class="lfs-card">
+            <div class="lfs-card-head">
+                <h2 class="lfs-card-title"><span class="lfs-card-icon"><LfsIcon name="'upload'"/></span><span t-esc="text.recentTitle"/></h2>
+                <button class="lfs-link" t-on-click="onIssue" t-esc="text.seeAll"/>
+            </div>
+            <div t-if="state.data.recent.length" class="lfs-moves">
+                <div class="lfs-move" t-foreach="state.data.recent" t-as="move"
+                     t-key="move.id" t-att-data-id="move.id" t-on-click="onOpenIssue">
+                    <span class="lfs-move-mark"
+                          t-att-class="move.is_return ? 'in' : 'out'">
+                        <LfsIcon name="move.is_return ? 'arrow-down' : 'arrow-up'"/>
+                    </span>
+                    <div class="lfs-move-main">
+                        <span class="lfs-move-name" t-esc="move.name"/>
+                        <span class="lfs-move-meta">
+                            <t t-esc="move.date"/> · <t t-esc="move.purpose"/>
+                            · <t t-esc="move.lines"/><t t-esc="' '"/><t t-esc="text.recentLines"/>
+                        </span>
+                    </div>
+                    <span class="lfs-move-cost" t-esc="money(move.cost)"/>
+                </div>
+            </div>
+            <div t-else="" class="lfs-empty"><span class="lfs-empty-mark"/><span class="lfs-empty-icon"><LfsIcon name="'upload'"/></span><span t-esc="text.recentEmpty"/></div>
+        </section>
+    </t>
+</div>
+</t>
+
+</templates>

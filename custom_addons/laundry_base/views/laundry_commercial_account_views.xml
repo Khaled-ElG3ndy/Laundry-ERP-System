@@ -26,7 +26,7 @@
             <form string="Commercial Account">
                 <header>
                     <button name="action_run_billing"
-                            string="Run Billing / تشغيل الفوترة"
+                            string="Run Billing"
                             type="object"
                             class="btn-primary"
                             invisible="state != 'active'"/>
@@ -35,27 +35,27 @@
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <label for="name" string="Account Name / اسم الحساب"/>
-                        <h1><field name="name" placeholder="e.g. Hilton Hotel / فندق هيلتون"/></h1>
-                        <label for="code" string="Account Code / كود الحساب"/>
+                        <label for="name" string="Account Name"/>
+                        <h1><field name="name" placeholder="e.g. Hilton Hotel"/></h1>
+                        <label for="code" string="Account Code"/>
                         <h3><field name="code" placeholder="e.g. HTL-HLT-001"/></h3>
                     </div>
                     <group>
-                        <group string="Account Info / معلومات الحساب">
-                            <field name="partner_id" string="Billing Contact / جهة الفوترة"/>
+                        <group string="Account Info">
+                            <field name="partner_id" string="Billing Contact"/>
                             <field name="account_manager_id"/>
                             <field name="credit_limit"/>
                             <field name="active"/>
                         </group>
-                        <group string="Billing / الفوترة">
+                        <group string="Billing">
                             <field name="billing_cycle"/>
                             <field name="payment_terms_id"/>
                         </group>
                     </group>
                     <field name="contract_notes"
-                           placeholder="Contract notes / ملاحظات العقد..."/>
+                           placeholder="Contract notes"/>
                     <notebook>
-                        <page string="Orders / الطلبات" name="orders">
+                        <page string="Orders" name="orders">
                             <field name="order_ids" readonly="1">
                                 <tree>
                                     <field name="name" string="Order Ref"/>
@@ -75,7 +75,7 @@
     </record>
 
     <record id="action_laundry_commercial_account" model="ir.actions.act_window">
-        <field name="name">Commercial Accounts / الحسابات التجارية</field>
+        <field name="name">Commercial Accounts</field>
         <field name="res_model">laundry.commercial.account</field>
         <field name="view_mode">list,form</field>
     </record>

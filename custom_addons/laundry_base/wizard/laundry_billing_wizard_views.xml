@@ -5,7 +5,7 @@
         <field name="name">laundry.billing.wizard.form</field>
         <field name="model">laundry.billing.wizard</field>
         <field name="arch" type="xml">
-            <form string="Commercial Billing / فوترة تجارية">
+            <form string="Commercial Billing">
                 <sheet>
                     <div class="oe_title">
                         <h2>Commercial Billing Run</h2>

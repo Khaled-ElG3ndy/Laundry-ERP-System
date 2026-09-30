@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Line icons from the Feather set, the same drawings react-icons ships as
+    `react-icons/fi` (MIT). They are inlined rather than pulled from a package
+    so the dashboard adds no dependency and the icons take their colour from
+    the text around them.
+
+    Every glyph here is vertically symmetric or direction-neutral, so nothing
+    needs mirroring when the dashboard renders right-to-left.
+-->
+<templates xml:space="preserve">
+
+<t t-name="laundry_stock.Icon" owl="1">
+    <svg class="lfs-icon" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2"
+         stroke-linecap="round" stroke-linejoin="round"
+         aria-hidden="true" focusable="false">
+
+        <t t-if="props.name === 'package'">
+            <path d="M16.5 9.4 7.5 4.21"/>
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+        </t>
+
+        <t t-elif="props.name === 'file-text'">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+        </t>
+
+        <t t-elif="props.name === 'upload'">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+        </t>
+
+        <t t-elif="props.name === 'cart'">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </t>
+
+        <t t-elif="props.name === 'hash'">
+            <line x1="4" y1="9" x2="20" y2="9"/>
+            <line x1="4" y1="15" x2="20" y2="15"/>
+            <line x1="10" y1="3" x2="8" y2="21"/>
+            <line x1="16" y1="3" x2="14" y2="21"/>
+        </t>
+
+        <t t-elif="props.name === 'clipboard'">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+        </t>
+
+        <t t-elif="props.name === 'trending-up'">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+        </t>
+
+        <t t-elif="props.name === 'layers'">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+            <polyline points="2 17 12 22 22 17"/>
+            <polyline points="2 12 12 17 22 12"/>
+        </t>
+
+        <t t-elif="props.name === 'alert-triangle'">
+            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </t>
+
+        <t t-elif="props.name === 'x-octagon'">
+            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+            <line x1="15" y1="9" x2="9" y2="15"/>
+            <line x1="9" y1="9" x2="15" y2="15"/>
+        </t>
+
+        <t t-elif="props.name === 'activity'">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </t>
+
+        <t t-elif="props.name === 'check-square'">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </t>
+
+        <t t-elif="props.name === 'truck'">
+            <rect x="1" y="3" width="15" height="13"/>
+            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+            <circle cx="5.5" cy="18.5" r="2.5"/>
+            <circle cx="18.5" cy="18.5" r="2.5"/>
+        </t>
+
+        <t t-elif="props.name === 'arrow-up'">
+            <line x1="12" y1="19" x2="12" y2="5"/>
+            <polyline points="5 12 12 5 19 12"/>
+        </t>
+
+        <t t-elif="props.name === 'arrow-down'">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <polyline points="19 12 12 19 5 12"/>
+        </t>
+
+        <t t-elif="props.name === 'refresh'">
+            <polyline points="23 4 23 10 17 10"/>
+            <polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"/>
+            <path d="M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+        </t>
+
+        <t t-elif="props.name === 'grid'">
+            <rect x="3" y="3" width="7" height="7" rx="1.6"/>
+            <rect x="14" y="3" width="7" height="7" rx="1.6"/>
+            <rect x="14" y="14" width="7" height="7" rx="1.6"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.6"/>
+        </t>
+
+        <t t-elif="props.name === 'chevron'">
+            <polyline points="15 18 9 12 15 6"/>
+        </t>
+
+        <t t-elif="props.name === 'info'">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="16" x2="12" y2="12"/>
+            <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </t>
+
+        <t t-elif="props.name === 'arrow-end'">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+        </t>
+
+        <t t-elif="props.name === 'list'">
+            <line x1="8" y1="6" x2="21" y2="6"/>
+            <line x1="8" y1="12" x2="21" y2="12"/>
+            <line x1="8" y1="18" x2="21" y2="18"/>
+            <line x1="3" y1="6" x2="3.01" y2="6"/>
+            <line x1="3" y1="12" x2="3.01" y2="12"/>
+            <line x1="3" y1="18" x2="3.01" y2="18"/>
+        </t>
+
+        <t t-elif="props.name === 'bar-chart'">
+            <line x1="12" y1="20" x2="12" y2="10"/>
+            <line x1="18" y1="20" x2="18" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="16"/>
+        </t>
+
+        <t t-elif="props.name === 'box'">
+            <path d="M21 8v13H3V8"/>
+            <path d="M1 3h22v5H1z"/>
+            <line x1="10" y1="12" x2="14" y2="12"/>
+        </t>
+    </svg>
+</t>
+
+</templates>

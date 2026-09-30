@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_consumption_report_pivot" model="ir.ui.view">
+        <field name="name">laundry.consumption.report.pivot</field>
+        <field name="model">laundry.consumption.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Material Consumption" sample="1">
+                <field name="product_id" type="row"/>
+                <field name="branch_id" type="col"/>
+                <field name="cost" type="measure"/>
+                <field name="qty" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_laundry_consumption_report_graph" model="ir.ui.view">
+        <field name="name">laundry.consumption.report.graph</field>
+        <field name="model">laundry.consumption.report</field>
+        <field name="arch" type="xml">
+            <graph string="Material Consumption" sample="1" type="bar">
+                <field name="date" interval="month" type="row"/>
+                <field name="cost" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_laundry_consumption_report_list" model="ir.ui.view">
+        <field name="name">laundry.consumption.report.list</field>
+        <field name="model">laundry.consumption.report</field>
+        <field name="arch" type="xml">
+            <tree string="Material Consumption" create="false">
+                <field name="date"/>
+                <field name="issue_id"/>
+                <field name="branch_id"/>
+                <field name="product_id"/>
+                <field name="categ_id" optional="show"/>
+                <field name="qty" sum="Quantity"/>
+                <field name="product_uom_id"/>
+                <field name="cost" sum="Cost"/>
+                <field name="purpose" optional="show"/>
+                <field name="machine_id" optional="hide"/>
+                <field name="laundry_order_id" optional="hide"/>
+                <field name="user_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_laundry_consumption_report_search" model="ir.ui.view">
+        <field name="name">laundry.consumption.report.search</field>
+        <field name="model">laundry.consumption.report</field>
+        <field name="arch" type="xml">
+            <search string="Material Consumption">
+                <field name="product_id"/>
+                <field name="branch_id"/>
+                <field name="categ_id"/>
+                <field name="machine_id"/>
+                <field name="laundry_order_id"/>
+                <filter name="filter_production" string="Production"
+                        domain="[('purpose', '=', 'production')]"/>
+                <filter name="filter_maintenance" string="Maintenance"
+                        domain="[('purpose', '=', 'maintenance')]"/>
+                <filter name="filter_damage" string="Damage / Loss"
+                        domain="[('purpose', '=', 'damage')]"/>
+                <separator/>
+                <filter name="filter_this_month" string="This Month"
+                        domain="[('date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+                <filter name="filter_this_year" string="This Year"
+                        domain="[('date', '&gt;=', (context_today() + relativedelta(month=1, day=1)).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_branch" string="Branch"
+                            context="{'group_by': 'branch_id'}"/>
+                    <filter name="group_by_product" string="Material"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter name="group_by_categ" string="Category"
+                            context="{'group_by': 'categ_id'}"/>
+                    <filter name="group_by_purpose" string="Purpose"
+                            context="{'group_by': 'purpose'}"/>
+                    <filter name="group_by_machine" string="Machine"
+                            context="{'group_by': 'machine_id'}"/>
+                    <filter name="group_by_month" string="Month"
+                            context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_laundry_consumption_report" model="ir.actions.act_window">
+        <field name="name">Consumption Analysis</field>
+        <field name="res_model">laundry.consumption.report</field>
+        <field name="view_mode">pivot,graph,tree</field>
+        <field name="search_view_id" ref="view_laundry_consumption_report_search"/>
+        <field name="context">{'search_default_group_by_product': 1,
+                               'search_default_filter_this_month': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing consumed yet</p>
+            <p>Every confirmed material issue lands here: what each branch used,
+               on which order or machine, and what it cost.</p>
+        </field>
+    </record>
+
+</odoo>

@@ -57,7 +57,16 @@ run "chown postgres:postgres '$BACKUP_ROOT'"
 run "chmod 750 '$BACKUP_ROOT'"
 run "sudo -u postgres pg_dump -Fc -d '$DB_NAME' -f '$DUMP_FILE'"
 run "test -s '$DUMP_FILE'"
-run "tar -czf '$ADDON_BACKUP' -C '$TARGET_ROOT' $MODULES"
+# A module being deployed for the first time has nothing to back up yet.
+DEPLOYED_MODULES=""
+for module in $MODULES; do
+    [[ -d "$TARGET_ROOT/$module" ]] && DEPLOYED_MODULES="$DEPLOYED_MODULES $module"
+done
+if [[ -n "$DEPLOYED_MODULES" ]]; then
+    run "tar -czf '$ADDON_BACKUP' -C '$TARGET_ROOT'$DEPLOYED_MODULES"
+else
+    echo "    no deployed copy yet, nothing to archive"
+fi
 echo
 echo "    Roll back with:"
 echo "      systemctl stop $SERVICE"
@@ -76,8 +85,31 @@ for module in $MODULES; do
     run "chown -R $ODOO_USER:$ODOO_USER '$TARGET_ROOT/$module'"
 done
 
-log "4/7 Upgrading $MODULES"
-run "sudo -u $ODOO_USER $ODOO_BIN -c '$ODOO_CONF' -d '$DB_NAME' -u '${MODULES// /,}' \
+# A module that is not in the database yet has to be installed, not upgraded.
+TO_INSTALL=""
+TO_UPGRADE=""
+for module in $MODULES; do
+    state="$(sudo -u postgres psql -d "$DB_NAME" -tAc \
+        "select state from ir_module_module where name = '$module'" || true)"
+    if [[ "$state" == "installed" || "$state" == "to upgrade" ]]; then
+        TO_UPGRADE="${TO_UPGRADE:+$TO_UPGRADE,}$module"
+    else
+        TO_INSTALL="${TO_INSTALL:+$TO_INSTALL,}$module"
+    fi
+done
+MODULE_FLAGS=""
+[[ -n "$TO_INSTALL" ]] && MODULE_FLAGS="$MODULE_FLAGS -i '$TO_INSTALL'"
+[[ -n "$TO_UPGRADE" ]] && MODULE_FLAGS="$MODULE_FLAGS -u '$TO_UPGRADE'"
+# Odoo keeps a translation a language already has. Pass I18N_OVERWRITE=1 when
+# the .po files of these modules changed and must replace what is in the
+# database; it only touches the modules being loaded here.
+[[ "${I18N_OVERWRITE:-0}" == "1" ]] && MODULE_FLAGS="$MODULE_FLAGS --i18n-overwrite"
+
+ACTION_LABEL="${TO_INSTALL:+installing $TO_INSTALL}"
+[[ -n "$TO_INSTALL" && -n "$TO_UPGRADE" ]] && ACTION_LABEL="$ACTION_LABEL, "
+ACTION_LABEL="$ACTION_LABEL${TO_UPGRADE:+upgrading $TO_UPGRADE}"
+log "4/7 Module load: $ACTION_LABEL"
+run "sudo -u $ODOO_USER $ODOO_BIN -c '$ODOO_CONF' -d '$DB_NAME'$MODULE_FLAGS \
       --no-http --workers=0 --max-cron-threads=0 --stop-after-init --log-level=warn"
 
 log "5/7 Starting $SERVICE"

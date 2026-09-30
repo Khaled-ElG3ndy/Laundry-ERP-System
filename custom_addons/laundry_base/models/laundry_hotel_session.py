@@ -18,14 +18,14 @@ class LaundryHotelSession(models.Model):
         string='Hotel Account', required=True,
         domain=[('state','=','active')])
     hotel_name      = fields.Char(related='commercial_id.name', readonly=True)
-    driver_name     = fields.Char(string='Driver / السائق')
-    vehicle_plate   = fields.Char(string='Vehicle Plate / لوحة السيارة')
+    driver_name     = fields.Char(string='Driver')
+    vehicle_plate   = fields.Char(string='Vehicle Plate')
     session_date    = fields.Date(string='Pickup Date', default=fields.Date.today)
     state           = fields.Selection([
-        ('draft',     'Draft / مسودة'),
-        ('dispatched','Dispatched / أُرسل'),
-        ('delivered', 'Delivered / سُلّم'),
-        ('returned',  'Returned / رُجع'),
+        ('draft',     'Draft'),
+        ('dispatched','Dispatched'),
+        ('delivered', 'Delivered'),
+        ('returned',  'Returned'),
     ], default='draft', tracking=True)
     order_ids       = fields.Many2many(
         'laundry.order', string='Orders to Pickup',
@@ -36,7 +36,7 @@ class LaundryHotelSession(models.Model):
         currency_field='currency_id')
     currency_id     = fields.Many2one('res.currency',
         default=lambda self: self.env.company.currency_id)
-    notes           = fields.Text(string='Notes / ملاحظات')
+    notes           = fields.Text(string='Notes')
     pickup_time     = fields.Datetime(string='Dispatched At')
     delivery_time   = fields.Datetime(string='Delivered At')
     branch_id       = fields.Many2one('laundry.branch', string='Branch')
@@ -60,9 +60,9 @@ class LaundryHotelSession(models.Model):
     def action_dispatch(self):
         self.ensure_one()
         if not self.order_ids:
-            raise UserError(_('أضف طلبات قبل الإرسال / Add orders before dispatching.'))
+            raise UserError(_('Add orders before dispatching.'))
         if not self.driver_name:
-            raise UserError(_('أدخل اسم السائق / Enter driver name.'))
+            raise UserError(_('Enter driver name.'))
         self.write({
             'state':       'dispatched',
             'pickup_time': fields.Datetime.now(),
@@ -73,7 +73,8 @@ class LaundryHotelSession(models.Model):
             'type': 'ir.actions.client',
             'tag':  'display_notification',
             'params': {
-                'message': f'✓ تم إرسال {len(self.order_ids)} طلب مع السائق {self.driver_name}',
+                'message': _('✓ %s order(s) dispatched with driver %s',
+                             len(self.order_ids), self.driver_name),
                 'type': 'success',
             }
         }
@@ -92,7 +93,8 @@ class LaundryHotelSession(models.Model):
             'type': 'ir.actions.client',
             'tag':  'display_notification',
             'params': {
-                'message': f'✓ تم التسليم للفندق. سيُفوتر على الحساب.',
+                'message': _('✓ Delivered to the hotel. It will be billed '
+                             'on the account.'),
                 'type': 'success',
             }
         }
@@ -109,7 +111,7 @@ class LaundryHotelSession(models.Model):
             'type': 'ir.actions.client',
             'tag':  'display_notification',
             'params': {
-                'message': f'تم تحميل {len(ready)} طلب جاهز',
+                'message': _('%s ready order(s) loaded', len(ready)),
                 'type': 'info',
             }
         }

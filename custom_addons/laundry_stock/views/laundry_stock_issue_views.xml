@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_stock_issue_list" model="ir.ui.view">
+        <field name="name">laundry.stock.issue.list</field>
+        <field name="model">laundry.stock.issue</field>
+        <field name="arch" type="xml">
+            <tree string="Material Issues"
+                  decoration-muted="state == 'cancel'"
+                  decoration-info="state == 'draft'">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="branch_id"/>
+                <field name="operation_type"/>
+                <field name="purpose"/>
+                <field name="source" optional="hide"/>
+                <field name="machine_id" optional="hide"/>
+                <field name="laundry_order_id" optional="show"/>
+                <field name="user_id" optional="hide"/>
+                <field name="total_cost" sum="Total Cost"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-info="state == 'draft'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_laundry_stock_issue_form" model="ir.ui.view">
+        <field name="name">laundry.stock.issue.form</field>
+        <field name="model">laundry.stock.issue</field>
+        <field name="arch" type="xml">
+            <form string="Material Issue">
+                <header>
+                    <button name="action_confirm" type="object"
+                            string="Issue Materials" class="oe_highlight"
+                            invisible="state != 'draft'"
+                            confirm="This posts a stock transfer and takes the materials out of the store. Continue?"/>
+                    <button name="action_fill_from_norms" type="object"
+                            string="Fill from Norms"
+                            invisible="state != 'draft' or not laundry_order_id"/>
+                    <button name="action_cancel" type="object"
+                            string="Cancel"
+                            invisible="state != 'draft'"/>
+                    <button name="action_draft" type="object"
+                            string="Back to Draft"
+                            invisible="state != 'cancel'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_picking" type="object"
+                                class="oe_stat_button" icon="fa-truck"
+                                invisible="not picking_id">
+                            <span class="o_stat_text">Transfer</span>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Document">
+                            <field name="operation_type"
+                                   readonly="state != 'draft'"
+                                   widget="radio"
+                                   options="{'horizontal': true}"/>
+                            <field name="branch_id"
+                                   readonly="state != 'draft'"
+                                   options="{'no_create': True}"/>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="user_id" readonly="state != 'draft'"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Charged To">
+                            <field name="purpose" readonly="state != 'draft'"/>
+                            <field name="machine_id"
+                                   invisible="purpose != 'maintenance'"
+                                   required="purpose == 'maintenance'"
+                                   readonly="state != 'draft'"/>
+                            <field name="laundry_order_id"
+                                   readonly="state != 'draft'"
+                                   options="{'no_create': True}"/>
+                            <field name="source" invisible="source == 'manual'"/>
+                            <label for="pos_date_from" string="Sales Period"
+                                   invisible="source != 'pos'"/>
+                            <div class="o_row" invisible="source != 'pos'">
+                                <field name="pos_date_from"/>
+                                <span class="mx-1">→</span>
+                                <field name="pos_date_to"/>
+                            </div>
+                            <field name="picking_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Stock Movement">
+                            <field name="location_id"
+                                   readonly="state != 'draft'"
+                                   options="{'no_create': True}"/>
+                            <field name="location_dest_id"
+                                   readonly="state != 'draft'"
+                                   options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Materials" name="materials">
+                            <field name="line_ids" readonly="state != 'draft'">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="product_uom_category_id"
+                                           column_invisible="1"/>
+                                    <field name="product_uom_id"
+                                           options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="available_qty" readonly="1"
+                                           decoration-danger="available_qty &lt; product_uom_qty"/>
+                                    <field name="unit_cost" optional="show"/>
+                                    <field name="subtotal" sum="Total"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="note" optional="hide"/>
+                                </tree>
+                            </field>
+                            <group class="oe_subtotal_footer oe_right">
+                                <field name="total_cost"
+                                       widget="monetary"
+                                       options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </page>
+                        <page string="Notes" name="notes">
+                            <field name="note"
+                                   placeholder="Anything the store keeper should know."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_laundry_stock_issue_search" model="ir.ui.view">
+        <field name="name">laundry.stock.issue.search</field>
+        <field name="model">laundry.stock.issue</field>
+        <field name="arch" type="xml">
+            <search string="Material Issues">
+                <field name="name"/>
+                <field name="branch_id"/>
+                <field name="laundry_order_id"/>
+                <field name="machine_id"/>
+                <field name="user_id"/>
+                <filter name="filter_draft" string="Draft"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_done" string="Issued"
+                        domain="[('state', '=', 'done')]"/>
+                <separator/>
+                <filter name="filter_issue" string="Issues"
+                        domain="[('operation_type', '=', 'issue')]"/>
+                <filter name="filter_return" string="Returns"
+                        domain="[('operation_type', '=', 'return')]"/>
+                <separator/>
+                <filter name="filter_today" string="Today"
+                        domain="[('date', '&gt;=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]"/>
+                <filter name="filter_this_month" string="This Month"
+                        domain="[('date', '&gt;=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_branch" string="Branch"
+                            context="{'group_by': 'branch_id'}"/>
+                    <filter name="group_by_purpose" string="Purpose"
+                            context="{'group_by': 'purpose'}"/>
+                    <filter name="group_by_state" string="Status"
+                            context="{'group_by': 'state'}"/>
+                    <filter name="group_by_date" string="Date"
+                            context="{'group_by': 'date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_laundry_stock_issue" model="ir.actions.act_window">
+        <field name="name">Material Issues</field>
+        <field name="res_model">laundry.stock.issue</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_laundry_stock_issue_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Issue materials</p>
+            <p>Write down what leaves the branch store — detergent, packaging,
+               spare parts. Confirming posts the stock transfer, so what the
+               system says is on hand is what is on the shelf.</p>
+        </field>
+    </record>
+
+</odoo>

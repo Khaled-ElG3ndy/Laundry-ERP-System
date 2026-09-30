@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
 
+from .laundry_naming import display_name_for
+
 
 class LaundryOrderLine(models.Model):
     _name = 'laundry.order.line'
@@ -44,11 +46,9 @@ class LaundryOrderLine(models.Model):
     @api.depends('item_category_id', 'service_type_id')
     def _compute_description(self):
         for line in self:
-            cat = (line.item_category_id.name_ar or
-                   line.item_category_id.name
+            cat = (display_name_for(line.item_category_id)
                    if line.item_category_id else '')
-            svc = (line.service_type_id.name_ar or
-                   line.service_type_id.name
+            svc = (display_name_for(line.service_type_id)
                    if line.service_type_id else '')
             line.description = (
                 '%s — %s' % (cat, svc) if cat and svc else (cat or svc)
@@ -113,7 +113,7 @@ class LaundryOrderLine(models.Model):
         for line in self:
             if line.addon_ids:
                 addons_text = '\n'.join([
-                    f"  • {addon.name_ar or addon.name} ({addon.price} SAR)"
+                    f"  • {display_name_for(addon)} ({addon.price} SAR)"
                     for addon in line.addon_ids
                 ])
                 line.addon_display = addons_text

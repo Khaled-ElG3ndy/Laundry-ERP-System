@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import api, fields, models
+
+from .laundry_naming import display_name_for
 
 
 class LaundryStage(models.Model):
@@ -8,7 +10,7 @@ class LaundryStage(models.Model):
     _order = 'sequence, id'
 
     name = fields.Char(required=True, translate=True)
-    name_ar = fields.Char(string='الاسم بالعربي')
+    name_ar = fields.Char(string='Arabic Name')
     sequence = fields.Integer(default=10, index=True)
 
     state_key = fields.Selection([
@@ -36,5 +38,7 @@ class LaundryStage(models.Model):
     production_visible = fields.Boolean(default=True)
     counter_visible = fields.Boolean(default=True)
 
-    def name_get(self):
-        return [(s.id, s.name_ar or s.name) for s in self]
+    @api.depends('name', 'name_ar')
+    def _compute_display_name(self):
+        for stage in self:
+            stage.display_name = display_name_for(stage)

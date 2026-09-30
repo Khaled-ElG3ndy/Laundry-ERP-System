@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- The supplies a laundry buys and consumes. Arabic names live in
+             the translation files, so each user reads them in their own
+             language. -->
+
+        <record id="supply_detergent_powder" model="product.template">
+            <field name="name">Laundry Detergent Powder</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">detergent</field>
+            <field name="laundry_min_qty">50</field>
+            <field name="laundry_max_qty">200</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_detergent_liquid" model="product.template">
+            <field name="name">Liquid Laundry Detergent</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">detergent</field>
+            <field name="laundry_min_qty">40</field>
+            <field name="laundry_max_qty">160</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_softener" model="product.template">
+            <field name="name">Fabric Softener</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">softener</field>
+            <field name="laundry_min_qty">20</field>
+            <field name="laundry_max_qty">80</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_starch" model="product.template">
+            <field name="name">Liquid Starch</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">softener</field>
+            <field name="laundry_min_qty">20</field>
+            <field name="laundry_max_qty">80</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_bleach_chlorine" model="product.template">
+            <field name="name">Chlorine Bleach</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">bleach</field>
+            <field name="laundry_min_qty">20</field>
+            <field name="laundry_max_qty">60</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_bleach_oxygen" model="product.template">
+            <field name="name">Oxygen Bleach Powder</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">bleach</field>
+            <field name="laundry_min_qty">10</field>
+            <field name="laundry_max_qty">40</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_dryclean_solvent" model="product.template">
+            <field name="name">Dry-clean Solvent</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">solvent</field>
+            <field name="laundry_min_qty">20</field>
+            <field name="laundry_max_qty">100</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_spotting_chemical" model="product.template">
+            <field name="name">Spotting Chemical</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">spotting</field>
+            <field name="laundry_min_qty">5</field>
+            <field name="laundry_max_qty">20</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_descaler" model="product.template">
+            <field name="name">Boiler Descaler</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_chemicals"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">other</field>
+            <field name="laundry_min_qty">5</field>
+            <field name="laundry_max_qty">20</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_poly_cover_roll" model="product.template">
+            <field name="name">Poly Garment Cover Roll</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_packaging"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">packaging</field>
+            <field name="laundry_min_qty">10</field>
+            <field name="laundry_max_qty">40</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_shirt_bag" model="product.template">
+            <field name="name">Shirt Packing Bag</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_packaging"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">packaging</field>
+            <field name="laundry_min_qty">500</field>
+            <field name="laundry_max_qty">2000</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_carry_bag" model="product.template">
+            <field name="name">Customer Carry Bag</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_packaging"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">packaging</field>
+            <field name="laundry_min_qty">500</field>
+            <field name="laundry_max_qty">2000</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_shirt_board" model="product.template">
+            <field name="name">Cardboard Shirt Board</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_packaging"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">packaging</field>
+            <field name="laundry_min_qty">500</field>
+            <field name="laundry_max_qty">2000</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_packing_tissue" model="product.template">
+            <field name="name">Packing Tissue Paper</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_packaging"/>
+            <field name="uom_id" ref="uom.product_uom_kgm"/>
+            <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">packaging</field>
+            <field name="laundry_min_qty">10</field>
+            <field name="laundry_max_qty">40</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_hanger_wire" model="product.template">
+            <field name="name">Wire Hanger</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_hangers"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">hanger</field>
+            <field name="laundry_min_qty">1000</field>
+            <field name="laundry_max_qty">4000</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_hanger_plastic" model="product.template">
+            <field name="name">Plastic Hanger</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_hangers"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">hanger</field>
+            <field name="laundry_min_qty">500</field>
+            <field name="laundry_max_qty">2000</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_hanger_clip" model="product.template">
+            <field name="name">Trouser Clip Hanger</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_hangers"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">hanger</field>
+            <field name="laundry_min_qty">200</field>
+            <field name="laundry_max_qty">800</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_safety_pin" model="product.template">
+            <field name="name">Safety Pins (Box)</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_hangers"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">tag</field>
+            <field name="laundry_min_qty">20</field>
+            <field name="laundry_max_qty">60</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_barcode_tag_roll" model="product.template">
+            <field name="name">Barcode Tag Roll</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_hangers"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">tag</field>
+            <field name="laundry_min_qty">10</field>
+            <field name="laundry_max_qty">40</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_customer_tag" model="product.template">
+            <field name="name">Customer Tag Sticker</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_hangers"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">tag</field>
+            <field name="laundry_min_qty">1000</field>
+            <field name="laundry_max_qty">4000</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_receipt_roll" model="product.template">
+            <field name="name">Thermal Receipt Roll</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_housekeeping"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">housekeeping</field>
+            <field name="laundry_min_qty">20</field>
+            <field name="laundry_max_qty">80</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_drain_valve" model="product.template">
+            <field name="name">Washer Drain Valve</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_spare_parts"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">spare</field>
+            <field name="laundry_min_qty">1</field>
+            <field name="laundry_max_qty">4</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_drive_belt" model="product.template">
+            <field name="name">Machine Drive Belt</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_spare_parts"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">spare</field>
+            <field name="laundry_min_qty">2</field>
+            <field name="laundry_max_qty">6</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_iron_cover" model="product.template">
+            <field name="name">Teflon Iron Cover</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_spare_parts"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">spare</field>
+            <field name="laundry_min_qty">4</field>
+            <field name="laundry_max_qty">12</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_steam_hose" model="product.template">
+            <field name="name">Steam Hose</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_spare_parts"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">spare</field>
+            <field name="laundry_min_qty">2</field>
+            <field name="laundry_max_qty">6</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_machine_oil" model="product.template">
+            <field name="name">Machine Lubricant Oil</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_spare_parts"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">spare</field>
+            <field name="laundry_min_qty">5</field>
+            <field name="laundry_max_qty">20</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_staff_uniform" model="product.template">
+            <field name="name">Staff Uniform</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_linen"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">linen</field>
+            <field name="laundry_min_qty">10</field>
+            <field name="laundry_max_qty">30</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_service_towel" model="product.template">
+            <field name="name">Service Towel</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_linen"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">linen</field>
+            <field name="laundry_min_qty">20</field>
+            <field name="laundry_max_qty">60</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_board_cover" model="product.template">
+            <field name="name">Ironing Board Cover</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_linen"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">linen</field>
+            <field name="laundry_min_qty">5</field>
+            <field name="laundry_max_qty">20</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_floor_cleaner" model="product.template">
+            <field name="name">Floor Cleaner</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_housekeeping"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">housekeeping</field>
+            <field name="laundry_min_qty">10</field>
+            <field name="laundry_max_qty">40</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_hand_soap" model="product.template">
+            <field name="name">Hand Soap</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_housekeeping"/>
+            <field name="uom_id" ref="uom.product_uom_litre"/>
+            <field name="uom_po_id" ref="uom.product_uom_litre"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">housekeeping</field>
+            <field name="laundry_min_qty">5</field>
+            <field name="laundry_max_qty">20</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_garbage_bag" model="product.template">
+            <field name="name">Garbage Bags</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_housekeeping"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">housekeeping</field>
+            <field name="laundry_min_qty">100</field>
+            <field name="laundry_max_qty">400</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_gloves" model="product.template">
+            <field name="name">Work Gloves (Pair)</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_housekeeping"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">housekeeping</field>
+            <field name="laundry_min_qty">50</field>
+            <field name="laundry_max_qty">200</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <record id="supply_a4_paper" model="product.template">
+            <field name="name">A4 Paper Ream</field>
+            <field name="detailed_type">product</field>
+            <field name="categ_id" ref="product_category_housekeeping"/>
+            <field name="uom_id" ref="uom.product_uom_unit"/>
+            <field name="uom_po_id" ref="uom.product_uom_unit"/>
+            <field name="is_laundry_supply" eval="True"/>
+            <field name="laundry_supply_type">housekeeping</field>
+            <field name="laundry_min_qty">5</field>
+            <field name="laundry_max_qty">20</field>
+            <field name="purchase_ok" eval="True"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="available_in_pos" eval="False"/>
+        </record>
+
+        <!-- Average piece weight, so a dose given per kilogram can be
+             worked out from a piece count. -->
+        <record id="laundry_base.item_cat_thobe" model="laundry.item.category">
+            <field name="avg_weight_kg">0.45</field>
+        </record>
+        <record id="laundry_base.item_cat_shirt" model="laundry.item.category">
+            <field name="avg_weight_kg">0.25</field>
+        </record>
+        <record id="laundry_base.item_cat_trouser" model="laundry.item.category">
+            <field name="avg_weight_kg">0.5</field>
+        </record>
+        <record id="laundry_base.item_cat_abaya" model="laundry.item.category">
+            <field name="avg_weight_kg">0.4</field>
+        </record>
+        <record id="laundry_base.item_cat_suit" model="laundry.item.category">
+            <field name="avg_weight_kg">1.2</field>
+        </record>
+        <record id="laundry_base.item_cat_blanket" model="laundry.item.category">
+            <field name="avg_weight_kg">3.0</field>
+        </record>
+        <record id="laundry_base.item_cat_carpet" model="laundry.item.category">
+            <field name="avg_weight_kg">8.0</field>
+        </record>
+        <record id="laundry_base.item_cat_uniform" model="laundry.item.category">
+            <field name="avg_weight_kg">0.6</field>
+        </record>
+        <record id="laundry_base.item_cat_kids" model="laundry.item.category">
+            <field name="avg_weight_kg">0.2</field>
+        </record>
+        <record id="laundry_base.item_cat_linen" model="laundry.item.category">
+            <field name="avg_weight_kg">1.0</field>
+        </record>
+        <record id="laundry_base.item_cat_curtain" model="laundry.item.category">
+            <field name="avg_weight_kg">2.5</field>
+        </record>
+        <record id="laundry_base.item_cat_other" model="laundry.item.category">
+            <field name="avg_weight_kg">0.5</field>
+        </record>
+
+    </data>
+</odoo>

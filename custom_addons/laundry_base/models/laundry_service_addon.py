@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import api, fields, models
+
+from .laundry_naming import display_name_for
 
 
 class LaundryServiceAddon(models.Model):
@@ -8,7 +10,7 @@ class LaundryServiceAddon(models.Model):
     _order = 'sequence, name'
 
     name = fields.Char(required=True, translate=True)
-    name_ar = fields.Char(string='الاسم بالعربي', required=True)
+    name_ar = fields.Char(string='Arabic Name', required=True)
     price = fields.Monetary(currency_field='currency_id')
     currency_id = fields.Many2one(
         'res.currency',
@@ -25,5 +27,7 @@ class LaundryServiceAddon(models.Model):
         string='Applicable Services',
     )
 
-    def name_get(self):
-        return [(a.id, a.name_ar or a.name) for a in self]
+    @api.depends('name', 'name_ar')
+    def _compute_display_name(self):
+        for addon in self:
+            addon.display_name = display_name_for(addon)

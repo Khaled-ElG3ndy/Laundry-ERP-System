@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Hotel Contract Pricing - Farha Laundry',
-    'version': '17.0.4.0.0',
+    'version': '17.0.4.2.0',
     'category': 'Point of Sale',
     'summary': 'A dedicated POS for hotel and company customers, priced from their agreed contracts',
     'description': """
@@ -24,6 +24,7 @@ completely alone.
     'author': 'Farha Laundry',
     'website': '',
     'depends': [
+        'account',
         'point_of_sale',
         'product',
     ],

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Product category names are not translated by Odoo, so they carry
+             both languages. The zone code ties each category to the shelf it
+             is stored on in every branch. -->
+        <record id="product_category_laundry_supplies" model="product.category">
+            <field name="name">Laundry Supplies / مستلزمات المغسلة</field>
+        </record>
+
+        <record id="product_category_chemicals" model="product.category">
+            <field name="name">Chemicals &amp; Detergents / كيماويات ومنظفات</field>
+            <field name="parent_id" ref="product_category_laundry_supplies"/>
+            <field name="property_cost_method">average</field>
+            <field name="property_valuation">manual_periodic</field>
+            <field name="laundry_zone_code">CHEM</field>
+        </record>
+
+        <record id="product_category_packaging" model="product.category">
+            <field name="name">Packaging &amp; Covers / تغليف وأغطية</field>
+            <field name="parent_id" ref="product_category_laundry_supplies"/>
+            <field name="property_cost_method">average</field>
+            <field name="property_valuation">manual_periodic</field>
+            <field name="laundry_zone_code">PACK</field>
+        </record>
+
+        <record id="product_category_hangers" model="product.category">
+            <field name="name">Hangers &amp; Tags / شماعات وبطاقات</field>
+            <field name="parent_id" ref="product_category_laundry_supplies"/>
+            <field name="property_cost_method">average</field>
+            <field name="property_valuation">manual_periodic</field>
+            <field name="laundry_zone_code">HANG</field>
+        </record>
+
+        <record id="product_category_spare_parts" model="product.category">
+            <field name="name">Spare Parts &amp; Maintenance / قطع غيار وصيانة</field>
+            <field name="parent_id" ref="product_category_laundry_supplies"/>
+            <field name="property_cost_method">average</field>
+            <field name="property_valuation">manual_periodic</field>
+            <field name="laundry_zone_code">SPARE</field>
+        </record>
+
+        <record id="product_category_linen" model="product.category">
+            <field name="name">Linen &amp; Uniforms / بياضات ويونيفورم</field>
+            <field name="parent_id" ref="product_category_laundry_supplies"/>
+            <field name="property_cost_method">average</field>
+            <field name="property_valuation">manual_periodic</field>
+            <field name="laundry_zone_code">LINEN</field>
+        </record>
+
+        <record id="product_category_housekeeping" model="product.category">
+            <field name="name">Housekeeping &amp; Office / نظافة ومستلزمات مكتبية</field>
+            <field name="parent_id" ref="product_category_laundry_supplies"/>
+            <field name="property_cost_method">average</field>
+            <field name="property_valuation">manual_periodic</field>
+            <field name="laundry_zone_code">HKPG</field>
+        </record>
+
+    </data>
+</odoo>

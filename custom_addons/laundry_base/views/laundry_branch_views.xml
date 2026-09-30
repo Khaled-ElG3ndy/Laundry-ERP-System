@@ -46,7 +46,7 @@
     </record>
 
     <record id="action_laundry_branch" model="ir.actions.act_window">
-        <field name="name">Branches / الفروع</field>
+        <field name="name">Branches</field>
         <field name="res_model">laundry.branch</field>
         <field name="view_mode">list,form</field>
     </record>

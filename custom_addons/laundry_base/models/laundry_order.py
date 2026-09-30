@@ -94,21 +94,21 @@ class LaundryOrder(models.Model):
 
     # ── STATE ───────────────────────────────────────────────
     state = fields.Selection([
-        ('draft', 'Draft / مسودة'),
-        ('received', 'Received / مستلم'),
-        ('tagged', 'Tagged / مُصنّف'),
-        ('sorted', 'Sorted / مُرتَّب'),
-        ('washing', 'Washing / في الغسيل'),
-        ('drying', 'Drying / في التجفيف'),
-        ('ironing', 'Ironing / في الكوي'),
-        ('packing', 'Packing / في التعبئة'),
-        ('ready', 'Ready / جاهز'),
-        ('out_for_delivery', 'Out for Delivery / في الطريق'),
-        ('delivered', 'Delivered / تم التوصيل'),
-        ('picked_up', 'Picked Up / تم الاستلام'),
-        ('cancelled', 'Cancelled / ملغي'),
-        ('issue', 'Issue / إشكالية'),
-        ('rewash', 'Rewash / إعادة غسيل'),
+        ('draft', 'Draft'),
+        ('received', 'Received'),
+        ('tagged', 'Tagged'),
+        ('sorted', 'Sorted'),
+        ('washing', 'Washing'),
+        ('drying', 'Drying'),
+        ('ironing', 'Ironing'),
+        ('packing', 'Packing'),
+        ('ready', 'Ready'),
+        ('out_for_delivery', 'Out for Delivery'),
+        ('delivered', 'Delivered'),
+        ('picked_up', 'Picked Up'),
+        ('cancelled', 'Cancelled'),
+        ('issue', 'Issue'),
+        ('rewash', 'Rewash'),
     ],
         string='State',
         default='received',
@@ -133,7 +133,7 @@ class LaundryOrder(models.Model):
 
     priority = fields.Selection([
         ('normal', 'Normal'),
-        ('urgent', 'Urgent / عاجل'),
+        ('urgent', 'Urgent'),
     ], default='normal', required=True, index=True, tracking=True)
 
     is_urgent = fields.Boolean(
@@ -156,7 +156,7 @@ class LaundryOrder(models.Model):
         index=True,
     )
     promise_date = fields.Datetime(
-        string='Promise Date / موعد التسليم',
+        string='Promise Date',
         required=True,
         index=True,
         tracking=True,
@@ -235,11 +235,11 @@ class LaundryOrder(models.Model):
 
     # ── PAYMENT ─────────────────────────────────────────────
     payment_method = fields.Selection([
-        ('cash',       'Cash / نقداً'),
-        ('card',       'Card / بطاقة'),
-        ('on_account', 'On Account / على الحساب'),
-        ('split',      'Split / مقسّم'),
-    ], string='Payment Method / طريقة الدفع',
+        ('cash',       'Cash'),
+        ('card',       'Card'),
+        ('on_account', 'On Account'),
+        ('split',      'Split'),
+    ], string='Payment Method',
        default='cash', tracking=True)
 
     loyalty_card_id = fields.Many2one('laundry.loyalty.card',
@@ -260,13 +260,13 @@ class LaundryOrder(models.Model):
                 order.loyalty_card_id = False
 
     cash_tendered = fields.Monetary(
-        string='Cash Tendered / المبلغ المقدم',
+        string='Cash Tendered',
         currency_field='currency_id',
         default=0.0,
     )
 
     change_amount = fields.Monetary(
-        string='Change / الباقي',
+        string='Change',
         currency_field='currency_id',
         compute='_compute_change_amount',
         store=True,
@@ -281,11 +281,11 @@ class LaundryOrder(models.Model):
                 order.change_amount = 0.0
 
     payment_state = fields.Selection([
-        ('unpaid', 'Unpaid / غير مدفوع'),
-        ('partial', 'Partial / جزئي'),
-        ('paid', 'Paid / مدفوع'),
-        ('on_account', 'On Account / على الحساب'),
-        ('invoiced', 'Invoiced / مُفوتر'),
+        ('unpaid', 'Unpaid'),
+        ('partial', 'Partial'),
+        ('paid', 'Paid'),
+        ('on_account', 'On Account'),
+        ('invoiced', 'Invoiced'),
     ],
         string='Payment State',
         default='unpaid',
@@ -407,16 +407,14 @@ class LaundryOrder(models.Model):
         if to_state == 'cancelled':
             if not user.has_group('laundry_base.group_laundry_supervisor'):
                 raise AccessError(_(
-                    'إلغاء الطلب يتطلب صلاحية المشرف.\n'
-                    'Cancellation requires Supervisor permission.'
+                    'Cancelling an order needs supervisor rights.'
                 ))
         if to_state == 'issue':
             has_prod = user.has_group('laundry_base.group_laundry_production')
             has_sup = user.has_group('laundry_base.group_laundry_supervisor')
             if not (has_prod or has_sup):
                 raise AccessError(_(
-                    'تسجيل إشكالية يتطلب صلاحية الإنتاج.\n'
-                    'Logging an issue requires Production permission.'
+                    'Logging an issue needs production rights.'
                 ))
 
     def action_apply_discount(self, line_id, discount_pct):
@@ -427,8 +425,7 @@ class LaundryOrder(models.Model):
         if discount_pct >= 10:
             if not user.has_group('laundry_base.group_laundry_supervisor'):
                 raise AccessError(_(
-                    'خصم 10% وما فوق يتطلب موافقة المشرف.\n'
-                    'Discounts ≥10%% require Supervisor approval.'
+                    'A discount of 10% or more needs supervisor approval.'
                 ))
         line = self.env['laundry.order.line'].browse(line_id)
         if line.order_id != self:
@@ -446,8 +443,7 @@ class LaundryOrder(models.Model):
         self.ensure_one()
         if not self.env.user.has_group('laundry_base.group_laundry_supervisor'):
             raise AccessError(_(
-                'تعديل السعر يتطلب صلاحية المشرف.\n'
-                'Price override requires Supervisor permission.'
+                'Changing a price needs supervisor rights.'
             ))
         line = self.env['laundry.order.line'].browse(line_id)
         if line.order_id != self:
@@ -487,9 +483,8 @@ class LaundryOrder(models.Model):
         partner = self.partner_id
         if not (partner.phone or partner.mobile):
             raise ValidationError(_(
-                'رقم الجوال مطلوب لاستلام الملابس!\n'
-                'Phone number is required for clothes pickup!\n'
-                'Customer: %s — Please update contact details first.'
+                'A mobile number is required before handing the clothes over!\n'
+                'Customer: %s — please fill the contact details first.'
             ) % partner.name)
 
     def action_award_loyalty_points(self):
@@ -502,7 +497,7 @@ class LaundryOrder(models.Model):
         pts = card.award_points(
             self.amount_total - self.loyalty_discount,
             order_id=self.id,
-            reason=f'شراء طلب {self.name}',
+            reason=_('Purchase of order %s', self.name),
         )
         self.write({'loyalty_points_earned': pts, 'loyalty_card_id': card.id})
         return pts

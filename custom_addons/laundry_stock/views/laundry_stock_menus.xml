@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Everything lives inside Odoo's own Inventory app, next to the transfers and
+    the products it already manages. Nothing here recreates a screen Odoo
+    ships: receipts, internal transfers, physical inventory, reordering rules,
+    warehouses and locations stay where a store keeper already knows to find
+    them, and the dashboard links to them directly.
+-->
+<odoo>
+
+    <!-- ── INVENTORY APP ───────────────────────────────────── -->
+
+    <!-- First item, so the app opens on it: the laundry reads its store from
+         here, and Odoo's own Overview moves one place down rather than away.
+         Swap the two sequences to put Overview back in front. -->
+    <menuitem id="menu_laundry_stock_dashboard"
+              name="Dashboard"
+              parent="stock.menu_stock_root"
+              action="laundry_stock.action_laundry_stock_dashboard"
+              sequence="0"
+              groups="laundry_stock.group_laundry_storekeeper"/>
+
+    <record id="stock.stock_picking_type_menu" model="ir.ui.menu">
+        <field name="sequence">1</field>
+    </record>
+
+    <!-- Operations: what leaves the store and what is counted into it. -->
+    <menuitem id="menu_laundry_stock_issue"
+              name="Material Issues"
+              parent="stock.menu_stock_warehouse_mgmt"
+              action="laundry_stock.action_laundry_stock_issue"
+              sequence="12"
+              groups="laundry_stock.group_laundry_storekeeper"/>
+
+    <menuitem id="menu_laundry_pos_consumption"
+              name="Issue from Sales"
+              parent="stock.menu_stock_warehouse_mgmt"
+              action="laundry_stock.action_laundry_pos_consumption"
+              sequence="13"
+              groups="laundry_stock.group_laundry_storekeeper"/>
+
+    <menuitem id="menu_laundry_opening_stock"
+              name="Opening Stock"
+              parent="stock.menu_stock_warehouse_mgmt"
+              action="laundry_stock.action_laundry_opening_stock"
+              sequence="14"
+              groups="laundry_stock.group_laundry_storekeeper"/>
+
+    <!-- Products: the supplies, beside Odoo's own product menus. -->
+    <menuitem id="menu_laundry_supply_product"
+              name="Laundry Supplies"
+              parent="stock.menu_stock_inventory_control"
+              action="laundry_stock.action_laundry_supply_product"
+              sequence="12"
+              groups="laundry_stock.group_laundry_storekeeper"/>
+
+    <!-- Reporting and configuration sit under Odoo's own sections. -->
+    <menuitem id="menu_laundry_consumption_report"
+              name="Laundry Consumption"
+              parent="stock.menu_warehouse_report"
+              action="laundry_stock.action_laundry_consumption_report"
+              sequence="12"/>
+
+    <menuitem id="menu_laundry_consumption_norm"
+              name="Consumption Norms"
+              parent="stock.menu_stock_config_settings"
+              action="laundry_stock.action_laundry_consumption_norm"
+              sequence="12"/>
+
+    <!-- The two laundry settings the store actually needs: a branch drives a
+         warehouse, and a piece weight turns a per-kilo dose into a per-piece
+         one. They move here so nothing is lost when the laundry app is put
+         away. -->
+    <menuitem id="menu_laundry_branch_config"
+              name="Laundry Branches"
+              parent="stock.menu_stock_config_settings"
+              action="laundry_base.action_laundry_branch"
+              sequence="14"/>
+
+    <menuitem id="menu_laundry_item_category_config"
+              name="Item Categories"
+              parent="stock.menu_stock_config_settings"
+              action="laundry_base.action_laundry_item_category"
+              sequence="15"/>
+
+    <menuitem id="menu_laundry_machine"
+              name="Laundry Machines"
+              parent="stock.menu_stock_config_settings"
+              action="laundry_stock.action_laundry_machine"
+              sequence="13"/>
+
+    <!-- ── PURCHASE APP ────────────────────────────────────── -->
+
+    <menuitem id="menu_laundry_purchase_request"
+              name="Purchase Requests"
+              parent="purchase.menu_procurement_management"
+              action="laundry_stock.action_laundry_purchase_request"
+              sequence="12"
+              groups="laundry_stock.group_laundry_storekeeper"/>
+
+    <menuitem id="menu_laundry_purchase_request_to_approve"
+              name="Requests to Approve"
+              parent="purchase.menu_procurement_management"
+              action="laundry_stock.action_laundry_purchase_request_to_approve"
+              sequence="13"
+              groups="laundry_stock.group_laundry_purchaser,laundry_base.group_laundry_manager"/>
+
+</odoo>

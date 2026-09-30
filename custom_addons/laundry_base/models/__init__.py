@@ -9,6 +9,7 @@ from . import laundry_order
 from . import laundry_order_line
 from . import laundry_status_log
 from . import laundry_issue
+from . import laundry_naming
 from . import laundry_audit_log
 from . import pos_order_extend
 from . import laundry_loyalty

@@ -32,20 +32,20 @@ class LaundryIssue(models.Model):
         related='order_id.branch_id', store=True, index=True,
     )
     issue_type = fields.Selection([
-        ('damage', 'Damage / تلف'),
-        ('missing', 'Missing Item / قطعة مفقودة'),
-        ('rewash', 'Rewash / إعادة غسيل'),
-        ('complaint', 'Complaint / شكوى'),
-        ('delay', 'Delay / تأخير'),
-        ('other', 'Other / أخرى'),
+        ('damage', 'Damage'),
+        ('missing', 'Missing Item'),
+        ('rewash', 'Rewash'),
+        ('complaint', 'Complaint'),
+        ('delay', 'Delay'),
+        ('other', 'Other'),
     ], required=True, tracking=True)
 
     state = fields.Selection([
-        ('open', 'Open / مفتوح'),
-        ('in_review', 'In Review / قيد المراجعة'),
-        ('resolved', 'Resolved / تم الحل'),
-        ('compensated', 'Compensated / تعويض'),
-        ('closed', 'Closed / مغلق'),
+        ('open', 'Open'),
+        ('in_review', 'In Review'),
+        ('resolved', 'Resolved'),
+        ('compensated', 'Compensated'),
+        ('closed', 'Closed'),
     ], default='open', required=True, tracking=True)
 
     reported_by = fields.Many2one(

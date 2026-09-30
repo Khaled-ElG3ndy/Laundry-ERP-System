@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class LaundryCommercialAccount(models.Model):
@@ -52,15 +52,17 @@ class LaundryCommercialAccount(models.Model):
         string='Orders',
     )
 
-    def name_get(self):
-        return [(r.id, '[%s] %s' % (r.code, r.name)) for r in self]
+    @api.depends('name', 'code')
+    def _compute_display_name(self):
+        for account in self:
+            account.display_name = '[%s] %s' % (account.code, account.name)
 
     def action_run_billing(self):
         """Open billing wizard pre-filled for this account."""
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Run Billing / فوترة الحساب',
+            'name': 'Run Billing',
             'res_model': 'laundry.billing.wizard',
             'view_mode': 'form',
             'target': 'new',

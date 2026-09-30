@@ -2,6 +2,8 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
+from .laundry_naming import display_name_for
+
 
 class LaundryServiceType(models.Model):
     _name = 'laundry.service.type'
@@ -9,7 +11,7 @@ class LaundryServiceType(models.Model):
     _order = 'sequence, name'
 
     name = fields.Char(required=True, translate=True)
-    name_ar = fields.Char(string='الاسم بالعربي', required=True)
+    name_ar = fields.Char(string='Arabic Name', required=True)
     code = fields.Char(size=20, required=True)
     sequence = fields.Integer(default=10)
     active = fields.Boolean(default=True)
@@ -87,5 +89,7 @@ class LaundryServiceType(models.Model):
                 price += self.urgent_surcharge_fixed
         return price
 
-    def name_get(self):
-        return [(s.id, s.name_ar or s.name) for s in self]
+    @api.depends('name', 'name_ar')
+    def _compute_display_name(self):
+        for service in self:
+            service.display_name = display_name_for(service)

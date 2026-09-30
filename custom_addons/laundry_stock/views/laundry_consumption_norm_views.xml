@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_consumption_norm_list" model="ir.ui.view">
+        <field name="name">laundry.consumption.norm.list</field>
+        <field name="model">laundry.consumption.norm</field>
+        <field name="arch" type="xml">
+            <tree string="Consumption Norms" editable="bottom" multi_edit="1">
+                <header>
+                    <button name="action_seed_starter_norms" type="object"
+                            string="Load Starter Norms" display="always"
+                            class="btn-secondary"/>
+                </header>
+                <field name="sequence" widget="handle"/>
+                <field name="service_value_id" optional="show"/>
+                <field name="product_categ_id" optional="show"/>
+                <field name="garment_product_id" optional="hide"/>
+                <field name="service_type_id" optional="hide"/>
+                <field name="item_category_id" optional="hide"/>
+                <field name="branch_id" optional="hide"/>
+                <field name="product_id"/>
+                <field name="qty"/>
+                <field name="product_uom_category_id" column_invisible="1"/>
+                <field name="product_uom_id"
+                       options="{'no_create': True, 'no_open': True}"/>
+                <field name="basis"/>
+                <field name="is_excluded" optional="show"/>
+                <field name="note" optional="hide"/>
+                <field name="company_id" column_invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_laundry_consumption_norm_form" model="ir.ui.view">
+        <field name="name">laundry.consumption.norm.form</field>
+        <field name="model">laundry.consumption.norm</field>
+        <field name="arch" type="xml">
+            <form string="Consumption Norm">
+                <sheet>
+                    <group>
+                        <group string="Applies To">
+                            <field name="service_value_id"
+                                   options="{'no_create': True}"/>
+                            <field name="product_categ_id"
+                                   options="{'no_create': True}"/>
+                            <field name="garment_product_id"
+                                   options="{'no_create': True}"/>
+                            <field name="branch_id"/>
+                        </group>
+                        <group string="Back-office Orders" name="order_scope">
+                            <field name="service_type_id"/>
+                            <field name="item_category_id"/>
+                        </group>
+                        <group string="Consumes">
+                            <field name="product_id"/>
+                            <label for="qty" invisible="is_excluded"/>
+                            <div class="o_row" invisible="is_excluded">
+                                <field name="qty"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <field name="product_uom_id"
+                                       options="{'no_create': True, 'no_open': True}"/>
+                            </div>
+                            <field name="basis" invisible="is_excluded"/>
+                            <field name="is_excluded"/>
+                            <field name="active" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Dosage note, e.g. 12 g per kg of dry load."/>
+                    <p class="text-muted">
+                        An empty service, item category or branch means the norm
+                        applies to all of them. A norm that names one of them
+                        wins over a more general one for the same supply.
+                    </p>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_laundry_consumption_norm_search" model="ir.ui.view">
+        <field name="name">laundry.consumption.norm.search</field>
+        <field name="model">laundry.consumption.norm</field>
+        <field name="arch" type="xml">
+            <search string="Consumption Norms">
+                <field name="product_id"/>
+                <field name="service_value_id"/>
+                <field name="product_categ_id"/>
+                <field name="garment_product_id"/>
+                <field name="service_type_id"/>
+                <field name="item_category_id"/>
+                <field name="branch_id"/>
+                <filter name="filter_per_piece" string="Per Piece"
+                        domain="[('basis', '=', 'piece')]"/>
+                <filter name="filter_per_kg" string="Per Kg"
+                        domain="[('basis', '=', 'kg')]"/>
+                <filter name="filter_per_order" string="Per Order"
+                        domain="[('basis', '=', 'order')]"/>
+                <separator/>
+                <filter name="filter_excluded" string="Exclusions"
+                        domain="[('is_excluded', '=', True)]"/>
+                <filter name="filter_archived" string="Archived"
+                        domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_service" string="Service"
+                            context="{'group_by': 'service_value_id'}"/>
+                    <filter name="group_by_sales_categ" string="Sales Category"
+                            context="{'group_by': 'product_categ_id'}"/>
+                    <filter name="group_by_product" string="Supply"
+                            context="{'group_by': 'product_id'}"/>
+                    <filter name="group_by_basis" string="Basis"
+                            context="{'group_by': 'basis'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_laundry_consumption_norm" model="ir.actions.act_window">
+        <field name="name">Consumption Norms</field>
+        <field name="res_model">laundry.consumption.norm</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Set a norm</p>
+            <p>How much detergent, packaging or hangers a piece — or a whole
+               order — is expected to use. Norms cost an order before it is
+               washed and fill a material issue in one click.</p>
+        </field>
+    </record>
+
+</odoo>

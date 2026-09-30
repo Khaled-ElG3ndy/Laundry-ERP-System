@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import api, fields, models
+
+from .laundry_naming import display_name_for
 
 
 class LaundryItemCategory(models.Model):
@@ -8,7 +10,7 @@ class LaundryItemCategory(models.Model):
     _order = 'sequence, name'
 
     name = fields.Char(required=True, translate=True)
-    name_ar = fields.Char(string='الاسم بالعربي', required=True)
+    name_ar = fields.Char(string='Arabic Name', required=True)
     code = fields.Char(size=20)
     sequence = fields.Integer(default=10)
     active = fields.Boolean(default=True)
@@ -31,5 +33,7 @@ class LaundryItemCategory(models.Model):
         string='Applicable Services',
     )
 
-    def name_get(self):
-        return [(c.id, c.name_ar or c.name) for c in self]
+    @api.depends('name', 'name_ar')
+    def _compute_display_name(self):
+        for category in self:
+            category.display_name = display_name_for(category)

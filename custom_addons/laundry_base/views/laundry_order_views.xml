@@ -47,40 +47,40 @@
                 <header>
                     <!-- Stage advance buttons -->
                     <button name="action_move_to_tagged"
-                            string="→ Tagged / مُصنّف"
+                            string="→ Tagged"
                             type="object" class="btn-secondary"
                             invisible="state != 'received'"/>
                     <button name="action_move_to_washing"
-                            string="→ Washing / غسيل"
+                            string="→ Washing"
                             type="object" class="btn-secondary"
                             invisible="state != 'tagged'"/>
                     <button name="action_move_to_ironing"
-                            string="→ Ironing / كوي"
+                            string="→ Ironing"
                             type="object" class="btn-secondary"
                             invisible="state != 'washing'"/>
                     <button name="action_move_to_packing"
-                            string="→ Packing / تعبئة"
+                            string="→ Packing"
                             type="object" class="btn-secondary"
                             invisible="state != 'ironing'"/>
                     <button name="action_move_to_ready"
-                            string="✓ Ready / جاهز"
+                            string="✓ Ready"
                             type="object" class="btn-success"
                             invisible="state != 'packing'"/>
                     <button name="action_confirm_handover"
-                            string="✓ Handover / تسليم"
+                            string="✓ Handover"
                             type="object" class="btn-success"
                             invisible="state != 'ready'"/>
                     <button name="action_print_label"
-                            string="🏷 Label / لاصقة"
+                            string="🏷 Label"
                             type="object" class="btn-secondary"/>
                     <button name="action_print_receipt"
-                            string="🧾 Receipt / إيصال"
+                            string="🧾 Receipt"
                             type="object" class="btn-secondary"/>
                     <button name="action_cancel"
-                            string="✕ Cancel / إلغاء"
+                            string="✕ Cancel"
                             type="object" class="btn-danger"
                             invisible="state in ('cancelled','delivered','picked_up')"
-                            confirm="Cancel this order? / هل تريد إلغاء هذا الطلب؟"/>
+                            confirm="Cancel this order?"/>
                     <field name="state" widget="statusbar"
                            statusbar_visible="received,tagged,washing,ironing,packing,ready,picked_up"/>
                 </header>
@@ -89,11 +89,11 @@
                     <!-- ALERT BANNERS -->
                     <div class="alert alert-danger" role="alert"
                          invisible="not is_overdue">
-                        <strong>⏰ OVERDUE / متأخر</strong> — هذا الطلب تجاوز موعد التسليم!
+                        <strong>⏰ OVERDUE</strong> — this order has passed its promise date!
                     </div>
                     <div class="alert alert-warning" role="alert"
                          invisible="state != 'issue'">
-                        <strong>🔴 Issue / إشكالية</strong> — الطلب معلّق، يلزم معالجة الإشكالية أولاً.
+                        <strong>🔴 Issue</strong> — the order is on hold until the issue is settled.
                     </div>
 
                     <!-- TITLE ROW -->
@@ -104,7 +104,7 @@
                             </h1>
                             <field name="priority" widget="priority"/>
                             <span invisible="not is_urgent"
-                                  class="badge text-bg-danger fs-6">⚡ عاجل / URGENT</span>
+                                  class="badge text-bg-danger fs-6">⚡ URGENT</span>
                         </div>
                     </div>
 
@@ -115,12 +115,12 @@
                             <div class="o_group">
                                 <div class="o_cell o_wrap_label">
                                     <label for="partner_id" class="o_form_label fw-bold">
-                                        👤 Customer / العميل
+                                        👤 Customer
                                     </label>
                                 </div>
                                 <div class="o_cell">
                                     <field name="partner_id"
-                                           placeholder="Search customer / ابحث عن العميل..."
+                                           placeholder="Search customer"
                                            options="{'no_open': False}"/>
                                 </div>
                             </div>
@@ -131,48 +131,48 @@
                                        placeholder="For wholesale/B2B orders"/>
                             </group>
 
-                            <separator string="📅 Scheduling / الجدولة"/>
+                            <separator string="📅 Scheduling"/>
                             <group>
-                                <field name="branch_id" string="🏪 Branch / الفرع"/>
+                                <field name="branch_id" string="🏪 Branch"/>
                                 <field name="promise_date"
-                                       string="⏰ Promise Date / موعد التسليم"
+                                       string="⏰ Promise Date"
                                        required="1"
                                        widget="datetime"/>
-                                <field name="priority" string="🚦 Priority / الأولوية"/>
+                                <field name="priority" string="🚦 Priority"/>
                                 <field name="delivery_requested"
-                                       string="🚗 Delivery Requested / طلب توصيل"/>
+                                       string="🚗 Delivery Requested"/>
                             </group>
                         </div>
 
                         <!-- RIGHT COLUMN -->
                         <div class="col-lg-6">
-                            <separator string="💳 Payment / الدفع"/>
+                            <separator string="💳 Payment"/>
                             <group>
                                 <field name="payment_method"
-                                       string="💳 Method / الطريقة"
+                                       string="💳 Method"
                                        widget="radio"
                                        options="{'horizontal': true}"/>
                                 <field name="payment_state"
-                                       string="State / الحالة"/>
+                                       string="State"/>
                                 <field name="cash_tendered"
-                                       string="💵 Cash Tendered / المبلغ المقدم"
+                                       string="💵 Cash Tendered"
                                        invisible="payment_method != 'cash'"/>
                                 <field name="change_amount"
-                                       string="🔄 Change / الباقي"
+                                       string="🔄 Change"
                                        readonly="1"
                                        invisible="payment_method != 'cash' or change_amount == 0"/>
                                 <field name="amount_total" readonly="1"
-                                       string="💰 Total / المجموع"/>
+                                       string="💰 Total"/>
                                 <field name="amount_paid" readonly="1"
-                                       string="✓ Paid / مدفوع"/>
+                                       string="✓ Paid"/>
                                 <field name="amount_due" readonly="1"
-                                       string="⚠ Due / المتبقي"/>
+                                       string="⚠ Due"/>
                             </group>
 
-                            <separator string="📦 Tracking / التتبع"/>
+                            <separator string="📦 Tracking"/>
                             <group>
                                 <field name="bag_reference"
-                                       string="🏷 Bag Reference / رقم الحقيبة"
+                                       string="🏷 Bag Reference"
                                        placeholder="e.g. BAG-001"/>
                                 <field name="rack_location"
                                        string="📌 Rack / Location"
@@ -181,15 +181,15 @@
                                        string="🔲 Barcode"/>
                             </group>
 
-                            <separator string="👤 Staff / الموظفون"/>
+                            <separator string="👤 Staff"/>
                             <group>
                                 <field name="user_id" readonly="1"
-                                       string="Cashier / الكاشير"/>
+                                       string="Cashier"/>
                                 <field name="assigned_production_id"
-                                       string="Production / الإنتاج"
+                                       string="Production"
                                        domain="[('share','=',False)]"/>
                                 <field name="date_order" readonly="1"
-                                       string="Created / تاريخ الإنشاء"/>
+                                       string="Created"/>
                                 <field name="pos_order_id" readonly="1"
                                        string="POS Order"/>
                             </group>
@@ -202,18 +202,18 @@
                         <div class="lf-order-picker-container" id="laundry_item_picker"/>
 
                         <!-- ORDER LINES -->
-                        <page string="🧺 Order Lines / بنود الطلب" name="order_lines">
+                        <page string="🧺 Order Lines" name="order_lines">
                             <field name="order_line_ids">
                                 <tree editable="bottom"
                                       decoration-warning="line_state == 'issue'">
                                     <field name="sequence" widget="handle"/>
                                     <field name="item_category_id"
-                                           string="Item / الصنف"
+                                           string="Item"
                                            options="{'no_create': False}"/>
                                     <field name="service_type_id"
-                                           string="Service / الخدمة"/>
+                                           string="Service"/>
                                     <field name="description" string="Description"/>
-                                    <field name="addon_display" string="Selected Options / الخيارات المختارة" optional="hide"/>
+                                    <field name="addon_display" string="Selected Options" optional="hide"/>
                                     <field name="qty" string="Qty" sum="Total Qty"/>
                                     <field name="unit_price" string="Price"/>
                                     <field name="urgent_surcharge" readonly="1"
@@ -235,28 +235,28 @@
                             </field>
                             <group class="oe_subtotal_footer">
                                 <field name="amount_total" readonly="1"
-                                       string="💰 Total / المجموع"
+                                       string="💰 Total"
                                        class="oe_subtotal_footer_separator"
                                        widget="monetary"/>
                             </group>
                         </page>
 
                         <!-- NOTES -->
-                        <page string="📝 Notes / ملاحظات" name="notes">
+                        <page string="📝 Notes" name="notes">
                             <group>
-                                <group string="Intake Notes / ملاحظات الاستلام">
+                                <group string="Intake Notes">
                                     <field name="intake_notes" nolabel="1"
-                                           placeholder="Notes for production staff / ملاحظات الإنتاج..."/>
+                                           placeholder="Notes for production staff"/>
                                 </group>
-                                <group string="Pre-existing Damage / أضرار مسبقة">
+                                <group string="Pre-existing Damage">
                                     <field name="pre_damage_notes" nolabel="1"
-                                           placeholder="Document any existing damage / بقع أو أضرار موجودة مسبقاً..."/>
+                                           placeholder="Document any existing damage"/>
                                 </group>
-                                <group string="Customer Notes / ملاحظات العميل (على الإيصال)">
+                                <group string="Customer Notes">
                                     <field name="customer_notes" nolabel="1"
-                                           placeholder="Printed on receipt / تظهر على الإيصال..."/>
+                                           placeholder="Printed on receipt"/>
                                 </group>
-                                <group string="Internal Notes / ملاحظات داخلية">
+                                <group string="Internal Notes">
                                     <field name="internal_notes" nolabel="1"
                                            placeholder="Internal only, not visible to customer..."/>
                                 </group>
@@ -264,7 +264,7 @@
                         </page>
 
                         <!-- STATUS LOG -->
-                        <page string="📊 Status Log / سجل الحالة" name="status_log">
+                        <page string="📊 Status Log" name="status_log">
                             <field name="status_log_ids" readonly="1">
                                 <tree decoration-info="to_state == 'ready'"
                                       decoration-danger="to_state in ('cancelled','issue')">
@@ -278,7 +278,7 @@
                         </page>
 
                         <!-- ISSUES -->
-                        <page string="⚠ Issues / الإشكاليات" name="issues">
+                        <page string="⚠ Issues" name="issues">
                             <field name="issue_ids">
                                 <tree decoration-danger="state == 'open'">
                                     <field name="name"/>
@@ -327,9 +327,9 @@
                             <div class="d-flex justify-content-between">
                                 <strong class="text-primary"><field name="name"/></strong>
                                 <span t-if="record.is_urgent.raw_value"
-                                      class="badge text-bg-danger">⚡ عاجل</span>
+                                      class="badge text-bg-danger">⚡ Urgent</span>
                                 <span t-if="record.is_overdue.raw_value"
-                                      class="badge text-bg-warning">⏰ متأخر</span>
+                                      class="badge text-bg-warning">⏰ Overdue</span>
                             </div>
                             <div class="text-muted small"><field name="partner_id"/></div>
                             <div class="d-flex justify-content-between mt-1">
@@ -353,25 +353,25 @@
         <field name="name">laundry.order.search</field>
         <field name="model">laundry.order</field>
         <field name="arch" type="xml">
-            <search string="البحث في الطلبات">
+            <search string="Search Orders">
                 <field name="name" string="Order Ref"/>
                 <field name="partner_id" string="Customer"/>
                 <field name="barcode" string="Barcode"/>
                 <field name="bag_reference" string="Bag"/>
                 <field name="branch_id"/>
-                <filter name="filter_urgent" string="⚡ عاجل"
+                <filter name="filter_urgent" string="⚡ Urgent"
                         domain="[('priority','=','urgent')]"/>
-                <filter name="filter_overdue" string="⏰ متأخر"
+                <filter name="filter_overdue" string="⏰ Overdue"
                         domain="[('is_overdue','=',True)]"/>
-                <filter name="filter_ready" string="✅ جاهز"
+                <filter name="filter_ready" string="✅ Ready"
                         domain="[('state','=','ready')]"/>
-                <filter name="filter_issues" string="🔴 إشكالية"
+                <filter name="filter_issues" string="🔴 Issue"
                         domain="[('state','=','issue')]"/>
-                <filter name="filter_unpaid" string="💰 غير مدفوع"
+                <filter name="filter_unpaid" string="💰 Unpaid"
                         domain="[('payment_state','in',['unpaid','partial'])]"/>
-                <filter name="filter_on_account" string="🏢 على الحساب"
+                <filter name="filter_on_account" string="🏢 On Account"
                         domain="[('payment_state','=','on_account')]"/>
-                <filter name="filter_active" string="نشط"
+                <filter name="filter_active" string="Active"
                         domain="[('state','not in',['cancelled','delivered','picked_up'])]"/>
                 <separator/>
                 <group expand="0" string="Group By">
@@ -391,7 +391,7 @@
     </record>
 
     <record id="action_laundry_order" model="ir.actions.act_window">
-        <field name="name">Laundry Orders / الطلبات</field>
+        <field name="name">Laundry Orders</field>
         <field name="res_model">laundry.order</field>
         <field name="view_mode">list,kanban,form</field>
         <field name="search_view_id" ref="view_laundry_order_search"/>
@@ -399,7 +399,7 @@
     </record>
 
     <record id="action_laundry_order_kanban" model="ir.actions.act_window">
-        <field name="name">Production Board / لوحة الإنتاج</field>
+        <field name="name">Production Board</field>
         <field name="res_model">laundry.order</field>
         <field name="view_mode">kanban,list,form</field>
         <field name="search_view_id" ref="view_laundry_order_search"/>
@@ -407,14 +407,14 @@
     </record>
 
     <record id="action_laundry_order_ready" model="ir.actions.act_window">
-        <field name="name">Ready for Pickup / جاهز للاستلام</field>
+        <field name="name">Ready for Pickup</field>
         <field name="res_model">laundry.order</field>
         <field name="view_mode">list,form</field>
         <field name="domain">[('state','=','ready')]</field>
     </record>
 
     <record id="action_laundry_order_overdue" model="ir.actions.act_window">
-        <field name="name">Overdue Orders / المتأخرة</field>
+        <field name="name">Overdue Orders</field>
         <field name="res_model">laundry.order</field>
         <field name="view_mode">list,form</field>
         <field name="domain">[('is_overdue','=',True)]</field>

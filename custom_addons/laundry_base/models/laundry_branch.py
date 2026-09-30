@@ -2,6 +2,8 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
+from .laundry_naming import display_name_for
+
 
 class LaundryBranch(models.Model):
     _name = 'laundry.branch'
@@ -9,7 +11,7 @@ class LaundryBranch(models.Model):
     _order = 'sequence, name'
 
     name = fields.Char(string='Branch Name', required=True, translate=True)
-    name_ar = fields.Char(string='اسم الفرع')
+    name_ar = fields.Char(string='Arabic Name')
     code = fields.Char(string='Code', required=True, size=10)
     sequence = fields.Integer(default=10)
     active = fields.Boolean(default=True)
@@ -64,8 +66,8 @@ class LaundryBranch(models.Model):
                     _('Branch code must be unique: %s') % rec.code
                 )
 
-    def name_get(self):
-        return [
-            (b.id, '[%s] %s' % (b.code, b.name_ar or b.name))
-            for b in self
-        ]
+    @api.depends('name', 'name_ar', 'code')
+    def _compute_display_name(self):
+        for branch in self:
+            branch.display_name = '[%s] %s' % (
+                branch.code, display_name_for(branch))

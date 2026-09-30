@@ -15,7 +15,7 @@
         </field>
     </record>
     <record id="action_laundry_service_type" model="ir.actions.act_window">
-        <field name="name">Service Types / الخدمات</field>
+        <field name="name">Service Types</field>
         <field name="res_model">laundry.service.type</field>
         <field name="view_mode">list,form</field>
     </record>

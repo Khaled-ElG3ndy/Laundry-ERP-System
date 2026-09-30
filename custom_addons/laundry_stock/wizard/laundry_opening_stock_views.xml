@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_opening_stock_form" model="ir.ui.view">
+        <field name="name">laundry.opening.stock.form</field>
+        <field name="model">laundry.opening.stock</field>
+        <field name="arch" type="xml">
+            <form string="Opening Stock Count">
+                <p class="text-muted">
+                    Lays out a count line for every laundry supply, in the zone
+                    it belongs to. Type what is on the shelf in the
+                    <b>Counted Quantity</b> column, then press <b>Apply</b>.
+                </p>
+                <group>
+                    <field name="branch_id" options="{'no_create': True}"/>
+                    <field name="categ_ids" widget="many2many_tags"
+                           options="{'no_create': True}"/>
+                    <field name="include_all_supplies"/>
+                    <field name="product_count"/>
+                </group>
+                <footer>
+                    <button name="action_prepare_count" type="object"
+                            string="Lay Out the Count" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_laundry_opening_stock" model="ir.actions.act_window">
+        <field name="name">Opening Stock</field>
+        <field name="res_model">laundry.opening.stock</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="rule_laundry_stock_issue_company" model="ir.rule">
+            <field name="name">Material Issue: own company</field>
+            <field name="model_id" ref="model_laundry_stock_issue"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+        <record id="rule_laundry_purchase_request_company" model="ir.rule">
+            <field name="name">Purchase Request: own company</field>
+            <field name="model_id" ref="model_laundry_purchase_request"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+        <record id="rule_laundry_consumption_norm_company" model="ir.rule">
+            <field name="name">Consumption Norm: own company</field>
+            <field name="model_id" ref="model_laundry_consumption_norm"/>
+            <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+            <field name="global" eval="True"/>
+        </record>
+
+        <!-- Production staff work on what they wrote themselves. -->
+        <record id="rule_laundry_stock_issue_production" model="ir.rule">
+            <field name="name">Material Issue: production staff sees own branch</field>
+            <field name="model_id" ref="model_laundry_stock_issue"/>
+            <field name="groups" eval="[(4, ref('laundry_base.group_laundry_production'))]"/>
+            <field name="domain_force">[
+                '|',
+                ('user_id', '=', user.id),
+                ('branch_id.manager_id', '=', user.id)
+            ]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="rule_laundry_stock_issue_storekeeper" model="ir.rule">
+            <field name="name">Material Issue: store keeper sees all</field>
+            <field name="model_id" ref="model_laundry_stock_issue"/>
+            <field name="groups" eval="[(4, ref('laundry_stock.group_laundry_storekeeper'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

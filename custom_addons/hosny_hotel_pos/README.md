@@ -146,6 +146,27 @@ ambiguous / failed, for both prices and customers, with a per-row detail list.
 `hotel_imported_price` plus a separate `hotel_import_tracked` flag, so a genuine
 imported price of 0.00 is not mistaken for "never imported".
 
+## Invoices typed in Accounting
+
+Odoo 17 prices an invoice line from the product's own sales price and never
+reads the customer's pricelist. Hotel products have a sales price of 0.00 (their
+price lives only in the contract pricelist), so an invoice written by hand for
+a hotel customer used to come out at 0.00. `models/account_move.py` fixes that:
+
+* On a customer invoice or credit note, a product line asks the customer's
+  pricelist first **when it is a hotel contract** (`is_hotel_contract`), the
+  same way a sale order line does. The fixed price is converted to the
+  invoice currency and the fiscal position is applied, as core does for a
+  product's own price. VAT comes from the product (the exclusive 15%).
+* Changing the customer on a draft invoice re-prices the lines whose product
+  has a hotel contract rule, as the POS re-prices on `set_partner`. A line
+  added before the customer was chosen therefore still ends up at the
+  contract price. Other lines keep whatever price was typed on them.
+* Everything else is core behaviour: customers without a contract (every
+  partner resolves to *some* fallback pricelist, which is deliberately not
+  applied), vendor bills, and every line created with an explicit price (POS
+  invoices, sale order invoices, credit notes from the reversal wizard).
+
 ## Security
 
 One narrow group, **Hotel Contract Manager**, gates the contract-price tools and
@@ -238,8 +259,14 @@ spelling for traceability.
 
 ## Notes
 
-* Hotel products reuse the same VAT-inclusive sale tax as every existing retail
-  product, so hotel and retail receipts compute identically.
+* Contract prices are quoted **before VAT**, so hotel products carry the
+  price-exclusive 15% sale tax (the company default) and VAT is added on top:
+  a 2.90 sheet price bills 2.90 + 0.44 = 3.34. Retail keeps its VAT-inclusive
+  tax. The hotel POS shows prices before tax (`iface_tax_included =
+  'subtotal'`), so the till and the receipt lines show the contract price and
+  the receipt lists subtotal, VAT and total separately. Until 17.0.4.1.0 hotel
+  products used the retail VAT-inclusive tax; the migration for that version
+  moved them over. Orders taken before it keep the tax stored on their lines.
 * Four items are priced at or near zero in the sheet and were imported verbatim:
   `ديكور طاولة`, `حلية طاولة`, `فستان` (0.15 base / 0.00 fann / 0.10 naseem /
   0.00 lulua) and `سجادة صلاة` (0.00 everywhere). Confirm these are intended

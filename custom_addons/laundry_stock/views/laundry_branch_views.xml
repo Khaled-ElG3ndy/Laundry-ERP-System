@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_laundry_branch_form_stock" model="ir.ui.view">
+        <field name="name">laundry.branch.form.stock</field>
+        <field name="model">laundry.branch</field>
+        <field name="inherit_id" ref="laundry_base.view_laundry_branch_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="action_setup_warehouse"
+                            type="object"
+                            string="Set Up Warehouse"
+                            class="oe_highlight"
+                            invisible="is_warehouse_ready"/>
+                    <button name="action_setup_warehouse"
+                            type="object"
+                            string="Check Warehouse Layout"
+                            invisible="not is_warehouse_ready"/>
+                </header>
+            </xpath>
+
+            <xpath expr="//div[hasclass('oe_title')]" position="before">
+                <field name="is_warehouse_ready" invisible="1"/>
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_stock" type="object"
+                            class="oe_stat_button" icon="fa-cubes"
+                            invisible="not warehouse_id">
+                        <field name="supply_product_count" widget="statinfo"
+                               string="Supplies"/>
+                    </button>
+                    <button name="action_view_low_stock" type="object"
+                            class="oe_stat_button" icon="fa-exclamation-triangle"
+                            invisible="not warehouse_id">
+                        <field name="low_stock_count" widget="statinfo"
+                               string="To Reorder"/>
+                    </button>
+                    <button name="action_view_issues" type="object"
+                            class="oe_stat_button" icon="fa-sign-out"
+                            invisible="not warehouse_id">
+                        <span class="o_stat_text">Material Issues</span>
+                    </button>
+                    <button name="action_view_purchase_requests" type="object"
+                            class="oe_stat_button" icon="fa-shopping-cart"
+                            invisible="not warehouse_id">
+                        <span class="o_stat_text">Purchase Requests</span>
+                    </button>
+                </div>
+                <div class="alert alert-warning" role="alert"
+                     invisible="is_warehouse_ready">
+                    This branch has no warehouse laid out yet. Use
+                    <b>Set Up Warehouse</b> to create its store, its storage
+                    zones and its material issue operation.
+                </div>
+            </xpath>
+
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Warehouse" name="laundry_warehouse">
+                        <group>
+                            <group string="Store">
+                                <field name="warehouse_id"
+                                       options="{'no_create': True}"/>
+                                <field name="store_location_id"/>
+                                <field name="consumption_location_id"
+                                       readonly="1"/>
+                                <field name="issue_picking_type_id"
+                                       readonly="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="supply_on_hand_value"
+                                       widget="monetary"/>
+                            </group>
+                            <group string="Material Issue">
+                                <field name="auto_consume"/>
+                                <field name="auto_consume_state"
+                                       invisible="not auto_consume"
+                                       required="auto_consume"/>
+                            </group>
+                        </group>
+                        <separator string="Storage Zones"/>
+                        <field name="zone_location_ids" readonly="1">
+                            <tree>
+                                <field name="laundry_zone_code"/>
+                                <field name="complete_name"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_laundry_branch_list_stock" model="ir.ui.view">
+        <field name="name">laundry.branch.list.stock</field>
+        <field name="model">laundry.branch</field>
+        <field name="inherit_id" ref="laundry_base.view_laundry_branch_list"/>
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <field name="warehouse_id" optional="show"/>
+                <field name="low_stock_count" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
